@@ -13,6 +13,27 @@
   }
 }
 
+.accordion-button.collapsed, .accordion-button:not(.collapsed){
+  font-size: 1.8rem;
+}
+
+.accordion-button.collapsed, .accordion-button:not(.collapsed), .accordion-body{
+  background-color: #99CBC8 !important;
+  color: white !important;
+  border: 0;
+}
+
+.accordion-button::after{
+  background-image: url("imgs/arrowhite.svg") !important;
+  color: white;
+}
+
+.accordion-item{
+  border-top: 0 !important;
+  border-left: 0 !important;
+  border-right: 0 !important;
+}
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -36,3 +57,4 @@
     transform: rotate(360deg);
   }
 }
+
