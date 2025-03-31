@@ -1,60 +1,46 @@
-.App {
-  text-align: center;
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Poppins:wght@300;400;700&display=swap');
+
+.font-lato {
+  font-family: 'Lato', sans-serif;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.font-poppins {
+  font-family: 'Poppins', sans-serif;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
 
-.accordion-button.collapsed, .accordion-button:not(.collapsed){
+.accordion-button.collapsed, .accordion-button:not(.collapsed) {
   font-size: 1.8rem;
-}
-
-.accordion-button.collapsed, .accordion-button:not(.collapsed), .accordion-body{
   background-color: #99CBC8 !important;
   color: white !important;
   border: 0;
 }
 
-.accordion-button::after{
+.accordion-body {
+  background-color: #99CBC8 !important;
+  color: white !important;
+  border: 0;
+}
+
+.accordion-button::after {
   background-image: url("imgs/arrowhite.svg") !important;
   color: white;
 }
 
-.accordion-item{
+.accordion-item {
   border-top: 0 !important;
   border-left: 0 !important;
   border-right: 0 !important;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.accordion-button:hover {
+  background-color: #99CBC8 !important;
+  color: white !important;
 }
 
-.App-link {
-  color: #61dafb;
+.accordion-button:focus {
+  box-shadow: none !important;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
+
 
