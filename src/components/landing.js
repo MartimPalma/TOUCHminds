@@ -112,16 +112,16 @@ const LandingPage = () => {
             </section>
 
       
-      <section className="text-center py-5" style={{ backgroundColor: "#E7C8C2", color: "#234970" }}>
-        <p className="fs-1 font-poppins">Dá o primeiro passo para o teu bem-estar mental!</p>
-        <p className="mb-4 mt-2 font-poppins">Regista-te agora no Touchminds!</p>
-        <button className="btn btn-lg mx-2 font-poppins" style={{ backgroundColor: "white", color: "#99CBC8", border: "1px solid #99CBC8" }}>Sign up</button>
-        <button className="btn btn-lg mx-2 font-poppins" style={{ backgroundColor: "white", color: "#C8C2AF", border: "1px solid #C8C2AF" }}>Log in</button>
+      <section className="text-start py-5 ps-5" style={{ backgroundColor: "#E7C8C2", color: "#234970" }}>
+        <p className="fs-2 ms-5 fw-semibold font-poppins">Dá o primeiro passo para o teu bem-estar mental!</p>
+        <p className="mb-5 ms-5  fs-3 mt-2 font-poppins">Regista-te agora no TOUCHminds!</p>
+        <button className="btn btn-lg me-3 ms-5 mt-4 font-poppins" style={{ backgroundColor: "white", color: "#99CBC8", border: "1px solid #99CBC8" }}>Sign up</button>
+        <button className="btn btn-lg  mt-4 font-poppins" style={{ backgroundColor: "white", color: "#C8C2AF", border: "1px solid #C8C2AF" }}>Log in</button>
       </section>
 
       
       <footer className="text-white text-center py-3" style={{ backgroundColor: "#99CBC8" }}>
-        <p>Copyright © 2032 Creativo®. All rights reserved.</p>
+        <p>Copyright © 2025 TOUCHminds®. All rights reserved.</p>
       </footer>
     </div>
   );
