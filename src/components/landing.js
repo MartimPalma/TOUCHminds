@@ -17,7 +17,7 @@ const LandingPage = () => {
               <button className="btn btn-primary mt-4 font-poppins fw-bold py-2" style={{ backgroundColor: "#E7C8C2", borderColor: "#E7C8C2" , color: "#234970"}}>Começar AGORA</button>
             </div>
           </div>
-          <div className="w-50 text-end">
+          <div className="w-50 text-center">
             <img src={cerebro} alt="Brain Illustration" className="img-fluid w-50" />
           </div>
         </section>
