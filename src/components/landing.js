@@ -5,9 +5,13 @@ import logo from "../imgs/logositeazul.png";
 import cerebro from "../imgs/cerebro.png"; 
 import seta from "../imgs/icon-seta.png";
 
+
+
+
 const LandingPage = () => {
   return (
     <div>
+      {/* validar tamanho de letra */}
       <img src={logo} alt="TOUCHminds Logo" className="mt-4 mx-auto d-block" style={{ width: "10%" }}/>
         <section className="container py-5 d-flex align-items-center ">
           <div className="text-center text-md-start w-50">
@@ -51,8 +55,8 @@ const LandingPage = () => {
           </section>
 
             
-            <section className="container py-5">
-              <h2 className="text-center">Espreita os módulos!</h2>
+            <section className="container py-5"> {/* validar texto e imagens dos módulos */}
+              <h2 className="text-center">Espreita os módulos!</h2>  {/* validar se este é o melhor titulo */}
               <div className="row mt-4">
                 <div className="col-md-4 mb-4">
                   <div className="card">
