@@ -7,7 +7,6 @@ import seta from "../imgs/icon-seta.png";
 
 
 
-
 const LandingPage = () => {
   return (
     <div>

@@ -11,5 +11,5 @@ comandos do git:
    git push 
 
 #  fazer sempre que inicia o projeto 
-  tranferir ficheiros do repositório para o computador: 
+ tranferir ficheiros do repositório para o computador: 
   git pull origin main 
