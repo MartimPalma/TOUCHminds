@@ -1,7 +1,7 @@
 # TOUCHminds
 
 https://www.freecodecamp.org/portuguese/news/como-fazer-o-seu-primeiro-pull-request-no-github/ - link como trabalhar com o git
-link para trabalhar com React
+link para trabalhar com React - https://www.youtube.com/watch?v=J9pFbdtNe1c&ab_channel=HashtagPrograma%C3%A7%C3%A3o
 
 comandos do git:
  
