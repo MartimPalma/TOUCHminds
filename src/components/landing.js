@@ -6,7 +6,6 @@ import cerebro from "../imgs/cerebro.png";
 import seta from "../imgs/icon-seta.png";
 
 
-
 const LandingPage = () => {
   return (
     <div>
@@ -59,7 +58,7 @@ const LandingPage = () => {
               <div className="row mt-4">
                 <div className="col-md-4 mb-4">
                   <div className="card">
-                    <img src="/module1.jpg" alt="Módulo 1" className="card-img-top" />
+                    <img src="/module1.jpg" alt="Módulo 1" className="card-img-top"/>
                     <div className="card-body">
                       <h5 className="card-title">Módulo 1 – Ansiedade NÃO é bicho-papão!</h5>
                       <p className="card-text">Todos nós sentimos ansiedade – e isso é perfeitamente normal! Aqui, vais compreender melhor as emoções, como elas influenciam o nosso dia a dia e aprender a distinguir entre uma ansiedade comum, que é normal, e que todos sentimos e uma ansiedade SOS que causa sofrimento.</p>
