@@ -53,7 +53,7 @@ const LandingPage = () => {
           </section>
 
             
-            <section className="container py-5"> {/* validar texto e imagens dos módulos */}
+            <section className="container py-5"> {/* validar imagens dos módulos */}
               <h2 className="text-center">Espreita os módulos!</h2>  {/* validar se este é o melhor titulo */}
               <div className="row mt-4">
                 <div className="col-md-4 mb-4">
