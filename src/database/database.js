@@ -15,3 +15,15 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
+
+
+
+{/*  Informações a guardar na base de dados:   
+
+Quantos módulos foram concluídos. 
+
+Tempo gasto para completar as atividades e os módulos. 
+
+Periodicidade da realização dos módulos (se foram feitos todos no mesmo dia ou distribuídos ao longo da semana). 
+
+*/}

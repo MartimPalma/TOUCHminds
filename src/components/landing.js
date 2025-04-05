@@ -61,7 +61,7 @@ const LandingPage = () => {
                     <img src="/module1.jpg" alt="Módulo 1" className="card-img-top"/>
                     <div className="card-body">
                       <h5 className="card-title">Módulo 1 – Ansiedade NÃO é bicho-papão!</h5>
-                      <p className="card-text">Todos nós sentimos ansiedade – e isso é perfeitamente normal! Aqui, vais compreender melhor as emoções, como elas influenciam o nosso dia a dia e aprender a distinguir entre uma ansiedade comum, que é normal, e que todos sentimos e uma ansiedade SOS que causa sofrimento.</p>
+                      <p className="card-text">A ansiedade é normal! Aprende a diferenciar entre uma ansiedade comum e uma ansiedade SOS que causa sofrimento, compreendendo melhor as emoções e o impacto delas no dia a dia. </p>
                     </div>
                   </div>
                 </div>
@@ -70,7 +70,7 @@ const LandingPage = () => {
                     <img src="/module2.jpg" alt="Módulo 2" className="card-img-top" />
                     <div className="card-body">
                       <h5 className="card-title">Módulo 2– Desmistificar a Ansiedade! </h5>
-                      <p className="card-text">Será que tudo o que dizem sobre ansiedade é verdade? Vais desvendar os mitos, entender como o estigma pode atrapalhar e aprender a ver a ansiedade sem medo e sem julgamentos! </p>
+                      <p className="card-text">Nem tudo o que dizem sobre a ansiedade é verdade! Descobre os mitos, entende como o estigma pode atrapalhar e aprende a ver a ansiedade sem medo e sem julgamentos.</p>
                     </div>
                   </div>
                 </div>
@@ -79,7 +79,7 @@ const LandingPage = () => {
                     <img src="/module3.jpg" alt="Módulo 3" className="card-img-top" />
                     <div className="card-body">
                       <h5 className="card-title">Módulo 3 – Sê Amigo de Ti Mesmo!</h5>
-                      <p className="card-text">O que dizes a ti próprio pode fazer toda a diferença. Aprende a reconhecer o impacto do autocriticismo e descobre como a autocompaixão pode ser uma aliada no teu bem-estar mental.</p>
+                      <p className="card-text">O que dizes a ti próprio faz a diferença! Aprende a reconhecer o impacto do autocriticismo e descobre como a autocompaixão pode ser uma aliada no teu bem-estar.</p>
                     </div>
                   </div>
                 </div>
@@ -88,7 +88,7 @@ const LandingPage = () => {
                     <img src="/module4.jpg" alt="Módulo 4" className="card-img-top" />
                     <div className="card-body">
                       <h5 className="card-title">Módulo 4 – O Poder da Mudança!</h5>
-                      <p className="card-text">A mudança faz parte da vida! Explora os diferentes estádios da mudança, aprende a definir objetivos realistas e descobre como dar pequenos passos pode fazer uma grande diferença.</p>
+                      <p className="card-text">A mudança faz parte da vida! Explora os diferentes estádios da mudança, aprende a definir objetivos realistas e descobre como pequenos passos podem fazer uma grande diferença.</p>
                     </div>
                   </div>
                 </div>
@@ -97,7 +97,7 @@ const LandingPage = () => {
                     <img src="/module5.jpg" alt="Módulo 5" className="card-img-top" />
                     <div className="card-body">
                       <h5 className="card-title">Módulo 5 – Reviravolta em Rede!</h5>
-                      <p className="card-text">Pedir ajuda pode parecer difícil, mas não estás sozinho. Aprende a identificar sinais de alerta, a diferenciar entre ajuda formal e informal e descobre como a ajuda das pessoas mais próximas podem fazer toda a diferença.</p>
+                      <p className="card-text">Pedir ajuda não é sinal de fraqueza! Aprende a identificar sinais de alerta, a diferenciar entre os vários tipos de ajuda e a reconhecer a importância da ajuda das pessoas mais próximas.</p>
                     </div>
                   </div>
                 </div>
@@ -106,7 +106,7 @@ const LandingPage = () => {
                     <img src="/module6.jpg" alt="Módulo 6" className="card-img-top" />
                     <div className="card-body">
                       <h5 className="card-title">Módulo 6 – Um Novo Começo!</h5>
-                      <p className="card-text">Como funciona a ajuda profissional? Descobre os sinais que indicam que podes precisar de ajuda profissional, conhece o papel do psicólogo e explora os recursos disponíveis para dares o próximo passo.</p>
+                      <p className="card-text">E como funciona a ajuda formal? Descobre os sinais que indicam que podes precisar de ajuda formal, conhece o papel do psicólogo e explora os recursos disponíveis para o próximo passo.</p>
                     </div>
                   </div>
                 </div>
