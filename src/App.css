@@ -8,6 +8,24 @@
   font-family: 'Poppins', sans-serif;
 }
 
+.arrow-down {
+  font-size: 25px;
+  color: #234970; /* Cor da seta */
+  animation: bounce 1s infinite;  /* Aplica a animação */
+}
+
+@keyframes bounce {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(10px);  /* Movimento para baixo */
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
 
 .accordion-button.collapsed, .accordion-button:not(.collapsed) {
   font-size: 1.8rem;
