@@ -1,5 +1,7 @@
 import React from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
+
+import { useNavigate } from "react-router-dom";
+
 import { Accordion } from "react-bootstrap";
 import logo from "../imgs/logositeazul.png"; 
 import cerebro from "../imgs/cerebro.png"; 
@@ -7,6 +9,17 @@ import seta from "../imgs/icon-seta.png";
 
 
 const LandingPage = () => {
+
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate('/login');
+  };
+
+  const handleSignUpClick = () => {
+    navigate('/signup');
+  }
+
   return (
     <div>
       {/* validar tamanho de letra */}
@@ -16,7 +29,12 @@ const LandingPage = () => {
             <h1 className="fw-bold font-poppins py-4" style={{ color: "#99CBC8" }}>Procurar ajuda é o começo da mudança!</h1>
             <p className="text-muted mt-4 font-lato py-4"> O TOUCHminds oferece um programa online gratuito destinado a ajudar os adolescentes a compreender a ansiedade e a promover a procura de ajuda. O acesso está atualmente disponível em escolas selecionadas da região norte. </p>
             <div className="py-5">
-              <button className="btn btn-primary mt-4 font-poppins fw-bold py-2" style={{ backgroundColor: "#E7C8C2", borderColor: "#E7C8C2" , color: "#234970"}}>Começar AGORA</button>
+              <button 
+                className="btn btn-primary mt-4 font-poppins fw-bold py-2" 
+                style={{ backgroundColor: "#E7C8C2", borderColor: "#E7C8C2" , color: "#234970"}}
+                onClick={handleClick}>
+                  Começar AGORA
+              </button>
             </div>
           </div>
           <div className="w-50 text-center">
@@ -117,8 +135,19 @@ const LandingPage = () => {
       <section className="text-start py-5 ps-5" style={{ backgroundColor: "#E7C8C2", color: "#234970" }}>
         <p className="fs-2 ms-5 fw-semibold font-poppins">Dá o primeiro passo para o teu bem-estar mental!</p>
         <p className="mb-5 ms-5  fs-3 mt-2 font-poppins">Regista-te agora no TOUCHminds!</p>
-        <button className="btn btn-lg me-3 ms-5 mt-4 font-poppins" style={{ backgroundColor: "white", color: "#99CBC8", border: "1px solid #99CBC8" }}>Sign up</button>
-        <button className="btn btn-lg  mt-4 font-poppins" style={{ backgroundColor: "white", color: "#C8C2AF", border: "1px solid #C8C2AF" }}>Log in</button>
+        <button 
+          className="btn btn-lg me-3 ms-5 mt-4 font-poppins" 
+          style={{ backgroundColor: "white", color: "#99CBC8", border: "1px solid #99CBC8" }}
+          onClick={handleSignUpClick}>
+            Sign up
+        </button>
+        <button 
+          className="btn btn-lg  mt-4 font-poppins" 
+          style={{ backgroundColor: "white", color: "#C8C2AF", border: "1px solid #C8C2AF" }}
+          onClick={handleClick}
+          >
+            Log in
+          </button>
       </section>
 
       
