@@ -93,7 +93,7 @@ const LandingPage = () => {
             
         <section className="container py-5">
           <h2 className="text-center text-primary fw-bold mb-4">Espreita os Módulos!</h2>
-          {/* Ao clicar vai para o login/registo */}
+
           <div className="row mt-4">
             <ModuleCard 
               image={mod1} 
