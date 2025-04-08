@@ -52,11 +52,11 @@ const LandingPage = () => {
         </section>  
 
         <div className="text-center pb-5" style={{ color: "#234970" }}>
-          <FaArrowDown className="arrow-down" />
+          <a href="#faq" style={{ textDecoration: "none", color: "#234970" }}>
+            <FaArrowDown className="arrow-down" />
+          </a>
         </div>
 
-
-        
         <section 
           className="py-5 justify-content-center text-start" 
           style={{ 
@@ -66,7 +66,7 @@ const LandingPage = () => {
             overflow: "hidden" 
           }}
         >
-          <div className="container">
+          <div className="container" id="faq">
             <Accordion defaultActiveKey="0">
               <Accordion.Item eventKey="0">
                 <Accordion.Header className="font-poppins">O que é?</Accordion.Header>
@@ -80,7 +80,7 @@ const LandingPage = () => {
                   A adolescentes dos 15 aos 17 anos que sentem que a ansiedade afeta a sua vida e desejam compreendê-la melhor, refletindo sobre estratégias para superar obstáculos na procura de ajuda e promover essa procura.
                 </Accordion.Body>
               </Accordion.Item>
-              <Accordion.Item eventKey="2">
+              <Accordion.Item eventKey="2" >
                 <Accordion.Header className="font-poppins">Como funciona?</Accordion.Header>
                 <Accordion.Body>
                   A plataforma oferece conteúdo de acesso livre, disponível para os participantes das escolas selecionadas no norte do país. Para aceder ao programa TOUCHminds, é necessário efetuar um registo.
@@ -92,7 +92,7 @@ const LandingPage = () => {
 
             
         <section className="container py-5">
-          <h2 className="text-center text-primary fw-bold mb-4">Espreita os Módulos!</h2>
+          <h2 className="text-start  fw-bold mb-4" style={{color: "#234970"}}>Espreita os Módulos!</h2>
           <div className="row mt-4">
             <ModuleCard 
               image={mod1} 
