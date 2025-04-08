@@ -93,12 +93,13 @@ const LandingPage = () => {
             
         <section className="container py-5">
           <h2 className="text-center text-primary fw-bold mb-4">Espreita os Módulos!</h2>
+          {/* Ao clicar vai para o login/registo */}
           <div className="row mt-4">
             <ModuleCard 
               image={mod1} 
               title="Módulo 1" 
               subtitle="Ansiedade NÃO é bicho-papão!" 
-              description="A ansiedade é normal! Aprende a diferenciar entre uma ansiedade comum e uma ansiedade SOS que causa sofrimento, compreendendo melhor as emoções e o impacto delas no dia a dia." 
+              description="Aprende a diferenciar entre uma ansiedade comum e uma ansiedade SOS que causa sofrimento." 
             />
             <ModuleCard 
               image={mod2} 
