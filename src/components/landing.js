@@ -37,9 +37,9 @@ const LandingPage = () => {
           <div className="text-center text-md-start w-50">
             <h1 className="fw-bold font-poppins py-4" style={{ color: "#99CBC8" }}>Procurar ajuda é o começo da mudança!</h1>
             <p className="text-muted mt-4 font-lato py-4"> O TOUCHminds oferece um programa online gratuito destinado a ajudar os adolescentes a compreender a ansiedade e a promover a procura de ajuda. O acesso está atualmente disponível em escolas selecionadas da região norte. </p>
-            <div className="py-5">
+            <div className="py-4 mb-5">
               <button 
-                className="btn btn-primary mt-4 font-poppins fw-bold py-2" 
+                className="btn btn-primary mt-1 font-poppins fw-bold py-2" 
                 style={{ backgroundColor: "#E7C8C2", borderColor: "#E7C8C2" , color: "#234970"}}
                 onClick={handleClick}>
                   Começar AGORA
@@ -52,7 +52,9 @@ const LandingPage = () => {
         </section>  
 
         <div className="text-center pb-5" style={{ color: "#234970" }}>
-          <FaArrowDown className="arrow-down" />
+          <a href="#faq" style={{ textDecoration: "none", color: "#234970" }}>
+            <FaArrowDown className="arrow-down" />
+          </a>
         </div>
 
 
@@ -66,8 +68,9 @@ const LandingPage = () => {
             overflow: "hidden" 
           }}
         >
-          <div className="container">
+           <div className="container" id="faq">
             <Accordion defaultActiveKey="0">
+
               <Accordion.Item eventKey="0">
                 <Accordion.Header className="font-poppins">O que é?</Accordion.Header>
                 <Accordion.Body className="font-lato">
@@ -92,7 +95,8 @@ const LandingPage = () => {
 
             
         <section className="container py-5">
-          <h2 className="text-center text-primary fw-bold mb-4">Espreita os Módulos!</h2>
+          
+          <h2 className="text-start  fw-bold mb-4" style={{color: "#234970"}}>Espreita os Módulos!</h2>
 
           <div className="row mt-4">
             <ModuleCard 
