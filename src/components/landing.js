@@ -5,7 +5,9 @@ import { useNavigate } from "react-router-dom";
 import { Accordion } from "react-bootstrap";
 import logo from "../imgs/logositeazul.png"; 
 import cerebro from "../imgs/cerebro.png"; 
-import { FaArrowDown } from 'react-icons/fa';  // Importando o ícone de seta para baixo da FontAwesome
+import { FaArrowDown } from 'react-icons/fa'; 
+import Footer from "./footer"; 
+import ModuleCard from "./moduleCard";
 import mod1 from "../imgs/module1.jpg";
 import mod2 from "../imgs/module1.jpg";
 import mod3 from "../imgs/module1.jpg";
@@ -89,70 +91,48 @@ const LandingPage = () => {
         </section>
 
             
-          <section className="container py-5">
-            <h2 className="text-center text-primary fw-bold mb-4">Espreita os Módulos!</h2>
-            <div className="row mt-4">
-              <div className="col-md-4 mb-4">
-                <div className="card shadow-lg border-0 rounded-4">
-                  <img src={mod1} alt="Módulo 1" className="card-img-top rounded-4"/>
-                  <div className="card-body">
-                    <h5 className="card-title" style={{ color: "#234970" }}><span className="fs-6">Módulo 1</span> – Ansiedade NÃO é bicho-papão!</h5>
-                    <p className="card-text text-muted">A ansiedade é normal! Aprende a diferenciar entre uma ansiedade comum e uma ansiedade SOS que causa sofrimento, compreendendo melhor as emoções e o impacto delas no dia a dia.</p>
-                  </div>
-                </div>
-              </div>
+        <section className="container py-5">
+          <h2 className="text-center text-primary fw-bold mb-4">Espreita os Módulos!</h2>
+          <div className="row mt-4">
+            <ModuleCard 
+              image={mod1} 
+              title="Módulo 1" 
+              subtitle="Ansiedade NÃO é bicho-papão!" 
+              description="A ansiedade é normal! Aprende a diferenciar entre uma ansiedade comum e uma ansiedade SOS que causa sofrimento, compreendendo melhor as emoções e o impacto delas no dia a dia." 
+            />
+            <ModuleCard 
+              image={mod2} 
+              title="Módulo 2" 
+              subtitle="Desmistificar a Ansiedade!" 
+              description="Nem tudo o que dizem sobre a ansiedade é verdade! Descobre os mitos, entende como o estigma pode atrapalhar e aprende a ver a ansiedade sem medo e sem julgamentos." 
+            />
+            <ModuleCard 
+              image={mod3} 
+              title="Módulo 3" 
+              subtitle="Sê Amigo de Ti Mesmo!" 
+              description="O que dizes a ti próprio faz a diferença! Aprende a reconhecer o impacto do autocriticismo e descobre como a autocompaixão pode ser uma aliada no teu bem-estar." 
+            />
+            <ModuleCard 
+              image={mod4} 
+              title="Módulo 4" 
+              subtitle="O Poder da Mudança!" 
+              description="A mudança faz parte da vida! Explora os diferentes estádios da mudança, aprende a definir objetivos realistas e descobre como pequenos passos podem fazer uma grande diferença." 
+            />
+            <ModuleCard 
+              image={mod5} 
+              title="Módulo 5" 
+              subtitle="Reviravolta em Rede!" 
+              description="Pedir ajuda não é sinal de fraqueza! Aprende a identificar sinais de alerta, a diferenciar entre os vários tipos de ajuda e a reconhecer a importância da ajuda das pessoas mais próximas." 
+            />
+            <ModuleCard 
+              image={mod6} 
+              title="Módulo 6" 
+              subtitle="Um Novo Começo!" 
+              description="E como funciona a ajuda formal? Descobre os sinais que indicam que podes precisar de ajuda formal, conhece o papel do psicólogo e explora os recursos disponíveis para o próximo passo." 
+            />
+          </div>
+        </section>
 
-              <div className="col-md-4 mb-4">
-                <div className="card shadow-lg border-0 rounded-4">
-                  <img src={mod1} alt="Módulo 2" className="card-img-top rounded-4"/>
-                  <div className="card-body">
-                    <h5 className="card-title" style={{ color: "#234970" }}><span className="fs-6">Módulo 2</span> – Desmistificar a Ansiedade!</h5>
-                    <p className="card-text text-muted">Nem tudo o que dizem sobre a ansiedade é verdade! Descobre os mitos, entende como o estigma pode atrapalhar e aprende a ver a ansiedade sem medo e sem julgamentos.</p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="col-md-4 mb-4">
-                <div className="card shadow-lg border-0 rounded-4">
-                  <img src={mod1} alt="Módulo 3" className="card-img-top rounded-4"/>
-                  <div className="card-body">
-                    <h5 className="card-title" style={{ color: "#234970" }}><span className="fs-6">Módulo 3</span> – Sê Amigo de Ti Mesmo!</h5>
-                    <p className="card-text text-muted">O que dizes a ti próprio faz a diferença! Aprende a reconhecer o impacto do autocriticismo e descobre como a autocompaixão pode ser uma aliada no teu bem-estar.</p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="col-md-4 mb-4">
-                <div className="card shadow-lg border-0 rounded-4">
-                  <img src={mod1} alt="Módulo 4" className="card-img-top rounded-4"/>
-                  <div className="card-body">
-                    <h5 className="card-title" style={{ color: "#234970" }}><span className="fs-6">Módulo 4</span> – O Poder da Mudança!</h5>
-                    <p className="card-text text-muted">A mudança faz parte da vida! Explora os diferentes estádios da mudança, aprende a definir objetivos realistas e descobre como pequenos passos podem fazer uma grande diferença.</p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="col-md-4 mb-4">
-                <div className="card shadow-lg border-0 rounded-4">
-                  <img src={mod1} alt="Módulo 5" className="card-img-top rounded-4"/>
-                  <div className="card-body">
-                    <h5 className="card-title" style={{ color: "#234970" }}><span className="fs-6">Módulo 5</span> – Reviravolta em Rede!</h5>
-                    <p className="card-text text-muted">Pedir ajuda não é sinal de fraqueza! Aprende a identificar sinais de alerta, a diferenciar entre os vários tipos de ajuda e a reconhecer a importância da ajuda das pessoas mais próximas.</p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="col-md-4 mb-4">
-                <div className="card shadow-lg border-0 rounded-4">
-                  <img src={mod1} alt="Módulo 6" className="card-img-top rounded-4"/>
-                  <div className="card-body">
-                    <h5 className="card-title" style={{ color: "#234970" }}><span className="fs-6">Módulo 6 –</span> Um Novo Começo!</h5>
-                    <p className="card-text text-muted">E como funciona a ajuda formal? Descobre os sinais que indicam que podes precisar de ajuda formal, conhece o papel do psicólogo e explora os recursos disponíveis para o próximo passo.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
 
           <section className="text-start py-5 ps-5" style={{ backgroundColor: "#E7C8C2", color: "#234970" }}>
             <p className="fs-2 ms-5 fw-semibold font-poppins">Dá o primeiro passo para o teu bem-estar mental!</p>
@@ -189,11 +169,7 @@ const LandingPage = () => {
             </div>
           </section>
 
-
-      
-      <footer className="text-white text-center py-3" style={{ backgroundColor: "#99CBC8" }}>
-        <p>Copyright © 2025 TOUCHminds®. All rights reserved.</p>
-      </footer>
+     <Footer />
     </div>
   );
 };
