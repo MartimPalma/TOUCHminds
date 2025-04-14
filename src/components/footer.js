@@ -1,4 +1,12 @@
 import React from "react";
+import dep from "../imgs/depvertical.png";
+import wjcr from "../imgs/depvertical.png";
+import hml from "../imgs/depvertical.png";
+import ue from "../imgs/ue.png";
+import rp from "../imgs/rp.png";
+import fct from "../imgs/fct.png";
+import pessoas30 from "../imgs/pessoas30.jpg";
+import portugal30 from "../imgs/portugal30.png";
 
 const Footer = () => {
   return (
@@ -10,19 +18,19 @@ const Footer = () => {
             <h5 className="fw-semibold mb-3 text-uppercase" style={{ color: "#234970" }}>Promotores</h5>
             <div className="d-flex flex-column gap-3">
               <img
-                src="/images/logo_dep.png"
+                src={dep}
                 alt="Departamento de Educação e Psicologia"
                 className="img-fluid"
                 style={{ maxHeight: "50px", objectFit: "contain" }}
               />
               <img
-                src="/images/logo_wjcr.png"
+                src={wjcr}
                 alt="William James Center for Research"
                 className="img-fluid"
                 style={{ maxHeight: "50px", objectFit: "contain" }}
               />
               <img
-                src="/images/logo_hml.png"
+                src={hml}
                 alt="Healthy Minds Lab"
                 className="img-fluid"
                 style={{ maxHeight: "50px", objectFit: "contain" }}
@@ -34,11 +42,11 @@ const Footer = () => {
           <div className="col-md-6">
             <h5 className="fw-semibold mb-3 text-uppercase" style={{ color: "#234970" }}>Financiadores</h5>
             <div className="d-flex flex-wrap align-items-center gap-4">
-              <img src="/images/logo_ue.png" alt="União Europeia" className="img-fluid" style={{ maxHeight: "40px" }} />
-              <img src="/images/logo_rp.png" alt="República Portuguesa" className="img-fluid" style={{ maxHeight: "40px" }} />
-              <img src="/images/logo_fct.png" alt="FCT" className="img-fluid" style={{ maxHeight: "40px" }} />
-              <img src="/images/logo_pessoas2030.png" alt="Pessoas 2030" className="img-fluid" style={{ maxHeight: "40px" }} />
-              <img src="/images/logo_portugal2030.png" alt="Portugal 2030" className="img-fluid" style={{ maxHeight: "40px" }} />
+              <img src={ue} alt="União Europeia" className="img-fluid" style={{ maxHeight: "40px" }} />
+              <img src={rp} alt="República Portuguesa" className="img-fluid" style={{ maxHeight: "40px" }} />
+              <img src={fct} alt="FCT" className="img-fluid" style={{ maxHeight: "40px" }} />
+              <img src={pessoas30} alt="Pessoas 2030" className="img-fluid" style={{ maxHeight: "40px" }} />
+              <img src={portugal30} alt="Portugal 2030" className="img-fluid" style={{ maxHeight: "40px" }} />
             </div>
           </div>
         </div>
