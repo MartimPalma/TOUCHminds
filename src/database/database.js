@@ -78,6 +78,20 @@ export async function logoutAluno() {
 }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 {/*  Informações a guardar na base de dados:   
 
   Quantos módulos foram concluídos. 

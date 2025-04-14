@@ -75,13 +75,6 @@ export default function Login() {
           </div>
         </div>
 
-        <div className="form-check mb-3">
-          <input className="form-check-input" type="checkbox" id="lembrar" />
-          <label className="form-check-label" htmlFor="lembrar">
-            Relembrar a minha palavra-passe
-          </label>
-        </div>
-
         <button
           type="submit"
           className="btn w-100 mb-3 rounded-3"

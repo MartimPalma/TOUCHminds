@@ -19,13 +19,8 @@ export default function SignupStep2() {
       return;
     }
 
-    if (!email || !email.includes('@')) {
-      alert("Por favor, insira um email válido.");
-      return;
-    }
-
     try {
-      await registerAluno(email, password, state.codigo, state.escola);
+      await registerAluno(email, password, state.escola , state.codigo);
       navigate("/login");
     } catch (err) {
       alert("Erro ao criar conta: " + err.message);
