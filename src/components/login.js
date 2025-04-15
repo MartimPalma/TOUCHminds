@@ -79,7 +79,7 @@ export default function Login() {
         <button
           type="submit"
           className="btn w-100 mb-3 rounded-3"
-          style={{ backgroundColor: "#9bd3cf", color: "white" }}
+          style={{ backgroundColor: "#99CBC8", color: "white" }}
         >
           Entrar
         </button>
