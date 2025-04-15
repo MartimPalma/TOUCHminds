@@ -1,6 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
-import { getFirestore, doc, setDoc } from "firebase/firestore";
+import { getFirestore, doc, setDoc, getDoc } from "firebase/firestore";
 
 
 const firebaseConfig = {
@@ -77,7 +77,17 @@ export async function logoutAluno() {
   }
 }
 
+// Tira os dados do aluno logado
+export async function dadosAlunos (uid) {
+  const userRef = doc(db, 'users', uid);
+  const docSnap = await getDoc(userRef);
 
+  if (docSnap.exists()) {
+    return docSnap.data();
+  } else {
+    throw new Error("User não encontrado");
+  }
+};
 
 
 

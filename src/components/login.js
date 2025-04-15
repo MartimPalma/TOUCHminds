@@ -12,6 +12,7 @@ export default function Login() {
   const handleLogin = async (e) => {
     e.preventDefault();
     await loginAluno(email, password);
+    navigate('/homepage'); // Redireciona para a página inicial após o login
   };
 
     const navigate = useNavigate();
