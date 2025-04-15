@@ -4,6 +4,8 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { House, Envelope, Trophy, People, Gear, Bell, PersonCircle } from 'react-bootstrap-icons';
 
+// coloca por componentes para pudemros reutilizar a nav e sidebar
+
 const TouchMindsApp = () => {
   return (
     <div className="container-fluid vh-100 p-0">
