@@ -1,5 +1,5 @@
 import React from 'react';
-import { House, Envelope, Trophy, People, Gear, Bell, PersonCircle } from 'react-bootstrap-icons';  
+import { House, Envelope, Trophy, People, Gear,} from 'react-bootstrap-icons';  
 
 const Sidebar = () => {
     return(

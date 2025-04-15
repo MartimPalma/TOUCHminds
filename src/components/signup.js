@@ -1,22 +1,42 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import logo from "../imgs/logositeazul.png";
 import { registerAluno } from "./../database/database";
+import { doc, updateDoc, getFirestore } from "firebase/firestore";
+import logo from "../imgs/logoazul.png";
+import avatar1 from "../imgs/avatar1.jpg"; 
+import avatar2 from "../imgs/avatar1.jpg";
+import avatar3 from "../imgs/avatar1.jpg";
+import avatar4 from "../imgs/avatar1.jpg";
+import avatar5 from "../imgs/avatar1.jpg";
 
-export default function SignupSimplified() {
+export default function SignupWithPersonalization() {
   const [codigoParticipante, setCodigoParticipante] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [mostrarSenha, setMostrarSenha] = useState(false);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [showPopup, setShowPopup] = useState(false);
+  const [nome, setNome] = useState("");
+  const [selectedAvatar, setSelectedAvatar] = useState("avatar1");
+  const [userId, setUserId] = useState(null);
   
   const navigate = useNavigate();
+  const db = getFirestore();
   
+  const avatarOptions = [
+    { id: "avatar1", src: avatar1 },
+    { id: "avatar2", src: avatar2 },
+    { id: "avatar3", src: avatar3 },
+    { id: "avatar4", src: avatar4 },
+    { id: "avatar5", src: avatar5 }
+  ];
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
     
+    // Validação básica
     if (password !== confirmPassword) {
       setError("As senhas não coincidem.");
       return;
@@ -30,11 +50,38 @@ export default function SignupSimplified() {
     setLoading(true);
     
     try {
-      await registerAluno(codigoParticipante, password);
-      navigate('/homepage');
+      // Escola padrão
+      const escolaPadrao = "Não especificada";
+      const user = await registerAluno(codigoParticipante, password, escolaPadrao);
+      setUserId(user.uid);
+      setShowPopup(true);
+      setLoading(false);
     } catch (error) {
       setError(error.message || "Erro ao registrar a conta. Por favor, tente novamente.");
-    } finally {
+      setLoading(false);
+    }
+  };
+  
+  const handlePersonalizationSave = async () => {
+    if (!nome) {
+      setError("Por favor, insira um nome.");
+      return;
+    }
+    
+    try {
+      setLoading(true);
+      
+      // Atualizar o documento do aluno com nome e avatar escolhido
+      const userRef = doc(db, "alunos", userId);
+      await updateDoc(userRef, {
+        nome: nome,
+        avatar: selectedAvatar
+      });
+      
+      // Redirecionar para homepage após concluir personalização
+      navigate('/homepage');
+    } catch (error) {
+      setError(error.message || "Erro ao salvar personalização.");
       setLoading(false);
     }
   };
@@ -43,10 +90,86 @@ export default function SignupSimplified() {
     navigate("/login");
   }
   
+  // Componente do modal de personalização
+  const PersonalizationPopup = () => (
+    <div className="position-fixed top-0 start-0 w-100 h-100 d-flex justify-content-center align-items-center" style={{ backgroundColor: "rgba(0,0,0,0.5)", zIndex: 1050 }}>
+      <div className="bg-white p-4 rounded-4 shadow" style={{ maxWidth: "650px", width: "90%" }}>
+        
+      <h2
+        className="text-center mb-4 font-poppins"
+        style={{ color: "#69a6a4", fontWeight: "300" }}
+      >
+        Personaliza o teu{" "}
+        <span>
+          <img src={logo} alt="Logo" style={{ height: "60px" }} />
+        </span>
+      </h2>
+        
+        <div className="row">
+          <div className="col-md-6 mb-3">
+            <label className="form-label">Nome na Plataforma</label>
+            <input
+              type="text"
+              className="form-control"
+              placeholder="Nome que queres ser tratado na Plataforma"
+              value={nome}
+              onChange={(e) => setNome(e.target.value)}
+              required
+            />
+          </div>
+          
+          <div className="col-md-6">
+            <label className="form-label mb-2">Escolher Avatar*</label>
+            <div className="dropdown">
+              <button className="btn btn-light dropdown-toggle w-100" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Escolher Avatar
+              </button>
+              <ul className="dropdown-menu">
+                {avatarOptions.map(avatar => (
+                  <li key={avatar.id} className="dropdown-item" onClick={() => setSelectedAvatar(avatar.id)}>
+                    <div className="d-flex align-items-center">
+                      <img src={avatar.src} alt={`Avatar ${avatar.id}`} style={{ width: "30px", marginRight: "10px" }} />
+                      Avatar {avatar.id.replace("avatar", "")}
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            
+            <div className="text-center mt-3">
+              <img 
+                src={avatarOptions.find(a => a.id === selectedAvatar)?.src} 
+                alt="Selected Avatar" 
+                style={{ width: "80px" }} 
+              />
+            </div>
+          </div>
+        </div>
+        
+        <div className="text-end mt-4">
+          <button
+            className="btn rounded-3"
+            style={{ backgroundColor: "#99CBC8", color: "white" }}
+            onClick={handlePersonalizationSave}
+            disabled={loading}
+          >
+            {loading ? "A processar..." : "Começar"}
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+  
   return (
     <div className="container-fluid min-vh-100 d-flex flex-row p-0">
-      <div className="col-md-6 bg-white"></div>
+      {/* Left half with brain image */}
+      <div className="col-md-6 bg-light d-flex align-items-center justify-content-center">
+        <div style={{ width: "80%", maxWidth: "400px" }}>
+          <img src="/brain-colorful.jpg" alt="Brain" className="img-fluid" style={{ width: "100%" }} />
+        </div>
+      </div>
       
+      {/* Right half with form */}
       <div className="col-md-6 d-flex flex-column justify-content-center align-items-center bg-light p-5">
         <img src={logo} alt="Logo" style={{ maxWidth: 160 }} className="mb-4" />
         
@@ -126,6 +249,9 @@ export default function SignupSimplified() {
           </button>
         </form>
       </div>
+      
+      {/* Personalization Popup */}
+      {showPopup && <PersonalizationPopup />}
     </div>
   );
 }

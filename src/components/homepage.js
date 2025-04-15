@@ -2,7 +2,6 @@
 import React from 'react';
 import Navbar from './navbar';
 import Sidebar from './sidebar';
-import { House, Envelope, Trophy, People, Gear, Bell, PersonCircle } from 'react-bootstrap-icons';
 
 // coloca por componentes para pudemros reutilizar a nav e sidebar
 

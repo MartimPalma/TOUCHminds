@@ -1,6 +1,6 @@
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, createContext } from 'react';
 // rotas de navegação
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 // firebase
@@ -13,55 +13,61 @@ import Homepage from './components/homepage';
 import { dadosAlunos } from './database/database';
 
 
+export const UserContext = createContext(null);
+
 const App = () => {
+  const [user, setUser] = useState(null); // Armazena o objeto de autenticação do Firebase
+  const [userData, setUserData] = useState(null); // Armazena os dados do user 
 
-  // TEM DE SER APRIMORADO PARA A LÓGICA DO PROJETO
-  // COLOCAR O UID DO USER NO ESTADO GLOBAL USERDATA
-
-  const [user, setUser] = useState(null); // Armazena o UID do user
-  const [userData, setUserData] = useState(null); // Armazena os dados do user
-
-  // UTILIZAR NA PÁGINA DE PERFIL DO ALUNO
   const updateUserData = (updatedData) => {
     setUserData(updatedData); 
   };
 
-  // monitorar mudanças na autenticação do Firebase
   useEffect(() => {
-    const auth = getAuth(); 
-
-    // função do Firebase A função onAuthStateChanged é chamada sempre que ocorre um login ou um logout.
-    // O objeto user vem diretamente do Firebase Authentication e é passado como parâmetro pela função onAuthStateChanged
-    onAuthStateChanged(auth, async (user) => {
+    const auth = getAuth();
+    
+    // A função onAuthStateChanged é chamada sempre que ocorre um login ou um logout
+    const unsubscribe = onAuthStateChanged(auth, async (user) => {
       if (user) {
-        setUser(user); 
+        setUser(user);
+        
         try {
-          const data = await dadosAlunos(user.uid); 
-          setUserData(data); 
+          const data = await dadosAlunos(user.uid);
+          // Incluir o uid 
+          setUserData({ 
+            ...data, 
+            uid: user.uid 
+          });
         } catch (error) {
-          console.error("Erro ao carregar dados do user:", error.message); 
+          console.error("Erro ao carregar dados do user:", error.message);
+          // Mesmo em caso de erro, pelo menos armazenamos o UID
+          setUserData({ uid: user.uid });
         }
       } else {
-        // CHAMAR MÉTODO NO FICHEIRO DATABASE PARA FAZER LOGOUT
-        setUser(null); 
-        setUserData(null); 
+        
+        setUser(null);
+        setUserData(null);
       }
     });
+    
+    // Limpar a inscrição ao desmontar o componente
+    return () => unsubscribe();
   }, []); // Executa o useEffect apenas uma vez, ao montar o componente
 
   console.log(user);
 
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<LandingPage />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/signup" element={<SignupPage />} />
-        <Route path="/homepage" element={<Homepage />} />
-      </Routes>
-    </Router>
+    <UserContext.Provider value={{ userData, updateUserData }}>
+      <Router>
+        <Routes>
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/signup" element={<SignupPage />} />
+          <Route path="/homepage" element={<Homepage />} />
+        </Routes>
+      </Router>
+    </UserContext.Provider>
   );
-}
+};
 
 export default App;
-
