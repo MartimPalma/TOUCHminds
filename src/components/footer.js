@@ -5,7 +5,7 @@ import hml from "../imgs/depvertical.png";
 import ue from "../imgs/ue.png";
 import rp from "../imgs/rp.png";
 import fct from "../imgs/fct.png";
-import pessoas30 from "../imgs/pessoas30.jpg";
+import pessoas30 from "../imgs/pessoas30.jpg"; //TENTAR ENCONTRAR ESTE LOGO SEM FUNDO OU RETIRAR NÓS O FUNDO
 import portugal30 from "../imgs/portugal30.png";
 
 const Footer = () => {

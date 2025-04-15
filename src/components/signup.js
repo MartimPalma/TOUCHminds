@@ -64,7 +64,7 @@ export default function SignupStep1() {
             </select>
           </div>
 
-          <button type="submit" className="btn w-100" style={{ backgroundColor: "#9bd3cf", color: "white" }}>
+          <button type="submit" className="btn w-100" style={{ backgroundColor: "#99CBC8", color: "white" }}>
             Seguinte
           </button>
         </form>
