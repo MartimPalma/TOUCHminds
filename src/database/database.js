@@ -34,7 +34,7 @@ export async function registerAluno(codigoParticipante, password) {
       throw new Error('Este código de participante já está em uso.');
     }
     
-    // Criar um usuário com email baseado no código do participante (para Firebase Auth)
+    // Criar um user com email baseado no código do participante (para Firebase Auth)
     const email = `${codigoParticipante}@touchminds.virtual`;
     const userCredential = await createUserWithEmailAndPassword(auth, email, password);
     const user = userCredential.user;
