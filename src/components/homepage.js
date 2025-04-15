@@ -1,45 +1,19 @@
 //METER AS CORES CERTAS, METER O LOGO CERTO
-//
 import React from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import Navbar from './navbar';
+import Sidebar from './sidebar';
 import { House, Envelope, Trophy, People, Gear, Bell, PersonCircle } from 'react-bootstrap-icons';
 
 // coloca por componentes para pudemros reutilizar a nav e sidebar
 
-const TouchMindsApp = () => {
+const Homepage = () => {
   return (
     <div className="container-fluid vh-100 p-0">
       {/* Top navbar */}
-      <div className="navbar navbar-light bg-white py-2 px-4 shadow-sm">
-        <div className="container-fluid">
-          <a className="navbar-brand text-info" href="#">
-            TOUCH <span className="fst-italic">minds</span>
-          </a>
-          <div className="d-flex align-items-center">
-            <button className="btn btn-link text-secondary position-relative me-3">
-              <Bell size={20} />
-              <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-info">
-                1
-              </span>
-            </button>
-            <button className="btn btn-link">
-              <PersonCircle size={24} className="text-secondary" />
-            </button>
-          </div>
-        </div>
-      </div>
-
+      <Navbar />
       <div className="row h-100 m-0" style={{}}>
         {/* Sidebar */}
-        <div className="col-auto bg-white shadow-sm py-4 px-3" style={{ width: '220px' }}>
-          <div className="nav flex-column">
-            <NavItem icon={<House />} text="Página Inicial" active={true} />
-            <NavItem icon={<Envelope />} text="O meu progresso" />
-            <NavItem icon={<Trophy />} text="Conquistas" />
-            <NavItem icon={<People />} text="Contactos" />
-            <NavItem icon={<Gear />} text="Definições" />
-          </div>
-        </div>
+        <Sidebar />
         
         {/* Main Content */}
         <div className="col px-4 py-4 bg-light">
@@ -180,4 +154,4 @@ const NavItem = ({ icon, text, active }) => {
   );
 };
 
-export default TouchMindsApp;
+export default Homepage;
