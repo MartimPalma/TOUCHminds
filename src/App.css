@@ -60,5 +60,10 @@
   box-shadow: none !important;
 }
 
+.text-green{
+  color: #99CBC8 !important;
+}
 
-
+.bg-green{
+  background-color: #99CBC8 !important;
+}

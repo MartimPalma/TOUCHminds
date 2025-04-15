@@ -19,7 +19,7 @@ const NavItem = ({ icon, text, active }) => {
     return (
       <a 
         href="#" 
-        className={`nav-link d-flex align-items-center py-2 ${active ? 'text-info' : 'text-secondary'}`}
+        className={`nav-link d-flex align-items-center py-2 ${active ? 'text-green' : 'text-secondary'}`}
       >
         <span className="me-3" style={{ width: '24px' }}>
           {icon}

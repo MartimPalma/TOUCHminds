@@ -18,7 +18,7 @@ const Homepage = () => {
         {/* Main Content */}
         <div className="col px-4 py-4 bg-light">
           <div className="container p-4 bg-white rounded shadow-sm">
-            <h2 className="text-info mb-1">Bem Vindo Rodrigo Bastos</h2>
+            <h2 className="mb-1" style={{ color: "#99CBC8" }}>Bem Vindo Rodrigo Bastos</h2>
             <p className="text-muted mb-4">Escola Secundária de Rio Tinto</p>
             
             <div className="row row-cols-1 row-cols-md-3 g-4 mb-5">
@@ -31,7 +31,7 @@ const Homepage = () => {
                     alt="Dark forest scene" 
                   />
                   <div className="card-body">
-                    <h5 className="card-title text-info">Módulo 1</h5>
+                    <h5 className="card-title">Módulo 1</h5>
                     <h6>Ansiedade NÃO é bicho-papão!</h6>
                     <p className="card-text">
                       Aprende a diferenciar entre uma ansiedade comum e uma ansiedade SOS
@@ -144,7 +144,7 @@ const NavItem = ({ icon, text, active }) => {
   return (
     <a 
       href="#" 
-      className={`nav-link d-flex align-items-center py-2 ${active ? 'text-info' : 'text-secondary'}`}
+      className={`nav-link d-flex align-items-center py-2 ${active ? 'text-green' : 'text-secondary'}`}
     >
       <span className="me-3" style={{ width: '24px' }}>
         {icon}
