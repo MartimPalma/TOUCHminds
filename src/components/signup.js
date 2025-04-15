@@ -36,7 +36,6 @@ export default function SignupWithPersonalization() {
     e.preventDefault();
     setError("");
     
-    // Validação básica
     if (password !== confirmPassword) {
       setError("As senhas não coincidem.");
       return;
@@ -50,9 +49,7 @@ export default function SignupWithPersonalization() {
     setLoading(true);
     
     try {
-      // Escola padrão
-      const escolaPadrao = "Não especificada";
-      const user = await registerAluno(codigoParticipante, password, escolaPadrao);
+      const user = await registerAluno(codigoParticipante, password);
       setUserId(user.uid);
       setShowPopup(true);
       setLoading(false);
@@ -162,14 +159,12 @@ export default function SignupWithPersonalization() {
   
   return (
     <div className="container-fluid min-vh-100 d-flex flex-row p-0">
-      {/* Left half with brain image */}
       <div className="col-md-6 bg-light d-flex align-items-center justify-content-center">
         <div style={{ width: "80%", maxWidth: "400px" }}>
           <img src="/brain-colorful.jpg" alt="Brain" className="img-fluid" style={{ width: "100%" }} />
         </div>
       </div>
       
-      {/* Right half with form */}
       <div className="col-md-6 d-flex flex-column justify-content-center align-items-center bg-light p-5">
         <img src={logo} alt="Logo" style={{ maxWidth: 160 }} className="mb-4" />
         
@@ -250,7 +245,6 @@ export default function SignupWithPersonalization() {
         </form>
       </div>
       
-      {/* Personalization Popup */}
       {showPopup && <PersonalizationPopup />}
     </div>
   );
