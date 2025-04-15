@@ -96,7 +96,7 @@ const LandingPage = () => {
             
         <section className="container py-5">
           
-          <h2 className="text-start  fw-bold mb-4" style={{color: "#234970"}}>Espreita os Módulos!</h2>
+          <h2 className="text-start font-poppins fw-bold mb-4" style={{color: "#234970"}}>Espreita os Módulos!</h2>
 
           <div className="row mt-4">
             <ModuleCard 

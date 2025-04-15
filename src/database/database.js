@@ -42,12 +42,12 @@ export async function registerAluno(email, password, escola, codigoParticipante)
       tempoGasto: 0,
       periodicidade: [],
       modulos: {
-        modulo1: { status: "desbloqueado", tempo: 0 },
-        modulo2: { status: "bloqueado", tempo: 0 },
-        modulo3: { status: "bloqueado", tempo: 0 },
-        modulo4: { status: "bloqueado", tempo: 0 },
-        modulo5: { status: "bloqueado", tempo: 0 },
-        modulo6: { status: "bloqueado", tempo: 0 },
+        modulo1: { status: "desbloqueado", tempo: 0 , concluido: false },
+        modulo2: { status: "bloqueado", tempo: 0 , concluido: false},
+        modulo3: { status: "bloqueado", tempo: 0 , concluido: false},
+        modulo4: { status: "bloqueado", tempo: 0 , concluido: false},
+        modulo5: { status: "bloqueado", tempo: 0 , concluido: false},
+        modulo6: { status: "bloqueado", tempo: 0 , concluido: false},
       }
     });
 
