@@ -1,7 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
-import { getFirestore, doc, setDoc, getDoc } from "firebase/firestore";
-
+import { getFirestore, doc, setDoc, getDoc, collection, query, where, getDocs } from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: "AIzaSyB3zTp5CC9lIvNwt1XN1l69lMobSfOgMyg",
@@ -16,55 +15,66 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 
-export async function registerAluno(email, password, escola, codigoParticipante) {
+export async function registerAluno(codigoParticipante, password) {
   try {
-
-    if (!escola || !codigoParticipante) {
-      throw new Error('Por favor, preencha todos os campos obrigatórios.');
+    if (!codigoParticipante) {
+      throw new Error('Por favor, preencha o código de participante.');
     }
-
-    if (!email || !email.includes('@')) {
-      throw new Error('O email fornecido não é válido.');
-    }
-
+    
     if (password.length < 6) {
       throw new Error('A senha deve ter no mínimo 6 caracteres.');
     }
-
+    
+    // Verificar se o código de participante já existe
+    const alunosRef = collection(db, "alunos");
+    const q = query(alunosRef, where("codigoParticipante", "==", codigoParticipante));
+    const querySnapshot = await getDocs(q);
+    
+    if (!querySnapshot.empty) {
+      throw new Error('Este código de participante já está em uso.');
+    }
+    
+    // Criar um usuário com email baseado no código do participante (para Firebase Auth)
+    const email = `${codigoParticipante}@touchminds.virtual`;
     const userCredential = await createUserWithEmailAndPassword(auth, email, password);
     const user = userCredential.user;
-
+    
     await setDoc(doc(db, "alunos", user.uid), {
-      email,
-      escola,
       codigoParticipante,
       modulosConcluidos: 0,
       tempoGasto: 0,
       periodicidade: [],
       modulos: {
-        modulo1: { status: "desbloqueado", tempo: 0 , concluido: false},
-        modulo2: { status: "bloqueado", tempo: 0 , concluido: false},
-        modulo3: { status: "bloqueado", tempo: 0 , concluido: false},
-        modulo4: { status: "bloqueado", tempo: 0 , concluido: false},
-        modulo5: { status: "bloqueado", tempo: 0 , concluido: false},
-        modulo6: { status: "bloqueado", tempo: 0 , concluido: false},
+        modulo1: { status: "desbloqueado", tempo: 0, concluido: false },
+        modulo2: { status: "bloqueado", tempo: 0, concluido: false },
+        modulo3: { status: "bloqueado", tempo: 0, concluido: false },
+        modulo4: { status: "bloqueado", tempo: 0, concluido: false },
+        modulo5: { status: "bloqueado", tempo: 0, concluido: false },
+        modulo6: { status: "bloqueado", tempo: 0, concluido: false },
       }
     });
-
+    
     console.log("Aluno registrado com sucesso!");
+    return user;
   } catch (error) {
     console.error("Erro no registro:", error.message);
-    throw error; 
+    throw error;
   }
 }
 
-export async function loginAluno(email, password) {
+export async function loginAluno(codigoParticipante, password) {
   try {
+    // Construir o email baseado no código do participante
+    const email = `${codigoParticipante}@touchminds.virtual`;
+    
     const userCredential = await signInWithEmailAndPassword(auth, email, password);
     const user = userCredential.user;
-    console.log("Login realizado com sucesso:", user.email);
+    
+    console.log("Login realizado com sucesso:", codigoParticipante);
+    return user;
   } catch (error) {
     console.error("Erro no login:", error.message);
+    throw error;
   }
 }
 
@@ -74,29 +84,21 @@ export async function logoutAluno() {
     console.log("Logout realizado com sucesso.");
   } catch (error) {
     console.error("Erro ao fazer logout:", error.message);
+    throw error;
   }
 }
 
 // Tira os dados do aluno logado
-export async function dadosAlunos (uid) {
-  const userRef = doc(db, 'users', uid);
+export async function dadosAlunos(uid) {
+  const userRef = doc(db, 'alunos', uid);
   const docSnap = await getDoc(userRef);
-
+  
   if (docSnap.exists()) {
     return docSnap.data();
   } else {
-    throw new Error("User não encontrado");
+    throw new Error("Aluno não encontrado");
   }
-};
-
-
-
-
-
-
-
-
-
+}
 
 
 

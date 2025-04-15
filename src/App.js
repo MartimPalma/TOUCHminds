@@ -9,7 +9,6 @@ import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import LandingPage from './components/landing';
 import LoginPage from './components/login';
 import SignupPage from './components/signup';
-import SignupPage2 from './components/signup2';
 import Homepage from './components/homepage';
 import { dadosAlunos } from './database/database';
 
@@ -58,7 +57,6 @@ const App = () => {
         <Route path="/" element={<LandingPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignupPage />} />
-        <Route path="/signup2" element={<SignupPage2 />} />
         <Route path="/homepage" element={<Homepage />} />
       </Routes>
     </Router>
