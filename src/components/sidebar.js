@@ -1,32 +1,62 @@
-import React from 'react';
-import { House, Envelope, Trophy, People, Gear,} from 'react-bootstrap-icons';  
+import { useLocation, useNavigate } from 'react-router-dom';
+import { House, Envelope, Trophy, People, Gear } from 'react-bootstrap-icons';
 
 const Sidebar = () => {
-    return(
-        <div className="col-auto bg-white shadow-sm py-4 px-3" style={{ width: '220px' }}>
-                  <div className="nav flex-column">
-                    <NavItem icon={<House />} text="Página Inicial" active={true} />
-                    <NavItem icon={<Envelope />} text="O meu progresso" />
-                    <NavItem icon={<Trophy />} text="Conquistas" />
-                    <NavItem icon={<People />} text="Contactos" />
-                    <NavItem icon={<Gear />} text="Definições" />
-                  </div>
-        </div>
-    )
-}
+  const location = useLocation();
+  const navigate = useNavigate();
 
-const NavItem = ({ icon, text, active }) => {
-    return (
-      <a 
-        href="#" 
-        className={`nav-link d-flex align-items-center py-2 ${active ? 'text-green' : 'text-secondary'}`}
-      >
-        <span className="me-3" style={{ width: '24px' }}>
-          {icon}
-        </span>
-        <span>{text}</span>
-      </a>
-    );
-  };
+  // Define os caminhos
+  const navItems = [
+    { icon: <House />, text: 'Página Inicial', path: '/homepage' },
+    { icon: <Envelope />, text: 'O meu progresso', path: '/progresso' },
+    { icon: <Trophy />, text: 'Conquistas', path: '/conquistas' },
+    { icon: <People />, text: 'Contactos', path: '/contactos' },
+    { icon: <Gear />, text: 'Definições', path: '/definicoes' },
+  ];
+
+  return (
+    <div className="col-auto bg-white shadow-sm py-4 px-3" style={{ width: '220px' }}>
+      <div className="nav flex-column">
+        {navItems.map((item, index) => (
+          <NavItem
+            key={index}
+            icon={item.icon}
+            text={item.text}
+            active={location.pathname === item.path}
+            onClick={() => navigate(item.path)}
+          />
+        ))}
+      </div>
+    </div>
+  );
+};
+
+
+const NavItem = ({ icon, text, active, onClick }) => {
+  return (
+    <div 
+      onClick={onClick}
+      className={`nav-link d-flex align-items-center py-2 position-relative ${active ? 'text-green fw-semibold' : 'text-secondary'}`}
+      style={{ cursor: 'pointer', transition: 'color 0.3s ease' }}
+    >
+      {active && (
+        <div 
+          className="position-absolute start-0 top-0 bottom-0"
+          style={{
+            width: '4px',
+            backgroundColor: '#69a6a4',
+            borderRadius: '0 4px 4px 0',
+            animation: 'slide-in 0.3s ease forwards'
+          }}
+        ></div>
+      )}
+      <span className="me-3 ms-2" style={{ width: '24px' }}>
+        {icon}
+      </span>
+      <span>{text}</span>
+    </div>
+  );
+};
+
 
 export default Sidebar;

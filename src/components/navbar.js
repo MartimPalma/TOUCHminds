@@ -2,7 +2,7 @@ import React from 'react';
 import { Bell, PersonCircle } from 'react-bootstrap-icons';  
 import logo from "../imgs/logoazul.png"; 
 
-const Sidebar = () => {
+const Navbar = () => {
     return(
         <div className="navbar navbar-light bg-white py-2 px-4">
                 <div className="container-fluid">
@@ -26,4 +26,4 @@ const Sidebar = () => {
     )
 }
 
-export default Sidebar;
+export default Navbar;

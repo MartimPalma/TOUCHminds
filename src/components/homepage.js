@@ -141,19 +141,4 @@ const Homepage = () => {
   );
 };
 
-// Navigation item component
-const NavItem = ({ icon, text, active }) => {
-  return (
-    <a 
-      href="#" 
-      className={`nav-link d-flex align-items-center py-2 ${active ? 'text-green' : 'text-secondary'}`}
-    >
-      <span className="me-3" style={{ width: '24px' }}>
-        {icon}
-      </span>
-      <span>{text}</span>
-    </a>
-  );
-};
-
 export default Homepage;

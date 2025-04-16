@@ -3,11 +3,16 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { useState, useEffect, createContext } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
-import { getFirestore, doc, setDoc } from 'firebase/firestore'; // 🔥 Firestore
+import { getFirestore, doc, setDoc } from 'firebase/firestore'; 
 import LandingPage from './components/landing';
 import LoginPage from './components/login';
 import SignupPage from './components/signup';
+import Progresso from './components/progresso';
+import Conquistas from './components/conquistas';
+import Contactos from './components/contactos';
+import Definições from './components/def';
 import Homepage from './components/homepage';
+
 import { dadosAlunos } from './database/database';
 
 // Create the context
@@ -67,6 +72,10 @@ const App = () => {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignupPage />} />
           <Route path="/homepage" element={<Homepage />} />
+          <Route path="/progresso" element={<Progresso />} />
+          <Route path="/conquistas" element={<Conquistas/>} />
+          <Route path="/contactos" element={<Contactos />} />
+          <Route path="/definicoes" element={<Definições/>} />
         </Routes>
       </Router>
     </UserContext.Provider>
