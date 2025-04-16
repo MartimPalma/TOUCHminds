@@ -1,24 +1,27 @@
 //METER AS CORES CERTAS, METER O LOGO CERTO
-import React from 'react';
+import React, { useContext } from 'react';
+import { UserContext } from '../App'; 
 import Navbar from './navbar';
 import Sidebar from './sidebar';
 
-// coloca por componentes para pudemros reutilizar a nav e sidebar
-
 const Homepage = () => {
-  return (
+  const { userData } = useContext(UserContext);
+  console.log(userData);
+
+  // Se os dados do utilizador ainda não foram carregados, mostrar mensagem de carregamento
+  if (!userData) {
+    return <div className="text-center p-5">A carregar dados do utilizador...</div>;
+  }
+
+  return (  
     <div className="container-fluid vh-100 p-0">
-      {/* Top navbar */}
       <Navbar />
       <div className="row h-100 m-0" style={{}}>
-        {/* Sidebar */}
         <Sidebar />
         
-        {/* Main Content */}
-        <div className="col px-4 py-4 bg-light">
+        <div className="col px-4 py-4" style={{ backgroundColor: "#FBF9F9" }}>
           <div className="container p-4 bg-white rounded shadow-sm">
-            <h2 className="mb-1" style={{ color: "#99CBC8" }}>Bem Vindo Rodrigo Bastos</h2>
-            <p className="text-muted mb-4">Escola Secundária de Rio Tinto</p>
+            <h2 className="mb-1" style={{ color: "#99CBC8" }}>Bem Vindo, <span>{userData.nome}!</span></h2>
             
             <div className="row row-cols-1 row-cols-md-3 g-4 mb-5">
               {/* Module 1 */}

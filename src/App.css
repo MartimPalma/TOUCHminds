@@ -14,6 +14,113 @@
   animation: bounce 1s infinite;  /* Aplica a animação */
 }
 
+
+/* estilos signup*/
+.custom-input {
+  border-radius: 12px !important;
+  padding: 10px 14px;
+  border: 1px solid #e0e0e0;
+  box-shadow: none !important;
+  outline: none !important;
+  transition: border 0.2s ease-in-out;
+}
+
+.custom-input:focus,
+.form-control:focus,
+.btn:focus,
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: #99CBC8 !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+.custom-input::placeholder {
+  color: #99CBC8 !important;
+  font-style: normal !important;
+}
+
+.input-group .form-control {
+  border-right: none;
+  border-radius: 12px 0 0 12px !important;
+}
+
+.input-group .btn-toggle {
+  border-left: none;
+  border-radius: 0 12px 12px 0 !important;
+  background-color: #99CBC8 !important;
+  color: white !important;
+  border: 1px solid #99CBC8;
+  margin-left: -1px;
+  padding: 10px 16px;
+  font-weight: 500;
+  height: 100%;
+  transition: background 0.2s ease;
+}
+
+.input-group .btn-toggle:hover {
+  background-color: #82b8b5 !important; 
+}
+
+.input-group {
+  display: flex;
+  align-items: stretch;
+}
+
+/* estilos do pop up */
+.popup-input {
+  border-radius: 12px;
+  padding: 10px 14px;
+  border: 1px solid #e0e0e0;
+  outline: none;
+  box-shadow: none;
+  transition: border-color 0.2s ease-in-out;
+}
+
+.popup-input:focus {
+  border-color: #99CBC8;
+  box-shadow: none;
+  outline: none;
+}
+
+.popup-input::placeholder {
+  color: #99CBC8;
+  font-style: normal;
+}
+
+.popup-btn {
+  background-color: #99CBC8;
+  color: white;
+  border: 1px solid #99CBC8;
+  border-radius: 12px;
+  padding: 10px 24px;
+  font-weight: 500;
+  transition: background-color 0.2s ease;
+}
+
+.popup-btn:hover {
+  background-color: #82b8b5;
+}
+
+.popup-dropdown .dropdown-menu {
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  border: none;
+}
+
+.popup-dropdown .dropdown-toggle {
+  border-radius: 12px;
+  padding: 10px 14px;
+  border: 1px solid #e0e0e0;
+  color: #333;
+  background-color: #f8f9fa;
+  width: 100%;
+  text-align: left;
+}
+
+
+
 @keyframes bounce {
   0% {
     transform: translateY(0);
