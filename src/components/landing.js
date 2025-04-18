@@ -156,7 +156,7 @@ const LandingPage = () => {
                 onMouseEnter={(e) => e.target.style.backgroundColor = "#81b2ad"}
                 onMouseLeave={(e) => e.target.style.backgroundColor = "#99CBC8"}
               >
-                Sign up
+                Criar Conta      
               </button>
               <button
                 className="btn btn-lg font-poppins"
@@ -170,7 +170,7 @@ const LandingPage = () => {
                 onMouseEnter={(e) => e.target.style.backgroundColor = "#a59b88"}
                 onMouseLeave={(e) => e.target.style.backgroundColor = "#C8C2AF"}
               >
-                Log in
+                Entrar
               </button>
             </div>
           </section>
