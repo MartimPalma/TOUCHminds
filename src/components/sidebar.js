@@ -8,7 +8,7 @@ const Sidebar = () => {
   // Define os caminhos
   const navItems = [
     { icon: <House />, text: 'Página Inicial', path: '/homepage' },
-    { icon: <Envelope />, text: 'O meu progresso', path: '/progresso' },
+    { icon: <Envelope />, text: 'Progresso', path: '/progresso' },
     { icon: <Trophy />, text: 'Conquistas', path: '/conquistas' },
     { icon: <People />, text: 'Contactos', path: '/contactos' },
     { icon: <Gear />, text: 'Definições', path: '/definicoes' },
@@ -53,7 +53,7 @@ const NavItem = ({ icon, text, active, onClick }) => {
       <span className="me-3 ms-2" style={{ width: '24px' }}>
         {icon}
       </span>
-      <span>{text}</span>
+      <span className='font-lato'>{text}</span>
     </div>
   );
 };

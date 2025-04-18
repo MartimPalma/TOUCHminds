@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+import { motion } from "framer-motion";
+import { Eye, EyeOff } from "lucide-react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../App.css";
 import { useNavigate } from "react-router-dom";
 import { registerAluno } from "./../database/database";
-import { doc, updateDoc, getFirestore } from "firebase/firestore";
 import logo from "../imgs/logositeazul.png";
 import avatar1 from "../imgs/avatar1.jpg";
 import avatar2 from "../imgs/avatar1.jpg";
@@ -25,7 +26,6 @@ export default function SignupPage() {
   const [userId, setUserId] = useState(null);
 
   const navigate = useNavigate();
-  const db = getFirestore();
 
   const avatarOptions = [
     { id: "avatar1", src: avatar1 },
@@ -67,85 +67,162 @@ export default function SignupPage() {
   };
 
   return (
-    <div className="container-fluid min-vh-100 d-flex flex-column justify-content-center align-items-center p-0" style={{ backgroundColor: "#234970" }}>
-      <div className="card shadow-lg p-4 border-0" style={{ maxWidth: "420px", width: "90%", borderRadius: "20px" }}>
-        <div className="text-center mb-4">
-          <img src={logo} alt="Logo" style={{ maxWidth: 140 }} className="mb-3" />
-          <h3 className="fw-semibold mb-1" style={{ color: "#99CBC8" }}>Criar uma conta</h3>
-          <p className="text-muted mb-0">
+    <div 
+      className="container-fluid min-vh-100 d-flex flex-column justify-content-center align-items-center p-0" 
+      style={{ backgroundColor: "#234970" }}
+    >
+      <motion.div 
+        className="card shadow-lg p-5 border-0" 
+        style={{ maxWidth: "420px", width: "90%", borderRadius: "20px", backgroundColor: "#FBF9F9" }}
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+      >
+        <motion.div 
+          className="text-center mb-4"
+          initial={{ scale: 0.95 }}
+          animate={{ scale: 1 }}
+          transition={{ duration: 0.5 }}
+        >
+          <motion.img 
+            src={logo} 
+            alt="Logo" 
+            style={{ maxWidth: 140 }} 
+            className="mb-3"
+            whileHover={{ scale: 1.05 }}
+            transition={{ type: "spring", stiffness: 300 }}
+          />
+          <motion.h3 
+            className="fw-semibold mb-1" 
+            style={{ color: "#99CBC8" }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.3 }}
+          >
+            Criar uma conta
+          </motion.h3>
+          <motion.p 
+            className="text-muted mb-0"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.4 }}
+          >
             ou{" "}
-            <span
+            <motion.span
               onClick={handleClick}
               style={{ cursor: "pointer", textDecoration: "underline", color: "#99CBC8" }}
+              whileHover={{ color: "#7ab3b0" }}
             >
               entrar na tua conta
-            </span>
-          </p>
-        </div>
-
+            </motion.span>
+          </motion.p>
+        </motion.div>
+        
         {error && (
-          <div className="alert alert-danger">
+          <motion.div 
+            className="alert alert-danger"
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+          >
             {error}
-          </div>
+          </motion.div>
         )}
-
+        
         <form onSubmit={handleSubmit}>
-          <div className="mb-3">
+          <motion.div 
+            className="mb-3"
+            initial={{ x: -20, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{ delay: 0.5 }}
+          >
             <label className="form-label fw-medium">Código de Participante*</label>
-            <input
+            <motion.input
               type="text"
               className="form-control custom-input"
               placeholder="Inserir código de participante"
               value={codigoParticipante}
               onChange={(e) => setCodigoParticipante(e.target.value)}
               required
+              whileFocus={{ boxShadow: "0 0 0 3px rgba(153, 203, 200, 0.25)" }}
             />
-          </div>
-
-          <div className="mb-3">
+          </motion.div>
+          
+          <motion.div 
+            className="mb-3"
+            initial={{ x: -20, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{ delay: 0.6 }}
+          >
             <label className="form-label fw-medium">Palavra-passe*</label>
             <div className="input-group">
-              <input
+              <motion.input
                 type={mostrarSenha ? "text" : "password"}
                 className="form-control custom-input"
                 placeholder="Palavra-passe"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
+                whileFocus={{ boxShadow: "0 0 0 3px rgba(153, 203, 200, 0.25)" }}
               />
-              <button
+              <motion.button
                 type="button"
                 className="btn btn-toggle"
                 onClick={() => setMostrarSenha(!mostrarSenha)}
+                whileHover={{ backgroundColor: "#f2f2f2" }}
+                whileTap={{ scale: 0.95 }}
               >
-                {mostrarSenha ? "Esconder" : "Mostrar"}
-              </button>
+                {mostrarSenha ? <EyeOff size={18} /> : <Eye size={18} />}
+              </motion.button>
             </div>
-            <small className="text-muted">A senha deve ter pelo menos 6 caracteres.</small>
-          </div>
-
-          <div className="mb-4">
+          </motion.div>
+          
+          <motion.div 
+            className="mb-4"
+            initial={{ x: -20, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{ delay: 0.7 }}
+          >
             <label className="form-label fw-medium">Confirmar Palavra-passe*</label>
-            <input
+            <motion.input
               type={mostrarSenha ? "text" : "password"}
               className="form-control custom-input"
               placeholder="Confirmar palavra-passe"
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
               required
+              whileFocus={{ boxShadow: "0 0 0 3px rgba(153, 203, 200, 0.25)" }}
             />
-          </div>
-
-          <button 
-            type="submit" 
-            className="btn w-100 rounded-pill"
-            style={{ backgroundColor: "#99CBC8", color: "#fff", fontWeight: "600" }}
+          </motion.div>
+          
+          <motion.button
+            type="submit"
+            className="btn w-50 rounded-pill mx-auto d-flex justify-content-center align-items-center"
+            style={{ 
+              backgroundColor: "#E7C8C2", 
+              color: "#fff", 
+              fontWeight: "600" 
+            }}
             disabled={loading}
+            whileHover={{ backgroundColor: "#deb9b2", scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.8 }}
           >
-            {loading ? "A processar..." : "Criar conta"}
-          </button>
+            {loading ? (
+              <div className="d-flex align-items-center">
+                <div className="spinner-border spinner-border-sm me-2" role="status">
+                  <span className="visually-hidden">A processar...</span>
+                </div>
+                A processar...
+              </div>
+            ) : (
+              "Criar conta"
+            )}
+          </motion.button>
         </form>
-      </div>
+      </motion.div>
 
       {showPopup && (
         <PersonalizationPopup

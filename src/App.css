@@ -174,3 +174,224 @@ select:focus {
 .bg-green{
   background-color: #99CBC8 !important;
 }
+
+/* Estilos para signup */
+
+/* Estilos personalizados para inputs */
+.custom-input {
+  border-radius: 10px;
+  padding: 12px 15px;
+  border: 1px solid #e0e0e0;
+  transition: all 0.3s ease;
+}
+
+.custom-input:focus {
+  border-color: #99CBC8;
+  box-shadow: 0 0 0 3px rgba(153, 203, 200, 0.25);
+  outline: none;
+}
+
+/* Estilos para o botão de mostrar/esconder senha */
+.btn-toggle {
+  background-color: white;
+  border: 1px solid #e0e0e0;
+  border-left: none;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  color: #6c757d;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 15px;
+}
+
+.btn-toggle:hover {
+  background-color: #f2f2f2;
+}
+
+/* Animações para o card */
+.card {
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+}
+
+/* Animação para o spinner */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Animação para elementos quando aparecem */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Efeito de hover para links */
+.login-link, .signup-link {
+  transition: color 0.3s ease;
+}
+
+.login-link:hover, .signup-link:hover {
+  color: #7ab3b0;
+}
+
+/* Estilos para o popup de personalização */
+.personalization-popup {
+  animation: fadeIn 0.5s ease forwards;
+}
+
+/* Estilos para os avatares */
+.avatar-option {
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: 3px solid transparent;
+}
+
+.avatar-option:hover {
+  transform: scale(1.05);
+}
+
+.avatar-selected {
+  border-color: #99CBC8;
+}
+
+/* Efeito de entrada para o formulário */
+@keyframes slideInForm {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Animação para alertas */
+.alert {
+  transition: all 0.3s ease;
+}
+
+/* Botões principais */
+.btn {
+  transition: all 0.3s ease;
+}
+
+/* Botão específico para o login */
+.btn-login {
+  background-color: #99CBC8;
+  color: white;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.btn-login:hover {
+  background-color: #88bab7;
+  transform: translateY(-2px);
+}
+
+/* Botão específico para cadastro */
+.btn-signup {
+  background-color: #E7C8C2;
+  color: white;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.btn-signup:hover {
+  background-color: #deb9b2;
+  transform: translateY(-2px);
+}
+
+/* Overlay para popups */
+.modal-overlay {
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(3px);
+  animation: fadeIn 0.3s ease forwards;
+}
+
+
+/* Estilos para os cards */
+.module-card {
+  width: 300px;
+  height: 350px;
+  perspective: 1000px;
+  margin: 20px;
+}
+
+.card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+.module-card:hover .card-inner {
+  transform: rotateY(180deg);
+}
+
+.card-front,
+.card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+  backface-visibility: hidden;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+  box-sizing: border-box;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-front {
+  z-index: 2;
+}
+
+.card-image {
+  width: 100%;
+  height: 100%; 
+  object-fit: cover;
+  border-radius: 15px;
+  margin-bottom: 15px;
+}
+
+.card-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #234970;
+  text-align: center;
+}
+
+.card-subtitle {
+  font-size: 0.9rem;
+  color: #777;
+  text-align: center;
+}
+
+.card-back {
+  transform: rotateY(180deg);
+  background-color: #e6f0f3;
+}
+
+.card-description {
+  font-size: 1rem;
+  color: #333;
+  text-align: center;
+}

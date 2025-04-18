@@ -1,7 +1,6 @@
-import React, { useCallback, useContext } from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "../App.css";
-import logo from "../imgs/logositeazul.png";
+import React from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { useContext } from "react";
 import { UserContext } from "../App";
 import { useNavigate } from "react-router-dom";
 
@@ -11,129 +10,159 @@ const PersonalizationPopup = ({
   selectedAvatar,
   setSelectedAvatar,
   avatarOptions,
-  userId,
   loading,
   setLoading,
-  setError
+  setError,
 }) => {
-  const { updateUserData } = useContext(UserContext);
   const navigate = useNavigate();
 
-  const handleNomeChange = useCallback((e) => {
-    setNome(e.target.value);
-  }, [setNome]);
+    const {updateUserData} = useContext(UserContext);
+  
 
-  const handlePersonalizationSave = useCallback(async () => {
-    
-    if (!nome || !selectedAvatar) {
-      if (typeof setError === "function") {
-        setError("Por favor, preencha todos os campos.");
-      }
-      if (typeof setLoading === 'function') {
-        setLoading(false);
-      }
+  const handleSave = async (e) => {
+    e.preventDefault();
+    setLoading(true);
 
+    if (!nome.trim()) {
+      setError("Por favor, insira o seu nome.");
+      setLoading(false);
       return;
     }
 
     try {
-      setLoading(true);
-
-      const updatedUserData = {
+      await updateUserData({
         nome: nome,
-        avatar: selectedAvatar,
-        uid: userId
-      };
-
-      updateUserData(updatedUserData);
+        avatarId: selectedAvatar,
+      });
       navigate("/homepage");
     } catch (error) {
-      if (typeof setError === "function") {
-        setError(error.message || "Erro ao salvar personalização.");
-      }
+      setError("Erro ao salvar informações. Por favor, tente novamente.");
       setLoading(false);
     }
-  }, [nome, selectedAvatar, userId, updateUserData, navigate, setError, setLoading]);
+  };
 
   return (
-    <div
-      className="position-fixed top-0 start-0 w-100 h-100 d-flex justify-content-center align-items-center"
-      style={{ backgroundColor: "rgba(0,0,0,0.5)", zIndex: 1050 }}
-    >
-      <div
-        className="bg-white p-4 rounded-4 shadow"
-        style={{ maxWidth: "650px", width: "90%" }}
+    <AnimatePresence>
+      <motion.div
+        className="position-fixed top-0 start-0 w-100 h-100 d-flex justify-content-center align-items-center"
+        style={{ 
+          backgroundColor: "rgba(0, 0, 0, 0.5)", 
+          zIndex: 1050 
+        }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
       >
-        <h2 className="text-center mb-4 font-poppins" style={{ color: "#69a6a4" }}>
-          Personaliza o teu{" "}
-          <span>
-            <img src={logo} alt="Logo" style={{ height: "60px" }} />
-          </span>
-        </h2>
-
-        <div className="row">
-          <div className="col-md-6 mb-3">
-            <label htmlFor="platformName" className="form-label">
-              Nome na Plataforma
-            </label>
-            <input
-              id="platformName"
-              type="text"
-              className="form-control popup-input"
-              placeholder="Nome que queres ser tratado na Plataforma"
-              value={nome}
-              onChange={handleNomeChange}
-              required
-            />
-          </div>
-
-          <div className="col-12">
-            <label className="d-block mb-2">Escolhe o teu Avatar</label>
-            <div className="d-flex flex-wrap gap-3 justify-content-center">
-              {avatarOptions.map((avatar) => (
-                <img
-                  key={avatar.id}
-                  src={avatar.src}
-                  alt={`Avatar ${avatar.id}`}
-                  onClick={() => setSelectedAvatar(avatar.id)}
-                  style={{
-                    width: "70px",
-                    height: "70px",
-                    borderRadius: "50%",
-                    cursor: "pointer",
-                    border:
-                      selectedAvatar === avatar.id
-                        ? "3px solid #99CBC8"
-                        : "2px solid transparent",
-                    transition: "all 0.2s ease-in-out",
-                  }}
-                  role="button"
-                  aria-label={`Avatar ${avatar.id}`}
-                />
-              ))}
-            </div>
-
-            <div className="text-center mt-3">
-              <img
-                src={avatarOptions.find((a) => a.id === selectedAvatar)?.src}
-                alt="Selected Avatar"
-                style={{ width: "80px", borderRadius: "50%" }}
-              />
-            </div>
-          </div>
-        </div>
-
-        <div className="text-end mt-4">
-          <button
-            className="popup-btn"
-            onClick={handlePersonalizationSave}
-            disabled={loading}
+        <motion.div
+          className="card shadow-lg border-0 p-4"
+          style={{ 
+            maxWidth: "500px", 
+            width: "90%", 
+            borderRadius: "20px",
+            backgroundColor: "#FBF9F9" 
+          }}
+          initial={{ scale: 0.9, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ type: "spring", stiffness: 300 }}
+        >
+          <motion.h4 
+            className="text-center mb-4 fw-semibold"
+            style={{ color: "#99CBC8" }}
+            initial={{ y: -10, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.2 }}
           >
-            {loading ? "A processar..." : "Começar"}
-          </button>
-        </div>
-      </div>
-    </div>
+            Personaliza o teu perfil
+          </motion.h4>
+
+          <form onSubmit={handleSave}>
+            <motion.div
+              className="mb-4"
+              initial={{ x: -20, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              transition={{ delay: 0.3 }}
+            >
+              <label className="form-label fw-medium">Nome*</label>
+              <motion.input
+                type="text"
+                className="form-control custom-input"
+                placeholder="Insira o seu nome"
+                value={nome}
+                onChange={(e) => setNome(e.target.value)}
+                required
+                whileFocus={{ boxShadow: "0 0 0 3px rgba(153, 203, 200, 0.25)" }}
+              />
+            </motion.div>
+
+            <motion.div
+              className="mb-4"
+              initial={{ x: -20, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              transition={{ delay: 0.4 }}
+            >
+              <label className="form-label fw-medium">Escolha o seu avatar*</label>
+              <div className="d-flex flex-wrap justify-content-center gap-3 mt-2">
+                {avatarOptions.map((avatar, index) => (
+                  <motion.div
+                    key={avatar.id}
+                    initial={{ scale: 0, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    transition={{ delay: 0.5 + index * 0.1 }}
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <img
+                      src={avatar.src}
+                      alt={`Avatar ${index + 1}`}
+                      className={`rounded-circle avatar-option ${
+                        selectedAvatar === avatar.id ? "avatar-selected" : ""
+                      }`}
+                      style={{ 
+                        width: "70px", 
+                        height: "70px", 
+                        objectFit: "cover",
+                        cursor: "pointer",
+                        border: selectedAvatar === avatar.id
+                          ? "3px solid #99CBC8"
+                          : "3px solid transparent",
+                      }}
+                      onClick={() => setSelectedAvatar(avatar.id)}
+                    />
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+
+            <motion.button
+              type="submit"
+              className="btn w-100 rounded-pill"
+              style={{ 
+                backgroundColor: "#E7C8C2", 
+                color: "white", 
+                fontWeight: "600" 
+              }}
+              disabled={loading}
+              whileHover={{ backgroundColor: "#deb9b2", scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              initial={{ y: 20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: 0.8 }}
+            >
+              {loading ? (
+                <div className="d-flex align-items-center justify-content-center">
+                  <div className="spinner-border spinner-border-sm me-2" role="status">
+                    <span className="visually-hidden">A processar...</span>
+                  </div>
+                  A processar...
+                </div>
+              ) : (
+                "Guardar e continuar"
+              )}
+            </motion.button>
+          </form>
+        </motion.div>
+      </motion.div>
+    </AnimatePresence>
   );
 };
 
