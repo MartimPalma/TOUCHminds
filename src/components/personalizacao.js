@@ -82,11 +82,11 @@ const PersonalizationPopup = ({
               animate={{ x: 0, opacity: 1 }}
               transition={{ delay: 0.3 }}
             >
-              <label className="form-label fw-medium">Nome*</label>
+              <label className="form-label fw-medium">Nome na Plataforma</label>
               <motion.input
                 type="text"
                 className="form-control custom-input"
-                placeholder="Insira o seu nome"
+                placeholder="Insira o nome na plataforma"
                 value={nome}
                 onChange={(e) => setNome(e.target.value)}
                 required
