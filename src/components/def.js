@@ -1,17 +1,150 @@
-import React from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import { UserContext } from "../App";
 import Navbar from './navbar';
 import Sidebar from './sidebar';
+import avatar1 from "../imgs/avatar1.jpg";
 
 const Definicoes = () => {
+  const [nome, setNome] = useState('');
+  const [selectedAvatar, setSelectedAvatar] = useState('');
+  const [avatarOptions, setAvatarOptions] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState({ text: '', type: '' });
+
+  const { user, updateUserData } = useContext(UserContext);
+
+  // Carregar dados do user
+  useEffect(() => {
+    if (user) {
+      setNome(user.nome || '');
+      setSelectedAvatar(user.avatarId || '');
+    }
+    
+    setAvatarOptions([
+      { id: 'avatar1', src: avatar1 },
+      { id: 'avatar2', src: avatar1 },
+      { id: 'avatar3', src: avatar1 },
+      { id: 'avatar4', src: avatar1 },
+      { id: 'avatar5', src: avatar1 },
+      { id: 'avatar6', src: avatar1 },
+    ]);
+  }, [user]);
+
+  const handleSave = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    setMessage({ text: '', type: '' });
+
+    if (!nome.trim()) {
+      setMessage({ text: 'Por favor, insira o seu nome.', type: 'error' });
+      setLoading(false);
+      return;
+    }
+
+    try {
+      await updateUserData({
+        nome: nome,
+        avatarId: selectedAvatar,
+      });
+      
+      setMessage({ text: 'Perfil atualizado com sucesso!', type: 'success' });
+    } catch (error) {
+      console.error('Erro ao atualizar perfil:', error);
+      setMessage({ text: 'Erro ao salvar informações. Por favor, tente novamente.', type: 'error' });
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <div className="container-fluid vh-100 p-0">
       <Navbar />
       <div className="row h-100 m-0">
         <Sidebar />
         <div className="col px-4 py-4" style={{ backgroundColor: "#FBF9F9" }}>
-          <div className="container p-4 bg-white rounded shadow-sm">
-            <h2 className="mb-1" style={{ color: "#99CBC8" }}>Definições</h2>
-            <p>Conteúdo da página de definições.</p>
+          <div className="container p-5 bg-white rounded shadow-sm">
+            <h2 className="mb-3 font-poppins" style={{ color: "#66BFBF", fontWeight: 'bold' }}>Definições</h2>
+            <p className="font-poppins" style={{ fontSize: '1.15rem', color: '#444' }}>
+              Personaliza o teu perfil alterando o nome na plataforma e escolhendo um avatar.
+            </p>
+            
+            {message.text && (
+              <div className={`alert ${message.type === 'success' ? 'alert-success' : 'alert-danger'} mb-4`}>
+                {message.text}
+              </div>
+            )}
+            
+            <form onSubmit={handleSave}>
+              <div className="mt-4 p-4 rounded" style={{ backgroundColor: '#E3F4F4' }}>
+                <h4 style={{ color: '#3B9C9C', fontWeight: '600' }}>✏️ Nome na Plataforma</h4>
+                <p className="mb-3">Como queres ser chamado/a na plataforma:</p>
+                <input
+                  type="text"
+                  className="form-control"
+                  placeholder="Insira o nome na plataforma"
+                  value={nome}
+                  onChange={(e) => setNome(e.target.value)}
+                  required
+                  style={{ borderColor: '#66BFBF', borderRadius: '6px' }}
+                />
+              </div>
+              
+              <div className="mt-4 p-4 rounded" style={{ backgroundColor: '#F0FAFA' }}>
+                <h4 style={{ color: '#3B9C9C', fontWeight: '600' }}>🧑 Escolhe o teu avatar</h4>
+                <p className="mb-3">Seleciona uma imagem que te represente:</p>
+                <div className="d-flex flex-wrap gap-3 mt-3">
+                  {avatarOptions.map((avatar) => (
+                    <div key={avatar.id} className="text-center">
+                      <img
+                        src={avatar.src}
+                        alt={`Avatar ${avatar.id}`}
+                        className="rounded-circle"
+                        style={{ 
+                          width: "75px", 
+                          height: "75px", 
+                          objectFit: "cover",
+                          cursor: "pointer",
+                          border: selectedAvatar === avatar.id
+                            ? "3px solid #3B9C9C"
+                            : "3px solid transparent",
+                          transition: "all 0.2s ease",
+                          boxShadow: selectedAvatar === avatar.id
+                            ? "0 0 12px rgba(59, 156, 156, 0.5)"
+                            : "none"
+                        }}
+                        onClick={() => setSelectedAvatar(avatar.id)}
+                      />
+                    </div>
+                  ))}
+                </div>
+              </div>
+              
+              <div className="mt-4 text-center">
+                <button
+                  type="submit"
+                  className="btn px-4 py-2"
+                  style={{ 
+                    backgroundColor: "#66BFBF", 
+                    color: "white", 
+                    fontWeight: "600",
+                    borderRadius: "8px",
+                    fontSize: "1.05rem"
+                  }}
+                  disabled={loading}
+                >
+                  {loading ? (
+                    <div className="d-flex align-items-center justify-content-center">
+                      <div className="spinner-border spinner-border-sm me-2" role="status">
+                        <span className="visually-hidden">A processar...</span>
+                      </div>
+                      A processar...
+                    </div>
+                  ) : (
+                    "Guardar alterações"
+                  )}
+                </button>
+              </div>
+            </form>
           </div>
         </div>
       </div>

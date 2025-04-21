@@ -52,7 +52,7 @@ const LandingPage = () => {
           </div>
         </section>  
 
-        <div className="text-center pb-5" style={{ color: "#234970" }}>
+        <div className="text-center pb-4" style={{ color: "#234970" }}>
           <a href="#faq" style={{ textDecoration: "none", color: "#234970" }}>
             <FaArrowDown className="arrow-down" />
           </a>
