@@ -24,6 +24,12 @@ const App = () => {
 
   // Atualiza dados localmente e na Firestore
   const updateUserData = async (updatedData) => {
+
+    if (!updatedData?.uid) {
+      console.error("UID ausente em updateUserData");
+      return;
+    }
+
     setUserData(updatedData);
 
     try {

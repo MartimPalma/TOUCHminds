@@ -10,14 +10,14 @@ const PersonalizationPopup = ({
   selectedAvatar,
   setSelectedAvatar,
   avatarOptions,
+  userId,
   loading,
   setLoading,
   setError,
 }) => {
   const navigate = useNavigate();
 
-    const {updateUserData} = useContext(UserContext);
-  
+  const {updateUserData, userData} = useContext(UserContext)
 
   const handleSave = async (e) => {
     e.preventDefault();
@@ -31,6 +31,7 @@ const PersonalizationPopup = ({
 
     try {
       await updateUserData({
+        uid: userId,        
         nome: nome,
         avatarId: selectedAvatar,
       });
