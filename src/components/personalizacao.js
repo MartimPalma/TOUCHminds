@@ -13,11 +13,13 @@ const PersonalizationPopup = ({
   loading,
   setLoading,
   setError,
+  userId  
 }) => {
   const navigate = useNavigate();
 
-    const {updateUserData} = useContext(UserContext);
-  
+  const {updateUserData} = useContext(UserContext)
+
+  console.log("userId recebido no popup:", userId);
 
   const handleSave = async (e) => {
     e.preventDefault();
@@ -31,6 +33,7 @@ const PersonalizationPopup = ({
 
     try {
       await updateUserData({
+        uid: userId,        
         nome: nome,
         avatarId: selectedAvatar,
       });

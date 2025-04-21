@@ -11,7 +11,7 @@ import avatar2 from "../imgs/avatar1.jpg";
 import avatar3 from "../imgs/avatar1.jpg";
 import avatar4 from "../imgs/avatar1.jpg";
 import avatar5 from "../imgs/avatar1.jpg";
-import PersonalizationPopup from "./personalizacao"; // Import the separate component
+import PersonalizationPopup from "./personalizacao"; 
 
 export default function SignupPage() {
   const [codigoParticipante, setCodigoParticipante] = useState("");
@@ -231,10 +231,10 @@ export default function SignupPage() {
           selectedAvatar={selectedAvatar}
           setSelectedAvatar={setSelectedAvatar}
           avatarOptions={avatarOptions}
-          userId={userId}
           loading={loading}
           setLoading={setLoading}
           setError={setError}
+          userId={userId}
         />
       )}
     </div>
