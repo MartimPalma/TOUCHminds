@@ -39,7 +39,7 @@ const Conquistas = () => {
   
     for (let i = 1; i <= 6; i++) {
       const isCompleted = modulosConcluidos >= i;
-      const imagePath = {modulo1, modulo2, modulo3, modulo4, modulo5, modulo6}[`modulo${i}`]; // Substitua pelo caminho correto da imagem do módulo
+      const imagePath = {modulo1, modulo2, modulo3, modulo4, modulo5, modulo6}[`modulo${i}`]; 
   
       images.push(
         <div className="col-4 p-0" key={i}>
@@ -61,9 +61,9 @@ const Conquistas = () => {
       <Navbar />
       <div className="row h-100 m-0">
         <Sidebar />
-        <div className="col px-4 py-3" style={{ backgroundColor: "#FBF9F9" }}>
-          <div className="container p-4 bg-white rounded shadow-sm h-100">
-            <h2 className="mb-2" style={{ color: "#66BFBF", fontWeight: 'bold' }}>
+        <div className="col px-4 py-4" style={{ backgroundColor: "#FBF9F9" }}>
+          <div className="container p-5 bg-white rounded shadow-sm h-100">
+            <h2 className="mb-2 font-poppins" style={{ color: "#66BFBF", fontWeight: 'bold' }}>
               As Minhas Conquistas
             </h2>
             <p style={{ fontSize: '1rem', color: '#444' }}>
@@ -94,7 +94,6 @@ const Conquistas = () => {
                 </div>
                 
                 <div>
-                  {/* Mostrar todas as imagens em uma grid de 3x2 */}
                   <div className="row justify-content-center">
                     {renderModuleImages()}
                   </div>
