@@ -10,6 +10,7 @@ const PersonalizationPopup = ({
   selectedAvatar,
   setSelectedAvatar,
   avatarOptions,
+  userId,
   loading,
   setLoading,
   setError,
