@@ -6,6 +6,7 @@ import Sidebar from './sidebar';
 
 const Homepage = () => {
   const { userData } = useContext(UserContext);
+
   console.log(userData);
 
   // Se os dados do utilizador ainda não foram carregados, mostrar mensagem de carregamento
@@ -21,7 +22,7 @@ const Homepage = () => {
         
         <div className="col px-4 py-4" style={{ backgroundColor: "#FBF9F9" }}>
           <div className="container p-4 bg-white rounded shadow-sm">
-            <h2 className="mb-1" style={{ color: "#99CBC8" }}>Bem Vindo, <span>{userData.nome}!</span></h2>
+            <h2 className="mb-3" style={{ color: "#99CBC8" }}>Bem Vindo, <span>{userData.nome}!</span></h2>
             
             <div className="row row-cols-1 row-cols-md-3 g-4 mb-5">
               {/* Module 1 */}

@@ -1,12 +1,16 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Bell, PersonCircle } from 'react-bootstrap-icons';  
 import logo from "../imgs/logoazul.png"; 
 
 const Navbar = () => {
+
+    const navigate = useNavigate();
+
     return(
         <div className="navbar navbar-light bg-white py-2 px-4">
                 <div className="container-fluid">
-                  <a className="navbar-brand text-info" href="#"  style={{ width: "15%" }}>
+                  <a className="navbar-brand text-info" onClick={() => navigate('/Homepage')}  style={{ width: "15%" }}>
                     <img src={logo} alt="TOUCHminds Logo" className="mt-1" style={{ width: "80%" }}/>
 
                   </a>

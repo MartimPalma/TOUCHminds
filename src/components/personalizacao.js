@@ -14,7 +14,6 @@ const PersonalizationPopup = ({
   loading,
   setLoading,
   setError,
-  userId  
 }) => {
   const navigate = useNavigate();
 

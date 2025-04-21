@@ -1,7 +1,9 @@
 import React, { useState } from "react";
+import { useContext } from "react";
+import { UserContext } from "../App";
 import { motion } from "framer-motion";
 import { Eye, EyeOff } from "lucide-react";
-import { loginAluno } from "./../database/database";
+import { loginAluno , dadosAlunos } from "./../database/database";
 import { useNavigate } from "react-router-dom";
 import logo from "../imgs/logositeazul.png";
 
@@ -13,6 +15,8 @@ export default function Login() {
   const [loading, setLoading] = useState(false);
   
   const navigate = useNavigate();
+
+  const { updateUserData } = useContext(UserContext); // <- isto vai permitir guardar os dados no contexto
   
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -20,7 +24,9 @@ export default function Login() {
     setLoading(true);
     
     try {
-      await loginAluno(codigoParticipante, password);
+      const user = await loginAluno(codigoParticipante, password);
+      const dados = await dadosAlunos(user.uid);
+      updateUserData({ uid: user.uid, ...dados });
       navigate('/homepage'); 
     } catch (error) {
       console.error("Erro no login:", error);

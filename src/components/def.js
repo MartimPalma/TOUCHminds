@@ -11,13 +11,15 @@ const Definicoes = () => {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState({ text: '', type: '' });
 
-  const { user, updateUserData } = useContext(UserContext);
+  const { userData, updateUserData}= useContext(UserContext);
+
+  console.log('User:', userData);
 
   // Carregar dados do user
   useEffect(() => {
-    if (user) {
-      setNome(user.nome || '');
-      setSelectedAvatar(user.avatarId || '');
+    if (userData) {
+      setNome(userData.nome || '');
+      setSelectedAvatar(userData.avatarId || '');
     }
     
     setAvatarOptions([
@@ -28,7 +30,7 @@ const Definicoes = () => {
       { id: 'avatar5', src: avatar1 },
       { id: 'avatar6', src: avatar1 },
     ]);
-  }, [user]);
+  }, [userData]);
 
   const handleSave = async (e) => {
     e.preventDefault();
@@ -43,6 +45,7 @@ const Definicoes = () => {
 
     try {
       await updateUserData({
+        uid: userData.uid,
         nome: nome,
         avatarId: selectedAvatar,
       });

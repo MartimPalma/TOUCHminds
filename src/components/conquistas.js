@@ -2,16 +2,24 @@ import React, { useState, useEffect, useContext } from 'react';
 import { UserContext } from '../App';
 import Navbar from './navbar';
 import Sidebar from './sidebar';
+import modulo1 from "../imgs/module1.jpg";
+import modulo2 from "../imgs/module1.jpg";
+import modulo3 from "../imgs/module1.jpg";
+import modulo4 from "../imgs/module1.jpg";
+import modulo5 from "../imgs/module1.jpg";
+import modulo6 from "../imgs/module1.jpg";
 
 const Conquistas = () => {
   const [modulosConcluidos, setModulosConcluidos] = useState(0);
   const [loading, setLoading] = useState(true);
-  const { user, userData } = useContext(UserContext); 
+  const { userData } = useContext(UserContext); 
+
+  console.log(userData);
   
   useEffect(() => {
     const fetchUserProgress = async () => {
       try {
-        if (user) {
+        if (userData) {
             setModulosConcluidos(userData.modulosConcluidos || 0);
         }
       } catch (error) {
@@ -22,7 +30,31 @@ const Conquistas = () => {
     };
 
     fetchUserProgress();
-  }, [user, userData]);
+  }, [ userData]);
+
+
+  // Função para renderizar imagens de módulos concluídos
+  const renderModuleImages = () => {
+    const images = [];
+  
+    for (let i = 1; i <= 6; i++) {
+      const isCompleted = modulosConcluidos >= i;
+      const imagePath = {modulo1, modulo2, modulo3, modulo4, modulo5, modulo6}[`modulo${i}`]; // Substitua pelo caminho correto da imagem do módulo
+  
+      images.push(
+        <div className="col-4 p-0" key={i}>
+          <img
+            src={imagePath}
+            alt={`Módulo ${i}`}
+            className="w-100 h-100 object-fit-contain"
+            style={{ filter: isCompleted ? 'none' : 'grayscale(100%)' }} // Aplica o filtro cinza para módulos não concluídos
+          />
+        </div>
+      );
+    }
+  
+    return images;
+  };
 
   return (
     <div className="container-fluid vh-100 p-0">
@@ -61,42 +93,11 @@ const Conquistas = () => {
                   </div>
                 </div>
                 
-                <div 
-                  className="position-relative"
-                  style={{ 
-                    width: "500px", 
-                    height: "350px", 
-                    border: "2px dashed #66BFBF",
-                    borderRadius: "10px",
-                    backgroundColor: "#F0FAFA"
-                  }}
-                >
-                  {/* Mostrar imagem baseada no número de módulos concluídos */}
-                  {modulosConcluidos > 0 && (
-                    <img 
-                      src={''} 
-                      alt={`${modulosConcluidos} módulos concluídos`} 
-                      className="w-100 h-100 object-fit-contain"
-                    />
-                  )}
-                  
-                  {modulosConcluidos === 0 && (
-                    <div className="d-flex justify-content-center align-items-center h-100">
-                      <p className="text-center text-muted">
-                        Completa módulos para revelar partes do puzzle!
-                      </p>
-                    </div>
-                  )}
-                </div>
-                
-                <div className="mt-3 text-center">
-                  <p className="text-muted">
-                    {modulosConcluidos === 6 ? (
-                      <span className="text-success fw-bold">Parabéns! Completaste todos os módulos!</span>
-                    ) : (
-                      `Módulos concluídos: ${modulosConcluidos} de 6`
-                    )}
-                  </p>
+                <div>
+                  {/* Mostrar todas as imagens em uma grid de 3x2 */}
+                  <div className="row justify-content-center">
+                    {renderModuleImages()}
+                  </div>
                 </div>
               </div>
             )}
