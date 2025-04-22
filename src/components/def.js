@@ -23,12 +23,16 @@ const Definicoes = () => {
     }
     
     setAvatarOptions([
-      { id: 'avatar1', src: avatar1 },
-      { id: 'avatar2', src: avatar1 },
-      { id: 'avatar3', src: avatar1 },
-      { id: 'avatar4', src: avatar1 },
-      { id: 'avatar5', src: avatar1 },
-      { id: 'avatar6', src: avatar1 },
+      { id: "avatar1", src: avatar1 },
+      { id: "avatar2", src: avatar1 },
+      { id: "avatar3", src: avatar1 },
+      { id: "avatar4", src: avatar1 },
+      { id: "avatar5", src: avatar1 },
+      { id: "avatar6", src: avatar1 },
+      { id: "avatar7", src: avatar1 },
+      { id: "avatar8", src: avatar1 },
+      { id: "avatar9", src: avatar1 },
+      { id: "avatar10", src: avatar1 },
     ]);
   }, [userData]);
 

@@ -33,6 +33,11 @@ export default function SignupPage() {
     { id: "avatar3", src: avatar3 },
     { id: "avatar4", src: avatar4 },
     { id: "avatar5", src: avatar5 },
+    { id: "avatar6", src: avatar1 },
+    { id: "avatar7", src: avatar1 },
+    { id: "avatar8", src: avatar1 },
+    { id: "avatar9", src: avatar1 },
+    { id: "avatar10", src: avatar1 },
   ];
 
   const handleSubmit = async (e) => {

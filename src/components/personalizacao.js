@@ -26,7 +26,7 @@ const PersonalizationPopup = ({
     setLoading(true);
 
     if (!nome.trim()) {
-      setError("Por favor, insira o seu nome.");
+      setError("Por favor, insire o teu nome.");
       setLoading(false);
       return;
     }
@@ -39,7 +39,7 @@ const PersonalizationPopup = ({
       });
       navigate("/homepage");
     } catch (error) {
-      setError("Erro ao salvar informações. Por favor, tente novamente.");
+      setError("Erro ao salvar informações. Por favor, tenta novamente.");
       setLoading(false);
     }
   };
@@ -89,7 +89,7 @@ const PersonalizationPopup = ({
               <motion.input
                 type="text"
                 className="form-control custom-input"
-                placeholder="Insira o nome na plataforma"
+                placeholder="Insire o nome na plataforma"
                 value={nome}
                 onChange={(e) => setNome(e.target.value)}
                 required
@@ -103,7 +103,7 @@ const PersonalizationPopup = ({
               animate={{ x: 0, opacity: 1 }}
               transition={{ delay: 0.4 }}
             >
-              <label className="form-label fw-medium">Escolha o seu avatar*</label>
+              <label className="form-label fw-medium">Escolhe o teu avatar*</label>
               <div className="d-flex flex-wrap justify-content-center gap-3 mt-2">
                 {avatarOptions.map((avatar, index) => (
                   <motion.div
