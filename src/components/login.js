@@ -16,7 +16,7 @@ export default function Login() {
   
   const navigate = useNavigate();
 
-  const { updateUserData } = useContext(UserContext); // <- isto vai permitir guardar os dados no contexto
+  const { updateUserData } = useContext(UserContext); 
   
   const handleLogin = async (e) => {
     e.preventDefault();

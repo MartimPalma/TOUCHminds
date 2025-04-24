@@ -1,6 +1,7 @@
 import { initializeApp } from "firebase/app";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
-import { getFirestore, doc, setDoc, getDoc, collection, query, where, getDocs } from "firebase/firestore";
+import { getFirestore, doc, setDoc, getDoc, collection, query, where, getDocs, updateDoc } from "firebase/firestore";
+import { Navigate } from "react-router-dom";
 
 const firebaseConfig = {
   apiKey: "AIzaSyB3zTp5CC9lIvNwt1XN1l69lMobSfOgMyg",
@@ -39,20 +40,35 @@ export async function registerAluno(codigoParticipante, password) {
     const userCredential = await createUserWithEmailAndPassword(auth, email, password);
     const user = userCredential.user;
     
+    const dataAtual = new Date();
+    const formatoData = dataAtual.toLocaleDateString('pt-PT', {
+      day: '2-digit',
+      month: '2-digit',
+      year: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit'
+    });
+
     await setDoc(doc(db, "alunos", user.uid), {
       codigoParticipante,
       modulosConcluidos: 0,
       tempoGasto: 0,
-      periodicidade: [],
+      periodicidade: {
+        // guarda a data do registo e quando faz login
+        registo: `Registo realizado em ${formatoData}`,
+        logins: [],
+        logouts: [],
+      },
       modulos: {
-        modulo1: { status: "desbloqueado", tempo: 0, concluido: false },
-        modulo2: { status: "bloqueado", tempo: 0, concluido: false },
-        modulo3: { status: "bloqueado", tempo: 0, concluido: false },
-        modulo4: { status: "bloqueado", tempo: 0, concluido: false },
-        modulo5: { status: "bloqueado", tempo: 0, concluido: false },
-        modulo6: { status: "bloqueado", tempo: 0, concluido: false },
+        modulo1: { status: "desbloqueado", tempo: 0, concluido: false , datafim: "" },
+        modulo2: { status: "bloqueado", tempo: 0, concluido: false , datafim: "" },
+        modulo3: { status: "bloqueado", tempo: 0, concluido: false , datafim: "" },
+        modulo4: { status: "bloqueado", tempo: 0, concluido: false , datafim: "" },
+        modulo5: { status: "bloqueado", tempo: 0, concluido: false , datafim: "" },
+        modulo6: { status: "bloqueado", tempo: 0, concluido: false , datafim: "" },
       }
     });
+
     
     console.log("Aluno registrado com sucesso!");
     return user;
@@ -64,12 +80,30 @@ export async function registerAluno(codigoParticipante, password) {
 
 export async function loginAluno(codigoParticipante, password) {
   try {
-    // Construir o email baseado no código do participante
     const email = `${codigoParticipante}@touchminds.virtual`;
-    
     const userCredential = await signInWithEmailAndPassword(auth, email, password);
     const user = userCredential.user;
-    
+
+    const userRef = doc(db, 'alunos', user.uid);
+    const docSnap = await getDoc(userRef);
+
+    const userData = docSnap.data();
+    const dataAtual = new Date();
+    const formatoData = dataAtual.toLocaleDateString('pt-PT', {
+      day: '2-digit',
+      month: '2-digit',
+      year: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit'
+    });
+
+    const logins = userData.periodicidade.logins || [];
+    logins.push(`Login realizado em ${formatoData}`);
+
+    await updateDoc(userRef, {
+      "periodicidade.logins": logins
+    });
+
     console.log("Login realizado com sucesso:", codigoParticipante);
     return user;
   } catch (error) {
@@ -80,6 +114,27 @@ export async function loginAluno(codigoParticipante, password) {
 
 export async function logoutAluno() {
   try {
+    const userRef = doc(db, "alunos", auth.currentUser.uid);
+          const docSnap = await getDoc(userRef);
+          const userData = docSnap.data();
+    
+          const logouts = userData?.periodicidade?.logouts || [];
+    
+          const dataAtual = new Date();
+          const formatoData = dataAtual.toLocaleDateString('pt-PT', {
+            day: '2-digit',
+            month: '2-digit',
+            year: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit'
+          });
+    
+          logouts.push(`Logout realizado em ${formatoData}`);
+    
+          await updateDoc(userRef, {
+            "periodicidade.logouts": logouts
+          });
+
     await signOut(auth);
     console.log("Logout realizado com sucesso.");
   } catch (error) {

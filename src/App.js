@@ -15,7 +15,6 @@ import Homepage from './components/homepage';
 
 import { dadosAlunos } from './database/database';
 
-// Create the context
 export const UserContext = createContext(null);
 
 const App = () => {
