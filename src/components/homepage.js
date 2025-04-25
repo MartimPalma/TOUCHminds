@@ -3,9 +3,12 @@ import React, { useContext } from 'react';
 import { UserContext } from '../App'; 
 import Navbar from './navbar';
 import Sidebar from './sidebar';
+import { useNavigate } from 'react-router-dom';
+import ModuloCard from './moduloCardHome'; 
 
 const Homepage = () => {
   const { userData } = useContext(UserContext);
+  const navigate = useNavigate();
 
   console.log(userData);
 
@@ -14,126 +17,78 @@ const Homepage = () => {
     return <div className="text-center p-5">A carregar dados do utilizador...</div>;
   }
 
-  return (  
+  const handleNavigate = (moduloId) => {
+    navigate(`/modulos/${moduloId}`);
+  };
+
+  const modulos = [
+    {
+      id: 1,
+      titulo: "Módulo 1",
+      subtitulo: "Ansiedade NÃO é bicho-papão!",
+      descricao: "Aprende a diferenciar entre uma ansiedade comum e uma ansiedade SOS",
+      imagem: "/api/placeholder/400/250",
+    },
+    {
+      id: 2,
+      titulo: "Módulo 2",
+      subtitulo: "Desmitificar a Ansiedade",
+      descricao: "Nem tudo o que dizem sobre a ansiedade é verdade!",
+      imagem: "/api/placeholder/400/250",
+    },
+    {
+      id: 3,
+      titulo: "Módulo 3",
+      subtitulo: "Sê amigo de ti mesmo!",
+      descricao: "O que dizes a ti próprio faz a diferença!",
+      imagem: "/api/placeholder/400/250",
+    },
+    {
+      id: 4,
+      titulo: "Módulo 4",
+      subtitulo: "O Poder da Mudança!",
+      descricao:
+        "A mudança faz parte da vida! Explora os diferentes estádios da mudança, aprende a definir objetivos realistas e descobre como dar pequenos passos pode fazer uma grande diferença.",
+      imagem: "/api/placeholder/400/250",
+    },
+    {
+      id: 5,
+      titulo: "Módulo 5",
+      subtitulo: "Reviravolta em Rede!",
+      descricao:
+        "Pedir ajuda pode parecer difícil, mas não estás sozinho. Aprende a identificar sinais de alerta, a diferenciar entre ajuda formal e informal e descobre como a ajuda das pessoas mais próximas podem fazer toda a diferença.",
+      imagem: "/api/placeholder/400/250",
+    },
+    {
+      id: 6,
+      titulo: "Módulo 6",
+      subtitulo: "Um novo Começo!",
+      descricao:
+        "Como funciona a ajuda profissional? Descobre os sinais que indicam que podes precisar de ajuda profissional, conhece o papel do psicólogo e explora os recursos disponíveis para dares o próximo passo.",
+      imagem: "/api/placeholder/400/250",
+    },
+  ];
+
+  return (
     <div className="container-fluid vh-100 p-0">
       <Navbar />
-      <div className="row h-100 m-0" style={{}}>
+      <div className="row h-100 m-0">
         <Sidebar />
-        
+
         <div className="col px-4 py-4" style={{ backgroundColor: "#FBF9F9" }}>
           <div className="container p-4 bg-white rounded shadow-sm">
-            <h2 className="mb-3" style={{ color: "#99CBC8" }}>Bem Vindo, <span>{userData.nome}!</span></h2>
-            
-            <div className="row row-cols-1 row-cols-md-3 g-4 mb-5">
-              {/* Module 1 */}
-              <div className="col">
-                <div className="card h-100">
-                  <img 
-                    src="/api/placeholder/400/250" 
-                    className="card-img-top" 
-                    alt="Dark forest scene" 
-                  />
-                  <div className="card-body">
-                    <h5 className="card-title">Módulo 1</h5>
-                    <h6>Ansiedade NÃO é bicho-papão!</h6>
-                    <p className="card-text">
-                      Aprende a diferenciar entre uma ansiedade comum e uma ansiedade SOS
-                    </p>
-                  </div>
-                </div>
-              </div>
-              
-              {/* Module 2 */}
-              <div className="col">
-                <div className="card h-100">
-                  <img 
-                    src="/api/placeholder/400/250" 
-                    className="card-img-top" 
-                    alt="Misty landscape" 
-                  />
-                  <div className="card-body">
-                    <h5 className="card-title">Módulo 2</h5>
-                    <h6>Desmitificar a Ansiedade</h6>
-                    <p className="card-text">
-                      Nem tudo o que dizem sobre a ansiedade é verdade!
-                    </p>
-                  </div>
-                </div>
-              </div>
-              
-              {/* Module 3 */}
-              <div className="col">
-                <div className="card h-100">
-                  <img 
-                    src="/api/placeholder/400/250" 
-                    className="card-img-top" 
-                    alt="Reflective portrait" 
-                  />
-                  <div className="card-body">
-                    <h5 className="card-title">Módulo 3</h5>
-                    <h6>Sê amigo de ti mesmo!</h6>
-                    <p className="card-text">
-                      O que dizes a ti próprio faz a diferença!
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
+            <h2 className="mb-3" style={{ color: "#99CBC8" }}>
+              Bem Vindo, <span>{userData.nome}!</span>
+            </h2>
+
             <div className="row row-cols-1 row-cols-md-3 g-4">
-              {/* Module 4 */}
-              <div className="col">
-                <div className="card h-100">
-                  <img 
-                    src="/api/placeholder/400/250" 
-                    className="card-img-top" 
-                    alt="Person climbing stairs" 
-                  />
-                  <div className="card-body">
-                    <h5 className="card-title">Módulo 4</h5>
-                    <h6>O Poder da Mudança!</h6>
-                    <p className="card-text">
-                      A mudança faz parte da vida! Explora os diferentes estádios da mudança, aprende a definir objetivos realistas e descobre como dar pequenos passos pode fazer uma grande diferença.
-                    </p>
-                  </div>
-                </div>
-              </div>
-              
-              {/* Module 5 */}
-              <div className="col">
-                <div className="card h-100">
-                  <img 
-                    src="/api/placeholder/400/250" 
-                    className="card-img-top" 
-                    alt="Person looking at horizon" 
-                  />
-                  <div className="card-body">
-                    <h5 className="card-title">Módulo 5</h5>
-                    <h6>Reviravolta em Rede!</h6>
-                    <p className="card-text">
-                      Pedir ajuda pode parecer difícil, mas não estás sozinho. Aprende a identificar sinais de alerta, a diferenciar entre ajuda formal e informal e descobre como a ajuda das pessoas mais próximas podem fazer toda a diferença.
-                    </p>
-                  </div>
-                </div>
-              </div>
-              
-              {/* Module 6 */}
-              <div className="col">
-                <div className="card h-100">
-                  <img 
-                    src="/api/placeholder/400/250" 
-                    className="card-img-top" 
-                    alt="Road with new start sign" 
-                  />
-                  <div className="card-body">
-                    <h5 className="card-title">Módulo 6</h5>
-                    <h6>Um novo Começo!</h6>
-                    <p className="card-text">
-                      Como funciona a ajuda profissional? Descobre os sinais que indicam que podes precisar de ajuda profissional, conhece o papel do psicólogo e explora os recursos disponíveis para dares o próximo passo.
-                    </p>
-                  </div>
-                </div>
-              </div>
+              {modulos.map((modulo) => (
+                <ModuloCard
+                  key={modulo.id}
+                  {...modulo}
+                  onNavigate={handleNavigate}
+                />
+              ))}
             </div>
           </div>
         </div>

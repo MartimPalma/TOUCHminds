@@ -12,6 +12,8 @@ import Conquistas from './components/conquistas';
 import Contactos from './components/contactos';
 import Definições from './components/def';
 import Homepage from './components/homepage';
+import Modulos from './components/modulo';
+
 
 import { dadosAlunos } from './database/database';
 
@@ -81,6 +83,8 @@ const App = () => {
           <Route path="/conquistas" element={<Conquistas/>} />
           <Route path="/contactos" element={<Contactos />} />
           <Route path="/definicoes" element={<Definições/>} />
+          {/* passa o id modulo por url para a página do smódulos */}
+          <Route path="/modulos/:id" element={<Modulos />} />
         </Routes>
       </Router>
     </UserContext.Provider>

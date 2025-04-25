@@ -1,7 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { getFirestore, doc, setDoc, getDoc, collection, query, where, getDocs, updateDoc } from "firebase/firestore";
-import { Navigate } from "react-router-dom";
 
 const firebaseConfig = {
   apiKey: "AIzaSyB3zTp5CC9lIvNwt1XN1l69lMobSfOgMyg",
@@ -60,12 +59,12 @@ export async function registerAluno(codigoParticipante, password) {
         logouts: [],
       },
       modulos: {
-        modulo1: { status: "desbloqueado", tempo: 0, concluido: false , datafim: "" },
-        modulo2: { status: "bloqueado", tempo: 0, concluido: false , datafim: "" },
-        modulo3: { status: "bloqueado", tempo: 0, concluido: false , datafim: "" },
-        modulo4: { status: "bloqueado", tempo: 0, concluido: false , datafim: "" },
-        modulo5: { status: "bloqueado", tempo: 0, concluido: false , datafim: "" },
-        modulo6: { status: "bloqueado", tempo: 0, concluido: false , datafim: "" },
+        modulo1: { status: "desbloqueado", tempo: 0, concluido: false , datafim: "" , desafioSemanal: []},
+        modulo2: { status: "bloqueado", tempo: 0, concluido: false , datafim: "" , desafioSemanal: []},
+        modulo3: { status: "bloqueado", tempo: 0, concluido: false , datafim: "" , desafioSemanal: []},
+        modulo4: { status: "bloqueado", tempo: 0, concluido: false , datafim: "" , desafioSemanal: []},
+        modulo5: { status: "bloqueado", tempo: 0, concluido: false , datafim: "" , desafioSemanal: []},
+        modulo6: { status: "bloqueado", tempo: 0, concluido: false , datafim: "" , desafioSemanal: []},
       }
     });
 
