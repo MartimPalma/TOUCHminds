@@ -13,7 +13,7 @@ const Definicoes = () => {
 
   const { userData, updateUserData}= useContext(UserContext);
 
-  console.log('User:', userData);
+  console.log('Definições:', userData);
 
   // Carregar dados do user
   useEffect(() => {
@@ -49,6 +49,7 @@ const Definicoes = () => {
 
     try {
       await updateUserData({
+        ...userData,
         uid: userData.uid,
         nome: nome,
         avatarId: selectedAvatar,

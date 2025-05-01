@@ -15,6 +15,8 @@ const DesafioSemanal = ({ id }) => {
   const [loading, setLoading] = useState(false);
   const [feedback, setFeedback] = useState('');
 
+  console.log('Desafio semanal:', userData);
+
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
@@ -36,6 +38,7 @@ const DesafioSemanal = ({ id }) => {
       setFeedback('');
 
       const chaveModulo = `modulo${id}`;
+
       const modulosAtualizados = {
         ...userData.modulos,
         [chaveModulo]: {
@@ -60,118 +63,97 @@ const DesafioSemanal = ({ id }) => {
   return (
     <div className="p-4 bg-white rounded shadow-sm">
       <h3 className="mb-4">Desafio Semanal - Módulo {id}</h3>
-
-      <table className="table table-bordered text-center font-poppins">
-        <thead >
+  
+      <div className="table-responsive">
+        <table className="table table-bordered text-center align-middle">
+          <thead>
             <tr>
-                <th style={{ backgroundColor: '#E7C8C2' , color : '#234970' }}>Dia</th>
-                <th style={{ backgroundColor: '#E7C8C2' , color : '#234970' }}>Situação</th>
-                <th style={{ backgroundColor: '#E7C8C2' , color : '#234970' }}>Como me senti?</th>
-                <th style={{ backgroundColor: '#E7C8C2' , color : '#234970' }}>Que pensamentos surgiram?</th>
-                <th style={{ backgroundColor: '#E7C8C2' , color : '#234970' }}>Como lidei com a situação?</th>
-                <th style={{ backgroundColor: '#E7C8C2' , color : '#234970' }}>O que funcionou?</th>
-                <th style={{ backgroundColor: '#E7C8C2' , color : '#234970' }}>O que não funcionou?</th>
-            </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>
-              <input
-                name="dia"
-                value={form.dia}
-                onChange={handleChange}
-                className="form-control"
-                placeholder="Ex: Segunda"
-              />
-            </td>
-            <td>
-              <input
-                name="situacao"
-                value={form.situacao}
-                onChange={handleChange}
-                className="form-control"
-                placeholder="Ex: Escola"
-              />
-            </td>
-            <td>
-              <input
-                name="comoMeSenti"
-                value={form.comoMeSenti}
-                onChange={handleChange}
-                className="form-control"
-                placeholder="Ex: Ansioso"
-              />
-            </td>
-            <td>
-              <input
-                name="pensamentos"
-                value={form.pensamentos}
-                onChange={handleChange}
-                className="form-control"
-                placeholder="Ex: Não vou conseguir"
-              />
-            </td>
-            <td>
-              <input
-                name="comoLidei"
-                value={form.comoLidei}
-                onChange={handleChange}
-                className="form-control"
-                placeholder="Ex: Respirei fundo"
-              />
-            </td>
-            <td>
-              <input
-                name="funcionou"
-                value={form.funcionou}
-                onChange={handleChange}
-                className="form-control"
-                placeholder="Ex: Falar com alguém"
-              />
-            </td>
-            <td>
-              <input
-                name="naoFuncionou"
-                value={form.naoFuncionou}
-                onChange={handleChange}
-                className="form-control"
-                placeholder="Ex: Evitar a situação"
-              />
-            </td>
-          </tr>
-        </tbody>
-      </table>
-
-      <div className="mt-4 text-start">
-                <button
-                  onClick={handleAdd}
-                  type="submit"
-                  className="btn px-4 py-2"
-                  style={{ 
-                    backgroundColor: "#66BFBF", 
-                    color: "white", 
-                    fontWeight: "600",
-                    borderRadius: "8px",
-                    fontSize: "1.05rem"
-                  }}
-                  disabled={loading}
+              {[
+                "Dia",
+                "Situação",
+                "Como me senti?",
+                "Que pensamentos surgiram?",
+                "Como lidei com a situação?",
+                "O que funcionou?",
+                "O que não funcionou?",
+              ].map((title) => (
+                <th
+                  key={title}
+                  style={{ backgroundColor: "#E7C8C2", color: "#234970" }}
                 >
-                  {loading ? (
-                    <div className="d-flex align-items-center justify-content-center">
-                      <div className="spinner-border spinner-border-sm me-2" role="status">
-                        <span className="visually-hidden">A processar...</span>
-                      </div>
-                      A processar...
-                    </div>
-                  ) : (
-                    "Guardar alterações"
-                  )}
-                </button>
+                  {title}
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              {[
+                { name: "dia", placeholder: "Ex: Segunda" },
+                { name: "situacao", placeholder: "Ex: Escola" },
+                { name: "comoMeSenti", placeholder: "Ex: Ansioso" },
+                { name: "pensamentos", placeholder: "Ex: Não vou conseguir" },
+                { name: "comoLidei", placeholder: "Ex: Respirei fundo" },
+                { name: "funcionou", placeholder: "Ex: Falar com alguém" },
+                { name: "naoFuncionou", placeholder: "Ex: Evitar a situação" },
+              ].map(({ name, placeholder }) => (
+                <td key={name}>
+                  <input
+                    name={name}
+                    value={form[name]}
+                    onChange={handleChange}
+                    className="form-control"
+                    placeholder={placeholder}
+                  />
+                </td>
+              ))}
+            </tr>
+          </tbody>
+        </table>
+      </div>
+  
+      <div className="mt-4 text-start">
+        <button
+          onClick={handleAdd}
+          type="submit"
+          className="btn"
+          style={{
+            backgroundColor: "#66BFBF",
+            color: "white",
+            fontWeight: "600",
+            borderRadius: "8px",
+            fontSize: "1.05rem",
+          }}
+          disabled={loading}
+        >
+          {loading ? (
+            <div className="d-flex align-items-center justify-content-center">
+              <div
+                className="spinner-border spinner-border-sm me-2"
+                role="status"
+              >
+                <span className="visually-hidden">A processar...</span>
               </div>
-
-      {feedback && <div className={`alert ${feedback.includes('sucesso') ? 'alert-success' : 'alert-danger'} mt-3`}>{feedback}</div>}
+              A processar...
+            </div>
+          ) : (
+            "Guardar alterações"
+          )}
+        </button>
+      </div>
+  
+      {feedback && (
+        <div
+          className={`alert ${
+            feedback.includes("sucesso") ? "alert-success" : "alert-danger"
+          } mt-3`}
+        >
+          {feedback}
+        </div>
+      )}
     </div>
   );
+  
 };
 
 export default DesafioSemanal;

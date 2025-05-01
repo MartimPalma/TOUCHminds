@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useContext } from "react";
 import { UserContext } from "../App";
 import { useNavigate } from "react-router-dom";
+import { dadosAlunos } from "../database/database"; 
 
 const PersonalizationPopup = ({
   nome,
@@ -37,6 +38,14 @@ const PersonalizationPopup = ({
         nome: nome,
         avatarId: selectedAvatar,
       });
+
+       // Pequeno intervalo para garantir a escrita
+      await new Promise((res) => setTimeout(res, 300));
+
+      // Força a leitura atualizada dos dados
+      const latestData = await dadosAlunos(userId);
+      updateUserData({ ...latestData, uid: userId }); 
+
       navigate("/homepage");
     } catch (error) {
       setError("Erro ao salvar informações. Por favor, tenta novamente.");

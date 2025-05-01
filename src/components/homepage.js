@@ -10,9 +10,8 @@ const Homepage = () => {
   const { userData } = useContext(UserContext);
   const navigate = useNavigate();
 
-  console.log(userData);
+  console.log("HomePage:" , userData);
 
-  // Se os dados do utilizador ainda não foram carregados, mostrar mensagem de carregamento
   if (!userData) {
     return <div className="text-center p-5">A carregar dados do utilizador...</div>;
   }
