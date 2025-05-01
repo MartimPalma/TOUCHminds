@@ -59,12 +59,13 @@ export async function registerAluno(codigoParticipante, password) {
         logouts: [],
       },
       modulos: {
-        modulo1: { status: "desbloqueado", tempo: 0, concluido: false , datafim: "" , desafioSemanal: []},
-        modulo2: { status: "bloqueado", tempo: 0, concluido: false , datafim: "" , desafioSemanal: []},
-        modulo3: { status: "bloqueado", tempo: 0, concluido: false , datafim: "" , desafioSemanal: []},
-        modulo4: { status: "bloqueado", tempo: 0, concluido: false , datafim: "" , desafioSemanal: []},
-        modulo5: { status: "bloqueado", tempo: 0, concluido: false , datafim: "" , desafioSemanal: []},
-        modulo6: { status: "bloqueado", tempo: 0, concluido: false , datafim: "" , desafioSemanal: []},
+        // ter em conta o numero de atividades de cada modulo
+        modulo1: { status: "desbloqueado", tempo: 0, concluido: false , datafim: "" , desafioSemanal: [], atividades: ["desbloqueado", "bloqueado", "bloqueado", "bloqueado", "bloqueado"]},
+        modulo2: { status: "bloqueado", tempo: 0, concluido: false , datafim: "" , desafioSemanal: [], atividades: ["desbloqueado", "bloqueado", "bloqueado", "bloqueado", "bloqueado"]},
+        modulo3: { status: "bloqueado", tempo: 0, concluido: false , datafim: "" , desafioSemanal: [], atividades: ["desbloqueado", "bloqueado", "bloqueado", "bloqueado", "bloqueado"]},
+        modulo4: { status: "bloqueado", tempo: 0, concluido: false , datafim: "" , desafioSemanal: [], atividades: ["desbloqueado", "bloqueado", "bloqueado", "bloqueado", "bloqueado"]},
+        modulo5: { status: "bloqueado", tempo: 0, concluido: false , datafim: "" , desafioSemanal: [], atividades: ["desbloqueado", "bloqueado", "bloqueado", "bloqueado", "bloqueado"]},
+        modulo6: { status: "bloqueado", tempo: 0, concluido: false , datafim: "" , desafioSemanal: [], atividades: ["desbloqueado", "bloqueado", "bloqueado", "bloqueado", "bloqueado"]},
       }
     });
 

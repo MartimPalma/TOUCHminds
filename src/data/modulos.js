@@ -127,28 +127,24 @@ const modulos = [
           {
             url: "banda-desenhada",
             titulo: "Ansiedade: Aliada ou Empecilho?",
-            tipo: "texto",
             descricao: "Banda desenhada que explica ansiedade comum vs. SOS.",
             imagem: "../imgs/module1.jpg"
           },
           {
             url: "linha-ansiedade",
             titulo: "Linha da Ansiedade",
-            tipo: "popup",
             descricao: "Explora ansiedade normativa vs. patológica numa situação.",
             imagem: "../imgs/module1.jpg"
           },
           {
             url: "unindo-experiencias",
             titulo: "Unindo Experiências",
-            tipo: "video",
             descricao: "Vídeo com relatos reais sobre ansiedade.",
             imagem: "../imgs/module1.jpg"
           },
           {
             url: "ansiedade-sem-filtros",
             titulo: "Ansiedade sem Filtros",
-            tipo: "imagem",
             descricao: "Imagens estilo Instagram sobre ansiedade na adolescência.",
             imagem: "../imgs/module1.jpg"
           },

@@ -13,6 +13,7 @@ import Contactos from './components/contactos';
 import Definições from './components/def';
 import Homepage from './components/homepage';
 import Modulos from './components/modulo';
+import BandaDesenhada from './components/atividades/modulo1/bandaDesenhada';
 
 
 import { dadosAlunos } from './database/database';
@@ -73,21 +74,27 @@ const App = () => {
 
   return (
     <UserContext.Provider value={{ userData, updateUserData }}>
-      <Router>
-        <Routes>
-          <Route path="/" element={<LandingPage />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/signup" element={<SignupPage />} />
-          <Route path="/homepage" element={<Homepage />} />
-          <Route path="/progresso" element={<Progresso />} />
-          <Route path="/conquistas" element={<Conquistas/>} />
-          <Route path="/contactos" element={<Contactos />} />
-          <Route path="/definicoes" element={<Definições/>} />
-          {/* passa o id modulo por url para a página do smódulos */}
-          <Route path="/modulos/:id" element={<Modulos />} />
-        </Routes>
-      </Router>
-    </UserContext.Provider>
+  <Router>
+    <Routes>
+      <Route path="/" element={<LandingPage />} />
+      <Route path="/login" element={<LoginPage />} />
+      <Route path="/signup" element={<SignupPage />} />
+      <Route path="/homepage" element={<Homepage />} />
+      <Route path="/progresso" element={<Progresso />} />
+      <Route path="/conquistas" element={<Conquistas />} />
+      <Route path="/contactos" element={<Contactos />} />
+      <Route path="/definicoes" element={<Definições />} />
+
+      {/* Página principal de cada módulo */}
+      <Route path="/modulos/:id" element={<Modulos />} />
+
+      {/* Atividades dentro de um módulo */}
+      <Route path="/modulos/:id/atividade/banda-desenhada" element={<BandaDesenhada />} />
+      
+    </Routes>
+  </Router>
+</UserContext.Provider>
+
   );
 };
 

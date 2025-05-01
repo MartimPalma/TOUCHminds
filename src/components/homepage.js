@@ -26,21 +26,21 @@ const Homepage = () => {
       titulo: "Módulo 1",
       subtitulo: "Ansiedade NÃO é bicho-papão!",
       descricao: "Aprende a diferenciar entre uma ansiedade comum e uma ansiedade SOS",
-      imagem: "/api/placeholder/400/250",
+      imagem: "../imgs/module1.jpg",
     },
     {
       id: 2,
       titulo: "Módulo 2",
       subtitulo: "Desmitificar a Ansiedade",
       descricao: "Nem tudo o que dizem sobre a ansiedade é verdade!",
-      imagem: "/api/placeholder/400/250",
+      imagem: "../imgs/module1.jpg",
     },
     {
       id: 3,
       titulo: "Módulo 3",
       subtitulo: "Sê amigo de ti mesmo!",
       descricao: "O que dizes a ti próprio faz a diferença!",
-      imagem: "/api/placeholder/400/250",
+      imagem: "../imgs/module1.jpg",
     },
     {
       id: 4,
@@ -48,7 +48,7 @@ const Homepage = () => {
       subtitulo: "O Poder da Mudança!",
       descricao:
         "A mudança faz parte da vida! Explora os diferentes estádios da mudança, aprende a definir objetivos realistas e descobre como dar pequenos passos pode fazer uma grande diferença.",
-      imagem: "/api/placeholder/400/250",
+      imagem: "../imgs/module1.jpg",
     },
     {
       id: 5,
@@ -56,7 +56,7 @@ const Homepage = () => {
       subtitulo: "Reviravolta em Rede!",
       descricao:
         "Pedir ajuda pode parecer difícil, mas não estás sozinho. Aprende a identificar sinais de alerta, a diferenciar entre ajuda formal e informal e descobre como a ajuda das pessoas mais próximas podem fazer toda a diferença.",
-      imagem: "/api/placeholder/400/250",
+      imagem: "../imgs/module1.jpg",
     },
     {
       id: 6,
@@ -64,7 +64,7 @@ const Homepage = () => {
       subtitulo: "Um novo Começo!",
       descricao:
         "Como funciona a ajuda profissional? Descobre os sinais que indicam que podes precisar de ajuda profissional, conhece o papel do psicólogo e explora os recursos disponíveis para dares o próximo passo.",
-      imagem: "/api/placeholder/400/250",
+      imagem: "../imgs/module1.jpg",
     },
   ];
 
@@ -81,13 +81,18 @@ const Homepage = () => {
             </h2>
 
             <div className="row row-cols-1 row-cols-md-3 g-4">
-              {modulos.map((modulo) => (
-                <ModuloCard
-                  key={modulo.id}
-                  {...modulo}
-                  onNavigate={handleNavigate}
-                />
-              ))}
+              {modulos.map((modulo) => {
+                const chaveModulo = `modulo${modulo.id}`;
+                const status = userData.modulos?.[chaveModulo]?.status || 'bloqueado';
+                return (
+                  <ModuloCard
+                    key={modulo.id}
+                    {...modulo}
+                    status={status}
+                    onNavigate={() => handleNavigate(modulo.id)}
+                  />
+                );
+              })}
             </div>
           </div>
         </div>
