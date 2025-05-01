@@ -71,7 +71,12 @@ const Modulos = () => {
                         />
                         <div className="card-body text-center text-muted">
                           <h6 className="card-title fw-semibold">{atividade.titulo}</h6>
-                          <p className="small">Atividade bloqueada</p>
+                            <div
+                              className="position-absolute top-50 start-50 translate-middle bg-dark bg-opacity-75 text-white rounded px-3 py-1"
+                              style={{ fontSize: "0.9rem" }}
+                            >
+                              Atividade Bloqueada
+                            </div>
                         </div>
                       </div>
                     )}
