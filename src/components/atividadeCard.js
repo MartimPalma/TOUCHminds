@@ -1,12 +1,14 @@
 import { Link } from "react-router-dom";
 
-const AtividadeCard = ({ atividade, status, moduloId }) => {
+const AtividadeCard = ({ atividade, status, concluido, moduloId }) => {
   const containerStyle = {
     filter: status ? "none" : "grayscale(100%)",
     cursor: status ? "pointer" : "not-allowed",
     opacity: status ? 1 : 0.7,
     transition: "0.3s",
   };
+
+  console.log("Atividades:", moduloId);
 
   const content = (
     <div className="position-relative" style={containerStyle}>
@@ -26,6 +28,14 @@ const AtividadeCard = ({ atividade, status, moduloId }) => {
           style={{ fontSize: "0.9rem" }}
         >
           Atividade Bloqueada
+        </div>
+      )}
+      {status && concluido && (
+        <div
+          className="position-absolute top-0 end-0 m-2 bg-success text-white rounded-pill px-2 py-1"
+          style={{ fontSize: "0.8rem" }}
+        >
+          <i className="bi bi-check-circle me-1"></i>Concluída
         </div>
       )}
       <div className="mt-2 text-start">

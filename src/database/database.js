@@ -60,12 +60,49 @@ export async function registerAluno(codigoParticipante, password) {
       },
       modulos: {
         // ter em conta o numero de atividades de cada modulo
-        modulo1: { status: "desbloqueado", tempo: 0,  datafim: "" , desafioSemanal: [], atividades: ["desbloqueado", "bloqueado", "bloqueado", "bloqueado", "bloqueado"]},
-        modulo2: { status: "bloqueado", tempo: 0,  datafim: "" , desafioSemanal: [], atividades: ["desbloqueado", "bloqueado", "bloqueado", "bloqueado", "bloqueado"]},
-        modulo3: { status: "bloqueado", tempo: 0,  datafim: "" , desafioSemanal: [], atividades: ["desbloqueado", "bloqueado", "bloqueado", "bloqueado", "bloqueado"]},
-        modulo4: { status: "bloqueado", tempo: 0,  datafim: "" , desafioSemanal: [], atividades: ["desbloqueado", "bloqueado", "bloqueado", "bloqueado", "bloqueado"]},
-        modulo5: { status: "bloqueado", tempo: 0,  datafim: "" , desafioSemanal: [], atividades: ["desbloqueado", "bloqueado", "bloqueado", "bloqueado", "bloqueado"]},
-        modulo6: { status: "bloqueado", tempo: 0,  datafim: "" , desafioSemanal: [], atividades: ["desbloqueado", "bloqueado", "bloqueado", "bloqueado", "bloqueado"]},
+        modulo1: { status: "desbloqueado", tempo: 0,  datafim: "" , desafioSemanal: [],  
+          atividades: [
+          { status: "desbloqueado", concluido: false },
+          { status: "bloqueado", concluido: false },
+          { status: "bloqueado", concluido: false },
+          { status: "bloqueado", concluido: false },
+          { status: "bloqueado", concluido: false }
+        ]},
+        modulo2: { status: "bloqueado", tempo: 0,  datafim: "" , desafioSemanal: [], atividades: [
+          { status: "desbloqueado", concluido: false },
+          { status: "bloqueado", concluido: false },
+          { status: "bloqueado", concluido: false },
+          { status: "bloqueado", concluido: false },
+          { status: "bloqueado", concluido: false }
+        ]},
+        modulo3: { status: "bloqueado", tempo: 0,  datafim: "" , desafioSemanal: [], atividades: [
+          { status: "desbloqueado", concluido: false },
+          { status: "bloqueado", concluido: false },
+          { status: "bloqueado", concluido: false },
+          { status: "bloqueado", concluido: false },
+          { status: "bloqueado", concluido: false }
+        ]},
+        modulo4: { status: "bloqueado", tempo: 0,  datafim: "" , desafioSemanal: [], atividades: [
+          { status: "desbloqueado", concluido: false },
+          { status: "bloqueado", concluido: false },
+          { status: "bloqueado", concluido: false },
+          { status: "bloqueado", concluido: false },
+          { status: "bloqueado", concluido: false }
+        ]},
+        modulo5: { status: "bloqueado", tempo: 0,  datafim: "" , desafioSemanal: [], atividades: [
+          { status: "desbloqueado", concluido: false },
+          { status: "bloqueado", concluido: false },
+          { status: "bloqueado", concluido: false },
+          { status: "bloqueado", concluido: false },
+          { status: "bloqueado", concluido: false }
+        ]},
+        modulo6: { status: "bloqueado", tempo: 0,  datafim: "" , desafioSemanal: [], atividades: [
+          { status: "desbloqueado", concluido: false },
+          { status: "bloqueado", concluido: false },
+          { status: "bloqueado", concluido: false },
+          { status: "bloqueado", concluido: false },
+          { status: "bloqueado", concluido: false }
+        ]},
       }
     });
 

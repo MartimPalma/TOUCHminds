@@ -17,7 +17,33 @@ const modulos = [
           titulo: "Ansiedade: Aliada ou Empecilho?",
           tipo: "texto",
           descricao: "Banda desenhada que explica ansiedade comum vs. SOS.",
-          imagem: "../imgs/module1.jpg"
+          imagem: "../imgs/module1.jpg",
+          quadros: [
+            {
+              rapariga: "Olá, como estás? Pareces pensativo?",
+              rapaz: "Olá estou bem e tu? Ah, estava só a pensar nas coisas que tenho de fazer hoje..."
+            },
+            {
+              rapariga: "A ansiedade é uma resposta natural.",
+              rapaz: "Mas às vezes ela atrapalha."
+            },
+            {
+              rapariga: "Ansiedade comum ajuda. É temporária.",
+              rapaz: "Então é como um empurrãozinho!"
+            },
+            {
+              rapariga: "Ansiedade SOS dura mais e é mais forte.",
+              rapaz: "Parece que nunca vai embora…"
+            },
+            {
+              rapariga: "A comum desaparece depois da situação.",
+              rapaz: "A SOS fica e atrapalha mais tempo."
+            },
+            {
+              rapaz: "A ansiedade SOS afeta muito a vida…",
+              rapariga: "É por isso que precisamos saber a diferença!"
+            }
+          ],
         },
         {
           url: "linha-ansiedade",
