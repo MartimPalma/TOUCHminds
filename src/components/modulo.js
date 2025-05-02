@@ -1,10 +1,11 @@
 import React, { useContext } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import Navbar from './navbar';
 import Sidebar from './sidebar';
 import DesafioSemanal from './desafioSemanal';
 import { UserContext } from '../App';
 import modulos from '../data/modulos';
+import AtividadeCard from './atividadeCard';
 
 const Modulos = () => {
   const { id } = useParams();
@@ -25,66 +26,39 @@ const Modulos = () => {
         <div className="col px-4 py-4" style={{ backgroundColor: "#FBF9F9" }}>
           <div className="container p-4 bg-white rounded shadow-sm">
 
+            {/* Falta colocar progress bar do modúlo */}
+
             <div className="mb-4">
-              <h3 className="fw-bold" style={{ color: "#99CBC8" }}>{modulo.titulo}</h3>
-              <h5 className="mb-3">{modulo.subtitulo}</h5>
+              <h2 className="fw-semibold" style={{ color: "#99CBC8" }}>{modulo.titulo}</h2>
+              <h5 className="mb-3" style={{ color: "#234970" }}>{modulo.subtitulo}</h5>
               <p className="text-muted">{modulo.introducao}</p>
 
-              <h4 className="mt-5" style={{ color: "#99CBC8" }}>Atividades</h4>
-              <hr />
+              <h4 className="mt-5" style={{ color: "#99CBC8" }}>
+                <span
+                  style={{
+                    borderBottom: "3px solid #99CBC8",
+                    display: "inline-block",
+                    paddingBottom: "2px",
+                  }}
+                >
+                  Atividades
+                </span>
+              </h4>
+
             </div>
 
+            
             <div className="row">
-              {modulo.atividades.map((atividade, index) => {
-                const isUnlocked = atividadesStatus[index] === 'desbloqueado';
-                const cardStyle = {
-                  filter: isUnlocked ? 'none' : 'grayscale(100%)',
-                  cursor: isUnlocked ? 'pointer' : 'not-allowed',
-                };
-
-                return (
-                  <div key={atividade.url} className="col-sm-6 col-md-4 mb-4">
-                    {isUnlocked ? (
-                      <Link
-                        to={`/modulos/${modulo.id}/atividade/${atividade.url}`}
-                        className="text-decoration-none text-dark"
-                      >
-                        <div className="card h-100 shadow-sm border-0" style={cardStyle}>
-                          <img
-                            src={atividade.imagem}
-                            alt={atividade.titulo}
-                            className="card-img-top"
-                            style={{ objectFit: 'cover', height: '180px' }}
-                          />
-                          <div className="card-body text-center">
-                            <h6 className="card-title fw-semibold">{atividade.titulo}</h6>
-                          </div>
-                        </div>
-                      </Link>
-                    ) : (
-                      <div className="card h-100 shadow-sm border-0" style={cardStyle}>
-                        <img
-                          src={atividade.imagem}
-                          alt={atividade.titulo}
-                          className="card-img-top"
-                          style={{ objectFit: 'cover', height: '180px' }}
-                        />
-                        <div className="card-body text-center text-muted">
-                          <h6 className="card-title fw-semibold">{atividade.titulo}</h6>
-                            <div
-                              className="position-absolute top-50 start-50 translate-middle bg-dark bg-opacity-75 text-white rounded px-3 py-1"
-                              style={{ fontSize: "0.9rem" }}
-                            >
-                              Atividade Bloqueada
-                            </div>
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                );
-              })}
-            </div>
-
+            {modulo.atividades.map((atividade, index) => (
+              <AtividadeCard
+                key={atividade.url}
+                atividade={atividade}
+                status={atividadesStatus[index] === 'desbloqueado'}
+                moduloId={modulo.id}
+              />
+            ))}
+          </div>
+          
             <DesafioSemanal id={modulo.id} />
           </div>
         </div>

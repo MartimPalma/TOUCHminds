@@ -1,14 +1,17 @@
 
-
 // Colocar todo o texto necesário para os modulos aqui, incluindo a introdução e as atividades de cada módulo
 
 const modulos = [
     {
       id: "1",
+      imagem: "../imgs/module1.jpg",
       titulo: "Módulo 1",
       subtitulo: "Ansiedade NÃO é bicho-papão!",
-      introducao: "Todos nós sentimos ansiedade – e isso é perfeitamente normal! Aqui, vais compreender melhor as emoções, como elas influenciam o nosso dia a dia e aprender a distinguir entre uma ansiedade comum e uma ansiedade SOS que causa sofrimento.",
-      atividades: [
+      descricao: "Aprende a diferenciar entre uma ansiedade comum e uma ansiedade SOS",
+      introducao: `Todos nós sentimos ansiedade – e isso é perfeitamente normal! Aqui, vais compreender melhor as emoções e como elas influenciam o nosso dia a dia.
+
+      Além disso, vais aprender a distinguir entre uma ansiedade comum e uma ansiedade SOS que causa sofrimento.`,
+            atividades: [
         {
           url: "banda-desenhada",
           titulo: "Ansiedade: Aliada ou Empecilho?",
@@ -48,8 +51,10 @@ const modulos = [
     },
     {
         id: "2",
+        imagem: "../imgs/module1.jpg",
         titulo: "Módulo 2",
-        subtitulo: "Ansiedade NÃO é bicho-papão!",
+        subtitulo: "Desmitificar a Ansiedade ",
+        descricao: "Nem tudo o que dizem sobre a ansiedade é verdade!",
         introducao: "Todos nós sentimos ansiedade – e isso é perfeitamente normal! Aqui, vais compreender melhor as emoções, como elas influenciam o nosso dia a dia e aprender a distinguir entre uma ansiedade comum e uma ansiedade SOS que causa sofrimento.",
         atividades: [
           {
@@ -84,8 +89,10 @@ const modulos = [
     },
     {
         id: "3",
+        imagem: "../imgs/module1.jpg",
         titulo: "Módulo 3",
-        subtitulo: "Ansiedade NÃO é bicho-papão!",
+        subtitulo: "Sê amigo de ti mesmo! ",
+        descricao: "O que dizes a ti próprio faz a diferença!",
         introducao: "Todos nós sentimos ansiedade – e isso é perfeitamente normal! Aqui, vais compreender melhor as emoções, como elas influenciam o nosso dia a dia e aprender a distinguir entre uma ansiedade comum e uma ansiedade SOS que causa sofrimento.",
         atividades: [
           {
@@ -120,8 +127,10 @@ const modulos = [
     },
     {
         id: "4",
+        imagem: "../imgs/module1.jpg",
         titulo: "Módulo 4",
-        subtitulo: "Ansiedade NÃO é bicho-papão!",
+        subtitulo: "O Poder da Mudança!",
+        descricao: "A mudança faz parte da vida! Explora os diferentes estádios da mudança, aprende a definir objetivos realistas e descobre como dar pequenos passos pode fazer uma grande diferença.",
         introducao: "Todos nós sentimos ansiedade – e isso é perfeitamente normal! Aqui, vais compreender melhor as emoções, como elas influenciam o nosso dia a dia e aprender a distinguir entre uma ansiedade comum e uma ansiedade SOS que causa sofrimento.",
         atividades: [
           {
@@ -152,8 +161,10 @@ const modulos = [
     }, 
     {
         id: "5",
+        imagem: "../imgs/module1.jpg",
         titulo: "Módulo 5",
-        subtitulo: "Ansiedade NÃO é bicho-papão!",
+        subtitulo: "Reviravolta em Rede!",
+        descricao: "Pedir ajuda pode parecer difícil, mas não estás sozinho. Aprende a identificar sinais de alerta, a diferenciar entre ajuda formal e informal e descobre como a ajuda das pessoas mais próximas podem fazer toda a diferença.",
         introducao: "Todos nós sentimos ansiedade – e isso é perfeitamente normal! Aqui, vais compreender melhor as emoções, como elas influenciam o nosso dia a dia e aprender a distinguir entre uma ansiedade comum e uma ansiedade SOS que causa sofrimento.",
         atividades: [
           {
@@ -188,8 +199,10 @@ const modulos = [
     }, 
     {
         id: "6",
+        imagem: "../imgs/module1.jpg",
         titulo: "Módulo 6",
-        subtitulo: "Ansiedade NÃO é bicho-papão!",
+        subtitulo: "Um novo Começo!",
+        descricao: "Como funciona a ajuda profissional? Descobre os sinais que indicam que podes precisar de ajuda profissional, conhece o papel do psicólogo e explora os recursos disponíveis para dares o próximo passo.",
         introducao: "Todos nós sentimos ansiedade – e isso é perfeitamente normal! Aqui, vais compreender melhor as emoções, como elas influenciam o nosso dia a dia e aprender a distinguir entre uma ansiedade comum e uma ansiedade SOS que causa sofrimento.",
         atividades: [
           {

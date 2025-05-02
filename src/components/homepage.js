@@ -5,6 +5,7 @@ import Navbar from './navbar';
 import Sidebar from './sidebar';
 import { useNavigate } from 'react-router-dom';
 import ModuloCard from './moduloCardHome'; 
+import modulos from '../data/modulos'; 
 
 const Homepage = () => {
   const { userData } = useContext(UserContext);
@@ -20,53 +21,9 @@ const Homepage = () => {
     navigate(`/modulos/${moduloId}`);
   };
 
-  const modulos = [
-    {
-      id: 1,
-      titulo: "Módulo 1",
-      subtitulo: "Ansiedade NÃO é bicho-papão!",
-      descricao: "Aprende a diferenciar entre uma ansiedade comum e uma ansiedade SOS",
-      imagem: "../imgs/module1.jpg",
-    },
-    {
-      id: 2,
-      titulo: "Módulo 2",
-      subtitulo: "Desmitificar a Ansiedade",
-      descricao: "Nem tudo o que dizem sobre a ansiedade é verdade!",
-      imagem: "../imgs/module1.jpg",
-    },
-    {
-      id: 3,
-      titulo: "Módulo 3",
-      subtitulo: "Sê amigo de ti mesmo!",
-      descricao: "O que dizes a ti próprio faz a diferença!",
-      imagem: "../imgs/module1.jpg",
-    },
-    {
-      id: 4,
-      titulo: "Módulo 4",
-      subtitulo: "O Poder da Mudança!",
-      descricao:
-        "A mudança faz parte da vida! Explora os diferentes estádios da mudança, aprende a definir objetivos realistas e descobre como dar pequenos passos pode fazer uma grande diferença.",
-      imagem: "../imgs/module1.jpg",
-    },
-    {
-      id: 5,
-      titulo: "Módulo 5",
-      subtitulo: "Reviravolta em Rede!",
-      descricao:
-        "Pedir ajuda pode parecer difícil, mas não estás sozinho. Aprende a identificar sinais de alerta, a diferenciar entre ajuda formal e informal e descobre como a ajuda das pessoas mais próximas podem fazer toda a diferença.",
-      imagem: "../imgs/module1.jpg",
-    },
-    {
-      id: 6,
-      titulo: "Módulo 6",
-      subtitulo: "Um novo Começo!",
-      descricao:
-        "Como funciona a ajuda profissional? Descobre os sinais que indicam que podes precisar de ajuda profissional, conhece o papel do psicólogo e explora os recursos disponíveis para dares o próximo passo.",
-      imagem: "../imgs/module1.jpg",
-    },
-  ];
+  const totalModulos = 6;
+  const concluidos = userData.modulosConcluidos || 0;
+  const percentagem = Math.round((concluidos / totalModulos) * 100);
 
   return (
     <div className="container-fluid vh-100 p-0">
@@ -76,9 +33,33 @@ const Homepage = () => {
 
         <div className="col px-4 py-4" style={{ backgroundColor: "#FBF9F9" }}>
           <div className="container p-4 bg-white rounded shadow-sm">
-            <h2 className="mb-3" style={{ color: "#99CBC8" }}>
+            <h2 className="mb-3 fw-semibold" style={{ color: "#99CBC8" }}>
               Bem Vindo, <span>{userData.nome}!</span>
             </h2>
+
+            <div className="mb-4">
+              <div className="d-flex justify-content-between mb-1">
+                <span className="small fw-semibold" style={{ color: "#234970" }}>Progresso dos Módulos</span>
+                <span className="small fw-semibold" style={{ color: "#234970" }}>{percentagem}%</span>
+              </div>
+              <div className="progress" style={{ height: "10px" }}>
+                <div
+                  className="progress-bar"
+                  role="progressbar"
+                  style={{ width: `${percentagem}%`, backgroundColor: "#99CBC8" }}
+                  aria-valuenow={percentagem}
+                  aria-valuemin="0"
+                  aria-valuemax="100"
+                />
+              </div>
+
+              {percentagem === 0 && (
+                <div className="mt-2 small text-muted">
+                  Ainda não começaste nenhum módulo. <span className="small fw-semibold fs-6" style={{ color: "#234970" }}>Dá o primeiro passo!</span>
+                </div>
+              )}
+            </div>
+
 
             <div className="row row-cols-1 row-cols-md-3 g-4">
               {modulos.map((modulo) => {
