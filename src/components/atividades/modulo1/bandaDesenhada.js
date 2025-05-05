@@ -54,7 +54,7 @@ const BandaDesenhada = () => {
                   <div className="row justify-content-center">
                     <div className="col-md-8">
                     <p className="lead">
-                    🎉 <strong>Bem-vindo(a) à nossa aventura em Banda Desenhada:</strong><br />
+                    <strong>Bem-vindo(a) à nossa aventura em Banda Desenhada:</strong><br />
                     <em>"Ansiedade: Aliada ou Empecilho?!"</em><br /><br />
                     Vais embarcar numa jornada onde conhecerás dois tipos de ansiedade: 
                     <strong> a ansiedade comum</strong>, que te ajuda a enfrentar desafios, 
@@ -62,7 +62,7 @@ const BandaDesenhada = () => {
                     O teu desafio é descobrir a diferença entre estas duas formas de ansiedade. 
                     Lê com atenção cada quadro da banda desenhada e, no final, pensa em <strong>duas palavras</strong>:
                     uma que represente a <strong>ansiedade comum</strong> e outra que represente a <strong>ansiedade SOS</strong>.<br /><br />
-                    Não existem respostas certas ou erradas — o mais importante é o que tu compreendes e sentes. 🌟
+                    Não existem respostas certas ou erradas — o mais importante é o que tu compreendes e sentes. 
                   </p>
 
                   <button className="btn btn-primary mt-3 px-4 py-2" onClick={avancarPagina}>
