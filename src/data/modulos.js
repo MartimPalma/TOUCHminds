@@ -1,5 +1,6 @@
 
 // Colocar todo o texto necesário para os modulos aqui, incluindo a introdução e as atividades de cada módulo
+// Para utilizar as imagens deste ficheiro temos de colocar em public/imgs/ e depois colocar o caminho como "../imgs/module1.jpg"
 
 const modulos = [
     {
