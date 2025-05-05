@@ -1,10 +1,10 @@
 import React from "react";
 import dep from "../imgs/depvertical.png";
-import wjcr from "../imgs/depvertical.png";
-import hml from "../imgs/depvertical.png";
 import ue from "../imgs/ue.png";
 import rp from "../imgs/rp.png";
 import fct from "../imgs/fct.png";
+import wjcr from "../imgs/wjcr.png";
+import hml from "../imgs/healthyminds.png";
 import pessoas30 from "../imgs/pessoas30.png";
 import portugal30 from "../imgs/portugal30.png";
 
@@ -15,11 +15,11 @@ const Footer = () => {
         <div className="row g-4">
           {/* Promotores */}
           <div className="col-md-5">
-            <h5 className="fw-semibold mb-4 text-uppercase" style={{ color: "#234970" }}>Promotores</h5>
+            <h5 className="fw-semibold mb-1 text-uppercase" style={{ color: "#234970" }}>Promotores</h5>
             <div className="d-flex flex-wrap align-items-center gap-4">
               <img src={dep} alt="União Europeia" className="img-fluid" style={{ maxHeight: "55px" }} />
               <img src={wjcr} alt="William James Center for Research" className="img-fluid" style={{ maxHeight: "55px" }} />
-              <img src={hml} alt="Healthy Minds Lab" className="img-fluid" style={{ maxHeight: "55px" }} />
+              <img src={hml} alt="Healthy Minds Lab" className="img-fluid" style={{ maxHeight: "100px" }} />
             </div>
           </div>
 
