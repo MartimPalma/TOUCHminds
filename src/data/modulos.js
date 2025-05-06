@@ -18,7 +18,7 @@ const modulos = [
           titulo: "Ansiedade: Aliada ou Empecilho?",
           tipo: "texto",
           descricao: "Banda desenhada que explica ansiedade comum vs. SOS.",
-          imagem: "../imgs/module1.jpg",
+          imagem: "../imgs/act1mod1.jpg",
           quadros: [
             {
               rapariga: "Olá, como estás? Pareces pensativo?",
@@ -51,28 +51,28 @@ const modulos = [
           titulo: "Linha da Ansiedade",
           tipo: "popup",
           descricao: "Explora ansiedade normativa vs. patológica numa situação.",
-          imagem: "../imgs/module1.jpg"
+          imagem: "../imgs/act2mod1.jpg"
         },
         {
           url: "unindo-experiencias",
           titulo: "Unindo Experiências",
           tipo: "video",
           descricao: "Vídeo com relatos reais sobre ansiedade.",
-          imagem: "../imgs/module1.jpg"
+          imagem: "../imgs/act3mod1.jpg"
         },
         {
           url: "ansiedade-sem-filtros",
           titulo: "Ansiedade sem Filtros",
           tipo: "imagem",
           descricao: "Imagens estilo Instagram sobre ansiedade na adolescência.",
-          imagem: "../imgs/module1.jpg"
+          imagem: "../imgs/act4mod1.jpg"
         },
         {
           url: "atividade-resumo",
           titulo: "Atividade Resumo",
           tipo: "quiz",
           descricao: "Cenários interativos sobre lidar com ansiedade.",
-          imagem: "../../imgs/module1.jpg"
+          imagem: "../imgs/act5mod1.jpg"
         }
       ],
     },
