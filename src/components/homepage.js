@@ -1,4 +1,3 @@
-//METER AS CORES CERTAS, METER O LOGO CERTO
 import React, { useContext } from 'react';
 import { UserContext } from '../App'; 
 import Navbar from './navbar';
@@ -34,7 +33,7 @@ const Homepage = () => {
         <div className="col px-4 py-4" style={{ backgroundColor: "#FBF9F9" }}>
           <div className="container p-4 bg-white rounded shadow-sm">
             <h2 className="mb-3 fw-semibold" style={{ color: "#99CBC8" }}>
-              Bem Vindo, <span>{userData.nome}!</span>
+              Bem vindo, <span>{userData.nome}!</span>
             </h2>
 
             <div className="mb-4">

@@ -10,11 +10,11 @@ import { FaArrowDown } from 'react-icons/fa';
 import Footer from "./footer"; 
 import ModuleCard from "./moduleCardLanding";
 import mod1 from "../imgs/module1.jpg";
-import mod2 from "../imgs/module1.jpg";
-import mod3 from "../imgs/module1.jpg";
-import mod4 from "../imgs/module1.jpg";
-import mod5 from "../imgs/module1.jpg";
-import mod6 from "../imgs/module1.jpg";
+import mod2 from "../imgs/module2.jpg";
+import mod3 from "../imgs/module3.jpg";
+import mod4 from "../imgs/module4.jpg";
+import mod5 from "../imgs/module5.jpg";
+import mod6 from "../imgs/module6.jpg";
 
 
 

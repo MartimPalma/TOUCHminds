@@ -78,7 +78,7 @@ const modulos = [
     },
     {
         id: "2",
-        imagem: "../imgs/module1.jpg",
+        imagem: "../imgs/module2.jpg",
         titulo: "Módulo 2",
         subtitulo: "Desmitificar a Ansiedade ",
         descricao: "Nem tudo o que dizem sobre a ansiedade é verdade!",
@@ -116,7 +116,7 @@ const modulos = [
     },
     {
         id: "3",
-        imagem: "../imgs/module1.jpg",
+        imagem: "../imgs/module3.jpg",
         titulo: "Módulo 3",
         subtitulo: "Sê amigo de ti mesmo! ",
         descricao: "O que dizes a ti próprio faz a diferença!",
@@ -154,7 +154,7 @@ const modulos = [
     },
     {
         id: "4",
-        imagem: "../imgs/module1.jpg",
+        imagem: "../imgs/module4.jpg",
         titulo: "Módulo 4",
         subtitulo: "O Poder da Mudança!",
         descricao: "A mudança faz parte da vida! Explora os diferentes estádios da mudança, aprende a definir objetivos realistas e descobre como dar pequenos passos pode fazer uma grande diferença.",
@@ -188,7 +188,7 @@ const modulos = [
     }, 
     {
         id: "5",
-        imagem: "../imgs/module1.jpg",
+        imagem: "../imgs/module5.jpg",
         titulo: "Módulo 5",
         subtitulo: "Reviravolta em Rede!",
         descricao: "Pedir ajuda pode parecer difícil, mas não estás sozinho. Aprende a identificar sinais de alerta, a diferenciar entre ajuda formal e informal e descobre como a ajuda das pessoas mais próximas podem fazer toda a diferença.",
@@ -226,7 +226,7 @@ const modulos = [
     }, 
     {
         id: "6",
-        imagem: "../imgs/module1.jpg",
+        imagem: "../imgs/module6.jpg",
         titulo: "Módulo 6",
         subtitulo: "Um novo Começo!",
         descricao: "Como funciona a ajuda profissional? Descobre os sinais que indicam que podes precisar de ajuda profissional, conhece o papel do psicólogo e explora os recursos disponíveis para dares o próximo passo.",
