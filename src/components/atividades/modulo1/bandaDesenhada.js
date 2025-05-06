@@ -6,6 +6,8 @@ import { UserContext } from "../../../App";
 import modulos from '../../../data/modulos';
 import AtividadeProgressao from '../atividadeProgressao'; 
 
+// Catarina vai fornecer o texto/imagens da banda desenhada
+
 const BandaDesenhada = () => {
   const [pagina, setPagina] = useState(0);
   const [ansiedadeComum, setAnsiedadeComum] = useState('');

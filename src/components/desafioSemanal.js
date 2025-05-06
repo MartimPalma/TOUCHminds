@@ -10,7 +10,6 @@ const DesafioSemanal = ({ id }) => {
     pensamentos: '',
     comoLidei: '',
     funcionou: '',
-    naoFuncionou: '',
   });
   const [loading, setLoading] = useState(false);
   const [feedback, setFeedback] = useState('');
@@ -52,7 +51,7 @@ const DesafioSemanal = ({ id }) => {
 
       await updateUserData({ ...userData, modulos: modulosAtualizados });
       setFeedback('Registo adicionado com sucesso!');
-      setForm({ dia: '', situacao: '', comoMeSenti: '', pensamentos: '', comoLidei: '', funcionou: '', naoFuncionou: '' });
+      setForm({ dia: '', situacao: '', comoMeSenti: '', pensamentos: '', comoLidei: '', funcionou: '' });
     } catch (error) {
       setFeedback('Erro ao guardar. Tenta novamente.');
     } finally {
@@ -75,7 +74,6 @@ const DesafioSemanal = ({ id }) => {
                 "Que pensamentos surgiram?",
                 "Como lidei com a situação?",
                 "O que funcionou?",
-                "O que não funcionou?",
               ].map((title) => (
                 <th
                   key={title}
@@ -95,7 +93,6 @@ const DesafioSemanal = ({ id }) => {
                 { name: "pensamentos", placeholder: "Ex: Não vou conseguir" },
                 { name: "comoLidei", placeholder: "Ex: Respirei fundo" },
                 { name: "funcionou", placeholder: "Ex: Falar com alguém" },
-                { name: "naoFuncionou", placeholder: "Ex: Evitar a situação" },
               ].map(({ name, placeholder }) => (
                 <td key={name}>
                   <input
