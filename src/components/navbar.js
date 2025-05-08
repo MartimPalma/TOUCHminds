@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Bell, BoxArrowRight } from 'react-bootstrap-icons';
 import { UserContext } from '../App';
@@ -33,9 +33,8 @@ const Navbar = () => {
   const { userData } = useContext(UserContext);
   const navigate = useNavigate();
   const [showTooltip, setShowTooltip] = useState(false);
-  const [showMessage, setShowMessage] = useState(false);
-  const [notificacaoVisivel, setNotificacaoVisivel] = useState(true);
-  const [quote, setQuote] = useState(null);
+  const [notificacaoVisivel, setNotificacaoVisivel] = useState(false);
+  const [notificacaoSemanal, setNotificacaoSemanal] = useState('');
 
   const handleLogout = async () => {
     try {
@@ -50,28 +49,65 @@ const Navbar = () => {
     setShowTooltip(prev => !prev);
   };
 
-  const mensagensInspiradoras = [
-    { q: "A persistência realiza o impossível.", a: "Provérbio Chinês" },
-    { q: "O sucesso nasce do querer, da determinação e persistência em se chegar a um objetivo.", a: "José de Alencar" },
-    { q: "Acredite em si próprio e chegará um dia em que os outros não terão outra escolha senão acreditar com você.", a: "Cynthia Kersey" },
-    { q: "Não importa que você vá devagar, contanto que você não pare.", a: "Confúcio" },
-    { q: "Coragem é a resistência ao medo, domínio do medo, e não a ausência do medo.", a: "Mark Twain" },
-    { q: "A única maneira de fazer um excelente trabalho é amar o que você faz.", a: "Steve Jobs" },
-    { q: "A vida é 10% o que acontece com você e 90% como você reage a isso.", a: "Charles R. Swindoll" },
-    { q: "A melhor maneira de prever o futuro é criá-lo.", a: "Peter Drucker" },
-    { q: "Grandes realizações são possíveis quando se acredita em si mesmo.", a: "Anônimo" },
-    { q: "A jornada de mil milhas começa com um único passo.", a: "Lao Tsé" }
-  ];
+  // Função para verificar o dia da semana e mostrar mensagens personalizadas
+  const checkWeekMessages = () => {
+    const dayOfWeek = new Date().getDay(); 
+    let mensagem = '';
 
-  const showInspirationalPopup = () => {
-    if (notificacaoVisivel) {
-      const randomIndex = Math.floor(Math.random() * mensagensInspiradoras.length);
-      setQuote(mensagensInspiradoras[randomIndex]);
-      setShowMessage(true);
-      setNotificacaoVisivel(false);
-      setTimeout(() => setShowMessage(false), 5000);
+    switch (dayOfWeek) {
+      case 0:
+        mensagem = "Domingo: Aproveita o descanso, a nova semana está a chegar!";
+        break;
+      case 1:
+        mensagem = "Segunda-feira: Novo módulo disponível! Começa a tua semana com o pé direito!";
+        break;
+      case 2:
+        mensagem = "Terça-feira: Continua o teu progresso, estás a caminho do sucesso!";
+        break;
+      case 3:
+        mensagem = "Quarta-feira: Já ultrapassaste a metade da semana! Força!";
+        break;
+      case 4:
+        mensagem = "Quinta-feira: A reta final está a chegar, mantém o foco!";
+        break;
+      case 5:
+        mensagem = "Sexta-feira: A semana está a acabar! Conclui o módulo antes do final da semana!";
+        break;
+      case 6:
+        mensagem = "Sábado: Dia de refletir sobre o progresso, bom trabalho!";
+        break;
+      default:
+        mensagem = '';
+        break;
     }
+
+    setNotificacaoSemanal(mensagem);
   };
+
+  useEffect(() => {
+    // Verifica se já mostrou a notificação hoje
+    const today = new Date().toDateString();
+    const lastNotificationDate = localStorage.getItem('lastNotificationDate');
+    
+    // Se não houver data armazenada ou se for de um dia diferente, mostra a notificação
+    if (lastNotificationDate !== today) {
+      checkWeekMessages(); 
+      setNotificacaoVisivel(true); 
+      
+      localStorage.setItem('lastNotificationDate', today);
+    }
+  }, []); 
+  
+  // Efeito separado para gerenciar o tempo de exibição da notificação
+  useEffect(() => {
+    if (notificacaoVisivel) {
+      const timer = setTimeout(() => {
+        setNotificacaoVisivel(false);
+      }, 5000);
+      
+      return () => clearTimeout(timer);
+    }
+  }, [notificacaoVisivel]); // será executado sempre que notificacaoVisivel mudar
 
   let avatarSelecionado;
   for (let i = 0; i < avatarOptions.length; i++) {
@@ -86,7 +122,7 @@ const Navbar = () => {
       <div className="container-fluid">
         <a
           className="navbar-brand text-info"
-          onClick={() => navigate('/homepage')}
+          onClick={() => navigate('/homepage')} 
           style={{ width: "15%", cursor: 'pointer' }}
         >
           <img src={logo} alt="TOUCHminds Logo" className="mt-1" style={{ width: "80%" }} />
@@ -95,7 +131,7 @@ const Navbar = () => {
         <div className="d-flex align-items-center">
           {/* Botão de notificação */}
           <div className="position-relative me-3">
-            <button className="btn btn-link text-secondary position-relative" onClick={showInspirationalPopup}>
+            <button className="btn btn-link text-secondary position-relative">
               <Bell size={20} />
               {notificacaoVisivel && (
                 <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-success">
@@ -111,7 +147,7 @@ const Navbar = () => {
               src={avatarSelecionado}
               alt="Avatar"
               className="rounded-circle"
-              style={{ width: "32px", height: "32px", cursor: "pointer" }}
+              style={{ width: "44px", height: "44px", cursor: "pointer" }}
               onClick={toggleTooltip}
             />
             {showTooltip && (
@@ -141,17 +177,13 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Toast da Mensagem Inspiradora */}
-      {showMessage && quote && (
+      {/* Notificação semanal */}
+      {notificacaoVisivel && notificacaoSemanal && (
         <div
           className="position-fixed bottom-0 end-0 m-4 text-white px-4 py-3 rounded shadow"
           style={{ zIndex: 2, minWidth: '280px', maxWidth: '400px', backgroundColor: '#234970', transition: 'opacity 0.5s ease-in-out' }}
         >
-          <strong>Mensagem para ti:</strong>
-          <div className="mt-2">
-            <em>"{quote.q}"</em>
-            <br />
-          </div>
+          <strong>{notificacaoSemanal}</strong>
         </div>
       )}
     </div>
