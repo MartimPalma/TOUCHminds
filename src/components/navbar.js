@@ -1,28 +1,36 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Bell } from 'react-bootstrap-icons';  
-import logo from "../imgs/logoazul.png"; 
-import { useState } from 'react';
-import { logoutAluno } from "../database/database"; 
-import avatar1 from "../imgs/avatar1.jpg";
+import { Bell , BoxArrowRight} from 'react-bootstrap-icons';  
+import { useState , useContext } from 'react';
 import { UserContext } from '../App';
-import { useContext } from 'react';
-import { BoxArrowRight } from 'react-bootstrap-icons';
+import { logoutAluno } from "../database/database"; 
+
+import logo from "../imgs/logoazul.png"; 
+import avatar1 from "../imgs/avatar1.jpg";
+import avatar2 from "../imgs/avatar2.jpg";
+import avatar3 from "../imgs/avatar3.jpg";
+import avatar4 from "../imgs/avatar4.jpg";
+import avatar5 from "../imgs/avatar5.jpg";
+import avatar6 from "../imgs/avatar6.jpg";
+import avatar7 from "../imgs/avatar7.jpg";
+import avatar8 from "../imgs/avatar8.jpg";
+import avatar9 from "../imgs/avatar9.jpg";
+import avatar10 from "../imgs/avatar10.jpg";
 
 
 const Navbar = () => {
 
   const avatarOptions = [
     { id: "avatar1", src: avatar1 },
-    { id: "avatar2", src: avatar1 },
-    { id: "avatar3", src: avatar1 },
-    { id: "avatar4", src: avatar1 },
-    { id: "avatar5", src: avatar1 },
-    { id: "avatar6", src: avatar1 },
-    { id: "avatar7", src: avatar1 },
-    { id: "avatar8", src: avatar1 },
-    { id: "avatar9", src: avatar1 },
-    { id: "avatar10", src: avatar1 },
+    { id: "avatar2", src: avatar2 },
+    { id: "avatar3", src: avatar3 },  
+    { id: "avatar4", src: avatar4 },
+    { id: "avatar5", src: avatar5 },
+    { id: "avatar6", src: avatar6 },
+    { id: "avatar7", src: avatar7 },
+    { id: "avatar8", src: avatar8 },
+    { id: "avatar9", src: avatar9 },
+    { id: "avatar10", src: avatar10 },
   ];
   
   const { userData } = useContext(UserContext); 

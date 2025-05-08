@@ -2,7 +2,17 @@ import React, { useState, useEffect, useContext } from 'react';
 import { UserContext } from "../App";
 import Navbar from './navbar';
 import Sidebar from './sidebar';
+
 import avatar1 from "../imgs/avatar1.jpg";
+import avatar2 from "../imgs/avatar2.jpg";
+import avatar3 from "../imgs/avatar3.jpg";
+import avatar4 from "../imgs/avatar4.jpg";
+import avatar5 from "../imgs/avatar5.jpg";
+import avatar6 from "../imgs/avatar6.jpg";
+import avatar7 from "../imgs/avatar7.jpg";
+import avatar8 from "../imgs/avatar8.jpg";
+import avatar9 from "../imgs/avatar9.jpg";
+import avatar10 from "../imgs/avatar10.jpg";
 
 const Definicoes = () => {
   const [nome, setNome] = useState('');
@@ -21,15 +31,15 @@ const Definicoes = () => {
 
     setAvatarOptions([
       { id: "avatar1", src: avatar1 },
-      { id: "avatar2", src: avatar1 },
-      { id: "avatar3", src: avatar1 },
-      { id: "avatar4", src: avatar1 },
-      { id: "avatar5", src: avatar1 },
-      { id: "avatar6", src: avatar1 },
-      { id: "avatar7", src: avatar1 },
-      { id: "avatar8", src: avatar1 },
-      { id: "avatar9", src: avatar1 },
-      { id: "avatar10", src: avatar1 },
+      { id: "avatar2", src: avatar2 },
+      { id: "avatar3", src: avatar3 },  
+      { id: "avatar4", src: avatar4 },
+      { id: "avatar5", src: avatar5 },
+      { id: "avatar6", src: avatar6 },
+      { id: "avatar7", src: avatar7 },
+      { id: "avatar8", src: avatar8 },
+      { id: "avatar9", src: avatar9 },
+      { id: "avatar10", src: avatar10 },
     ]);
   }, [userData]);
 
