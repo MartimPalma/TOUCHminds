@@ -54,9 +54,40 @@ const Homepage = () => {
 
               {percentagem === 0 && (
                 <div className="mt-2 small text-muted">
-                  Ainda não começaste nenhum módulo. <span className="small fw-semibold fs-6" style={{ color: "#234970" }}>Dá o primeiro passo!</span>
+                  Ainda não concluíste nenhum módulo. <span className="small fw-semibold fs-6" style={{ color: "#234970" }}>Dá o primeiro passo!</span>
                 </div>
               )}
+              {percentagem > 0 && percentagem <= 20 && (
+                <div className="mt-2 small text-muted">
+                  Começaste bem! Estás a dar os primeiros passos. <span className="small fw-semibold fs-6" style={{ color: "#234970" }}>Mantém o foco!</span>
+                </div>
+              )}
+              {percentagem > 20 && percentagem <= 40 && (
+                <div className="mt-2 small text-muted">
+                  Estás no caminho certo! <span className="small fw-semibold fs-6" style={{ color: "#234970" }}>A persistência leva ao sucesso!</span>
+                </div>
+              )}
+              {percentagem > 40 && percentagem <= 60 && (
+                <div className="mt-2 small text-muted">
+                  A tua jornada está a evoluir! <span className="small fw-semibold fs-6" style={{ color: "#234970" }}>Continua com essa energia!</span>
+                </div>
+              )}
+              {percentagem > 60 && percentagem <= 80 && (
+                <div className="mt-2 small text-muted">
+                  Quase lá! Estás a fazer um excelente progresso. <span className="small fw-semibold fs-6" style={{ color: "#234970" }}>Faltam só mais alguns passos!</span>
+                </div>
+              )}
+              {percentagem > 80 && percentagem < 100 && (
+                <div className="mt-2 small text-muted">
+                  Quase a concluir! Não desistas agora. <span className="small fw-semibold fs-6" style={{ color: "#234970" }}>O teu esforço vai valer a pena!</span>
+                </div>
+              )}
+              {percentagem === 100 && (
+                <div className="mt-2 small text-muted">
+                  Parabéns! Concluíste todos os módulos. <span className="small fw-semibold fs-6" style={{ color: "#234970" }}>O teu esforço trouxe grandes resultados!</span>
+                </div>
+              )}
+
             </div>
 
 
