@@ -175,7 +175,6 @@ select:focus {
   background-color: #99CBC8 !important;
 }
 
-/* Estilos para signup */
 
 /* Estilos personalizados para inputs */
 .custom-input {
@@ -210,15 +209,6 @@ select:focus {
   background-color: #f2f2f2;
 }
 
-/* Animações para o card */
-.card {
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
-}
-
-.card:hover {
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
-}
 
 /* Animação para o spinner */
 @keyframes spin {
@@ -303,7 +293,7 @@ select:focus {
   transform: translateY(-2px);
 }
 
-/* Botão específico para cadastro */
+/* Botão específico para registo */
 .btn-signup {
   background-color: #E7C8C2;
   color: white;
@@ -326,72 +316,75 @@ select:focus {
 
 /* Estilos para os cards */
 .module-card {
-  width: 300px;
-  height: 350px;
-  perspective: 1000px;
-  margin: 20px;
-}
-
-.card-inner {
   position: relative;
-  width: 100%;
-  height: 100%;
-  transition: transform 0.8s;
-  transform-style: preserve-3d;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.3s ease;
 }
 
-.module-card:hover .card-inner {
-  transform: rotateY(180deg);
-}
-
-.card-front,
-.card-back {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  border-radius: 20px;
-  backface-visibility: hidden;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
-  box-sizing: border-box;
-  background: #fff;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.card-front {
-  z-index: 2;
+.module-card:hover {
+  transform: scale(1.02);
 }
 
 .card-image {
   width: 100%;
-  height: 100%; 
+  height: 250px;
   object-fit: cover;
-  border-radius: 15px;
-  margin-bottom: 15px;
+  transition: 0.5s ease all;
+  filter: brightness(100%);
 }
 
-.card-title {
-  font-size: 1.2rem;
-  font-weight: bold;
-  color: #234970;
+.module-card:hover .card-image {
+  filter: brightness(40%);
+}
+
+/* Texto da frente no canto inferior esquerdo */
+.overlay-text {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 2;
+  padding: 16px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent);
+  color: white;
+  width: 100%;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+.overlay-text h5,
+.overlay-text p {
+  margin: 0;
+  text-align: left;
+}
+
+.module-card:hover .overlay-text {
+  opacity: 0;
+}
+
+/* Texto de trás centralizado */
+.overlay-description {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 3;
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.6); /* fundo semitransparente */
+  display: flex;
+  align-items: center;
+  justify-content: center;
   text-align: center;
+  color: white;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  font-size: 0.95rem;
+  line-height: 1.5;
 }
 
-.card-subtitle {
-  font-size: 0.9rem;
-  color: #777;
-  text-align: center;
+.module-card:hover .overlay-description {
+  opacity: 1;
 }
 
-.card-back {
-  transform: rotateY(180deg);
-  background-color: #e6f0f3;
-}
-
-.card-description {
-  font-size: 1rem;
-  color: #333;
-  text-align: center;
-}
