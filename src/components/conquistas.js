@@ -14,47 +14,35 @@ const Conquistas = () => {
   const [loading, setLoading] = useState(true);
   const { userData } = useContext(UserContext); 
 
-  console.log(userData);
-  
   useEffect(() => {
-    const fetchUserProgress = async () => {
-      try {
-        if (userData) {
-            setModulosConcluidos(userData.modulosConcluidos || 0);
-        }
-      } catch (error) {
-        console.error("Erro ao buscar progresso:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
+    if (userData) {
+      setModulosConcluidos(userData.modulosConcluidos || 0);
+      setLoading(false);
+    }
+  }, [userData]);
 
-    fetchUserProgress();
-  }, [ userData]);
-
-
-  // Função para renderizar imagens de módulos concluídos
   const renderModuleImages = () => {
-    const images = [];
-  
-    for (let i = 1; i <= 6; i++) {
-      const isCompleted = modulosConcluidos >= i;
-      const imagePath = {modulo1, modulo2, modulo3, modulo4, modulo5, modulo6}[`modulo${i}`]; 
-  
-      images.push(
-        <div className="col-4 p-0" key={i}>
+    const images = { modulo1, modulo2, modulo3, modulo4, modulo5, modulo6 };
+
+    return Array.from({ length: 6 }, (_, i) => {
+      const index = i + 1;
+      const isCompleted = modulosConcluidos >= index;
+      const imagePath = images[`modulo${index}`];
+
+      return (
+        <div className="col-4 p-0" key={index}>
           <img
             src={imagePath}
-            alt={`Módulo ${i}`}
+            alt={`Módulo ${index}`}
             className="w-100 h-100 object-fit-contain"
-            style={{ filter: isCompleted ? 'none' : 'grayscale(100%)' }} // Aplica o filtro cinza para módulos não concluídos
+            style={{ filter: isCompleted ? 'none' : 'grayscale(100%)' }}
           />
         </div>
       );
-    }
-  
-    return images;
+    });
   };
+
+  const percentagem = Math.round((modulosConcluidos / 6) * 100);
 
   return (
     <div className="container-fluid vh-100 p-0">
@@ -62,14 +50,14 @@ const Conquistas = () => {
       <div className="row h-100 m-0">
         <Sidebar />
         <div className="col px-4 py-4" style={{ backgroundColor: "#FBF9F9" }}>
-          <div className="container p-5 bg-white rounded shadow-sm h-100">
-            <h2 className="mb-2 font-poppins" style={{ color: "#66BFBF", fontWeight: 'bold' }}>
+          <div className="container p-4 bg-white rounded shadow-sm h-100">
+            <h2 className="mb-2 fw-semibold" style={{ color: "#99CBC8" }}>
               As Minhas Conquistas
             </h2>
-            <p style={{ fontSize: '1rem', color: '#444' }}>
+            <p className="text-muted mb-4" style={{ fontSize: '1rem' }}>
               Completa todos os módulos para revelar o puzzle completo!
             </p>
-            
+
             {loading ? (
               <div className="d-flex justify-content-center align-items-center py-5">
                 <div className="spinner-border" role="status" style={{ color: "#66BFBF" }}>
@@ -77,28 +65,28 @@ const Conquistas = () => {
                 </div>
               </div>
             ) : (
-              <div className="d-flex flex-column align-items-center">
-                <div className="mb-3 w-100">
-                  <div className="progress" style={{ height: "20px" }}>
-                    <div 
-                      className="progress-bar" 
-                      role="progressbar" 
-                      style={{ width: `${(modulosConcluidos / 6) * 100}%`, backgroundColor: "#66BFBF" }}
-                      aria-valuenow={(modulosConcluidos / 6) * 100} 
-                      aria-valuemin="0" 
+              <>
+                <div className="mb-4">
+                  <div className="d-flex justify-content-between mb-1">
+                    <span className="small fw-semibold" style={{ color: "#234970" }}>Progresso</span>
+                    <span className="small fw-semibold" style={{ color: "#234970" }}>{percentagem}%</span>
+                  </div>
+                  <div className="progress" style={{ height: "10px" }}>
+                    <div
+                      className="progress-bar"
+                      role="progressbar"
+                      style={{ width: `${percentagem}%`, backgroundColor: "#99CBC8" }}
+                      aria-valuenow={percentagem}
+                      aria-valuemin="0"
                       aria-valuemax="100"
-                    >
-                      {Math.round((modulosConcluidos / 6) * 100)}%
-                    </div>
+                    />
                   </div>
                 </div>
-                
-                <div>
-                  <div className="row justify-content-center">
-                    {renderModuleImages()}
-                  </div>
+
+                <div className="row justify-content-center">
+                  {renderModuleImages()}
                 </div>
-              </div>
+              </>
             )}
           </div>
         </div>

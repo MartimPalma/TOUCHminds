@@ -7,6 +7,8 @@ import modulos from '../../../data/modulos';
 import AtividadeProgressao from '../atividadeProgressao'; 
 
 // Catarina vai fornecer o texto/imagens da banda desenhada
+// falta colocar uma conclusão, que é uma página final com um pequeno texto e com o botão de concluir atividade
+// catarina enviou um exemplo do fluxo 
 
 const BandaDesenhada = () => {
   const [pagina, setPagina] = useState(0);

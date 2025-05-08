@@ -11,17 +11,14 @@ const Definicoes = () => {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState({ text: '', type: '' });
 
-  const { userData, updateUserData}= useContext(UserContext);
+  const { userData, updateUserData } = useContext(UserContext);
 
-  console.log('Definições:', userData);
-
-  // Carregar dados do user
   useEffect(() => {
     if (userData) {
       setNome(userData.nome || '');
       setSelectedAvatar(userData.avatarId || '');
     }
-    
+
     setAvatarOptions([
       { id: "avatar1", src: avatar1 },
       { id: "avatar2", src: avatar1 },
@@ -54,7 +51,7 @@ const Definicoes = () => {
         nome: nome,
         avatarId: selectedAvatar,
       });
-      
+
       setMessage({ text: 'Perfil atualizado com sucesso!', type: 'success' });
     } catch (error) {
       console.error('Erro ao atualizar perfil:', error);
@@ -70,22 +67,22 @@ const Definicoes = () => {
       <div className="row h-100 m-0">
         <Sidebar />
         <div className="col px-4 py-4" style={{ backgroundColor: "#FBF9F9" }}>
-          <div className="container p-5 bg-white rounded shadow-sm">
-            <h2 className="mb-3 font-poppins" style={{ color: "#66BFBF", fontWeight: 'bold' }}>Definições</h2>
-            <p className="font-poppins" style={{ fontSize: '1.15rem', color: '#444' }}>
+          <div className="container p-4 bg-white rounded shadow-sm">
+            <h2 className="mb-3 fw-semibold" style={{ color: "#99CBC8" }}>Definições</h2>
+            <p className="text-muted" style={{ fontSize: '1rem' }}>
               Personaliza o teu perfil alterando o nome na plataforma e escolhendo um avatar.
             </p>
-            
+
             {message.text && (
               <div className={`alert ${message.type === 'success' ? 'alert-success' : 'alert-danger'} mb-4`}>
                 {message.text}
               </div>
             )}
-            
+
             <form onSubmit={handleSave}>
               <div className="mt-4 p-4 rounded" style={{ backgroundColor: '#E3F4F4' }}>
-                <h4 style={{ color: '#3B9C9C', fontWeight: '600' }}>✏️ Nome na Plataforma</h4>
-                <p className="mb-3">Como queres ser chamado/a na plataforma:</p>
+                <h5 className="fw-semibold mb-2" style={{ color: '#3B9C9C' }}>✏️ Nome na Plataforma</h5>
+                <p>Como queres ser chamado/a na plataforma:</p>
                 <input
                   type="text"
                   className="form-control"
@@ -96,10 +93,10 @@ const Definicoes = () => {
                   style={{ borderColor: '#66BFBF', borderRadius: '6px' }}
                 />
               </div>
-              
+
               <div className="mt-4 p-4 rounded" style={{ backgroundColor: '#F0FAFA' }}>
-                <h4 style={{ color: '#3B9C9C', fontWeight: '600' }}>🧑 Escolhe o teu avatar</h4>
-                <p className="mb-3">Seleciona uma imagem que te represente:</p>
+                <h5 className="fw-semibold mb-2" style={{ color: '#3B9C9C' }}>🧑 Escolhe o teu avatar</h5>
+                <p>Seleciona uma imagem que te represente:</p>
                 <div className="d-flex flex-wrap gap-3 mt-3">
                   {avatarOptions.map((avatar) => (
                     <div key={avatar.id} className="text-center">
@@ -107,9 +104,9 @@ const Definicoes = () => {
                         src={avatar.src}
                         alt={`Avatar ${avatar.id}`}
                         className="rounded-circle"
-                        style={{ 
-                          width: "75px", 
-                          height: "75px", 
+                        style={{
+                          width: "75px",
+                          height: "75px",
                           objectFit: "cover",
                           cursor: "pointer",
                           border: selectedAvatar === avatar.id
@@ -126,14 +123,14 @@ const Definicoes = () => {
                   ))}
                 </div>
               </div>
-              
+
               <div className="mt-4 text-center">
                 <button
                   type="submit"
                   className="btn px-4 py-2"
-                  style={{ 
-                    backgroundColor: "#66BFBF", 
-                    color: "white", 
+                  style={{
+                    backgroundColor: "#66BFBF",
+                    color: "white",
                     fontWeight: "600",
                     borderRadius: "8px",
                     fontSize: "1.05rem"
