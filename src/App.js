@@ -15,6 +15,8 @@ import Definições from './components/def';
 import Homepage from './components/homepage';
 import Modulos from './components/modulo';
 import BandaDesenhada from './components/atividades/modulo1/bandaDesenhada';
+import LinhaAnsiedade from './components/atividades/modulo1/linhaAnsiedade';
+
 
 
 import { dadosAlunos } from './database/database';
@@ -91,6 +93,9 @@ const App = () => {
 
       {/* Atividades dentro de um módulo */}
       <Route path="/modulos/:id/atividade/banda-desenhada" element={<BandaDesenhada />} />
+      <Route path="/modulos/:id/atividade/linha-ansiedade" element={<LinhaAnsiedade />} />
+
+
       
     </Routes>
   </Router>

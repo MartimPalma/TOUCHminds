@@ -12,7 +12,7 @@ const modulos = [
       introducao: `Todos nós sentimos ansiedade – e isso é perfeitamente normal! Aqui, vais compreender melhor as emoções e como elas influenciam o nosso dia a dia.
 
       Além disso, vais aprender a distinguir entre uma ansiedade comum e uma ansiedade SOS que causa sofrimento.`,
-            atividades: [
+      atividades: [
         {
           url: "banda-desenhada",
           titulo: "Ansiedade: Aliada ou Empecilho?",
