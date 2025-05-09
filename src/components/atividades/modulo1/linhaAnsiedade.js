@@ -29,7 +29,6 @@ const LinhaAnsiedade = () => {
 
   const avancarPagina = () => setPagina((prev) => prev + 1);
   const retrocederPagina = () => setPagina((prev) => prev - 1);
-  const progresso = Math.round((pagina / 2) * 100); // 2 páginas: intro e atividade principal
 
   const toggleAnsiedadeNormativa = (fase) => {
     setMostrarAnsiedadeNormativa(prev => {
@@ -72,16 +71,6 @@ const LinhaAnsiedade = () => {
         <Sidebar />
         <div className="col px-4 py-4" style={{ backgroundColor: "#FBF9F9" }}>
           <div className="container p-5 bg-white rounded shadow-sm">
-            <div className="progress mb-4" style={{ height: "8px" }}>
-              <div
-                className="progress-bar"
-                role="progressbar"
-                style={{ width: `${progresso}%`, backgroundColor: "#99CBC8" }}
-                aria-valuenow={progresso}
-                aria-valuemin="0"
-                aria-valuemax="100">
-              </div>
-            </div>
 
             <div className="container bg-white rounded shadow-sm p-4">
               {/* INTRODUÇÃO */}
@@ -116,10 +105,9 @@ const LinhaAnsiedade = () => {
                     <h5 className="fw-bold mb-3">LINHA DO TEMPO: ANSIEDADE NORMATIVA</h5>
                     
                     <div className="position-relative mb-4">
-                      {/* Timeline line */}
+
                       <div className="position-absolute" style={{ height: "2px", backgroundColor: "#99CBC8", width: "100%", top: "50%" }}></div>
                       
-                      {/* Timeline buttons */}
                       <div className="d-flex justify-content-between position-relative">
                         <div className="text-center">
                           <button 
@@ -197,10 +185,9 @@ const LinhaAnsiedade = () => {
                     <h5 className="fw-bold mb-3">LINHA DO TEMPO: ANSIEDADE PATÓLOGIA</h5>
                     
                     <div className="position-relative mb-4">
-                      {/* Timeline line */}
+
                       <div className="position-absolute" style={{ height: "2px", backgroundColor: "#dc3545", width: "100%", top: "50%" }}></div>
                       
-                      {/* Timeline buttons */}
                       <div className="d-flex justify-content-between position-relative">
                         <div className="text-center">
                           <button 
