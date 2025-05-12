@@ -162,7 +162,7 @@ const AnsiedadeSemFiltros = () => {
                     </button>
                     <AtividadeProgressao
                       moduloId={moduloId}
-                      atividadeIndex={2}
+                      atividadeIndex={3}
                       updateUserData={updateUserData}
                     />
                   </div>
