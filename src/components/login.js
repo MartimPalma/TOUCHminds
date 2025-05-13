@@ -1,189 +1,93 @@
-import React, { useState } from "react";
-import { useContext } from "react";
+import React, { useState, useContext } from "react";
 import { UserContext } from "../App";
 import { motion } from "framer-motion";
-import { Eye, EyeOff } from "lucide-react";
-import { loginAluno , dadosAlunos } from "./../database/database";
-import { useNavigate } from "react-router-dom";
+import { Eye, EyeOff, X } from "lucide-react";
+import { loginAluno, dadosAlunos } from "../database/database";
 import logo from "../imgs/logositeazul.png";
+import "../App.css";
 
-export default function Login() {
+export default function LoginModal({ onClose, onSwitchToSignup }) {
   const [codigoParticipante, setCodigoParticipante] = useState("");
   const [password, setPassword] = useState("");
   const [mostrarSenha, setMostrarSenha] = useState(false);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-  
-  const navigate = useNavigate();
 
-  const { updateUserData } = useContext(UserContext); 
-  
+  const { updateUserData } = useContext(UserContext);
+
   const handleLogin = async (e) => {
     e.preventDefault();
     setError("");
     setLoading(true);
-    
+
     try {
       const user = await loginAluno(codigoParticipante, password);
       const dados = await dadosAlunos(user.uid);
       updateUserData({ uid: user.uid, ...dados });
-      navigate('/homepage'); 
+      onClose();
     } catch (error) {
-      console.error("Erro no login:", error);
       setError("Código de participante ou senha incorretos. Por favor, tente novamente.");
     } finally {
       setLoading(false);
     }
   };
-  
-  const handleClick = () => {
-    navigate('/signup');
-  }
-  
+
   return (
-    <div className="container-fluid min-vh-100 d-flex flex-row p-0" style={{ backgroundColor: "#234970" }} >
-     
+    <div className="modal-overlay">
       <motion.div 
-        className="col-12 d-flex flex-column justify-content-center align-items-center"
-        style={{ backgroundColor: "#234970" }}
-        initial={{ x: 50, opacity: 0 }}
-        animate={{ x: 0, opacity: 1 }}
-        transition={{ duration: 0.5 }}
+        className="modal-card"
+        initial={{ scale: 0.9, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        exit={{ scale: 0.9, opacity: 0 }}
+        transition={{ duration: 0.3 }}
       >
-        <motion.div 
-          className="card shadow-lg p-5 border-0" 
-          style={{ maxWidth: "450px", width: "90%", borderRadius: "20px", backgroundColor: "#FBF9F9" }}
-          initial={{ scale: 0.95, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 0.5 }}
-        >
-          <motion.div 
-            className="text-center mb-4"
-            initial={{ y: -10 }}
-            animate={{ y: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            <motion.img 
-              src={logo} 
-              alt="Logo" 
-              style={{ maxWidth: 140 }} 
-              className="mb-3"
-              whileHover={{ scale: 1.05 }}
-              transition={{ type: "spring", stiffness: 300 }}
+        <button className="modal-close" onClick={onClose}><X /></button>
+        <div className="text-center mb-3">
+          <img src={logo} alt="Logo" style={{ maxWidth: 100 }} className="mb-2" />
+          <h4 style={{ color: "#99CBC8" }}>Entrar na tua conta</h4>
+          <p className="text-muted">
+            ou <span onClick={onSwitchToSignup} style={{ cursor: "pointer", textDecoration: "underline", color: "#99CBC8" }}>criar uma conta</span>
+          </p>
+        </div>
+
+        {error && <div className="alert alert-danger">{error}</div>}
+
+        <form onSubmit={handleLogin}>
+          <div className="mb-3">
+            <label className="form-label">Código de Participante*</label>
+            <input
+              type="text"
+              className="form-control"
+              value={codigoParticipante}
+              onChange={(e) => setCodigoParticipante(e.target.value)}
+              required
             />
-            <motion.h3 
-              className="fw-semibold mb-1" 
-              style={{ color: "#99CBC8" }}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.3 }}
-            >
-              Entrar na tua conta
-            </motion.h3>
-            <motion.p 
-              className="text-muted mb-0"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.4 }}
-            >
-              ou{" "}
-              <motion.span
-                onClick={handleClick}
-                style={{ cursor: "pointer", textDecoration: "underline", color: "#99CBC8" }}
-                whileHover={{ color: "#7ab3b0" }}
-              >
-                criar uma conta
-              </motion.span>
-            </motion.p>
-          </motion.div>
-          
-          {error && (
-            <motion.div 
-              className="alert alert-danger"
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              exit={{ opacity: 0, height: 0 }}
-            >
-              {error}
-            </motion.div>
-          )}
-          
-          <form onSubmit={handleLogin}>
-            <motion.div 
-              className="mb-3"
-              initial={{ x: -20, opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
-              transition={{ delay: 0.5 }}
-            >
-              <label className="form-label fw-medium">Código de Participante*</label>
-              <motion.input
-                type="text"
-                className="form-control custom-input"
-                placeholder="Inserir código de participante"
-                value={codigoParticipante}
-                onChange={(e) => setCodigoParticipante(e.target.value)}
+          </div>
+
+          <div className="mb-4">
+            <label className="form-label">Palavra-passe*</label>
+            <div className="input-group">
+              <input
+                type={mostrarSenha ? "text" : "password"}
+                className="form-control"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 required
-                whileFocus={{ boxShadow: "0 0 0 3px rgba(153, 203, 200, 0.25)" }}
               />
-            </motion.div>
-            
-            <motion.div 
-              className="mb-4"
-              initial={{ x: -20, opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
-              transition={{ delay: 0.6 }}
-            >
-              <label className="form-label fw-medium">Palavra-passe*</label>
-              <div className="input-group">
-                <motion.input
-                  type={mostrarSenha ? "text" : "password"}
-                  className="form-control custom-input"
-                  placeholder="Palavra-passe"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  required
-                  whileFocus={{ boxShadow: "0 0 0 3px rgba(153, 203, 200, 0.25)" }}
-                />
-                <motion.button
-                  type="button"
-                  className="btn btn-toggle"
-                  onClick={() => setMostrarSenha(!mostrarSenha)}
-                  whileHover={{ backgroundColor: "#f2f2f2" }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  {mostrarSenha ? <EyeOff size={18} /> : <Eye size={18} />}
-                </motion.button>
-              </div>
-            </motion.div>
-            
-            <motion.button
-              type="submit"
-              className="btn w-50 rounded-pill mx-auto d-flex justify-content-center align-items-center"
-              style={{ 
-                backgroundColor: "#E7C8C2", 
-                color: "#fff", 
-                fontWeight: "600" 
-              }}
-              disabled={loading}
-              whileHover={{ backgroundColor: "#88bab7", scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              initial={{ y: 20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 0.7 }}
-            >
-              {loading ? (
-                <div className="d-flex align-items-center justify-content-center">
-                  <div className="spinner-border spinner-border-sm me-2" role="status">
-                    <span className="visually-hidden">A processar...</span>
-                  </div>
-                  A processar...
-                </div>
-              ) : (
-                "Entrar"
-              )}
-            </motion.button>
-          </form>
-        </motion.div>
+              <button type="button" className="btn btn-outline-secondary" onClick={() => setMostrarSenha(!mostrarSenha)}>
+                {mostrarSenha ? <EyeOff size={18} /> : <Eye size={18} />}
+              </button>
+            </div>
+          </div>
+
+          <button
+            type="submit"
+            className="btn btn-primary w-100"
+            disabled={loading}
+          >
+            {loading ? "A processar..." : "Entrar"}
+          </button>
+        </form>
       </motion.div>
     </div>
   );
