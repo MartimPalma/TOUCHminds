@@ -1,9 +1,10 @@
-import React, { useState, useContext } from "react";
+import { useState, useContext } from "react";
 import { UserContext } from "../App";
 import { motion } from "framer-motion";
 import { Eye, EyeOff, X } from "lucide-react";
 import { loginAluno, dadosAlunos } from "../database/database";
 import logo from "../imgs/logositeazul.png";
+import { useNavigate } from "react-router-dom";
 import "../App.css";
 
 export default function LoginModal({ onClose, onSwitchToSignup }) {
@@ -12,6 +13,7 @@ export default function LoginModal({ onClose, onSwitchToSignup }) {
   const [mostrarSenha, setMostrarSenha] = useState(false);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   const { updateUserData } = useContext(UserContext);
 
@@ -24,6 +26,7 @@ export default function LoginModal({ onClose, onSwitchToSignup }) {
       const user = await loginAluno(codigoParticipante, password);
       const dados = await dadosAlunos(user.uid);
       updateUserData({ uid: user.uid, ...dados });
+      navigate("/homepage");
       onClose();
     } catch (error) {
       setError("Código de participante ou senha incorretos. Por favor, tente novamente.");
