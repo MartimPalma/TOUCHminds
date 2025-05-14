@@ -111,7 +111,7 @@ const AtividadeResumo = () => {
                    <button className="btn btn-primary" onClick={avancarPagina}>
                       {pagina === 12 ? "Ver reflexão" : "Próximo"}
                       <i className="bi bi-arrow-right ms-2"></i>
-                    </button>
+                    </button> 
                   </div>
                 </>
               )}

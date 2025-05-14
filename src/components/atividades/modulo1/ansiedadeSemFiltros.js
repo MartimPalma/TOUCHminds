@@ -9,6 +9,7 @@ import AtividadeProgressao from '../atividadeProgressao';
 const AnsiedadeSemFiltros = () => {
   const [pagina, setPagina] = useState(0);
   const [hashtags, setHashtags] = useState(Array(12).fill(""));
+  const [inputError, setInputError] = useState(false);
   
   const { id: moduloId } = useParams();
   const { updateUserData } = useContext(UserContext);
@@ -17,8 +18,22 @@ const AnsiedadeSemFiltros = () => {
   const atividade = modulo?.atividades.find(a => a.url === "ansiedade-sem-filtros");
   const quadros = atividade?.quadros || [];
 
-  const avancarPagina = () => setPagina((prev) => prev + 1);
-  const retrocederPagina = () => setPagina((prev) => prev - 1);
+  const avancarPagina = () => {
+    // If on a hashtag page and the input is empty, show error
+    if (pagina > 0 && pagina <= 12 && !hashtags[pagina - 1].trim()) {
+      setInputError(true);
+      return;
+    }
+    
+    // Otherwise proceed
+    setInputError(false);
+    setPagina((prev) => prev + 1);
+  };
+  
+  const retrocederPagina = () => {
+    setInputError(false);
+    setPagina((prev) => prev - 1);
+  };
   
   // Now 14 pages total: intro, 12 images, reflection, conclusion
   const progresso = Math.round((pagina / 14) * 100);
@@ -27,6 +42,11 @@ const AnsiedadeSemFiltros = () => {
     const newHashtags = [...hashtags];
     newHashtags[index] = value;
     setHashtags(newHashtags);
+    
+    // Clear error when user starts typing
+    if (inputError && value.trim()) {
+      setInputError(false);
+    }
   };
 
   // These are placeholder image descriptions
@@ -111,20 +131,26 @@ const AnsiedadeSemFiltros = () => {
                       </p>
                     </div>
                     
-                    {/* Hashtag input */}
+                    {/* Hashtag input with error state */}
                     <div className="input-group mx-auto" style={{ maxWidth: "500px" }}>
                       <span className="input-group-text" id="hashtag-addon">
                         <i className="bi bi-hash"></i>
                       </span>
                       <input
                         type="text"
-                        className="form-control"
+                        className={`form-control ${inputError ? 'is-invalid' : ''}`}
                         placeholder="hashtag"
                         value={hashtags[pagina - 1]}
                         onChange={(e) => handleHashtagChange(pagina - 1, e.target.value)}
                         aria-label="Hashtag"
                         aria-describedby="hashtag-addon"
+                        required
                       />
+                      {inputError && (
+                        <div className="invalid-feedback">
+                          Por favor, introduz um hashtag antes de avançar.
+                        </div>
+                      )}
                     </div>
                   </div>
 
@@ -132,15 +158,16 @@ const AnsiedadeSemFiltros = () => {
                     <button className="btn btn-outline-secondary" onClick={retrocederPagina}>
                       <i className="bi bi-arrow-left me-2"></i>Anterior
                     </button>
-                    <button className="btn btn-primary" onClick={avancarPagina}>
+                    <button 
+                      className="btn btn-primary" 
+                      onClick={avancarPagina}
+                    >
                       {pagina === 12 ? "Ver reflexão" : "Próximo"}
                       <i className="bi bi-arrow-right ms-2"></i>
                     </button>
                   </div>
                 </>
               )}
-
-              
 
               {/* CONCLUSÃO */}
               {pagina === 13 && (

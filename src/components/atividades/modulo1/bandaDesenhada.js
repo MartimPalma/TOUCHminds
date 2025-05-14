@@ -10,6 +10,7 @@ const BandaDesenhada = () => {
   const [pagina, setPagina] = useState(0);
   const [ansiedadeComum, setAnsiedadeComum] = useState('');
   const [ansiedadeSOS, setAnsiedadeSOS] = useState('');
+  const [inputError, setInputError] = useState(false);
 
   const { id: moduloId } = useParams();
   const { updateUserData } = useContext(UserContext);
@@ -18,9 +19,42 @@ const BandaDesenhada = () => {
   const atividade = modulo?.atividades.find(a => a.url === "banda-desenhada");
   const quadros = atividade?.quadros || [];
 
-  const avancarPagina = () => setPagina((prev) => prev + 1);
-  const retrocederPagina = () => setPagina((prev) => prev - 1);
+  const avancarPagina = () => {
+    // If on the reflection page and inputs are empty, show error
+    if (pagina === quadros.length + 1) {
+      if (!ansiedadeComum.trim() || !ansiedadeSOS.trim()) {
+        setInputError(true);
+        return;
+      }
+    }
+    
+    // Otherwise proceed
+    setInputError(false);
+    setPagina((prev) => prev + 1);
+  };
+  
+  const retrocederPagina = () => {
+    setInputError(false);
+    setPagina((prev) => prev - 1);
+  };
+  
   const progresso = Math.round((pagina / (quadros.length + 2)) * 100); // +2: reflexão e conclusão
+
+  const handleAnsiedadeComumChange = (e) => {
+    setAnsiedadeComum(e.target.value);
+    // Clear error when user starts typing in both fields
+    if (inputError && e.target.value.trim() && ansiedadeSOS.trim()) {
+      setInputError(false);
+    }
+  };
+
+  const handleAnsiedadeSOSChange = (e) => {
+    setAnsiedadeSOS(e.target.value);
+    // Clear error when user starts typing in both fields
+    if (inputError && e.target.value.trim() && ansiedadeComum.trim()) {
+      setInputError(false);
+    }
+  };
 
   return (
     <div className="container-fluid vh-100 p-0 font-poppins">
@@ -48,15 +82,7 @@ const BandaDesenhada = () => {
                   <div className="row justify-content-center">
                     <div className="col-md-8">
                       <p className="lead">
-                        <strong>Bem-vindo(a) à nossa aventura em Banda Desenhada:</strong><br />
-                        <em>"Ansiedade: Aliada ou Empecilho?!"</em><br /><br />
-                        Vais embarcar numa jornada onde conhecerás dois tipos de ansiedade:
-                        <strong> a ansiedade comum</strong>, que te ajuda a enfrentar desafios,
-                        e <strong>a ansiedade SOS</strong>, que pode atrapalhar o teu bem-estar.<br /><br />
-                        O teu desafio é descobrir a diferença entre estas duas formas de ansiedade.
-                        Lê com atenção cada quadro da banda desenhada e, no final, pensa em <strong>duas palavras</strong>:
-                        uma que represente a <strong>ansiedade comum</strong> e outra que represente a <strong>ansiedade SOS</strong>.<br /><br />
-                        Não existem respostas certas ou erradas — o mais importante é o que tu compreendes e sentes.
+                        Sê muito bem-vindo ou bem-vinda à Banda Desenhada da Ansiedade: Aliada ou Empecilho?! Nesta banda desenhada, vais conhecer dois tipos de ansiedade: A ansiedade comum, que nos ajuda a enfrentar desafios e a ansiedade SOS, que pode atrapalhar o nosso bem-estar. O teu desafio é compreender a diferença entre estas duas formas de ansiedade. Para isso, lê com atenção os quadros da banda desenhada. No final, escreve uma palavra que, para ti, represente: o que é a ansiedade comum e o que é a ansiedade SOS. Escreve essas duas palavras no espaço indicado. Não há respostas certas ou erradas — o importante é o que tu compreendeste! Vamos a isto?
                       </p>
                       <button className="btn btn-primary mt-3 px-4 py-2" onClick={avancarPagina}>
                         <i className="bi bi-play-fill me-2"></i>Vamos a isto?
@@ -112,6 +138,14 @@ const BandaDesenhada = () => {
               {pagina === quadros.length + 1 && (
                 <>
                   <h4 className="fw-bold mb-4" style={{ color: "#234970" }}>Vamos Refletir!</h4>
+                  
+                  {inputError && (
+                    <div className="alert alert-danger mb-3" role="alert">
+                      <i className="bi bi-exclamation-triangle me-2"></i>
+                      Por favor, preenche os dois campos antes de avançar.
+                    </div>
+                  )}
+                  
                   <p className="lead">
                     Escreve aqui duas palavras que para ti representem a o que é a ansiedade comum e o que é a ansiedade SOS. 
                     Escreve essas duas palavras no espaço indicado. <br></br> Não há respostas certas ou erradas — o importante é o que tu compreendeste! Vamos a isto?
@@ -123,12 +157,18 @@ const BandaDesenhada = () => {
                     </label>
                     <input
                       type="text"
-                      className="form-control"
+                      className={`form-control ${inputError && !ansiedadeComum.trim() ? 'is-invalid' : ''}`}
                       id="ansiedadeComum"
                       value={ansiedadeComum}
-                      onChange={(e) => setAnsiedadeComum(e.target.value)}
+                      onChange={handleAnsiedadeComumChange}
                       placeholder="Exemplo: alerta"
+                      required
                     />
+                    {inputError && !ansiedadeComum.trim() && (
+                      <div className="invalid-feedback">
+                        Este campo é obrigatório.
+                      </div>
+                    )}
                   </div>
 
                   <div className="mb-3">
@@ -137,12 +177,18 @@ const BandaDesenhada = () => {
                     </label>
                     <input
                       type="text"
-                      className="form-control"
+                      className={`form-control ${inputError && !ansiedadeSOS.trim() ? 'is-invalid' : ''}`}
                       id="ansiedadeSOS"
                       value={ansiedadeSOS}
-                      onChange={(e) => setAnsiedadeSOS(e.target.value)}
+                      onChange={handleAnsiedadeSOSChange}
                       placeholder="Exemplo: paralisante"
+                      required
                     />
+                    {inputError && !ansiedadeSOS.trim() && (
+                      <div className="invalid-feedback">
+                        Este campo é obrigatório.
+                      </div>
+                    )}
                   </div>
 
                   <div className="d-flex justify-content-between mt-4">
