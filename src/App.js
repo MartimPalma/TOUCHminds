@@ -21,7 +21,8 @@ import AnsiedadeSemFiltros from './components/atividades/modulo1/ansiedadeSemFil
 import AtividadeResumo from './components/atividades/modulo1/atividadeResumo';
 
 import useDesbloquearModulos from './components/desbloquearModulos';
-import useAtualizarDataFim from './components/atualizarDataFim';
+import useAtualizarDataFim from './components/atualizarDatafim';
+
 
 import { dadosAlunos } from './database/database';
 
