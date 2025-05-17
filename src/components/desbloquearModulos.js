@@ -1,57 +1,77 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { doc, updateDoc } from "firebase/firestore";
-import { db } from "../database/database"; 
+import { db } from "../database/database";
 
-const diasPassados = (dataISO) => {
+const segundosPassados = (dataISO) => {
   if (!dataISO) return 0;
   const dataDesbloqueio = new Date(dataISO);
-  const hoje = new Date();
-  const diffMs = hoje - dataDesbloqueio;
-  return Math.floor(diffMs / (1000 * 60 * 60 * 24)); 
+  const agora = new Date();
+  const diffMs = agora - dataDesbloqueio;
+  return Math.floor(diffMs / 1000);
 };
 
 const useDesbloquearModulos = (userId, modulos) => {
+  const modulosRef = useRef(modulos);
+
   useEffect(() => {
-    const verificarEAtualizarModulos = async () => {
-      if (!modulos) return;
+    modulosRef.current = modulos;
+  }, [modulos]);
 
-      const nomesModulos = Object.keys(modulos);
+  useEffect(() => {
+  if (!userId || !modulos) return;
 
-      for (let i = 0; i < nomesModulos.length - 1; i++) {
-        const nomeAtual = nomesModulos[i];
-        const nomeSeguinte = nomesModulos[i + 1];
+  const intervalId = setInterval(async () => {
+    const modulosAtual = modulosRef.current;
+    if (!modulosAtual) return;
 
-        const moduloAtual = modulos[nomeAtual];
-        const moduloSeguinte = modulos[nomeSeguinte];
+    // Ordena os módulos pelo número, no formato "moduloX"
+    const nomesModulos = Object.keys(modulosAtual).sort((a, b) => {
+      const numA = parseInt(a.replace("modulo", ""), 10);
+      const numB = parseInt(b.replace("modulo", ""), 10);
+      return numA - numB;
+    });
 
-        if (!moduloAtual || !moduloSeguinte) continue;
+    console.log("Ordem dos módulos:", nomesModulos);
 
-        const todasConcluidas = moduloAtual.atividades.every(a => a.concluido);
-        const diasDesdeDesbloqueio = diasPassados(moduloAtual.datafim);
+    for (let i = 0; i < nomesModulos.length - 1; i++) {
+      const nomeAtual = nomesModulos[i];
+      const nomeSeguinte = nomesModulos[i + 1];
 
-        const podeDesbloquear =
-          todasConcluidas &&
-          diasDesdeDesbloqueio >= 7 &&
-          moduloSeguinte.status === "bloqueado";
+      const moduloAtual = modulosAtual[nomeAtual];
+      const moduloSeguinte = modulosAtual[nomeSeguinte];
 
-        if (podeDesbloquear) {
-          try {
-            await updateDoc(doc(db, "alunos", userId), {
-              [`modulos.${nomeSeguinte}.status`]: "desbloqueado",
-              [`modulos.${nomeSeguinte}.datafim`]: new Date().toISOString(),
-            });
-            console.log(`Módulo ${nomeSeguinte} desbloqueado.`);
-          } catch (error) {
-            console.error("Erro ao desbloquear módulo:", error);
-          }
+      if (!moduloAtual || !moduloSeguinte) continue;
+
+      const todasConcluidas = moduloAtual.atividades.every(a => a.concluido);
+      const segundosDesdeDesbloqueio = segundosPassados(moduloAtual.datafim);
+
+      console.log(`Módulo ${nomeAtual}: todas concluídas?`, todasConcluidas);
+      console.log(`Segundos desde desbloqueio:`, segundosDesdeDesbloqueio);
+      console.log(`Status do próximo módulo (${nomeSeguinte}):`, moduloSeguinte.status);
+
+      const podeDesbloquear =
+        todasConcluidas &&
+        segundosDesdeDesbloqueio >= 10 &&
+        moduloSeguinte.status === "bloqueado";
+
+      if (podeDesbloquear) {
+        try {
+          await updateDoc(doc(db, "alunos", userId), {
+            [`modulos.${nomeSeguinte}.status`]: "desbloqueado",
+            [`modulos.${nomeSeguinte}.datafim`]: new Date().toISOString(),
+          });
+          console.log(`Módulo ${nomeSeguinte} desbloqueado.`);
+          break; // evita múltiplos updates seguidos
+        } catch (error) {
+          console.error("Erro ao desbloquear módulo:", error);
         }
       }
-    };
-
-    if (userId && modulos) {
-      verificarEAtualizarModulos();
     }
-  }, [userId, modulos]);
+  }, 5000);
+
+  return () => clearInterval(intervalId);
+}, [userId, modulos]);
+
 };
 
 export default useDesbloquearModulos;

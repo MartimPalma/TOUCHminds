@@ -1,11 +1,17 @@
 import React from "react";
+import { CheckCircle } from "lucide-react";
 
-const ModuloCard = ({ imagem, titulo, subtitulo, descricao, status, onNavigate }) => {
+const ModuloCard = ({ imagem, titulo, subtitulo, status, atividades, onNavigate }) => {
+
   const isBloqueado = status === "bloqueado";
+
+  // Verifica se todas as atividades foram concluídas
+  const todasConcluidas = atividades.length > 0 && atividades.every((a) => a.concluido === true);
+
 
   return (
     <div
-      className="mb-4"
+      className="mb-4 position-relative"
       onClick={!isBloqueado ? onNavigate : null}
       style={{
         cursor: isBloqueado ? "not-allowed" : "pointer",
@@ -25,6 +31,7 @@ const ModuloCard = ({ imagem, titulo, subtitulo, descricao, status, onNavigate }
             borderRadius: "12px",
           }}
         />
+
         {isBloqueado && (
           <div
             className="position-absolute top-50 start-50 translate-middle bg-dark bg-opacity-75 text-white rounded px-3 py-1"
@@ -33,16 +40,27 @@ const ModuloCard = ({ imagem, titulo, subtitulo, descricao, status, onNavigate }
             Módulo Bloqueado
           </div>
         )}
+
+        {todasConcluidas && (
+          <div
+            className="position-absolute top-0 end-0 m-2 bg-success text-white rounded-pill px-2 py-1 d-flex align-items-center"
+            style={{ fontSize: "0.8rem" }}
+          >
+            <CheckCircle size={16} className="me-1" /> Concluído
+          </div>
+        )}
       </div>
 
       <div className="mt-3 text-start">
-        <h5 className="fw-bold font-poppins" style={{ color: "#99CBC8" }}>{titulo}</h5>
-        <p className="mb-1 font-poppins fw-bold" style={{ color: "#234970" }}>{subtitulo}</p>
-        <p className="small">{descricao}</p>
+        <h5 className="fw-bold font-poppins" style={{ color: "#99CBC8" }}>
+          {titulo}
+        </h5>
+        <p className="mb-1 font-poppins fw-bold" style={{ color: "#234970" }}>
+          {subtitulo}
+        </p>
       </div>
     </div>
   );
 };
-
 
 export default ModuloCard;

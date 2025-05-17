@@ -7,18 +7,18 @@ const useAtualizarDataFim = (userId, modulos) => {
     const atualizarDataFim = async () => {
       if (!modulos) return;
 
-      const nomesModulos = Object.keys(modulos);
+      const idsModulos = Object.keys(modulos);
 
-      for (let nome of nomesModulos) {
-        const modulo = modulos[nome];
+      for (let id of idsModulos) {
+        const modulo = modulos[id];
         const todasConcluidas = modulo.atividades.every(a => a.concluido);
 
         if (todasConcluidas) {
           try {
             await updateDoc(doc(db, "alunos", userId), {
-              [`modulos.${nome}.datafim`]: new Date().toISOString(),
+              [`modulos.${id}.datafim`]: new Date().toISOString(),
             });
-            console.log(`Datafim atualizada para ${nome}`);
+            console.log(`Datafim atualizada para ${id}`);
           } catch (error) {
             console.error("Erro ao atualizar datafim:", error);
           }

@@ -32,7 +32,6 @@ const Modulos = () => {
             <div className="mb-4">
               <h2 className="fw-semibold" style={{ color: "#99CBC8" }}>{modulo.titulo}</h2>
               <h5 className="mb-3" style={{ color: "#234970" }}>{modulo.subtitulo}</h5>
-              <p className="text-muted">{modulo.introducao}</p>
 
               <div className="mb-4">
                   <div className="d-flex justify-content-between mb-1">

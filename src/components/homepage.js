@@ -100,6 +100,7 @@ const Homepage = () => {
                     key={modulo.id}
                     {...modulo}
                     status={status}
+                    atividades={userData.modulos?.[chaveModulo]?.atividades || []}
                     onNavigate={() => handleNavigate(modulo.id)}
                   />
                 );
