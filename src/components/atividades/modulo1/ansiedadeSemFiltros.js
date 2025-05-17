@@ -9,6 +9,7 @@ import AtividadeProgressao from '../atividadeProgressao';
 const AnsiedadeSemFiltros = () => {
   const [pagina, setPagina] = useState(0);
   const [hashtags, setHashtags] = useState(Array(12).fill(""));
+  const [inputError, setInputError] = useState(false);
   
   const { id: moduloId } = useParams();
   const { updateUserData } = useContext(UserContext);
@@ -17,16 +18,41 @@ const AnsiedadeSemFiltros = () => {
   const atividade = modulo?.atividades.find(a => a.url === "ansiedade-sem-filtros");
   const quadros = atividade?.quadros || [];
 
-  const avancarPagina = () => setPagina((prev) => prev + 1);
-  const retrocederPagina = () => setPagina((prev) => prev - 1);
+  const avancarPagina = () => {
+    // If on a hashtag page and the input is empty, show error
+    if (pagina > 0 && pagina <= 12 && !hashtags[pagina - 1].trim()) {
+      setInputError(true);
+      return;
+    }
+    
+    // Otherwise proceed
+    setInputError(false);
+    setPagina((prev) => prev + 1);
+  };
+  
+  const retrocederPagina = () => {
+    setInputError(false);
+    setPagina((prev) => prev - 1);
+  };
   
   // Now 14 pages total: intro, 12 images, reflection, conclusion
   const progresso = Math.round((pagina / 14) * 100);
 
   const handleHashtagChange = (index, value) => {
+    // Se houver espaço ou vírgula no texto colado, mostrar erro
+    if (value.includes(" ") || value.includes(",")) {
+      setInputError(true);
+      return;
+    }
+
     const newHashtags = [...hashtags];
     newHashtags[index] = value;
     setHashtags(newHashtags);
+
+    // Se o valor agora for válido, remove o erro
+    if (inputError && value.trim() !== "") {
+      setInputError(false);
+    }
   };
 
   // These are placeholder image descriptions
@@ -71,14 +97,14 @@ const AnsiedadeSemFiltros = () => {
                   <div className="row justify-content-center">
                     <div className="col-md-8">
                       <p className="lead">
-                        Sê muito bem-vindo ou bem-vinda ao <strong>Ansiedade Sem Filtros</strong>.
+                        Sê muito bem-vindo ou bem-vinda ao Ansiedade Sem Filtros.
                          Nesta atividade, vais ver uma sequência de imagens com informações 
-                         sobre a <strong>ansiedade na adolescência</strong> — como aparece, o impacto que pode ter e porque 
-                         é tão importante <strong>falarmos sobre isto</strong>. Imagina que estás a fazer scroll no Instagram e
-                          deste de caras com um post sobre este tema. <strong>Lê cada imagem com atenção</strong> e, no final, reage
+                         sobre a ansiedade na adolescência — como aparece, o impacto que pode ter e porque 
+                         é tão importante falarmos sobre isto. Imagina que estás a fazer scroll no Instagram e
+                          deste de caras com um post sobre este tema. Lê cada imagem com atenção e, no final, reage
                            com um hashtag que mostre o que sentiste ao ver aquela informação. Podes escrever qualquer
                             hashtag — algo que sintas, penses ou te venha à cabeça naquele momento. O objetivo é parares
-                            um instante e <strong>refletires</strong> sobre o que estás a ver e como isso te faz sentir. Vamos a isso?"
+                            um instante e refletires sobre o que estás a ver e como isso te faz sentir. Vamos a isso?"
                       </p>
                       <button className="btn btn-primary mt-3 px-4 py-2" onClick={avancarPagina}>
                         <i className="bi bi-play-fill me-2"></i>Vamos a isto?
@@ -111,20 +137,32 @@ const AnsiedadeSemFiltros = () => {
                       </p>
                     </div>
                     
-                    {/* Hashtag input */}
+                    {/* Hashtag input with error state */}
                     <div className="input-group mx-auto" style={{ maxWidth: "500px" }}>
                       <span className="input-group-text" id="hashtag-addon">
                         <i className="bi bi-hash"></i>
                       </span>
                       <input
-                        type="text"
-                        className="form-control"
-                        placeholder="hashtag"
-                        value={hashtags[pagina - 1]}
-                        onChange={(e) => handleHashtagChange(pagina - 1, e.target.value)}
-                        aria-label="Hashtag"
-                        aria-describedby="hashtag-addon"
-                      />
+                      type="text"
+                      className={`form-control ${inputError ? 'is-invalid' : ''}`}
+                      placeholder="hashtag"
+                      value={hashtags[pagina - 1]}
+                      onChange={(e) => handleHashtagChange(pagina - 1, e.target.value)}
+                      onKeyDown={(e) => {
+                        if (e.key === " " || e.key === "," || e.key === "Tab") {
+                          e.preventDefault();
+                          setInputError(true);
+                        }
+                      }}
+                      aria-label="Hashtag"
+                      aria-describedby="hashtag-addon"
+                      required
+                    />
+                    {inputError && (
+                      <div className="invalid-feedback">
+                        Usa apenas uma palavra, sem espaços nem vírgulas.
+                      </div>
+                    )}
                     </div>
                   </div>
 
@@ -132,15 +170,16 @@ const AnsiedadeSemFiltros = () => {
                     <button className="btn btn-outline-secondary" onClick={retrocederPagina}>
                       <i className="bi bi-arrow-left me-2"></i>Anterior
                     </button>
-                    <button className="btn btn-primary" onClick={avancarPagina}>
+                    <button 
+                      className="btn btn-primary" 
+                      onClick={avancarPagina}
+                    >
                       {pagina === 12 ? "Ver reflexão" : "Próximo"}
                       <i className="bi bi-arrow-right ms-2"></i>
                     </button>
                   </div>
                 </>
               )}
-
-              
 
               {/* CONCLUSÃO */}
               {pagina === 13 && (
