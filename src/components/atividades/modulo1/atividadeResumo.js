@@ -18,7 +18,6 @@ const AtividadeResumo = () => {
 
   const modulo = modulos.find((m) => m.id === moduloId);
   const atividade = modulo?.atividades.find(a => a.url === "atividade-resumo");
-  const quadros = atividade?.quadros || [];
 
   const avancarPagina = () => setPagina((prev) => prev + 1);
   const retrocederPagina = () => setPagina((prev) => prev - 1);
