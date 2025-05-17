@@ -150,7 +150,7 @@ const BandaDesenhada = () => {
                       <i className="bi bi-arrow-left me-2"></i>Anterior
                     </button>
                     <button className="btn btn-primary" onClick={avancarPagina}>
-                      Submeter Respostas
+                      Concluir
                       <i className="bi bi-check-lg ms-2"></i>
                     </button>
                   </div>
