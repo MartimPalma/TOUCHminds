@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import { UserContext } from '../../App';
 import { useNavigate } from 'react-router-dom';
 
@@ -6,7 +6,7 @@ const AtividadeProgressao = ({ moduloId, atividadeIndex, updateUserData }) => {
     const { userData } = useContext(UserContext);
     const navigate = useNavigate();
 
-    const moduloKey = `modulo${moduloId}`; // <-- Converte número para chave
+    const moduloKey = `modulo${moduloId}`; 
 
     console.log("ID do módulo (numérico):", moduloId);
     console.log("Chave do módulo:", moduloKey);

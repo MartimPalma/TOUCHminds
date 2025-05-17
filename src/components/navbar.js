@@ -3,8 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { Bell, BoxArrowRight } from 'react-bootstrap-icons';
 import { UserContext } from '../App';
 import { logoutAluno } from "../database/database";
-
 import logo from "../imgs/logoazul.png";
+
 import avatar1 from "../imgs/avatar1.jpg";
 import avatar2 from "../imgs/avatar2.jpg";
 import avatar3 from "../imgs/avatar3.jpg";

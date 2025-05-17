@@ -5,6 +5,7 @@ import React, { useState, useEffect, createContext } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { getFirestore, doc, setDoc } from 'firebase/firestore'; 
+
 import LandingPage from './components/landing';
 import LoginPage from './components/login';
 import SignupPage from './components/signup';
@@ -19,6 +20,9 @@ import LinhaAnsiedade from './components/atividades/modulo1/linhaAnsiedade';
 import AnsiedadeSemFiltros from './components/atividades/modulo1/ansiedadeSemFiltros';
 import AtividadeResumo from './components/atividades/modulo1/atividadeResumo';
 
+import useDesbloquearModulos from './components/desbloquearModulos';
+import useAtualizarDataFim from './components/atualizarDataFim';
+
 import { dadosAlunos } from './database/database';
 
 export const UserContext = createContext(null);
@@ -27,9 +31,11 @@ const App = () => {
   const [user, setUser] = useState(null);
   const [userData, setUserData] = useState(null);
 
+  useDesbloquearModulos(user?.uid, userData?.modulos);
+  useAtualizarDataFim(user?.uid, userData?.modulos);
+
   // Atualiza dados localmente e na Firestore
   const updateUserData = async (updatedData) => {
-
     if (!updatedData?.uid) {
       console.error("UID ausente em updateUserData");
       return;
@@ -73,35 +79,30 @@ const App = () => {
     return () => unsubscribe();
   }, []);
 
-  console.log(user);
-
   return (
     <UserContext.Provider value={{ userData, updateUserData }}>
-  <Router>
-    <Routes>
-      <Route path="/" element={<LandingPage />} />
-      <Route path="/login" element={<LoginPage />} />
-      <Route path="/signup" element={<SignupPage />} />
-      <Route path="/homepage" element={<Homepage />} />
-      <Route path="/progresso" element={<Progresso />} />
-      <Route path="/conquistas" element={<Conquistas />} />
-      <Route path="/contactos" element={<Contactos />} />
-      <Route path="/definicoes" element={<Definições />} />
+      <Router>
+        <Routes>
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/signup" element={<SignupPage />} />
+          <Route path="/homepage" element={<Homepage />} />
+          <Route path="/progresso" element={<Progresso />} />
+          <Route path="/conquistas" element={<Conquistas />} />
+          <Route path="/contactos" element={<Contactos />} />
+          <Route path="/definicoes" element={<Definições />} />
 
-      {/* Página principal de cada módulo */}
-      <Route path="/modulos/:id" element={<Modulos />} />
+          {/* Página principal de cada módulo */}
+          <Route path="/modulos/:id" element={<Modulos />} />
 
-      {/* Atividades dentro de um módulo */}
-      <Route path="/modulos/:id/atividade/banda-desenhada" element={<BandaDesenhada />} />
-      <Route path="/modulos/:id/atividade/linha-ansiedade" element={<LinhaAnsiedade />} />
-      <Route path="/modulos/:id/atividade/ansiedade-sem-filtros" element={<AnsiedadeSemFiltros />} />
-      <Route path="/modulos/:id/atividade/atividade-resumo" element={<AtividadeResumo />} />
-
-      
-    </Routes>
-  </Router>
-</UserContext.Provider>
-
+          {/* Atividades dentro de um módulo */}
+          <Route path="/modulos/:id/atividade/banda-desenhada" element={<BandaDesenhada />} />
+          <Route path="/modulos/:id/atividade/linha-ansiedade" element={<LinhaAnsiedade />} />
+          <Route path="/modulos/:id/atividade/ansiedade-sem-filtros" element={<AnsiedadeSemFiltros />} />
+          <Route path="/modulos/:id/atividade/atividade-resumo" element={<AtividadeResumo />} />
+        </Routes>
+      </Router>
+    </UserContext.Provider>
   );
 };
 

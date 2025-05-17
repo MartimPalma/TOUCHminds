@@ -100,6 +100,22 @@ const LinhaAnsiedade = () => {
                     <p className="mb-0 fs-5">A Maria não gosta de fazer apresentações orais, mas amanhã terá de apresentar um trabalho de grupo na aula de português.</p>
                   </div>
 
+                  <div className="d-flex justify-content-between mt-4">
+                    <button className="btn btn-secondary" onClick={retrocederPagina}>
+                      <i className="bi bi-arrow-left me-2"></i>Anterior
+                    </button>
+
+                    <button className="btn btn-primary" onClick={avancarPagina}>
+                      <i className="bi bi-arrow-right me-2"></i>Próximo
+                    </button>
+                  </div>
+                  </>
+              )}
+
+              {pagina === 2 && (
+                <>
+              
+
                   {/* LINHA DA ANSIEDADE NORMATIVA */}
                   <div className="mb-4 p-4 border rounded" style={{ backgroundColor: "#e8f4f8" }}>
                     <h5 className="fw-bold mb-3">LINHA DO TEMPO: ANSIEDADE NORMATIVA</h5>
@@ -179,6 +195,22 @@ const LinhaAnsiedade = () => {
                       </div>
                     )}
                   </div>
+
+                  <div className="d-flex justify-content-between mt-4">
+                    <button className="btn btn-secondary" onClick={retrocederPagina}>
+                      <i className="bi bi-arrow-left me-2"></i>Anterior
+                    </button>
+
+                    <button className="btn btn-primary" onClick={avancarPagina}>
+                      <i className="bi bi-arrow-right me-2"></i>Próximo
+                    </button>
+                  </div>
+                </>
+                )}
+
+              {pagina === 3 && (
+                <>
+              
 
                   {/* LINHA DA ANSIEDADE PATOLÓGICA */}
                   <div className="mb-4 p-4 border rounded" style={{ backgroundColor: "#f8e8e8" }}>
@@ -260,6 +292,20 @@ const LinhaAnsiedade = () => {
                     )}
                   </div>
 
+                  <div className="d-flex justify-content-between mt-4">
+                    <button className="btn btn-secondary" onClick={retrocederPagina}>
+                      <i className="bi bi-arrow-left me-2"></i>Anterior
+                    </button>
+
+                    <button className="btn btn-primary" onClick={avancarPagina}>
+                      <i className="bi bi-arrow-right me-2"></i>Próximo
+                    </button>
+                  </div>
+
+                </>
+              )}
+              {pagina === 4 && (
+                <>
                   {/* CONCLUSÃO DA ATIVIDADE */}
                   <div className="bg-light p-4 rounded mt-4">
                     <h5 className="fw-bold mb-3">CONCLUSÃO DA ATIVIDADE</h5>

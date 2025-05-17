@@ -5,6 +5,8 @@ import { registerAluno } from "../database/database";
 import logo from "../imgs/logositeazul.png";
 import PersonalizationPopup from "./personalizacao";
 import "../App.css";
+
+
 import avatar1 from "../imgs/avatar1.jpg";
 import avatar2 from "../imgs/avatar2.jpg";
 import avatar3 from "../imgs/avatar3.jpg";

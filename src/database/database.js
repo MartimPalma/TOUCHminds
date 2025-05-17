@@ -192,7 +192,7 @@ export async function dadosAlunos(uid) {
   }
 }
 
-
+export {db};
 
 
 

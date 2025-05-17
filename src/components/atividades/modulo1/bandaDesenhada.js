@@ -20,7 +20,6 @@ const BandaDesenhada = () => {
   const quadros = atividade?.quadros || [];
 
   const avancarPagina = () => {
-    // If on the reflection page and inputs are empty, show error
     if (pagina === quadros.length + 1) {
       if (!ansiedadeComum.trim() || !ansiedadeSOS.trim()) {
         setInputError(true);
@@ -28,7 +27,6 @@ const BandaDesenhada = () => {
       }
     }
     
-    // Otherwise proceed
     setInputError(false);
     setPagina((prev) => prev + 1);
   };
@@ -42,7 +40,6 @@ const BandaDesenhada = () => {
 
   const handleAnsiedadeComumChange = (e) => {
     setAnsiedadeComum(e.target.value);
-    // Clear error when user starts typing in both fields
     if (inputError && e.target.value.trim() && ansiedadeSOS.trim()) {
       setInputError(false);
     }
@@ -50,7 +47,6 @@ const BandaDesenhada = () => {
 
   const handleAnsiedadeSOSChange = (e) => {
     setAnsiedadeSOS(e.target.value);
-    // Clear error when user starts typing in both fields
     if (inputError && e.target.value.trim() && ansiedadeComum.trim()) {
       setInputError(false);
     }
@@ -95,7 +91,6 @@ const BandaDesenhada = () => {
               {/* QUADROS */}
               {pagina > 0 && pagina <= quadros.length && (
                 <>
-                  <h4 className="fw-bold mb-3" style={{ color: "#234970" }}>Quadro {pagina}</h4>
                   <div
                     className="border border-dark rounded p-4 mb-4"
                     style={{
@@ -196,7 +191,7 @@ const BandaDesenhada = () => {
                       <i className="bi bi-arrow-left me-2"></i>Anterior
                     </button>
                     <button className="btn btn-primary" onClick={avancarPagina}>
-                      Concluir
+                      Conclusão
                       <i className="bi bi-check-lg ms-2"></i>
                     </button>
                   </div>
