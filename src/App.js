@@ -23,7 +23,7 @@ import UnindoExperiencias from './components/atividades/modulo1/unindoExperienci
 
 
 import useDesbloquearModulos from './components/desbloquearModulos';
-import useAtualizarDataFim from './components/atualizarDatafim';
+import useAtualizarDataFim from './components/atualizarDataFim';
 
 
 import { dadosAlunos } from './database/database';

@@ -12,12 +12,22 @@ const AtividadeResumo = () => {
   const [showModal, setShowModal] = useState(false);
   const [modalContent, setModalContent] = useState("");
   const [selectedOption, setSelectedOption] = useState(null);
+  const [userChoices, setUserChoices] = useState({
+    0: null, // Chegada ao Clube
+    1: null, // Durante a primeira atividade
+    2: null  // Após a atividade
+  });
   
   const { id: moduloId } = useParams();
   const { updateUserData } = useContext(UserContext);
 
   const modulo = modulos.find((m) => m.id === moduloId);
   const atividade = modulo?.atividades.find(a => a.url === "atividade-resumo");
+
+  // Debug user choices with console.log
+  useEffect(() => {
+    console.log("Current userChoices state:", userChoices);
+  }, [userChoices]);
 
   const avancarPagina = () => setPagina((prev) => prev + 1);
   const retrocederPagina = () => setPagina((prev) => prev - 1);
@@ -30,10 +40,23 @@ const AtividadeResumo = () => {
     setHashtags(newHashtags);
   };
 
-  const handleOptionClick = (content) => {
+  const handleOptionClick = (content, option, questionIndex) => {
+    console.log("Option clicked:", option);
+    console.log("For question index:", questionIndex);
+    
     setModalContent(content);
     setShowModal(true);
-    setSelectedOption(content.substring(0, 20)); // Store abbreviated version to identify selection
+    setSelectedOption(option.text.substring(0, 20)); // Store abbreviated version to identify selection
+    
+    // Store user choice for the current question (store the entire option object)
+    setUserChoices(prev => {
+      const newChoices = {
+        ...prev,
+        [questionIndex]: option
+      };
+      console.log("Updated userChoices:", newChoices);
+      return newChoices;
+    });
   };
 
   const closeModal = () => {
@@ -54,15 +77,18 @@ const AtividadeResumo = () => {
       options: [
         {
           text: "Decidir aproximar-se de um grupo e iniciar uma conversa, mesmo sentindo algum desconforto.",
-          feedback: "A Sara respira fundo e, com o coração acelerado, aproxima-se de um grupo que está a falar sobre o teatro. No início, a voz sai um pouco trémula, mas aos poucos vai-se sentindo mais confortável. Os outros colegas sorriem e fazem perguntas, o que a faz sentir-se mais integrada. A ansiedade começa a diminuir conforme vai participando na conversa."
-        },
-        {
-          text: "Ficar num canto, a fingir que está no telemóvel para parecer ocupada.",
-          feedback: "A Sara pega no telemóvel e finge enviar mensagens, evitando olhar para os colegas. Isso diminui temporariamente a ansiedade, mas não a ajuda a integrar-se no grupo. Conforme os minutos passam, começa a sentir-se mais isolada, como se estivesse a perder a oportunidade de se relacionar com os outros."
+          feedback: "A Sara respira fundo e, com o coração acelerado, aproxima-se de um grupo que está a falar sobre o teatro. No início, a voz sai um pouco trémula, mas aos poucos vai-se sentindo mais confortável. Os outros colegas sorriem e fazem perguntas, o que a faz sentir-se mais integrada. A ansiedade começa a diminuir conforme vai participando na conversa.",
+          summary: "Sara decide aproximar-se de um grupo e iniciar uma conversa. Com o tempo, sente-se mais confortável e a ansiedade diminui."
         },
         {
           text: "Ficar próxima da porta, a observar os outros antes de decidir onde se sentar.",
-          feedback: "A Sara opta por não se apressar. Fica encostada à parede, observando e ouvindo as conversas, tentando perceber o ambiente antes de se juntar a alguém. Isso permite-lhe acalmar-se um pouco, mas também a faz sentir-se mais distante dos colegas que já estão a socializar."
+          feedback: "A Sara opta por não se apressar. Fica encostada à parede, observando e ouvindo as conversas, tentando perceber o ambiente antes de se juntar a alguém. Isso permite-lhe acalmar-se um pouco, mas também a faz sentir-se mais distante dos colegas que já estão a socializar.",
+          summary: "Sara fica próxima da porta, observando. Sente-se mais calma, mas um pouco distante dos colegas."
+        },
+        {
+          text: "Ficar num canto, a fingir que está no telemóvel para parecer ocupada.",
+          feedback: "A Sara pega no telemóvel e finge enviar mensagens, evitando olhar para os colegas. Isso diminui temporariamente a ansiedade, mas não a ajuda a integrar-se no grupo. Conforme os minutos passam, começa a sentir-se mais isolada, como se estivesse a perder a oportunidade de se relacionar com os outros.",
+          summary: "Sara finge estar ocupada no telemóvel, o que diminui a ansiedade temporariamente, mas faz sentir-se mais isolada."
         }
       ]
     },
@@ -77,16 +103,19 @@ const AtividadeResumo = () => {
       ),
       options: [
         {
-          text: "Sugerir começar com uma parte mais pequena e deixar a improvisação completa para outra pessoa.",
-          feedback: "A Sara sente que não está preparada para fazer uma improvisação longa e decide sugerir que o papel seja dividido. Participa num pequeno segmento, o que reduz a ansiedade, mas também a impede que se envolva totalmente na atividade, deixando alguma ansiedade presente."
+          text: "Aceitar o desafio e participar, mesmo com a voz um pouco trémula.",
+          feedback: "Com a respiração acelerada, a Sara decide tentar. Sobe ao palco com as mãos a tremer e começa a improvisar. No início, sente-se inquieta, mas à medida que continua, nota que os colegas estão a prestar atenção com curiosidade e não com julgamento. A ansiedade começa a diminuir à medida que se envolve mais com a atividade.",
+          summary: "Sara aceita o desafio da improvisação. No início, está ansiosa, mas à medida que continua a ansiedade diminui."
         },
         {
-          text: "Aceitar o desafio e participar, mesmo com a voz um pouco trémula.",
-          feedback: "Com a respiração acelerada, a Sara decide tentar. Sobe ao palco com as mãos a tremer e começa a improvisar. No início, sente-se inquieta, mas à medida que continua, nota que os colegas estão a prestar atenção com curiosidade e não com julgamento. A ansiedade começa a diminuir à medida que se envolve mais com a atividade."
+          text: "Sugerir começar com uma parte mais pequena e deixar a improvisação completa para outra pessoa.",
+          feedback: "A Sara sente que não está preparada para fazer uma improvisação longa e decide sugerir que o papel seja dividido. Participa num pequeno segmento, o que reduz a ansiedade, mas também a impede que se envolva totalmente na atividade, deixando alguma ansiedade presente.",
+          summary: "Sara sugere uma intervenção mais pequena. Participa um pouco, reduzindo a pressão, mas não se envolve totalmente, deixando alguma ansiedade presente."
         },
         {
           text: "Recusar educadamente, dizendo que prefere observar os outros por enquanto.",
-          feedback: "A Sara diz ao professor que não se sente pronta para participar e pede para observar. Sente um alívio momentâneo, mas à medida que vê os outros a participar, surge um sentimento de culpa por não ter tentado, o que faz com que a ansiedade e a frustração aumentem ligeiramente."
+          feedback: "A Sara diz ao professor que não se sente pronta para participar e pede para observar. Sente um alívio momentâneo, mas à medida que vê os outros a participar, surge um sentimento de culpa por não ter tentado, o que faz com que a ansiedade e a frustração aumentem ligeiramente.",
+          summary: "Sara recusa participar e prefere observar. Sente alívio momentâneo, mas depois sente culpa e frustração por não ter tentado."
         }
       ]
     },
@@ -101,16 +130,19 @@ const AtividadeResumo = () => {
       ),
       options: [
         {
-          text: "Recusar e ir para casa rapidamente.",
-          feedback: "A Sara diz que não vai poder e sai rapidamente, sentindo um alívio imediato por não ter de interagir mais naquele dia. No entanto, ao chegar a casa, fica com a sensação de que se afastou ainda mais do grupo e teme que a próxima aula seja ainda mais desafiante."
-        },
-        {
           text: "Aceitar e combinar ensaiar com eles.",
-          feedback: "Apesar da ansiedade, a Sara decide aceitar o convite. Durante o ensaio, começa a sentir-se mais à vontade, fazendo novas amizades e percebendo que os outros também têm os seus momentos de ansiedade. A ansiedade diminui e sente-se mais integrada."
+          feedback: "Apesar da ansiedade, a Sara decide aceitar o convite. Durante o ensaio, começa a sentir-se mais à vontade, fazendo novas amizades e percebendo que os outros também têm os seus momentos de ansiedade. A ansiedade diminui e sente-se mais integrada.",
+          summary: "Sara aceita ensaiar com os colegas. Aos poucos, faz amizades e sente-se mais à vontade e integrada no grupo, com a ansiedade reduzida."
         },
         {
           text: "Dizer que está um pouco ocupada, mas que vai tentar aparecer no próximo ensaio",
-          feedback: "A  Sara agradece o convite, mas diz que tem de ficar para uma próxima porque agora precisa de ir para casa. Embora mantenha uma porta aberta para futuras interações, sente que perdeu uma oportunidade de se aproximar do grupo, e a ansiedade por não ter participado permanece."
+          feedback: "A Sara agradece o convite, mas diz que tem de ficar para uma próxima porque agora precisa de ir para casa. Embora mantenha uma porta aberta para futuras interações, sente que perdeu uma oportunidade de se aproximar do grupo, e a ansiedade por não ter participado permanece.",
+          summary: "Sara agradece, mas diz que está ocupada e promete tentar na próxima vez. Sente que perdeu uma oportunidade de aproximar dos colegas e a ansiedade permanece."
+        },
+        {
+          text: "Recusar e ir para casa rapidamente.",
+          feedback: "A Sara diz que não vai poder e sai rapidamente, sentindo um alívio imediato por não ter de interagir mais naquele dia. No entanto, ao chegar a casa, fica com a sensação de que se afastou ainda mais do grupo e teme que a próxima aula seja ainda mais desafiante.",
+          summary: "Sara recusa e vai para casa rapidamente, sentindo alívio imediato. No entanto, depois, sente que se afastou ainda mais do grupo."
         }
       ]
     }
@@ -124,21 +156,35 @@ const AtividadeResumo = () => {
       <div className="modal fade show" style={{ display: 'block', backgroundColor: 'rgba(0,0,0,0.5)' }}>
         <div className="modal-dialog modal-dialog-centered modal-lg">
           <div className="modal-content">
-            <div className="modal-header fw-bold" style={{ color: "black"  }}>
-                  <h5 className="modal-title">Resultado da tua escolha</h5>
-                  <button type="button" className="btn-close btn-close-white" onClick={onClose}></button>
-                </div>
+            <div className="modal-header fw-bold" style={{ color: "black" }}>
+              <h5 className="modal-title">Resultado da tua escolha</h5>
+            </div>
             <div className="modal-body pt-4 ps-4 pe-4 ">
               <p className="lead">{content}</p>
             </div>
             <div className="modal-footer">
-              <button type="button" className="btn btn-primary" onClick={onClose}>Compreendi</button>
+              <button type="button" className="btn btn-primary" onClick={() => {
+                onClose();
+                avancarPagina();
+              }}>Prosseguir</button>
             </div>
           </div>
         </div>
       </div>
     );
   };
+
+  // Debug function to check if an option is selected
+  const isOptionSelected = (pageIdx, option) => {
+    console.log(`Checking if option is selected for page ${pageIdx}:`, option);
+    console.log(`Current selection:`, userChoices[pageIdx]);
+    
+    if (!userChoices[pageIdx]) return false;
+    
+    // Compare text values as a simple way to compare objects
+    return userChoices[pageIdx].text === option.text;
+  };
+  
   return (
     <div className="container-fluid vh-100 p-0 font-poppins">
       <Navbar />
@@ -179,6 +225,7 @@ const AtividadeResumo = () => {
                   </div>
                 </div>
               )}
+
               {pagina === 1 && (
                 <div className="text-center py-4">
                   <h2 className="fw-bold mb-4" style={{ color: "#234970" }}>{"O Primeiro Dia no Clube de Teatro"}</h2>
@@ -192,17 +239,18 @@ const AtividadeResumo = () => {
                            com pensamentos como: "Será que vou fazer amigos? E se me enganar durante as atividades?
                       </p>
                       <div className="d-flex justify-content-between">
-                    <button className="btn btn-outline-secondary" onClick={retrocederPagina}>
-                      <i className="bi bi-arrow-left me-2"></i>Anterior
-                    </button>
-                    <button className="btn btn-primary" onClick={avancarPagina}>
-                      Próximo<i className="bi bi-arrow-right ms-2"></i>
-                    </button>
-                  </div>
+                        <button className="btn btn-outline-secondary" onClick={retrocederPagina}>
+                          <i className="bi bi-arrow-left me-2"></i>Anterior
+                        </button>
+                        <button className="btn btn-primary" onClick={avancarPagina}>
+                          Próximo<i className="bi bi-arrow-right ms-2"></i>
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>
               )}
+
               {/* QUIZ PAGES (1-3) */}
               {pagina >= 2 && pagina <= 4 && (
                 <>
@@ -210,28 +258,24 @@ const AtividadeResumo = () => {
                   <div className="mb-4">
                     <h5 className="mb-4">{quizPages[pagina-2].question}</h5>
                     <div className="d-flex flex-column gap-3">
-                      {quizPages[pagina-2].options.map((option, index) => (
-                        <button 
-                          key={index} 
-                          className={`btn btn-outline-secondary text-dark p-3 text-start ${selectedOption === option.text.substring(0, 20) ? 'active' : ''}`} 
-                          onClick={() => handleOptionClick(option.feedback)}
-                        >
-                          {option.text}
-                        </button>
-                      ))}
+                      {quizPages[pagina-2].options.map((option, index) => {
+                        const isSelected = userChoices[pagina-2] && userChoices[pagina-2].text === option.text;
+                        console.log(`Option ${index} selected:`, isSelected);
+                        
+                        return (
+                          <button 
+                            key={index} 
+                            className={`btn ${isSelected ? 'btn-primary' : 'btn-outline-secondary'} text-${isSelected ? 'white' : 'dark'} p-3 text-start`} 
+                            onClick={() => handleOptionClick(option.feedback, option, pagina-2)}
+                          >
+                            {option.text}
+                          </button>
+                        );
+                      })}
                     </div>
-                  </div>
-                  <div className="d-flex justify-content-between">
-                    <button className="btn btn-outline-secondary" onClick={retrocederPagina}>
-                      <i className="bi bi-arrow-left me-2"></i>Anterior
-                    </button>
-                    <button className="btn btn-primary" onClick={avancarPagina}>
-                      Próximo<i className="bi bi-arrow-right ms-2"></i>
-                    </button>
                   </div>
                 </>
               )}
-              
               
               {/* QUIZ PAGE 5 - ADDITIONAL CONTENT */}
               {pagina === 5 && (
@@ -249,33 +293,66 @@ const AtividadeResumo = () => {
                           ansiedade é algo comum e todos nós a sentimos. Ao enfrentar os desafios e praticar novas formas de agir,
                            poderás fortalecer as tuas relações e melhorar a forma como te vês e te sentes contigo mesmo/a.
                       </p>
-                      <div className="d-flex justify-content-between">
-                    <button className="btn btn-outline-secondary" onClick={retrocederPagina}>
-                      <i className="bi bi-arrow-left me-2"></i>Anterior
-                    </button>
-                    <button className="btn btn-primary" onClick={avancarPagina}>
-                      Próximo<i className="bi bi-arrow-right ms-2"></i>
-                    </button>
-                  </div>
+                      <div className="d-flex justify-content-end">
+                        <button className="btn btn-primary" onClick={avancarPagina}>
+                          Próximo<i className="bi bi-arrow-right ms-2"></i>
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </>
               )}
-
-             
 
               {pagina === 6 && (
                 <>
                   <h4 className="fw-bold mb-4" style={{ color: "#234970" }}>Tabela Resumo</h4>
                   <div className="table-responsive">
                     <table className="table table-bordered">
-                      <thead className="table-light">
+                      <thead style={{ backgroundColor: "#99CBC8" }}>
                         <tr>
-                          
+                          <th style={{ width: "20%",  backgroundColor: "#99CBC8"  }}>Cenário</th>
+                          <th style={{ width: "26.6%",  backgroundColor: "#99CBC8"  }}>Opção A</th>
+                          <th style={{ width: "26.6%", backgroundColor: "#99CBC8"  }}>Opção B</th>
+                          <th style={{ width: "26.6%", backgroundColor: "#99CBC8"  }}>Opção C</th>
                         </tr>
                       </thead>
                       <tbody>
-                        
+                        {quizPages.map((page, idx) => {
+                          console.log(`Rendering row for page ${idx}`);
+                          console.log(`Current choice for this page:`, userChoices[idx]);
+                          
+                          return (
+                            <tr key={idx}>
+                              <td style={{ backgroundColor: "#99CBC8", fontWeight: "bold", verticalAlign: "middle" }}>{page.title}</td>
+                              {page.options.map((option, optIdx) => {
+                                // Check if this option was selected
+                                const isSelected = userChoices[idx] && userChoices[idx].text === option.text;
+                                console.log(`Row ${idx}, Option ${optIdx} selected:`, isSelected);
+                                
+                                return (
+                                  <td 
+                                    key={optIdx} 
+                                    style={{ 
+                                      position: "relative",
+                                      verticalAlign: "middle"
+                                    }}
+                                  >
+                                    {isSelected && (
+                                      <div style={{ 
+                                        textDecoration: "underline", 
+                                        fontWeight: "bold",
+                                        marginBottom: "5px" 
+                                      }}>
+                                        A tua escolha:
+                                      </div>
+                                    )}
+                                    {option.summary}
+                                  </td>
+                                );
+                              })}
+                            </tr>
+                          );
+                        })}
                       </tbody>
                     </table>
                   </div>
