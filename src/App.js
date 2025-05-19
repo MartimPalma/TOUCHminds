@@ -23,7 +23,6 @@ import UnindoExperiencias from './components/atividades/modulo1/unindoExperienci
 
 
 import useDesbloquearModulos from './components/desbloquearModulos';
-import useAtualizarDataFim from './components/atualizarDataFim';
 
 
 import { dadosAlunos } from './database/database';
@@ -35,7 +34,6 @@ const App = () => {
   const [userData, setUserData] = useState(null);
 
   useDesbloquearModulos(user?.uid, userData?.modulos);
-  useAtualizarDataFim(user?.uid, userData?.modulos);
 
   // Atualiza dados localmente e na Firestore
   const updateUserData = async (updatedData) => {

@@ -5,18 +5,18 @@ import { useNavigate } from 'react-router-dom';
 const AtividadeProgressao = ({ moduloId, atividadeIndex, updateUserData }) => {
     const { userData } = useContext(UserContext);
     const navigate = useNavigate();
-
-    const moduloKey = `modulo${moduloId}`; 
-
+    
+    const moduloKey = `modulo${moduloId}`;
+    
     console.log("ID do módulo (numérico):", moduloId);
     console.log("Chave do módulo:", moduloKey);
-
+    
     if (!userData) {
         alert("Erro: Dados do utilizador não disponíveis");
         console.error("Dados do utilizador não disponíveis:", userData);
         return null;
     }
-
+    
     const concluirAtividade = () => {
         const moduloData = userData.modulos?.[moduloKey];
         if (!moduloData || !moduloData.atividades) {
@@ -24,7 +24,7 @@ const AtividadeProgressao = ({ moduloId, atividadeIndex, updateUserData }) => {
             console.error(`Módulo '${moduloKey}' não encontrado nos dados do utilizador.`);
             return;
         }
-
+        
         const dadosAtualizados = {
             ...userData,
             modulos: {
@@ -35,25 +35,35 @@ const AtividadeProgressao = ({ moduloId, atividadeIndex, updateUserData }) => {
                 },
             },
         };
-
+        
         dadosAtualizados.modulos[moduloKey].atividades[atividadeIndex] = {
             ...moduloData.atividades[atividadeIndex],
             concluido: true,
         };
-
-        if (atividadeIndex < moduloData.atividades.length - 1) {
+        
+        // Verifica se é a última atividade do módulo
+        const UltimaAtividade = atividadeIndex === moduloData.atividades.length - 1;
+        
+        if (UltimaAtividade) {
+            // Se for a última atividade, define a data de fim do módulo como a data atual
+            dadosAtualizados.modulos[moduloKey].dataFim = new Date().toISOString();
+            // 
+            dadosAtualizados.modulosConcluidos = moduloId;
+            console.log("Módulo concluído em:", dadosAtualizados.modulos[moduloKey].dataFim);
+        } else {
+            // Se não for a última, desbloqueia a próxima atividade
             dadosAtualizados.modulos[moduloKey].atividades[atividadeIndex + 1] = {
                 ...moduloData.atividades[atividadeIndex + 1],
                 status: 'desbloqueado',
             };
         }
-
+        
         updateUserData(dadosAtualizados);
-
+        
         // Redireciona para a página do módulo com o número apenas
         navigate(`/modulos/${moduloId}`);
     };
-
+    
     return (
         <button onClick={concluirAtividade} className="btn btn-success">
             Concluir Atividade
