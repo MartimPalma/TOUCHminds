@@ -2,76 +2,94 @@ import { useEffect, useRef } from "react";
 import { doc, updateDoc } from "firebase/firestore";
 import { db } from "../database/database";
 
-const segundosPassados = (dataISO) => {
+const diasPassados = (dataISO) => {
   if (!dataISO) return 0;
   const dataDesbloqueio = new Date(dataISO);
   const agora = new Date();
-  const diffMs = agora - dataDesbloqueio;
-  return Math.floor(diffMs / 1000);
+  return Math.floor((agora - dataDesbloqueio) / (1000 * 60 * 60 * 24));
 };
 
-const useDesbloquearModulos = (userId, modulos) => {
-  const modulosRef = useRef(modulos);
+const useDesbloquearModulos = (userData) => {
+  const modulosRef = useRef(userData?.modulos);
 
   useEffect(() => {
-    modulosRef.current = modulos;
-  }, [modulos]);
+    modulosRef.current = userData?.modulos;
+  }, [userData]);
 
   useEffect(() => {
-  if (!userId || !modulos) return;
+    if (!userData?.uid || !userData?.modulos) {
+      console.log("Dados incompletos no hook: userId ou modulos ausentes");
+      return;
+    }
 
-  const intervalId = setInterval(async () => {
-    const modulosAtual = modulosRef.current;
-    if (!modulosAtual) return;
+    const checkAndUpdate = async () => {
+      const modulosAtual = modulosRef.current;
+      if (!modulosAtual) {
+        console.log("Nenhum módulo disponível para verificação");
+        return;
+      }
 
-    // Ordena os módulos pelo número, no formato "moduloX"
-    const nomesModulos = Object.keys(modulosAtual).sort((a, b) => {
-      const numA = parseInt(a.replace("modulo", ""), 10);
-      const numB = parseInt(b.replace("modulo", ""), 10);
-      return numA - numB;
-    });
+      const nomesModulos = Object.keys(modulosAtual).sort((a, b) => {
+        const numA = parseInt(a.replace("modulo", ""), 10);
+        const numB = parseInt(b.replace("modulo", ""), 10);
+        return numA - numB;
+      });
 
-    console.log("Ordem dos módulos:", nomesModulos);
+      console.log("Verificando desbloqueio de módulos na ordem:", nomesModulos);
 
-    for (let i = 0; i < nomesModulos.length - 1; i++) {
-      const nomeAtual = nomesModulos[i];
-      const nomeSeguinte = nomesModulos[i + 1];
+      for (let i = 0; i < nomesModulos.length - 1; i++) {
+        const nomeAtual = nomesModulos[i];
+        const nomeSeguinte = nomesModulos[i + 1];
+        const moduloAtual = modulosAtual[nomeAtual];
+        const moduloSeguinte = modulosAtual[nomeSeguinte];
 
-      const moduloAtual = modulosAtual[nomeAtual];
-      const moduloSeguinte = modulosAtual[nomeSeguinte];
+        if (!moduloAtual?.dataFim) {
+          console.log(`Módulo ${nomeAtual} ainda não foi concluído`);
+          continue;
+        }
 
-      if (!moduloAtual || !moduloSeguinte) continue;
+        if (moduloSeguinte?.status !== "bloqueado") {
+          console.log(`Módulo ${nomeSeguinte} já está desbloqueado ou em progresso`);
+          continue;
+        }
 
-      const todasConcluidas = moduloAtual.atividades.every(a => a.concluido);
-      const segundosDesdeDesbloqueio = segundosPassados(moduloAtual.datafim);
+        const diasDesdeFinalizacao = diasPassados(moduloAtual.dataFim);
 
-      console.log(`Módulo ${nomeAtual}: todas concluídas?`, todasConcluidas);
-      console.log(`Segundos desde desbloqueio:`, segundosDesdeDesbloqueio);
-      console.log(`Status do próximo módulo (${nomeSeguinte}):`, moduloSeguinte.status);
+        console.log(`Módulo ${nomeAtual} finalizado em ${moduloAtual.dataFim}`);
+        console.log(`Já se passaram ${diasDesdeFinalizacao} dias desde a conclusão`);
 
-      const podeDesbloquear =
-        todasConcluidas &&
-        segundosDesdeDesbloqueio >= 10 &&
-        moduloSeguinte.status === "bloqueado";
-
-      if (podeDesbloquear) {
-        try {
-          await updateDoc(doc(db, "alunos", userId), {
-            [`modulos.${nomeSeguinte}.status`]: "desbloqueado",
-            [`modulos.${nomeSeguinte}.datafim`]: new Date().toISOString(),
-          });
-          console.log(`Módulo ${nomeSeguinte} desbloqueado.`);
-          break; // evita múltiplos updates seguidos
-        } catch (error) {
-          console.error("Erro ao desbloquear módulo:", error);
+        if (diasDesdeFinalizacao >= 7) {
+          try {
+            const dataDesbloqueio = new Date().toISOString();
+            await updateDoc(doc(db, "alunos", userData.uid), {
+              [`modulos.${nomeSeguinte}.status`]: "desbloqueado",
+              [`modulos.${nomeSeguinte}.dataInicio`]: dataDesbloqueio,
+            });
+            console.log(`✅ Módulo ${nomeSeguinte} foi desbloqueado com sucesso!`);
+            break; // Evita múltiplos desbloqueios na mesma verificação
+          } catch (error) {
+            console.error("Erro ao desbloquear módulo:", error);
+          }
+        } else {
+          console.log(`Ainda faltam ${7 - diasDesdeFinalizacao} dias para desbloquear ${nomeSeguinte}`);
         }
       }
-    }
-  }, 5000);
+    };
 
-  return () => clearInterval(intervalId);
-}, [userId, modulos]);
+    // Chama imediatamente após `userData` ser carregado
+    console.log("Executando verificação inicial de desbloqueio");
+    checkAndUpdate();
 
+    // Chama periodicamente a cada 10 minutos
+    const intervalId = setInterval(() => {
+      console.log("Executa verificação periódica de desbloqueio");
+      checkAndUpdate();
+    }, 600000); // 10 minutos em milissegundos
+
+    return () => {
+      clearInterval(intervalId);
+    };
+  }, [userData]);
 };
 
 export default useDesbloquearModulos;

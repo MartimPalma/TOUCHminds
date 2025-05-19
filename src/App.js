@@ -33,7 +33,8 @@ const App = () => {
   const [user, setUser] = useState(null);
   const [userData, setUserData] = useState(null);
 
-  useDesbloquearModulos(user?.uid, userData?.modulos);
+  // Utiliza o hook para verificar e desbloquear módulos a cada 7 dias
+  useDesbloquearModulos(userData);
 
   // Atualiza dados localmente e na Firestore
   const updateUserData = async (updatedData) => {
