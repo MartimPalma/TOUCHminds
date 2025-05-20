@@ -14,14 +14,11 @@ const DesafioSemanal = ({ id }) => {
   const [loading, setLoading] = useState(false);
   const [feedback, setFeedback] = useState('');
 
-  console.log('Desafio semanal:', userData);
-
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
   const handleAdd = async () => {
-    // Verifica se todos os campos do objeto form estão preenchidos
     if (Object.values(form).some(val => val.trim() === '')) {
       setFeedback('Por favor, preenche todos os campos.');
       return;
@@ -37,7 +34,6 @@ const DesafioSemanal = ({ id }) => {
       setFeedback('');
 
       const chaveModulo = `modulo${id}`;
-
       const modulosAtualizados = {
         ...userData.modulos,
         [chaveModulo]: {
@@ -51,7 +47,14 @@ const DesafioSemanal = ({ id }) => {
 
       await updateUserData({ ...userData, modulos: modulosAtualizados });
       setFeedback('Registo adicionado com sucesso!');
-      setForm({ dia: '', situacao: '', comoMeSenti: '', pensamentos: '', comoLidei: '', funcionou: '' });
+      setForm({
+        dia: '',
+        situacao: '',
+        comoMeSenti: '',
+        pensamentos: '',
+        comoLidei: '',
+        funcionou: '',
+      });
     } catch (error) {
       setFeedback('Erro ao guardar. Tenta novamente.');
     } finally {
@@ -59,11 +62,15 @@ const DesafioSemanal = ({ id }) => {
     }
   };
 
+  // Obtém os registos guardados
+  const registos =
+    userData.modulos?.[`modulo${id}`]?.desafioSemanal || [];
+
   return (
     <div className="p-4 bg-white rounded shadow-sm">
       <h3 className="mb-4">Desafio Semanal - Módulo {id}</h3>
-  
-      <div className="table-responsive">
+
+      <div className="table-responsive mb-4">
         <table className="table table-bordered text-center align-middle">
           <thead>
             <tr>
@@ -95,12 +102,14 @@ const DesafioSemanal = ({ id }) => {
                 { name: "funcionou", placeholder: "Ex: Falar com alguém" },
               ].map(({ name, placeholder }) => (
                 <td key={name}>
-                  <input
+                  <textarea
                     name={name}
                     value={form[name]}
                     onChange={handleChange}
                     className="form-control"
                     placeholder={placeholder}
+                    rows={3}
+                    style={{ resize: 'vertical' }}
                   />
                 </td>
               ))}
@@ -108,11 +117,10 @@ const DesafioSemanal = ({ id }) => {
           </tbody>
         </table>
       </div>
-  
-      <div className="mt-4 text-start">
+
+      <div className="mt-3 text-start">
         <button
           onClick={handleAdd}
-          type="submit"
           className="btn"
           style={{
             backgroundColor: "#66BFBF",
@@ -125,10 +133,7 @@ const DesafioSemanal = ({ id }) => {
         >
           {loading ? (
             <div className="d-flex align-items-center justify-content-center">
-              <div
-                className="spinner-border spinner-border-sm me-2"
-                role="status"
-              >
+              <div className="spinner-border spinner-border-sm me-2" role="status">
                 <span className="visually-hidden">A processar...</span>
               </div>
               A processar...
@@ -138,19 +143,51 @@ const DesafioSemanal = ({ id }) => {
           )}
         </button>
       </div>
-  
+
       {feedback && (
         <div
-          className={`alert ${
-            feedback.includes("sucesso") ? "alert-success" : "alert-danger"
-          } mt-3`}
+          className={`alert ${feedback.includes("sucesso") ? "alert-success" : "alert-danger"} mt-3`}
         >
           {feedback}
         </div>
       )}
+
+      {registos.length > 0 && (
+        <>
+          <h5 className="mt-5">Registos anteriores:</h5>
+          <div className="table-responsive">
+            <table className="table table-bordered text-center align-middle">
+              <thead>
+                <tr>
+                  <th>Data</th>
+                  <th>Dia</th>
+                  <th>Situação</th>
+                  <th>Como me senti?</th>
+                  <th>Pensamentos</th>
+                  <th>Como lidei?</th>
+                  <th>Funcionou?</th>
+                </tr>
+              </thead>
+              <tbody>
+                {registos.map((item, idx) => (
+                  <tr key={idx}>
+                    <td>{item.dataCriacao}</td>
+                    <td>{item.dia}</td>
+                    <td>{item.situacao}</td>
+                    <td>{item.comoMeSenti}</td>
+                    <td>{item.pensamentos}</td>
+                    <td>{item.comoLidei}</td>
+                    <td>{item.funcionou}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </>
+      )}
     </div>
   );
-  
 };
 
 export default DesafioSemanal;
+
