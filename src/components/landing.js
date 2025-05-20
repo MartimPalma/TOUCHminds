@@ -112,17 +112,19 @@ const LandingPage = () => {
             <Accordion.Item eventKey="0">
               <Accordion.Header className="font-poppins">O que é?</Accordion.Header>
               <Accordion.Body className="font-lato">
-                O TOUCHminds é um programa online e gratuito...
+                O TOUCHminds é um programa online e gratuito, criado para promover a compreensão das dificuldades relacionadas com a ansiedade e a procura de ajuda quando necessário. Cada adolescente pode percorrer cada um dos seis módulos interativos ao seu ritmo, com conteúdos como vídeos, atividades interativas e práticas. 
               </Accordion.Body>
             </Accordion.Item>
             <Accordion.Item eventKey="1">
               <Accordion.Header className="font-poppins">A quem se dirige?</Accordion.Header>
-              <Accordion.Body>A adolescentes dos 15 aos 17 anos...</Accordion.Body>
+              <Accordion.Body>
+                A adolescentes dos 15 aos 17 anos que sentem que a ansiedade afeta a sua vida e desejam compreendê-la melhor, refletindo sobre estratégias para superar obstáculos na procura de ajuda e promover essa procura. 
+              </Accordion.Body>
             </Accordion.Item>
             <Accordion.Item eventKey="2">
               <Accordion.Header className="font-poppins">Como funciona?</Accordion.Header>
               <Accordion.Body>
-                A plataforma oferece conteúdo de acesso livre...
+                A plataforma oferece conteúdo de acesso livre, disponível para os participantes das escolas selecionadas no norte do país. Para aceder ao programa TOUCHminds, é necessário efetuar um registo. 
               </Accordion.Body>
             </Accordion.Item>
           </Accordion>
