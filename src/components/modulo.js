@@ -61,6 +61,44 @@ const Modulos = () => {
                       </span>
                     </div>
                   )}
+
+                  {progressoModulo > 0 && progressoModulo < 30 && (
+                    <div className="mt-2 small text-muted">
+                      Bom começo! Já deste os primeiros passos.{" "}
+                      <span className="small fw-semibold fs-6" style={{ color: "#234970" }}>
+                        Continua!
+                      </span>
+                    </div>
+                  )}
+
+                  {progressoModulo >= 30 && progressoModulo < 70 && (
+                    <div className="mt-2 small text-muted">
+                      Estás a meio do caminho.{" "}
+                      <span className="small fw-semibold fs-6" style={{ color: "#234970" }}>
+                        Mantém o ritmo!
+                      </span>
+                    </div>
+                  )}
+
+                  {progressoModulo >= 70 && progressoModulo < 100 && (
+                    <div className="mt-2 small text-muted">
+                      Quase lá! Já fizeste grande parte do módulo.{" "}
+                      <span className="small fw-semibold fs-6" style={{ color: "#234970" }}>
+                        Não pares agora!
+                      </span>
+                    </div>
+                  )}
+
+                  {progressoModulo === 100 && (
+                    <div className="mt-2 small text-muted">
+                      Parabéns! Completaste o módulo com sucesso.{" "}
+                      <span className="small fw-semibold fs-6" style={{ color: "#234970" }}>
+                        Excelente trabalho!
+                      </span>
+                    </div>
+                  )}
+
+
                 </div>
 
 
