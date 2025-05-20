@@ -16,5 +16,5 @@ comandos do git:
 
 
 #  versão live
- tranferir ficheiros do repositório para o computador: 
+ https://touch-minds.vercel.app
    
