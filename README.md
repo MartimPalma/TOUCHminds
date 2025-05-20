@@ -13,3 +13,8 @@ comandos do git:
 #  fazer sempre que inicia o projeto 
  tranferir ficheiros do repositório para o computador: 
   git pull origin main 
+
+
+#  versão live
+ https://touch-minds.vercel.app
+   
