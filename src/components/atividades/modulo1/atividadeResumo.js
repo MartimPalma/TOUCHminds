@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext, useEffect, act } from "react";
 import { useParams } from "react-router-dom";
 import Navbar from "../../navbar";
 import Sidebar from "../../sidebar";
@@ -9,8 +9,8 @@ import AtividadeProgressao from '../atividadeProgressao';
 const AtividadeResumo = () => {
   const [pagina, setPagina] = useState(0);
   const [hashtags, setHashtags] = useState(Array(12).fill(""));
-  const [showModal, setShowModal] = useState(false);
-  const [modalContent, setModalContent] = useState("");
+  const [hoveredOption, setHoveredOption] = useState(null);
+  const [hoveredFeedback, setHoveredFeedback] = useState("");
   const [selectedOption, setSelectedOption] = useState(null);
   const [userChoices, setUserChoices] = useState({
     0: null, // Chegada ao Clube
@@ -40,12 +40,10 @@ const AtividadeResumo = () => {
     setHashtags(newHashtags);
   };
 
-  const handleOptionClick = (content, option, questionIndex) => {
+  const handleOptionClick = (option, questionIndex) => {
     console.log("Option clicked:", option);
     console.log("For question index:", questionIndex);
     
-    setModalContent(content);
-    setShowModal(true);
     setSelectedOption(option.text.substring(0, 20)); // Store abbreviated version to identify selection
     
     // Store user choice for the current question (store the entire option object)
@@ -59,8 +57,13 @@ const AtividadeResumo = () => {
     });
   };
 
-  const closeModal = () => {
-    setShowModal(false);
+  const handleMouseEnter = (feedback) => {
+    setHoveredFeedback(feedback);
+    setHoveredOption(true);
+  };
+
+  const handleMouseLeave = () => {
+    setHoveredOption(false);
   };
 
   // Quiz content for pages 2, 3, and 4
@@ -77,7 +80,7 @@ const AtividadeResumo = () => {
       options: [
         {
           text: "Decidir aproximar-se de um grupo e iniciar uma conversa, mesmo sentindo algum desconforto.",
-          feedback: "A Sara respira fundo e, com o coração acelerado, aproxima-se de um grupo que está a falar sobre o teatro. No início, a voz sai um pouco trémula, mas aos poucos vai-se sentindo mais confortável. Os outros colegas sorriem e fazem perguntas, o que a faz sentir-se mais integrada. A ansiedade começa a diminuir conforme vai participando na conversa.",
+          feedback: "/imgs/act5mod1.jpg",
           summary: "Sara decide aproximar-se de um grupo e iniciar uma conversa. Com o tempo, sente-se mais confortável e a ansiedade diminui."
         },
         {
@@ -148,41 +151,26 @@ const AtividadeResumo = () => {
     }
   ];
 
-  // Modal component
-  const Modal = ({ show, onClose, content }) => {
+  // Hover Feedback component
+  const HoverFeedback = ({ show, content }) => {
     if (!show) return null;
     
-   return (
-      <div className="modal fade show" style={{ display: 'block', backgroundColor: 'rgba(0,0,0,0.5)' }}>
-        <div className="modal-dialog modal-dialog-centered modal-lg">
-          <div className="modal-content">
-            <div className="modal-header fw-bold" style={{ color: "black" }}>
-              <h5 className="modal-title">Resultado da tua escolha</h5>
-            </div>
-            <div className="modal-body pt-4 ps-4 pe-4 ">
-              <p className="lead">{content}</p>
-            </div>
-            <div className="modal-footer">
-              <button type="button" className="btn btn-primary" onClick={() => {
-                onClose();
-                avancarPagina();
-              }}>Prosseguir</button>
-            </div>
+    return (
+      <div className="position-fixed" style={{ 
+        top: '50%', 
+        left: '50%', 
+        transform: 'translate(-50%, -50%)', 
+        zIndex: 1050,
+        maxWidth: '300px',
+        width: '100%'
+      }}>
+        <div className="card shadow-lg">
+          <div className="card-body pt-4 ps-4 pe-4">
+            <img src={content} className="img-fluid" ></img>
           </div>
         </div>
       </div>
     );
-  };
-
-  // Debug function to check if an option is selected
-  const isOptionSelected = (pageIdx, option) => {
-    console.log(`Checking if option is selected for page ${pageIdx}:`, option);
-    console.log(`Current selection:`, userChoices[pageIdx]);
-    
-    if (!userChoices[pageIdx]) return false;
-    
-    // Compare text values as a simple way to compare objects
-    return userChoices[pageIdx].text === option.text;
   };
   
   return (
@@ -265,13 +253,23 @@ const AtividadeResumo = () => {
                         return (
                           <button 
                             key={index} 
-                            className={`btn ${isSelected ? 'btn-primary' : 'btn-outline-secondary'} text-${isSelected ? 'white' : 'dark'} p-3 text-start`} 
-                            onClick={() => handleOptionClick(option.feedback, option, pagina-2)}
+                            className={`btn ${isSelected ? 'btn-primary' : 'btn-outline-secondary'} text-${isSelected ? 'white' : 'dark'} p-3 text-start position-relative`}
+                            onClick={() => handleOptionClick(option, pagina-2)}
+                            onMouseEnter={() => handleMouseEnter(option.feedback)}
+                            onMouseLeave={handleMouseLeave}
                           >
                             {option.text}
                           </button>
                         );
                       })}
+                      <div className="d-flex justify-content-between mt-3">
+                        <button className="btn btn-outline-secondary" onClick={retrocederPagina}>
+                          <i className="bi bi-arrow-left me-2"></i>Anterior
+                        </button>
+                        <button className="btn btn-primary" onClick={avancarPagina}>
+                          Próximo<i className="bi bi-arrow-right ms-2"></i>
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </>
@@ -373,11 +371,10 @@ const AtividadeResumo = () => {
         </div>
       </div>
       
-      {/* Modal for option feedback */}
-      <Modal 
-        show={showModal} 
-        onClose={closeModal} 
-        content={modalContent} 
+      {/* Feedback that shows on hover */}
+      <HoverFeedback 
+        show={hoveredOption} 
+        content={hoveredFeedback} 
       />
     </div>
   );
