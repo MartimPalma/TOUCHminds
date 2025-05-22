@@ -78,20 +78,27 @@ const LandingPage = () => {
       {/* Hero */}
       <section className="container py-5 d-flex align-items-center ">
         <div className="text-center text-md-start w-50">
-          <h1 className="fw-bold font-poppins py-4" style={{ color: "#99CBC8" }}>
+          <h1 className="fw-bold font-poppins py-4" style={{ color: "#99CBC8", fontSize: "clamp(1.8rem, 4vw, 2.5rem)"}}>
             Procurar ajuda é o começo da mudança!
           </h1>
-          <p className="text-muted mt-4 font-lato py-4">
+          <p className="text-muted mt-4 font-lato py-4" style={{ fontSize: "clamp(1rem, 2.5vw, 1.3rem)" }}>
             O TOUCHminds oferece um programa online gratuito destinado a ajudar os adolescentes a compreender a ansiedade e a promover a procura de ajuda.
           </p>
           <div className="py-4 mb-5">
             <button
-              className="btn btn-primary mt-1 font-poppins fw-bold py-2"
-              style={{ backgroundColor: "#E7C8C2", borderColor: "#E7C8C2", color: "#234970" }}
+              className="btn btn-primary mt-3 font-poppins fw-bold px-5 py-3"
+              style={{
+                backgroundColor: "#E7C8C2",
+                borderColor: "#E7C8C2",
+                color: "#234970",
+                fontSize: "clamp(1rem, 2.5vw, 1.25rem)",
+                borderRadius: "12px",
+              }}
               onClick={handleOpenLogin}
             >
               Começar AGORA
             </button>
+
           </div>
         </div>
         <div className="w-50 text-center">

@@ -71,19 +71,19 @@ export default function SignupModal({ onClose, onSwitchToLogin }) {
   };
 
   if (showPopup) {
-  return (
-    <PersonalizationPopup
-      userId={userId}
-      nome={nome}
-      setNome={setNome}
-      selectedAvatar={selectedAvatar}
-      setSelectedAvatar={setSelectedAvatar}
-      avatarOptions={avatarOptions}
-      setLoading={setLoading}
-      setError={setError}
-    />
-  );
-}
+    return (
+      <PersonalizationPopup
+        userId={userId}
+        nome={nome}
+        setNome={setNome}
+        selectedAvatar={selectedAvatar}
+        setSelectedAvatar={setSelectedAvatar}
+        avatarOptions={avatarOptions}
+        setLoading={setLoading}
+        setError={setError}
+      />
+    );
+  }
 
 
   return (
@@ -106,7 +106,7 @@ export default function SignupModal({ onClose, onSwitchToLogin }) {
 
         <div className="text-center mb-3">
           <img src={logo} alt="Logo" style={{ maxWidth: 100 }} className="mb-2" />
-          <h4 style={{ color: "#99CBC8" }}>Criar uma conta</h4>
+          <h4 style={{ color: "#E7C8C2" }}>Criar uma conta</h4>
           <p className="text-muted">
             ou{" "}
             <span
@@ -130,6 +130,7 @@ export default function SignupModal({ onClose, onSwitchToLogin }) {
             <input
               type="text"
               className="form-control"
+              style={{ borderRadius: "12px" }}
               value={codigoParticipante}
               onChange={(e) => setCodigoParticipante(e.target.value)}
               required
@@ -142,6 +143,7 @@ export default function SignupModal({ onClose, onSwitchToLogin }) {
               <input
                 type={mostrarSenha ? "text" : "password"}
                 className="form-control"
+                style={{ borderRadius: "12px" }}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
@@ -149,6 +151,7 @@ export default function SignupModal({ onClose, onSwitchToLogin }) {
               <button
                 type="button"
                 className="btn btn-outline-secondary"
+                style={{ borderRadius: "12px" }}
                 onClick={() => setMostrarSenha(!mostrarSenha)}
               >
                 {mostrarSenha ? <EyeOff size={18} /> : <Eye size={18} />}
@@ -161,6 +164,7 @@ export default function SignupModal({ onClose, onSwitchToLogin }) {
             <input
               type={mostrarSenha ? "text" : "password"}
               className="form-control"
+              style={{ borderRadius: "12px" }}
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
               required
@@ -169,12 +173,23 @@ export default function SignupModal({ onClose, onSwitchToLogin }) {
 
           <button
             type="submit"
-            className="btn btn-primary w-100"
+            className="btn w-100"
+            style={{
+              backgroundColor: "#99CBC8",
+              border: "none",
+              color: "#fff",
+              fontWeight: "bold",
+              borderRadius: "12px",
+              transition: "background-color 0.3s ease"
+            }}
+            onMouseEnter={(e) => (e.target.style.backgroundColor = "#85b5b2")}
+            onMouseLeave={(e) => (e.target.style.backgroundColor = "#99CBC8")}
             disabled={loading}
           >
             {loading ? "A processar..." : "Criar conta"}
           </button>
         </form>
+
       </motion.div>
     </div>
   );
