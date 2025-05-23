@@ -82,7 +82,7 @@ const LandingPage = () => {
             Procurar ajuda é o começo da mudança!
           </h1>
           <p className="text-muted mt-4 font-lato py-4">
-            O TOUCHminds oferece um programa online gratuito destinado a ajudar os adolescentes a compreender a ansiedade e a promover a procura de ajuda.
+            O TOUCHminds é um programa online e gratuito, criado para promover a compreensão das dificuldades relacionadas com a ansiedade e a procura de ajuda quando necessário. Cada adolescente pode percorrer cada um dos seis módulos interativos ao seu ritmo, com conteúdos como vídeos, atividades interativas e práticas. 
           </p>
           <div className="py-4 mb-5">
             <button
