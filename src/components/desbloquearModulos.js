@@ -9,6 +9,15 @@ const diasPassados = (dataISO) => {
   return Math.floor((agora - dataDesbloqueio) / (1000 * 60 * 60 * 24));
 };
 
+// Define quantos dias de intervalo são necessários entre cada módulo
+const calcularIntervaloDias = (moduloIndex) => {
+  // Módulos 1→2, 3→4, 5→6 => 7 dias
+  // Módulos 2→3, 4→5 => 14 dias (pausa)
+  if (moduloIndex === 1 || moduloIndex === 3 || moduloIndex === 5) return 7;
+  if (moduloIndex === 2 || moduloIndex === 4) return 14;
+  return 7; // Default para qualquer outro caso
+};
+
 const useDesbloquearModulos = (userData) => {
   const modulosRef = useRef(userData?.modulos);
 
@@ -54,37 +63,38 @@ const useDesbloquearModulos = (userData) => {
         }
 
         const diasDesdeFinalizacao = diasPassados(moduloAtual.dataFim);
+        const moduloIndex = i + 1; 
+        const intervaloNecessario = calcularIntervaloDias(moduloIndex);
 
         console.log(`Módulo ${nomeAtual} finalizado em ${moduloAtual.dataFim}`);
         console.log(`Já se passaram ${diasDesdeFinalizacao} dias desde a conclusão`);
 
-        if (diasDesdeFinalizacao >= 7) {
+        if (diasDesdeFinalizacao >= intervaloNecessario) {
           try {
             const dataDesbloqueio = new Date().toISOString();
             await updateDoc(doc(db, "alunos", userData.uid), {
               [`modulos.${nomeSeguinte}.status`]: "desbloqueado",
               [`modulos.${nomeSeguinte}.dataInicio`]: dataDesbloqueio,
             });
-            console.log(`✅ Módulo ${nomeSeguinte} foi desbloqueado com sucesso!`);
-            break; // Evita múltiplos desbloqueios na mesma verificação
+            console.log(`Módulo ${nomeSeguinte} foi desbloqueado com sucesso!`);
+            break; 
           } catch (error) {
             console.error("Erro ao desbloquear módulo:", error);
           }
         } else {
-          console.log(`Ainda faltam ${7 - diasDesdeFinalizacao} dias para desbloquear ${nomeSeguinte}`);
+          console.log(`Ainda faltam ${intervaloNecessario - diasDesdeFinalizacao} dias para desbloquear ${nomeSeguinte}`);
         }
       }
     };
 
-    // Chama imediatamente após `userData` ser carregado
     console.log("Executando verificação inicial de desbloqueio");
     checkAndUpdate();
 
-    // Chama periodicamente a cada 10 minutos
+    // Verificação periódica (a cada 10 minutos)
     const intervalId = setInterval(() => {
       console.log("Executa verificação periódica de desbloqueio");
       checkAndUpdate();
-    }, 600000); // 10 minutos em milissegundos
+    }, 600000); // 10 minutos
 
     return () => {
       clearInterval(intervalId);

@@ -84,8 +84,8 @@ const LandingPage = () => {
           <p className="text-muted mt-4 font-lato py-4">
             O TOUCHminds oferece um programa online gratuito destinado a ajudar os adolescentes a compreender a ansiedade e a promover a procura de ajuda.
           </p>
-          <div className="py-4 mb-5">
-            <div className="py-4 mb-5">
+          <div className="py-4 ">
+            <div className="py-4">
               <button
                 className="btn btn-lg font-poppins fw-bold py-3 px-5"
                 style={{
