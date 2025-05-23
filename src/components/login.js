@@ -47,9 +47,9 @@ export default function LoginModal({ onClose, onSwitchToSignup }) {
         <button className="modal-close" onClick={onClose}><X /></button>
         <div className="text-center mb-3">
           <img src={logo} alt="Logo" style={{ maxWidth: 100 }} className="mb-2" />
-          <h4 style={{ color: "#E7C8C2" }}>Entrar na tua conta</h4>
+          <h4 style={{ color: "#99CBC8" }}>Entrar na tua conta</h4>
           <p className="text-muted">
-            ou <span onClick={onSwitchToSignup} style={{ cursor: "pointer", textDecoration: "underline", color: "#99CBC8" }}>criar uma conta</span>
+            ou <span onClick={onSwitchToSignup} style={{ cursor: "pointer", textDecoration: "underline", color: "#E7C8C2" }}>criar uma conta</span>
           </p>
         </div>
 

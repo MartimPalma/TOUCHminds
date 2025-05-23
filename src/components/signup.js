@@ -106,7 +106,7 @@ export default function SignupModal({ onClose, onSwitchToLogin }) {
 
         <div className="text-center mb-3">
           <img src={logo} alt="Logo" style={{ maxWidth: 100 }} className="mb-2" />
-          <h4 style={{ color: "#E7C8C2" }}>Criar uma conta</h4>
+          <h4 style={{ color: "#99CBC8" }}>Criar uma conta</h4>
           <p className="text-muted">
             ou{" "}
             <span
@@ -114,7 +114,7 @@ export default function SignupModal({ onClose, onSwitchToLogin }) {
               style={{
                 cursor: "pointer",
                 textDecoration: "underline",
-                color: "#99CBC8"
+                color: "#E7C8C2"
               }}
             >
               entrar na tua conta

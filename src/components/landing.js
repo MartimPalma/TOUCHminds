@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { Accordion } from "react-bootstrap";
 import { FaArrowDown } from 'react-icons/fa';
-import logo from "../imgs/logositeazul.png"; 
-import cerebro from "../imgs/cerebro.png"; 
-import Footer from "./footer"; 
+import logo from "../imgs/logositeazul.png";
+import cerebro from "../imgs/cerebro.png";
+import Footer from "./footer";
 import ModuleCard from "./moduleCardLanding";
 import mod1 from "../imgs/module1.jpg";
 import mod2 from "../imgs/module2.jpg";
@@ -74,30 +74,36 @@ const LandingPage = () => {
       )}
 
       <img src={logo} alt="TOUCHminds Logo" className="mt-4 mx-auto d-block" style={{ width: "10%" }} />
-      
+
       {/* Hero */}
       <section className="container py-5 d-flex align-items-center ">
         <div className="text-center text-md-start w-50">
-          <h1 className="fw-bold font-poppins py-4" style={{ color: "#99CBC8", fontSize: "clamp(1.8rem, 4vw, 2.5rem)"}}>
+          <h1 className="fw-bold font-poppins py-4" style={{ color: "#99CBC8", fontSize: "clamp(1.8rem, 4vw, 2.5rem)" }}>
             Procurar ajuda é o começo da mudança!
           </h1>
           <p className="text-muted mt-4 font-lato py-4" style={{ fontSize: "clamp(1rem, 2.5vw, 1.3rem)" }}>
-            O TOUCHminds oferece um programa online gratuito destinado a ajudar os adolescentes a compreender a ansiedade e a promover a procura de ajuda.
+            O TOUCHminds oferece um programa online gratuito destinado a ajudar os adolescentes entre os 15 e os 17 anos a compreender a ansiedade e a promover a procurar de ajuda.
           </p>
           <div className="py-4 mb-5">
-            <button
-              className="btn btn-primary mt-3 font-poppins fw-bold px-5 py-3"
-              style={{
-                backgroundColor: "#E7C8C2",
-                borderColor: "#E7C8C2",
-                color: "#234970",
-                fontSize: "clamp(1rem, 2.5vw, 1.25rem)",
-                borderRadius: "12px",
-              }}
-              onClick={handleOpenLogin}
-            >
-              Começar AGORA
-            </button>
+            <div className="py-4 mb-5">
+              <button
+                className="btn btn-lg font-poppins fw-bold py-3 px-5"
+                style={{
+                  backgroundColor: "#E7C8C2",
+                  borderColor: "#E7C8C2",
+                  color: "#234970",
+                  borderRadius: "12px",
+                  boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
+                  transition: "transform 0.2s",
+                }}
+                onClick={handleOpenSignup}
+                onMouseEnter={e => e.currentTarget.style.transform = 'scale(1.05)'}
+                onMouseLeave={e => e.currentTarget.style.transform = 'scale(1)'}
+              >
+                Começa a tua jornada agora
+              </button>
+            </div>
+
 
           </div>
         </div>
@@ -119,19 +125,19 @@ const LandingPage = () => {
             <Accordion.Item eventKey="0">
               <Accordion.Header className="font-poppins">O que é?</Accordion.Header>
               <Accordion.Body className="font-lato">
-                O TOUCHminds é um programa online e gratuito, criado para promover a compreensão das dificuldades relacionadas com a ansiedade e a procura de ajuda quando necessário. Cada adolescente pode percorrer cada um dos seis módulos interativos ao seu ritmo, com conteúdos como vídeos, atividades interativas e práticas. 
+                O TOUCHminds é um programa online e gratuito, criado para promover a compreensão das dificuldades relacionadas com a ansiedade e a procura de ajuda quando necessário. Cada adolescente pode percorrer cada um dos seis módulos interativos ao seu ritmo, com conteúdos como vídeos, atividades interativas e práticas.
               </Accordion.Body>
             </Accordion.Item>
             <Accordion.Item eventKey="1">
               <Accordion.Header className="font-poppins">A quem se dirige?</Accordion.Header>
               <Accordion.Body>
-                A adolescentes dos 15 aos 17 anos que sentem que a ansiedade afeta a sua vida e desejam compreendê-la melhor, refletindo sobre estratégias para superar obstáculos na procura de ajuda e promover essa procura. 
+                A adolescentes dos 15 aos 17 anos que sentem que a ansiedade afeta a sua vida e desejam compreendê-la melhor, refletindo sobre estratégias para superar obstáculos na procura de ajuda e promover essa procura.
               </Accordion.Body>
             </Accordion.Item>
             <Accordion.Item eventKey="2">
               <Accordion.Header className="font-poppins">Como funciona?</Accordion.Header>
               <Accordion.Body>
-                A plataforma oferece conteúdo de acesso livre, disponível para os participantes das escolas selecionadas no norte do país. Para aceder ao programa TOUCHminds, é necessário efetuar um registo. 
+                A plataforma oferece conteúdo de acesso livre, disponível para os participantes das escolas selecionadas no norte do país. Para aceder ao programa TOUCHminds, é necessário efetuar um registo.
               </Accordion.Body>
             </Accordion.Item>
           </Accordion>
@@ -153,7 +159,7 @@ const LandingPage = () => {
         </div>
       </section>
 
-      {/* Call to Action */}
+      {/* Call to Action 
       <section className="text-start py-5 ps-5" style={{ backgroundColor: "#E7C8C2", color: "#ffffff" }}>
         <p className="fs-2 ms-5 fw-semibold font-poppins">Dá o primeiro passo para o teu bem-estar mental!</p>
         <p className="mb-5 ms-5 fs-3 mt-2 font-poppins" style={{ color: "#234970" }}>Regista-te agora no TOUCHminds!</p>
@@ -173,7 +179,7 @@ const LandingPage = () => {
             Entrar
           </button>
         </div>
-      </section>
+      </section>*/}
 
       <Footer />
     </div>
