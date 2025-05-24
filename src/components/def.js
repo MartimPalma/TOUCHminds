@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { UserContext } from "../App";
 import Navbar from './navbar';
 import Sidebar from './sidebar';
+import Loading from './loading';
 
 import avatar1 from "../imgs/avatar1.jpg";
 import avatar2 from "../imgs/avatar2.jpg";
@@ -70,6 +71,10 @@ const Definicoes = () => {
       setLoading(false);
     }
   };
+
+  if (!userData) {
+    return <Loading message="A carregar as definições..." />;
+  }
 
   return (
     <div className="container-fluid vh-100 p-0">

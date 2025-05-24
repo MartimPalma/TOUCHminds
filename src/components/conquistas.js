@@ -2,12 +2,16 @@ import React, { useState, useEffect, useContext } from 'react';
 import { UserContext } from '../App';
 import Navbar from './navbar';
 import Sidebar from './sidebar';
+import Loading from './loading';
+
 import modulo1 from "../imgs/module1.jpg";
 import modulo2 from "../imgs/module1.jpg";
 import modulo3 from "../imgs/module1.jpg";
 import modulo4 from "../imgs/module1.jpg";
 import modulo5 from "../imgs/module1.jpg";
 import modulo6 from "../imgs/module1.jpg";
+
+
 
 const Conquistas = () => {
   const [modulosConcluidos, setModulosConcluidos] = useState(0);
@@ -20,6 +24,10 @@ const Conquistas = () => {
       setLoading(false);
     }
   }, [userData]);
+
+   if (loading) {
+    return <Loading message="A carregar as tuas conquistas..." />;
+  }
 
   const renderModuleImages = () => {
     const images = { modulo1, modulo2, modulo3, modulo4, modulo5, modulo6 };

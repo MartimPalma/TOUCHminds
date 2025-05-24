@@ -7,6 +7,7 @@ import { UserContext } from '../App';
 import modulos from '../data/modulos';
 import AtividadeCard from './atividadeCard';
 import { Modal, Button } from 'react-bootstrap';
+import Loading from './loading';
 
 const mensagensInicio = {
   1: "Falar de ansiedade pode ser desconfortável, mas ao reconhecer o que sentes ganhas clareza para a enfrentar—és mais resiliente do que imaginas!",
@@ -51,7 +52,10 @@ const Modulos = () => {
   const [showModal, setShowModal] = useState(!!mensagemInicial);
   const [mensagemModal] = useState(mensagemInicial);
 
-  if (!userData || !modulo) return <p>A carregar dados do utilizador...</p>;
+  if (!userData || !modulo) {
+    return <Loading message="A carregar o módulo..." />;
+  }
+
 
   return (
     <div className="container-fluid vh-100 p-0">

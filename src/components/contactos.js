@@ -1,7 +1,17 @@
 import Navbar from './navbar';
 import Sidebar from './sidebar';
+import { useContext } from 'react';
+import { UserContext } from '../App';
+import Loading from './loading';
 
 const Contactos = () => {
+
+  const { userData } = useContext(UserContext);
+  if (!userData) {
+    return <Loading message="A carregar os contactos..." />;
+  }
+
+
   return (
     <div className="container-fluid vh-100 p-0">
       <Navbar />
