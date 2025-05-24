@@ -85,31 +85,24 @@ const modulos = [
         introducao: "Todos nós sentimos ansiedade – e isso é perfeitamente normal! Aqui, vais compreender melhor as emoções, como elas influenciam o nosso dia a dia e aprender a distinguir entre uma ansiedade comum e uma ansiedade SOS que causa sofrimento.",
         atividades: [
           {
-            url: "banda-desenhada",
-            titulo: "Ansiedade: Aliada ou Empecilho?",
+            url: "podcast",
+            titulo: "Podcast: “Touchminds” ",
             tipo: "texto",
             descricao: "Banda desenhada que explica ansiedade comum vs. SOS.",
             imagem: "../imgs/module1.jpg"
           },
           {
-            url: "linha-ansiedade",
-            titulo: "Linha da Ansiedade",
+            url: "verdade-ou-mito",
+            titulo: "Verdade Ou Mito? ",
             tipo: "popup",
             descricao: "Explora ansiedade normativa vs. patológica numa situação.",
             imagem: "../imgs/module1.jpg"
           },
           {
-            url: "unindo-experiencias",
-            titulo: "Unindo Experiências",
+            url: "atividade-resumo",
+            titulo: "Atividade Resumo",
             tipo: "video",
             descricao: "Vídeo com relatos reais sobre ansiedade.",
-            imagem: "../imgs/module1.jpg"
-          },
-          {
-            url: "ansiedade-sem-filtros",
-            titulo: "Ansiedade sem Filtros",
-            tipo: "imagem",
-            descricao: "Imagens estilo Instagram sobre ansiedade na adolescência.",
             imagem: "../imgs/module1.jpg"
           },
         ],

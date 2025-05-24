@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import { useParams } from "react-router-dom";
 import Navbar from "../../navbar";
 import Sidebar from "../../sidebar";
@@ -16,7 +16,6 @@ const AnsiedadeSemFiltros = () => {
 
   const modulo = modulos.find((m) => m.id === moduloId);
   const atividade = modulo?.atividades.find(a => a.url === "ansiedade-sem-filtros");
-  const quadros = atividade?.quadros || [];
 
   const avancarPagina = () => {
     // If on a hashtag page and the input is empty, show error
@@ -35,7 +34,7 @@ const AnsiedadeSemFiltros = () => {
     setPagina((prev) => prev - 1);
   };
   
-  // Now 14 pages total: intro, 12 images, reflection, conclusion
+  
   const progresso = Math.round((pagina / 14) * 100);
 
   const handleHashtagChange = (index, value) => {
@@ -55,7 +54,7 @@ const AnsiedadeSemFiltros = () => {
     }
   };
 
-  // These are placeholder image descriptions
+  
   const imageDescriptions = [
     "Dados estatísticos sobre a prevalência de ansiedade em adolescentes",
     "Sinais de ansiedade nos jovens - alterações de comportamento",

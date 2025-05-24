@@ -24,7 +24,6 @@ const AtividadeResumo = () => {
   const modulo = modulos.find((m) => m.id === moduloId);
   const atividade = modulo?.atividades.find(a => a.url === "atividade-resumo");
 
-  // Debug user choices with console.log
   useEffect(() => {
     console.log("Current userChoices state:", userChoices);
   }, [userChoices]);

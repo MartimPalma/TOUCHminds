@@ -13,7 +13,6 @@ const UnindoExperiencias = () => {
   const { updateUserData } = useContext(UserContext);
 
   const modulo = modulos.find((m) => m.id === moduloId);
-  const atividade = modulo?.atividades.find(a => a.url === "unindo-experiencias");
   
   return (
     <div className="container-fluid vh-100 p-0 font-poppins">
