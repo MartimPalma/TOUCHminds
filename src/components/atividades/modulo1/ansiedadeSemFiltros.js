@@ -54,22 +54,6 @@ const AnsiedadeSemFiltros = () => {
     }
   };
 
-  
-  const imageDescriptions = [
-    "Dados estatísticos sobre a prevalência de ansiedade em adolescentes",
-    "Sinais de ansiedade nos jovens - alterações de comportamento",
-    "Ansiedade e o impacto no desempenho escolar",
-    "Diferenças entre ansiedade normal e patológica",
-    "Testemunhos de adolescentes sobre experiências com ansiedade",
-    "Efeitos físicos da ansiedade: insónia, dores de cabeça, etc.",
-    "Relação entre uso de redes sociais e aumento da ansiedade",
-    "Técnicas de respiração para controlar a ansiedade",
-    "Importância de falar sobre saúde mental com amigos e família",
-    "Ansiedade e isolamento social - consequências a longo prazo",
-    "Benefícios de pedir ajuda profissional",
-    "Histórias de superação e gestão eficaz da ansiedade"
-  ];
-
   return (
     <div className="container-fluid vh-100 p-0 font-poppins">
       <Navbar />
@@ -118,22 +102,39 @@ const AnsiedadeSemFiltros = () => {
                 <>
                   <h4 className="fw-bold mb-3" style={{ color: "#234970" }}>Imagem {pagina} de 12</h4>
                   <div className="text-center mb-4">
-                    {/* Placeholder for actual image */}
-                    <div 
-                      className="border rounded mx-auto mb-3" 
-                      style={{ 
-                        width: "100%", 
-                        maxWidth: "500px", 
-                        height: "300px", 
-                        backgroundColor: "#f8f9fa",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center"
-                      }}
-                    >
-                      <p className="text-secondary mb-0">
-                        {imageDescriptions[pagina - 1]}
-                      </p>
+                    {/* Actual image */}
+                    <div className="mb-3">
+                      <img 
+                        src={`/imgs/modulo1/hashtag/hashtag_${pagina}.png`}
+                        alt={`Imagem ${pagina} sobre ansiedade`}
+                        className="img-fluid rounded"
+                        style={{ 
+                          maxWidth: "100%", 
+                          maxHeight: "400px",
+                          objectFit: "contain"
+                        }}
+                        onError={(e) => {
+                          e.target.style.display = 'none';
+                          e.target.nextSibling.style.display = 'flex';
+                        }}
+                      />
+                      {/* Fallback placeholder in case image fails to load */}
+                      <div 
+                        className="border rounded mx-auto" 
+                        style={{ 
+                          width: "100%", 
+                          maxWidth: "500px", 
+                          height: "300px", 
+                          backgroundColor: "#f8f9fa",
+                          display: "none",
+                          alignItems: "center",
+                          justifyContent: "center"
+                        }}
+                      >
+                        <p className="text-secondary mb-0">
+                          Imagem {pagina} não encontrada
+                        </p>
+                      </div>
                     </div>
                     
                     {/* Hashtag input with error state */}

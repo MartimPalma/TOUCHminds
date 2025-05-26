@@ -12,6 +12,7 @@ const AtividadeResumo = () => {
   const [showModal, setShowModal] = useState(false);
   const [modalContent, setModalContent] = useState("");
   const [selectedOption, setSelectedOption] = useState(null);
+  const [showWarning, setShowWarning] = useState(false);
   const [userChoices, setUserChoices] = useState({
     0: null, // Chegada ao Clube
     1: null, // Durante a primeira atividade
@@ -25,10 +26,23 @@ const AtividadeResumo = () => {
   const atividade = modulo?.atividades.find(a => a.url === "atividade-resumo");
 
   useEffect(() => {
-    console.log("Current userChoices state:", userChoices);
-  }, [userChoices]);
+    // Clean up warning when page changes
+    setShowWarning(false);
+  }, [pagina]);
 
-  const avancarPagina = () => setPagina((prev) => prev + 1);
+  const avancarPagina = () => {
+    // Check if user is on a quiz page (2, 3, or 4) and hasn't made a choice
+    if (pagina >= 2 && pagina <= 4) {
+      const questionIndex = pagina - 2;
+      if (!userChoices[questionIndex]) {
+        setShowWarning(true);
+        setTimeout(() => setShowWarning(false), 3000); // Hide warning after 3 seconds
+        return;
+      }
+    }
+    setPagina((prev) => prev + 1);
+  };
+
   const retrocederPagina = () => setPagina((prev) => prev - 1);
 
   const progresso = Math.round((pagina / 7) * 100);
@@ -40,9 +54,6 @@ const AtividadeResumo = () => {
   };
 
   const handleOptionClick = (feedbackImage, option, questionIndex) => {
-    console.log("Option clicked:", option);
-    console.log("For question index:", questionIndex);
-    
     setModalContent(feedbackImage);
     setShowModal(true);
     setSelectedOption(option.text.substring(0, 20)); // Store abbreviated version to identify selection
@@ -53,9 +64,13 @@ const AtividadeResumo = () => {
         ...prev,
         [questionIndex]: option
       };
-      console.log("Updated userChoices:", newChoices);
       return newChoices;
     });
+    
+    // Hide warning if it was showing
+    if (showWarning) {
+      setShowWarning(false);
+    }
   };
 
   const closeModal = () => {
@@ -66,23 +81,23 @@ const AtividadeResumo = () => {
   const quizPages = [
     {
       title: "Chegada ao Clube",
-      questionImage: "/imgs/resumo_1.png",
+      questionImage: "/imgs/modulo1/resumo/resumo_1.png",
       options: [
         {
           text: "Decidir aproximar-se de um grupo e iniciar uma conversa, mesmo sentindo algum desconforto.",
-          feedbackImage: "/imgs/resumo_1_1.png",
+          feedbackImage: "/imgs/modulo1/resumo/resumo_1_1.png",
           feedback: "A Sara respira fundo e, com o coração acelerado, aproxima-se de um grupo que está a falar sobre o teatro. No início, a voz sai um pouco trémula, mas aos poucos vai-se sentindo mais confortável. Os outros colegas sorriem e fazem perguntas, o que a faz sentir-se mais integrada. A ansiedade começa a diminuir conforme vai participando na conversa.",
           summary: "Sara decide aproximar-se de um grupo e iniciar uma conversa. Com o tempo, sente-se mais confortável e a ansiedade diminui."
         },
         {
           text: "Ficar próxima da porta, a observar os outros antes de decidir onde se sentar.",
-          feedbackImage: "/imgs/resumo_1_2.png",
+          feedbackImage: "/imgs/modulo1/resumo/resumo_1_2.png",
           feedback: "A Sara opta por não se apressar. Fica encostada à parede, observando e ouvindo as conversas, tentando perceber o ambiente antes de se juntar a alguém. Isso permite-lhe acalmar-se um pouco, mas também a faz sentir-se mais distante dos colegas que já estão a socializar.",
           summary: "Sara fica próxima da porta, observando. Sente-se mais calma, mas um pouco distante dos colegas."
         },
         {
           text: "Ficar num canto, a fingir que está no telemóvel para parecer ocupada.",
-          feedbackImage: "/imgs/resumo_1_3.png",
+          feedbackImage: "/imgs/modulo1/resumo/resumo_1_3.png",
           feedback: "A Sara pega no telemóvel e finge enviar mensagens, evitando olhar para os colegas. Isso diminui temporariamente a ansiedade, mas não a ajuda a integrar-se no grupo. Conforme os minutos passam, começa a sentir-se mais isolada, como se estivesse a perder a oportunidade de se relacionar com os outros.",
           summary: "Sara finge estar ocupada no telemóvel, o que diminui a ansiedade temporariamente, mas faz sentir-se mais isolada."
         }
@@ -90,23 +105,23 @@ const AtividadeResumo = () => {
     },
     {
       title: "Durante a primeira atividade",
-      questionImage: "/imgs/resumo_2.png",
+      questionImage: "/imgs/modulo1/resumo/resumo_2.png",
       options: [
         {
           text: "Aceitar o desafio e participar, mesmo com a voz um pouco trémula.",
-          feedbackImage: "/imgs/resumo_2_1.png",
+          feedbackImage: "/imgs/modulo1/resumo/resumo_2_1.png",
           feedback: "Com a respiração acelerada, a Sara decide tentar. Sobe ao palco com as mãos a tremer e começa a improvisar. No início, sente-se inquieta, mas à medida que continua, nota que os colegas estão a prestar atenção com curiosidade e não com julgamento. A ansiedade começa a diminuir à medida que se envolve mais com a atividade.",
           summary: "Sara aceita o desafio da improvisação. No início, está ansiosa, mas à medida que continua a ansiedade diminui."
         },
         {
           text: "Sugerir começar com uma parte mais pequena e deixar a improvisação completa para outra pessoa.",
-          feedbackImage: "/imgs/resumo_2_2.png",
+          feedbackImage: "/imgs/modulo1/resumo/resumo_2_2.png",
           feedback: "A Sara sente que não está preparada para fazer uma improvisação longa e decide sugerir que o papel seja dividido. Participa num pequeno segmento, o que reduz a ansiedade, mas também a impede que se envolva totalmente na atividade, deixando alguma ansiedade presente.",
           summary: "Sara sugere uma intervenção mais pequena. Participa um pouco, reduzindo a pressão, mas não se envolve totalmente, deixando alguma ansiedade presente."
         },
         {
           text: "Recusar educadamente, dizendo que prefere observar os outros por enquanto.",
-          feedbackImage: "/imgs/resumo_2_3.png",
+          feedbackImage: "/imgs/modulo1/resumo/resumo_2_3.png",
           feedback: "A Sara diz ao professor que não se sente pronta para participar e pede para observar. Sente um alívio momentâneo, mas à medida que vê os outros a participar, surge um sentimento de culpa por não ter tentado, o que faz com que a ansiedade e a frustração aumentem ligeiramente.",
           summary: "Sara recusa participar e prefere observar. Sente alívio momentâneo, mas depois sente culpa e frustração por não ter tentado."
         }
@@ -114,23 +129,23 @@ const AtividadeResumo = () => {
     },
     {
       title: "Após a atividade",
-      questionImage: "/imgs/resumo_3.png",
+      questionImage: "/imgs/modulo1/resumo/resumo_3.png",
       options: [
         {
           text: "Aceitar e combinar ensaiar com eles.",
-          feedbackImage: "/imgs/resumo_3_1.png",
+          feedbackImage: "/imgs/modulo1/resumo/resumo_3_1.png",
           feedback: "Apesar da ansiedade, a Sara decide aceitar o convite. Durante o ensaio, começa a sentir-se mais à vontade, fazendo novas amizades e percebendo que os outros também têm os seus momentos de ansiedade. A ansiedade diminui e sente-se mais integrada.",
           summary: "Sara aceita ensaiar com os colegas. Aos poucos, faz amizades e sente-se mais à vontade e integrada no grupo, com a ansiedade reduzida."
         },
         {
           text: "Dizer que está um pouco ocupada, mas que vai tentar aparecer no próximo ensaio",
-          feedbackImage: "/imgs/resumo_3_2.png",
+          feedbackImage: "/imgs/modulo1/resumo/resumo_3_2.png",
           feedback: "A Sara agradece o convite, mas diz que tem de ficar para uma próxima porque agora precisa de ir para casa. Embora mantenha uma porta aberta para futuras interações, sente que perdeu uma oportunidade de se aproximar do grupo, e a ansiedade por não ter participado permanece.",
           summary: "Sara agradece, mas diz que está ocupada e promete tentar na próxima vez. Sente que perdeu uma oportunidade de aproximar dos colegas e a ansiedade permanece."
         },
         {
           text: "Recusar e ir para casa rapidamente.",
-          feedbackImage: "/imgs/resumo_3_3.png",
+          feedbackImage: "/imgs/modulo1/resumo/resumo_3_3.png",
           feedback: "A Sara diz que não vai poder e sai rapidamente, sentindo um alívio imediato por não ter de interagir mais naquele dia. No entanto, ao chegar a casa, fica com a sensação de que se afastou ainda mais do grupo e teme que a próxima aula seja ainda mais desafiante.",
           summary: "Sara recusa e vai para casa rapidamente, sentindo alívio imediato. No entanto, depois, sente que se afastou ainda mais do grupo."
         }
@@ -154,14 +169,13 @@ const AtividadeResumo = () => {
                 src={content} 
                 alt="Resultado da escolha" 
                 className="img-fluid"
-                style={{ maxWidth: "400px", height: "auto" }}
+                style={{ maxWidth: "350px", height: "auto" }}
               />
             </div>
             <div className="modal-footer">
               <button type="button" className="btn btn-primary" onClick={() => {
                 onClose();
-                avancarPagina();
-              }}>Prosseguir</button>
+              }}>Compreendo</button>
             </div>
           </div>
         </div>
@@ -171,9 +185,6 @@ const AtividadeResumo = () => {
 
   // Debug function to check if an option is selected
   const isOptionSelected = (pageIdx, option) => {
-    console.log(`Checking if option is selected for page ${pageIdx}:`, option);
-    console.log(`Current selection:`, userChoices[pageIdx]);
-    
     if (!userChoices[pageIdx]) return false;
     
     // Compare text values as a simple way to compare objects
@@ -226,10 +237,10 @@ const AtividadeResumo = () => {
                   <div className="row justify-content-center">
                     <div className="col-md-12">
                       <img 
-                        src="/imgs/resumo_0.png" 
+                        src="/imgs/modulo1/resumo/resumo_0.png" 
                         alt="O Primeiro Dia no Clube de Teatro" 
                         className="img-fluid mb-4"
-                        style={{ maxWidth: "400px", height: "auto" }}
+                        style={{ maxWidth: "350px", height: "auto" }}
                       />
                       <div className="d-flex justify-content-between">
                         <button className="btn btn-outline-secondary" onClick={retrocederPagina}>
@@ -244,7 +255,7 @@ const AtividadeResumo = () => {
                 </div>
               )}
 
-              {/* QUIZ PAGES (1-3) */}
+              {/* QUIZ PAGES (2-4) */}
               {pagina >= 2 && pagina <= 4 && (
                 <>
                   <h4 className="fw-bold mb-3" style={{ color: "#234970" }}>{quizPages[pagina-2].title}</h4>
@@ -263,7 +274,6 @@ const AtividadeResumo = () => {
                     <div className="d-flex flex-column gap-3">
                       {quizPages[pagina-2].options.map((option, index) => {
                         const isSelected = userChoices[pagina-2] && userChoices[pagina-2].text === option.text;
-                        console.log(`Option ${index} selected:`, isSelected);
                         
                         return (
                           <button 
@@ -277,14 +287,23 @@ const AtividadeResumo = () => {
                       })}
                     </div>
                   </div>
-                   <div className="d-flex justify-content-between">
-                        <button className="btn btn-outline-secondary" onClick={retrocederPagina}>
-                          <i className="bi bi-arrow-left me-2"></i>Anterior
-                        </button>
-                        <button className="btn btn-primary" onClick={avancarPagina}>
-                          Próximo<i className="bi bi-arrow-right ms-2"></i>
-                        </button>
-                      </div>
+
+                  {/* Warning message - moved here to show on quiz pages */}
+                  {showWarning && (
+                    <div className="alert alert-warning mt-3 text-center" role="alert">
+                      <i className="bi bi-exclamation-triangle-fill me-2"></i>
+                      Por favor, seleciona uma opção antes de continuar.
+                    </div>
+                  )}
+
+                  <div className="d-flex justify-content-between">
+                    <button className="btn btn-outline-secondary" onClick={retrocederPagina}>
+                      <i className="bi bi-arrow-left me-2"></i>Anterior
+                    </button>
+                    <button className="btn btn-primary" onClick={avancarPagina}>
+                      Próximo<i className="bi bi-arrow-right ms-2"></i>
+                    </button>
+                  </div>
                 </>
               )}
               
@@ -317,6 +336,9 @@ const AtividadeResumo = () => {
               {pagina === 6 && (
                 <>
                   <h4 className="fw-bold mb-4" style={{ color: "#234970" }}>Tabela Resumo</h4>
+                  {/* 
+                  Uma bruxa disse-me que ainda vamos precisar disto então não apaguei
+
                   <div className="table-responsive">
                     <table className="table table-bordered">
                       <thead style={{ backgroundColor: "#99CBC8" }}>
@@ -367,6 +389,12 @@ const AtividadeResumo = () => {
                       </tbody>
                     </table>
                   </div>
+                  */}
+                  <div className="justify-content-center d-flex flex-column align-items-center">
+                    <img className="img-fluid m-2" src="/imgs/modulo1/resumo/tabela1.png" style={{maxWidth: "40vw"}}></img>
+                    <img className="img-fluid m-2 " src="/imgs/modulo1/resumo/tabela2.png" style={{maxWidth: "40vw"}}></img>
+                    <img className="img-fluid" src="/imgs/modulo1/resumo/tabela3.png" style={{maxWidth: "40vw"}}></img>
+                  </div>
                   <div className="d-flex justify-content-between mt-4">
                     <button className="btn btn-outline-secondary" onClick={retrocederPagina}>
                       <i className="bi bi-arrow-left me-2"></i>Anterior
@@ -377,6 +405,7 @@ const AtividadeResumo = () => {
                       updateUserData={updateUserData}
                     />
                   </div>
+
                 </>
               )}
             </div>
