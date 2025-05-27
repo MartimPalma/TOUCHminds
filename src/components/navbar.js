@@ -16,6 +16,11 @@ import avatar8 from "../imgs/avatar8.jpg";
 import avatar9 from "../imgs/avatar9.jpg";
 import avatar10 from "../imgs/avatar10.jpg";
 
+// Alterar notificações semanais , no 1 dia após o desbloqueio de um módulo, e no 5 dia após o desbloqueio de um módulo
+// AlTerar a mensagem o texto
+
+
+
 const Navbar = () => {
   const avatarOptions = [
     { id: "avatar1", src: avatar1 },
@@ -68,9 +73,9 @@ const Navbar = () => {
     if (hasModuloIncompleto && diaSemana !== 1 && diaSemana !== 5) {
       mensagem = "Ainda há um módulo por acabar. Retoma-o para não quebrares o teu progresso.";
     } else if (diaSemana === 1) {
-      mensagem = "Nova semana, novo módulo! Explora hoje as atividades e dá mais um passo.";
+      mensagem = "Novo módulo! Explora hoje as atividades e dá mais um passo.";
     } else if (diaSemana === 5) {
-      mensagem = "A semana está quase a terminar! Conclui o módulo até domingo e continua a avançar.";
+      mensagem = "A semana está quase a terminar! Conclui o módulo e continua a avançar.";
     }
 
     if (mensagem) {

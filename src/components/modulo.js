@@ -118,7 +118,7 @@ const Modulos = () => {
         </div>
       </div>
 
-      {/* Modal de boas-vindas / conclusão */}
+      {/*colocar apenas quando o conclui e não sempre que entra no módulo*/}
       <Modal
         show={showModal}
         onHide={() => setShowModal(false)}

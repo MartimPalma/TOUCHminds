@@ -69,7 +69,7 @@ const PodcastTouchminds = () => {
                     Episódio: O Peso do Silêncio
                     </h4>
                     <p className="lead mb-3">
-                    Ouve com atenção as histórias reais sobre ansiedade, estigma e o silêncio que muitos vivem em silêncio.
+                      Ouve com atenção as histórias reais sobre ansiedade, estigma e o silêncio que muitos vivem em silêncio.
                     </p>
 
                     <audio controls style={{ width: "100%", maxWidth: "600px" }}>
