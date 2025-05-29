@@ -80,10 +80,18 @@ const LinhaAnsiedade = () => {
                   <div className="row justify-content-center">
                     <div className="col-md-8">
                       <p className="lead">
-                        Sê muito bem-vindo ou bem-vinda à Linha da Ansiedade! Nesta atividade interativa, vais explorar como a ansiedade pode aparecer nas nossas vidas com diferentes intensidades. A ansiedade é normal e útil, mas quando intensa pode tornar-se um problema. Aqui, vais observar como uma mesma situação pode ser sentida como ansiedade comum, que nos ajuda a preparar para desafios, ou como ansiedade SOS, que pode prejudicar o nosso bem-estar. O objetivo é que explores as duas linhas da ansiedade, observando o que acontece antes, durante e depois de uma situação desfiadora. Vamos começar?
+                        <strong>Sê muito bem-vindo ou bem-vinda à Linha da Ansiedade!</strong><br></br><br></br>
+                         Nesta <strong>atividade interativa</strong>, vais explorar como a ansiedade 
+                         pode aparecer nas nossas vidas com <strong>diferentes intensidade.</strong><br></br> <br></br>
+                         A <strong>ansiedade</strong> é <strong>normal</strong> e <strong>útil</strong>, mas 
+                         quando <strong>intensa</strong> pode tornar-se um <strong>problema</strong>. Aqui, vais observar como uma mesma situação
+                          pode ser sentida como <strong>ansiedade comum</strong>, que nos ajuda a <strong>preparar</strong> para desafios, ou como
+                           <strong> ansiedade SOS</strong>, que pode prejudicar o nosso <strong>bem-estar</strong><br></br><br></br>. O objetivo é que explores as duas 
+                           linhas da ansiedade, observando o que acontece <strong>antes, durante e depois</strong> de uma situação 
+                           <strong>desafiadora</strong>. Vamos começar?
                       </p>
                       <button className="btn btn-primary mt-3 px-4 py-2" onClick={avancarPagina}>
-                        <i className="bi bi-play-fill me-2"></i>Vamos a isto?
+                        <i className="bi bi-play-fill me-2"></i>Vamos começar
                       </button>
                     </div>
                   </div>
