@@ -90,7 +90,13 @@ const LinhaAnsiedade = () => {
                            linhas da ansiedade, observando o que acontece <strong>antes, durante e depois</strong> de uma situação 
                            <strong>desafiadora</strong>. Vamos começar?
                       </p>
-                      <button className="btn btn-primary mt-3 px-4 py-2" onClick={avancarPagina}>
+                      <button className="btn btn-primary mt-3 px-4 py-2" style={{
+                        backgroundColor: "#66BFBF",
+                        color: "white",
+                        borderRadius: "8px",
+                        fontSize: "1.05rem",
+                        border: "none",
+                      }} onClick={avancarPagina}>
                         <i className="bi bi-play-fill me-2"></i>Vamos começar
                       </button>
                     </div>
@@ -109,11 +115,23 @@ const LinhaAnsiedade = () => {
                   </div>
 
                   <div className="d-flex justify-content-between mt-4">
-                    <button className="btn btn-secondary" onClick={retrocederPagina}>
+                    <button className="btn btn-secondary" style={{
+                        backgroundColor: "#E7C8C2",
+                        color: "white",
+                        borderRadius: "8px",
+                        fontSize: "1.05rem",
+                        border: "none",
+                      }} onClick={retrocederPagina}>
                       <i className="bi bi-arrow-left me-2"></i>Anterior
                     </button>
 
-                    <button className="btn btn-primary" onClick={avancarPagina}>
+                    <button className="btn btn-primary" style={{
+                        backgroundColor: "#66BFBF",
+                        color: "white",
+                        borderRadius: "8px",
+                        fontSize: "1.05rem",
+                        border: "none",
+                      }} onClick={avancarPagina}>
                       <i className="bi bi-arrow-right me-2"></i>Próximo
                     </button>
                   </div>
@@ -205,11 +223,23 @@ const LinhaAnsiedade = () => {
                   </div>
 
                   <div className="d-flex justify-content-between mt-4">
-                    <button className="btn btn-secondary" onClick={retrocederPagina}>
+                    <button className="btn btn-secondary" style={{
+                        backgroundColor: "#E7C8C2",
+                        color: "white",
+                        borderRadius: "8px",
+                        fontSize: "1.05rem",
+                        border: "none",
+                      }} onClick={retrocederPagina}>
                       <i className="bi bi-arrow-left me-2"></i>Anterior
                     </button>
 
-                    <button className="btn btn-primary" onClick={avancarPagina}>
+                    <button className="btn btn-primary" style={{
+                        backgroundColor: "#66BFBF",
+                        color: "white",
+                        borderRadius: "8px",
+                        fontSize: "1.05rem",
+                        border: "none",
+                      }} onClick={avancarPagina}>
                       <i className="bi bi-arrow-right me-2"></i>Próximo
                     </button>
                   </div>
@@ -301,11 +331,23 @@ const LinhaAnsiedade = () => {
                   </div>
 
                   <div className="d-flex justify-content-between mt-4">
-                    <button className="btn btn-secondary" onClick={retrocederPagina}>
+                    <button className="btn btn-secondary" style={{
+                        backgroundColor: "#E7C8C2",
+                        color: "white",
+                        borderRadius: "8px",
+                        fontSize: "1.05rem",
+                        border: "none",
+                      }} onClick={retrocederPagina}>
                       <i className="bi bi-arrow-left me-2"></i>Anterior
                     </button>
 
-                    <button className="btn btn-primary" onClick={avancarPagina}>
+                    <button className="btn btn-primary" style={{
+                        backgroundColor: "#66BFBF",
+                        color: "white",
+                        borderRadius: "8px",
+                        fontSize: "1.05rem",
+                        border: "none",
+                      }} onClick={avancarPagina}>
                       <i className="bi bi-arrow-right me-2"></i>Próximo
                     </button>
                   </div>
@@ -323,7 +365,13 @@ const LinhaAnsiedade = () => {
                   </div>
 
                   <div className="d-flex justify-content-between mt-4">
-                    <button className="btn btn-outline-secondary" onClick={retrocederPagina}>
+                    <button className="btn btn-outline-secondary" style={{
+                        backgroundColor: "#E7C8C2",
+                        color: "white",
+                        borderRadius: "8px",
+                        fontSize: "1.05rem",
+                        border: "none",
+                      }} onClick={retrocederPagina}>
                       <i className="bi bi-arrow-left me-2"></i>Anterior
                     </button>
                     <AtividadeProgressao

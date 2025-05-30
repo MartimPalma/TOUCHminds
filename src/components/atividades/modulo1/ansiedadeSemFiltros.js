@@ -89,7 +89,13 @@ const AnsiedadeSemFiltros = () => {
                             hashtag — algo que sintas, penses ou te venha à cabeça naquele momento. O objetivo é parares
                             um instante e refletires sobre o que estás a ver e como isso te faz sentir. Vamos a isso?"
                       </p>
-                      <button className="btn btn-primary mt-3 px-4 py-2" onClick={avancarPagina}>
+                      <button className="btn btn-primary mt-3 px-4 py-2" style={{
+                        backgroundColor: "#66BFBF",
+                        color: "white",
+                        borderRadius: "8px",
+                        fontSize: "1.05rem",
+                        border: "none",
+                      }} onClick={avancarPagina}>
                         <i className="bi bi-play-fill me-2"></i>Vamos a isto?
                       </button>
                     </div>
@@ -167,11 +173,23 @@ const AnsiedadeSemFiltros = () => {
                   </div>
 
                   <div className="d-flex justify-content-between">
-                    <button className="btn btn-outline-secondary" onClick={retrocederPagina}>
+                    <button className="btn btn-outline-secondary" style={{
+                        backgroundColor: "#E7C8C2",
+                        color: "white",
+                        borderRadius: "8px",
+                        fontSize: "1.05rem",
+                        border: "none",
+                      }} onClick={retrocederPagina}>
                       <i className="bi bi-arrow-left me-2"></i>Anterior
                     </button>
                     <button 
-                      className="btn btn-primary" 
+                      className="btn btn-primary" style={{
+                        backgroundColor: "#66BFBF",
+                        color: "white",
+                        borderRadius: "8px",
+                        fontSize: "1.05rem",
+                        border: "none",
+                      }}
                       onClick={avancarPagina}
                     >
                       {pagina === 12 ? "Ver reflexão" : "Próximo"}
@@ -196,7 +214,13 @@ const AnsiedadeSemFiltros = () => {
                       para lidar com os desafios da saúde mental 
                   </p>
                   <div className="d-flex justify-content-between mt-4">
-                    <button className="btn btn-outline-secondary" onClick={retrocederPagina}>
+                    <button className="btn btn-outline-secondary" style={{
+                        backgroundColor: "#E7C8C2",
+                        color: "white",
+                        borderRadius: "8px",
+                        fontSize: "1.05rem",
+                        border: "none",
+                      }} onClick={retrocederPagina}>
                       <i className="bi bi-arrow-left me-2"></i>Anterior
                     </button>
                     <AtividadeProgressao

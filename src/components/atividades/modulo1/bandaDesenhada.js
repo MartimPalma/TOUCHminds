@@ -26,16 +26,16 @@ const BandaDesenhada = () => {
         return;
       }
     }
-    
+
     setInputError(false);
     setPagina((prev) => prev + 1);
   };
-  
+
   const retrocederPagina = () => {
     setInputError(false);
     setPagina((prev) => prev - 1);
   };
-  
+
   const progresso = Math.round((pagina / (quadros.length + 2)) * 100); // +2: reflexão e conclusão
 
   const handleAnsiedadeComumChange = (e) => {
@@ -90,10 +90,10 @@ const BandaDesenhada = () => {
                         </li>
                       </ul>
                       <p className="lead">
-                        O teu <strong>desafio</strong> é compreender a diferença entre estas duas formas de ansiedade. Para isso, lê com atenção os 
+                        O teu <strong>desafio</strong> é compreender a diferença entre estas duas formas de ansiedade. Para isso, lê com atenção os
                         quadros da banda desenhada. No final, <strong>escreve duas palavras</strong> que, para ti, represente:
-                        </p>
-                        <ul className="text-start mb-3" style={{ display: "inline-block" }}>
+                      </p>
+                      <ul className="text-start mb-3" style={{ display: "inline-block" }}>
                         <li>
                           o que é a <strong>ansiedade comum</strong>
                         </li>
@@ -101,12 +101,19 @@ const BandaDesenhada = () => {
                           o que é a <strong>ansiedade SOS</strong>
                         </li>
                       </ul>
-                        <p className="lead"> 
+                      <p className="lead">
                         Escreve essas duas palavras no espaço indicado.
                         <strong>Não há respostas certas ou erradas</strong> — o importante é o que <strong>tu</strong> compreendeste!
                       </p>
-                      <button className="btn btn-primary mt-3 px-4 py-2" onClick={avancarPagina}>
-                        <i className="bi bi-play-fill me-2"></i>Vamos a isto?
+                      <button className="btn btn-primary mt-3 px-4 py-2 " style={{
+                        backgroundColor: "#66BFBF",
+                        color: "white",
+                        fontWeight: "600",
+                        borderRadius: "8px",
+                        fontSize: "1.05rem",
+                        border: "none",
+                      }} onClick={avancarPagina}>
+                        <i className="bi bi-play-fill me-2"  ></i>Vamos a isto?
                       </button>
                     </div>
                   </div>
@@ -115,14 +122,26 @@ const BandaDesenhada = () => {
               {/* QUADROS */}
               {pagina > 0 && pagina <= quadros.length && (
                 <>
-                <div className="justify-content-center d-flex">
-                 <img src={quadros[pagina - 1].imagem} alt={`Quadro ${pagina}`} className="img-fluid mb-4" style={{maxHeight: "500px"}} />
-                </div>
+                  <div className="justify-content-center d-flex">
+                    <img src={quadros[pagina - 1].imagem} alt={`Quadro ${pagina}`} className="img-fluid mb-4" style={{ maxHeight: "500px" }} />
+                  </div>
                   <div className="d-flex justify-content-between">
-                    <button className="btn btn-outline-secondary" onClick={retrocederPagina}>
+                    <button className="btn btn-outline-secondary" style={{
+                        backgroundColor: "#E7C8C2",
+                        color: "white",
+                        borderRadius: "8px",
+                        fontSize: "1.05rem",
+                        border: "none",
+                      }} onClick={retrocederPagina}>
                       <i className="bi bi-arrow-left me-2"></i>Anterior
                     </button>
-                    <button className="btn btn-primary" onClick={avancarPagina}>
+                    <button className="btn btn-primary" style={{
+                        backgroundColor: "#66BFBF",
+                        color: "white",
+                        borderRadius: "8px",
+                        fontSize: "1.05rem",
+                        border: "none",
+                      }} onClick={avancarPagina}>
                       {pagina === quadros.length ? "Refletir" : "Próximo"}
                       <i className="bi bi-arrow-right ms-2"></i>
                     </button>
@@ -134,16 +153,16 @@ const BandaDesenhada = () => {
               {pagina === quadros.length + 1 && (
                 <>
                   <h4 className="fw-bold mb-4" style={{ color: "#234970" }}>Vamos Refletir!</h4>
-                  
+
                   {inputError && (
                     <div className="alert alert-danger mb-3" role="alert">
                       <i className="bi bi-exclamation-triangle me-2"></i>
                       Por favor, preenche os dois campos antes de avançar.
                     </div>
                   )}
-                  
+
                   <p className="lead">
-                    <strong>Escreve aqui duas palavras que para ti</strong> representem a o que é a ansiedade comum e o que é a ansiedade SOS. 
+                    <strong>Escreve aqui duas palavras que para ti</strong> representem a o que é a ansiedade comum e o que é a ansiedade SOS.
                     Escreve essas duas palavras no espaço indicado. <br></br> <strong>Não há respostas certas ou erradas</strong> — o importante é o que <strong>tu</strong> compreendeste! Vamos a isto?
                   </p>
 
@@ -188,10 +207,22 @@ const BandaDesenhada = () => {
                   </div>
 
                   <div className="d-flex justify-content-between mt-4">
-                    <button className="btn btn-outline-secondary" onClick={retrocederPagina}>
-                      <i className="bi bi-arrow-left me-2"></i>Anterior
+                    <button className="btn btn-outline-secondary" style={{
+                        backgroundColor: "#E7C8C2",
+                        color: "white",
+                        borderRadius: "8px",
+                        fontSize: "1.05rem",
+                        border: "none",
+                      }} onClick={retrocederPagina}>
+                      <i className="bi bi-arrow-left me-2" ></i>Anterior
                     </button>
-                    <button className="btn btn-primary" onClick={avancarPagina}>
+                    <button className="btn btn-primary" style={{
+                        backgroundColor: "#234970",
+                        color: "white",
+                        borderRadius: "8px",
+                        fontSize: "1.05rem",
+                        border: "none",
+                      }} onClick={avancarPagina}>
                       Conclusão
                       <i className="bi bi-check-lg ms-2"></i>
                     </button>
@@ -205,12 +236,12 @@ const BandaDesenhada = () => {
                   <h4 className="fw-bold mb-4" style={{ color: "#234970" }}>Conclusão da Atividade</h4>
                   <p className="lead">
                     Espero que tenha sido um <strong>primeiro passo importante</strong> para compreenderes melhor como
-                     a <strong>ansiedade</strong>  pode afetar a tua vida. <br></br>Lembra-te de que a <strong>ansiedade comum</strong> 
-                     pode ser uma <strong>aliada</strong>, ajudando-nos a enfrentar desafios e a <strong>preparar</strong>
-                      para momentos difíceis.<br></br>No entanto, quando a <strong>ansiedade SOS</strong> se torna intrusiva, ela 
-                      pode interferir no nosso <strong>bem-estar</strong> e até prejudicar as nossas <strong>relações</strong> e <strong>atividades diárias</strong>.
-                       <br></br>É importante 
-                      saber <strong>distinguir</strong> quando a ansiedade está a ser <strong>útil</strong> e quando está a tornar-se um <strong>problema</strong>.
+                    a <strong>ansiedade</strong>  pode afetar a tua vida. <br></br>Lembra-te de que a <strong>ansiedade comum</strong>
+                    pode ser uma <strong>aliada</strong>, ajudando-nos a enfrentar desafios e a <strong>preparar</strong>
+                    para momentos difíceis.<br></br>No entanto, quando a <strong>ansiedade SOS</strong> se torna intrusiva, ela
+                    pode interferir no nosso <strong>bem-estar</strong> e até prejudicar as nossas <strong>relações</strong> e <strong>atividades diárias</strong>.
+                    <br></br>É importante
+                    saber <strong>distinguir</strong> quando a ansiedade está a ser <strong>útil</strong> e quando está a tornar-se um <strong>problema</strong>.
                   </p>
                   <div className="d-flex justify-content-between mt-4">
                     <button className="btn btn-outline-secondary" onClick={retrocederPagina}>

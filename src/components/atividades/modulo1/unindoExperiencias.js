@@ -73,7 +73,13 @@ const UnindoExperiencias = () => {
                           com a ansiedade.
 
                       </p>
-                      <button className="btn btn-primary mt-3 px-4 py-2" onClick={avancarPagina}>
+                      <button className="btn btn-primary mt-3 px-4 py-2" style={{
+                        backgroundColor: "#66BFBF",
+                        color: "white",
+                        borderRadius: "8px",
+                        fontSize: "1.05rem",
+                        border: "none",
+                      }} onClick={avancarPagina}>
                         <i className="bi bi-play-fill me-2"></i>Vamos a isto?
                       </button>
                     </div>
@@ -99,12 +105,24 @@ const UnindoExperiencias = () => {
                 </div>
 
                 <div className="d-flex justify-content-between mb-4">
-                  <button className="btn btn-outline-secondary" onClick={retrocederPagina}>
+                  <button className="btn btn-outline-secondary" style={{
+                        backgroundColor: "#E7C8C2",
+                        color: "white",
+                        borderRadius: "8px",
+                        fontSize: "1.05rem",
+                        border: "none",
+                      }} onClick={retrocederPagina}>
                       <i className="bi bi-arrow-left me-2"></i>Anterior
                     </button>
                   <button 
                     className="btn btn-primary" 
-                    onClick={avancarPagina}
+                    style={{
+                        backgroundColor: "#66BFBF",
+                        color: "white",
+                        borderRadius: "8px",
+                        fontSize: "1.05rem",
+                        border: "none",
+                      }} onClick={avancarPagina}
                   >
                     Conclusão
                     <i className="bi bi-arrow-right ms-2"></i>
@@ -124,13 +142,19 @@ const UnindoExperiencias = () => {
                    é uma emoção comum a todos nós.</strong><br></br><br></br>
                   Este conceito de <strong>“humanidade comum”</strong> conecta-nos, mostrando que as nossas <strong>dificuldades e emoções</strong> fazem
                   parte da <strong>experiência universal</strong>.<br></br><br></br>
-                  Ao <strong>falarmos sobre o que sentimos</strong> e ao <strong>procurarmos apoio</strong>, fortalecemos esses <strong>laços</strong>> e aprendemos uns com 
+                  Ao <strong>falarmos sobre o que sentimos</strong> e ao <strong>procurarmos apoio</strong>, fortalecemos esses <strong>laços</strong> e aprendemos uns com 
                   os outros.<br></br><br></br>
                   <strong>Juntos, podemos enfrentar a ansiedade e apoiar-nos mutuamente neste caminho.</strong>
 
                   </p>
                   <div className="d-flex justify-content-between mt-4">
-                    <button className="btn btn-outline-secondary" onClick={retrocederPagina}>
+                    <button className="btn btn-outline-secondary" style={{
+                        backgroundColor: "#E7C8C2",
+                        color: "white",
+                        borderRadius: "8px",
+                        fontSize: "1.05rem",
+                        border: "none",
+                      }} onClick={retrocederPagina}>
                       <i className="bi bi-arrow-left me-2"></i>Anterior
                     </button>
                     <AtividadeProgressao
