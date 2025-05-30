@@ -46,7 +46,7 @@ const AtividadeProgressao = ({ moduloId, atividadeIndex, updateUserData }) => {
         
         if (UltimaAtividade) {
             // Se for a última atividade, define a data de fim do módulo como a data atual
-            dadosAtualizados.modulos[moduloKey].dataFim = new Date().toISOString();
+            dadosAtualizados.modulos[moduloKey].dataFim = new Date();
             // 
             dadosAtualizados.modulosConcluidos = moduloId;
             console.log("Módulo concluído em:", dadosAtualizados.modulos[moduloKey].dataFim);
