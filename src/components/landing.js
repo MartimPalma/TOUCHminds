@@ -123,16 +123,10 @@ const LandingPage = () => {
             <Accordion.Item eventKey="0">
               <Accordion.Header className="font-poppins">O que é?</Accordion.Header>
               <Accordion.Body className="font-lato">
-                O TOUCHminds é um programa online e gratuito, criado para promover a procura de ajuda nos adolescentes que lidam com dificuldades relacionadas com a
-                ansiedade. Sabemos que, muitas vezes, a dificuldade em pedir ajuda vem da falta de conhecimento sobre saúde mental, do medo de ser julgado ou até da ideia
-                de que as nossas emoções não são importantes e que sou capaz de lidar com elas sozinho/a. Este programa foi desenvolvido para mudar essa realidade.
-                <br />
-                O programa vai ajudar-te a:
-                <ul style={{ marginTop: "0px" }}>
-                  <li>Compreender melhor a tua ansiedade. </li>
-                  <li>Refletir sobre como superar os obstáculos que te impedem de pedir ajuda.</li>
-                  <li>Encorajar-te a procurar ajuda sempre que for necessário.</li>
-                </ul>
+                O TOUCHminds é um programa online e gratuito, criado para promover a procura de ajuda em adolescentes que lidam com dificuldades relacionadas com a ansiedade. 
+                Sabemos que, muitas vezes, a dificuldade em pedir ajuda vem do medo de ser julgado, da ideia de que as nossas emoções não são importantes, ou até da imposição 
+                que nos colocamos de que deveríamos ser capazes de lidar com essa dificuldade sozinho/a. Este programa foi desenvolvido para mudar estas ideias e promover a 
+                procura de ajuda, quando e se necessário.
               </Accordion.Body>
             </Accordion.Item>
             <Accordion.Item eventKey="1">
@@ -164,8 +158,8 @@ const LandingPage = () => {
           Espreita os Módulos!
         </h2>
         <div className="row mt-4">
-          <ModuleCard image={mod1} title="Módulo 1" subtitle="Ansiedade NÃO é bicho-papão!" description="Descobre porque a ansiedade não é um monstro: diferencia ansiedade comum de SOS, reconhece como te afeta e as suas consequências. " />
-          <ModuleCard image={mod2} title="Módulo 2" subtitle="Desmistificar a Ansiedade!" description="Desmistifica a ansiedade: percebe o impacto do estigma e aprende a separar factos de mitos." />
+          <ModuleCard image={mod1} title="Módulo 1" subtitle="Ansiedade NÃO é bicho-papão!" description="Aprende a diferenciar ansiedade comum de SOS, e reconhece como a ansiedade pode afetar a vida das pessoas, incluindo a tua. " />
+          <ModuleCard image={mod2} title="Módulo 2" subtitle="Desmistificar a Ansiedade!" description="Percebe o impacto do estigma sobre a ansiedade e a forma como lidamos com ela e aprende a separar factos de mitos." />
           <ModuleCard image={mod3} title="Módulo 3" subtitle="Sê Amigo de Ti Mesmo!" description="Examina como o autocriticismo te trava e descobre a autocompaixão como superpoder para cuidares melhor de ti." />
           <ModuleCard image={mod4} title="Módulo 4" subtitle="O Poder da Mudança!" description="Explora as fases da mudança, avalia prós e contras de novos comportamentos e desenvolve confiança para dares pequenos passos." />
           <ModuleCard image={mod5} title="Módulo 5" subtitle="Reviravolta em Rede!" description="Identifica sinais de ansiedade, explora terapias baseadas em evidência e aprende a distinguir diferentes fontes de ajuda." />
