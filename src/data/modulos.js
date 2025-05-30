@@ -21,28 +21,22 @@ const modulos = [
           imagem: "../imgs/act1mod1.jpg",
           quadros: [
             {
-              rapariga: "Olá, como estás? Pareces pensativo?",
-              rapaz: "Olá estou bem e tu? Ah, estava só a pensar nas coisas que tenho de fazer hoje..."
+              imagem: "/imgs/modulo1/bd/bd_1.png",
             },
             {
-              rapariga: "A ansiedade é uma resposta natural.",
-              rapaz: "Mas às vezes ela atrapalha."
+              imagem: "/imgs/modulo1/bd/bd_2.png",
             },
             {
-              rapariga: "Ansiedade comum ajuda. É temporária.",
-              rapaz: "Então é como um empurrãozinho!"
+              imagem: "/imgs/modulo1/bd/bd_3.png",
             },
             {
-              rapariga: "Ansiedade SOS dura mais e é mais forte.",
-              rapaz: "Parece que nunca vai embora…"
+              imagem: "/imgs/modulo1/bd/bd_4.png",
             },
             {
-              rapariga: "A comum desaparece depois da situação.",
-              rapaz: "A SOS fica e atrapalha mais tempo."
+              imagem: "/imgs/modulo1/bd/bd_5.png",
             },
             {
-              rapaz: "A ansiedade SOS afeta muito a vida…",
-              rapariga: "É por isso que precisamos saber a diferença!"
+              imagem: "/imgs/modulo1/bd/bd_6.png",
             }
           ],
         },
@@ -85,31 +79,24 @@ const modulos = [
         introducao: "Todos nós sentimos ansiedade – e isso é perfeitamente normal! Aqui, vais compreender melhor as emoções, como elas influenciam o nosso dia a dia e aprender a distinguir entre uma ansiedade comum e uma ansiedade SOS que causa sofrimento.",
         atividades: [
           {
-            url: "banda-desenhada",
-            titulo: "Ansiedade: Aliada ou Empecilho?",
+            url: "podcast",
+            titulo: "Podcast: “Touchminds” ",
             tipo: "texto",
             descricao: "Banda desenhada que explica ansiedade comum vs. SOS.",
             imagem: "../imgs/module1.jpg"
           },
           {
-            url: "linha-ansiedade",
-            titulo: "Linha da Ansiedade",
+            url: "verdade-ou-mito",
+            titulo: "Verdade Ou Mito? ",
             tipo: "popup",
             descricao: "Explora ansiedade normativa vs. patológica numa situação.",
             imagem: "../imgs/module1.jpg"
           },
           {
-            url: "unindo-experiencias",
-            titulo: "Unindo Experiências",
+            url: "atividade-resumo",
+            titulo: "Atividade Resumo",
             tipo: "video",
             descricao: "Vídeo com relatos reais sobre ansiedade.",
-            imagem: "../imgs/module1.jpg"
-          },
-          {
-            url: "ansiedade-sem-filtros",
-            titulo: "Ansiedade sem Filtros",
-            tipo: "imagem",
-            descricao: "Imagens estilo Instagram sobre ansiedade na adolescência.",
             imagem: "../imgs/module1.jpg"
           },
         ],

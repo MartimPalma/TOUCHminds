@@ -1,8 +1,18 @@
 import React from 'react';
 import Navbar from './navbar';
 import Sidebar from './sidebar';
+import Loading from './loading';
+import { UserContext } from '../App';
+import { useContext } from 'react';
 
 const Progresso = () => {
+
+  const { userData } = useContext(UserContext);
+  
+  if (!userData) {
+    return <Loading message="A carregar o progresso..." />;
+  }
+
   return (
     <div className="container-fluid vh-100 p-0">
       <Navbar />

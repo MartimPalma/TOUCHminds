@@ -16,6 +16,11 @@ import avatar8 from "../imgs/avatar8.jpg";
 import avatar9 from "../imgs/avatar9.jpg";
 import avatar10 from "../imgs/avatar10.jpg";
 
+// Alterar notificações semanais , no 1 dia após o desbloqueio de um módulo, e no 5 dia após o desbloqueio de um módulo
+// AlTerar a mensagem o texto
+
+
+
 const Navbar = () => {
   const avatarOptions = [
     { id: "avatar1", src: avatar1 },
@@ -49,65 +54,53 @@ const Navbar = () => {
     setShowTooltip(prev => !prev);
   };
 
-  // Função para verificar o dia da semana e mostrar mensagens personalizadas
-  const checkWeekMessages = () => {
-    const dayOfWeek = new Date().getDay(); 
+  // Função que verifica as notificações conforme o dia da semana e estado dos módulos
+  const verificarNotificacoesSemanais = () => {
+    const hoje = new Date();
+    const diaSemana = hoje.getDay(); // 0 = Domingo, 1 = Segunda, ..., 6 = Sábado
+    const todayStr = hoje.toDateString();
+    const lastShown = localStorage.getItem('lastNotificationDate');
+
+    if (lastShown === todayStr) return; // Já mostrou notificação hoje
+
+    // Verifica se existe algum módulo incompleto
+    const hasModuloIncompleto = Object.values(userData?.modulos || {}).some(mod =>
+      (mod.atividades || []).some(ativ => !ativ.concluido)
+    );
+
     let mensagem = '';
 
-    switch (dayOfWeek) {
-      case 0:
-        mensagem = "Domingo: Aproveita o descanso, a nova semana está a chegar!";
-        break;
-      case 1:
-        mensagem = "Segunda-feira: Novo módulo disponível! Começa a tua semana com o pé direito!";
-        break;
-      case 2:
-        mensagem = "Terça-feira: Continua o teu progresso, estás a caminho do sucesso!";
-        break;
-      case 3:
-        mensagem = "Quarta-feira: Já ultrapassaste a metade da semana! Força!";
-        break;
-      case 4:
-        mensagem = "Quinta-feira: A reta final está a chegar, mantém o foco!";
-        break;
-      case 5:
-        mensagem = "Sexta-feira: A semana está a acabar! Conclui o módulo antes do final da semana!";
-        break;
-      case 6:
-        mensagem = "Sábado: Dia de refletir sobre o progresso, bom trabalho!";
-        break;
-      default:
-        mensagem = '';
-        break;
+    if (hasModuloIncompleto && diaSemana !== 1 && diaSemana !== 5) {
+      mensagem = "Ainda há um módulo por acabar. Retoma-o para não quebrares o teu progresso.";
+    } else if (diaSemana === 1) {
+      mensagem = "Novo módulo! Explora hoje as atividades e dá mais um passo.";
+    } else if (diaSemana === 5) {
+      mensagem = "A semana está quase a terminar! Conclui o módulo e continua a avançar.";
     }
 
-    setNotificacaoSemanal(mensagem);
+    if (mensagem) {
+      setNotificacaoSemanal(mensagem);
+      setNotificacaoVisivel(true);
+      localStorage.setItem('lastNotificationDate', todayStr);
+    }
   };
 
   useEffect(() => {
-    // Verifica se já mostrou a notificação hoje
-    const today = new Date().toDateString();
-    const lastNotificationDate = localStorage.getItem('lastNotificationDate');
-    
-    // Se não houver data armazenada ou se for de um dia diferente, mostra a notificação
-    if (lastNotificationDate !== today) {
-      checkWeekMessages(); 
-      setNotificacaoVisivel(true); 
-      
-      localStorage.setItem('lastNotificationDate', today);
+    if (userData) {
+      verificarNotificacoesSemanais();
     }
-  }, []); 
-  
-  // Efeito separado para gerenciar o tempo de exibição da notificação
+  }, [userData]);
+
+  // Esconde notificação após 5 segundos
   useEffect(() => {
     if (notificacaoVisivel) {
       const timer = setTimeout(() => {
         setNotificacaoVisivel(false);
       }, 5000);
-      
+
       return () => clearTimeout(timer);
     }
-  }, [notificacaoVisivel]); // será executado sempre que notificacaoVisivel mudar
+  }, [notificacaoVisivel]);
 
   let avatarSelecionado;
   for (let i = 0; i < avatarOptions.length; i++) {
@@ -122,7 +115,7 @@ const Navbar = () => {
       <div className="container-fluid">
         <a
           className="navbar-brand text-info"
-          onClick={() => navigate('/homepage')} 
+          onClick={() => navigate('/homepage')}
           style={{ width: "15%", cursor: 'pointer' }}
         >
           <img src={logo} alt="TOUCHminds Logo" className="mt-1" style={{ width: "80%" }} />

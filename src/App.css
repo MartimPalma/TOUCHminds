@@ -425,3 +425,6 @@ select:focus {
   user-select: none;
 }
 
+.lead{
+  text-align: left !important;
+}

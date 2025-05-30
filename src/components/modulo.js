@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Navbar from './navbar';
 import Sidebar from './sidebar';
@@ -6,6 +6,8 @@ import DesafioSemanal from './desafioSemanal';
 import { UserContext } from '../App';
 import modulos from '../data/modulos';
 import AtividadeCard from './atividadeCard';
+import { Modal, Button } from 'react-bootstrap';
+import Loading from './loading';
 
 const mensagensInicio = {
   1: "Falar de ansiedade pode ser desconfortável, mas ao reconhecer o que sentes ganhas clareza para a enfrentar—és mais resiliente do que imaginas!",
@@ -17,12 +19,12 @@ const mensagensInicio = {
 };
 
 const mensagensFim = {
-  1: "Superaste o desconforto de falares sobre ansiedade e ganhaste clareza sobre o que sentes és mais resiliente do que pensas!",
-  2: "Passaste pelo desafio de questionares mitos e estigmas, e acabaste com uma visão mais clara—mantém essa curiosidade!",
-  3: "Enfrentaste a tua voz crítica e praticaste autocompaixão, construindo um alicerce sólido para o teu bem-estar—orgulha-te deste passo!",
-  4: "Analisaste prós e contras da mudança e suportaste a incerteza—demonstraste coragem para evoluir!",
-  5: "Falaste de sintomas e abriste-te à ajuda, reconhecendo a tua vulnerabilidade—foste corajoso(a)!",
-  6: "Abordaste a ideia de ajuda profissional e confirmaste a tua determinação—confia em ti para continuares em frente!"
+  1: "Superaste o desconforto de falares sobre ansiedade e ganhaste clareza sobre o que sentes — és mais resiliente do que pensas!",
+  2: "Passaste pelo desafio de questionares mitos e estigmas, e acabaste com uma visão mais clara — mantém essa curiosidade!",
+  3: "Enfrentaste a tua voz crítica e praticaste autocompaixão, construindo um alicerce sólido para o teu bem-estar — orgulha-te deste passo!",
+  4: "Analisaste prós e contras da mudança e suportaste a incerteza — demonstraste coragem para evoluir!",
+  5: "Falaste de sintomas e abriste-te à ajuda, reconhecendo a tua vulnerabilidade — foste corajoso(a)!",
+  6: "Abordaste a ideia de ajuda profissional e confirmaste a tua determinação — confia em ti para continuares em frente!"
 };
 
 const Modulos = () => {
@@ -30,14 +32,30 @@ const Modulos = () => {
   const { userData } = useContext(UserContext);  
 
   const modulo = modulos.find((m) => m.id === id);
-  if (!userData || !modulo) return <p>A carregar dados do utilizador...</p>;
 
-  const moduloUserKey = `modulo${modulo.id}`;  
-  const atividadesStatus = userData.modulos[moduloUserKey]?.atividades || [];  
+  // Se não houver dados ainda, prepara o estado inicial para evitar erro
+  const moduloUserKey = modulo ? `modulo${modulo.id}` : '';
+  const atividadesStatus = userData?.modulos?.[moduloUserKey]?.atividades || [];
   const atividadesConcluidas = atividadesStatus.filter((a) => a.concluido).length;
   const progressoModulo = (atividadesStatus.length > 0)
     ? (atividadesConcluidas / atividadesStatus.length) * 100
     : 0;
+
+  const mensagemInicial = modulo
+    ? progressoModulo === 0
+      ? mensagensInicio[modulo.id]
+      : progressoModulo === 100
+      ? mensagensFim[modulo.id]
+      : ''
+    : '';
+
+  const [showModal, setShowModal] = useState(!!mensagemInicial);
+  const [mensagemModal] = useState(mensagemInicial);
+
+  if (!userData || !modulo) {
+    return <Loading message="A carregar o módulo..." />;
+  }
+
 
   return (
     <div className="container-fluid vh-100 p-0">
@@ -67,11 +85,6 @@ const Modulos = () => {
                     aria-valuemax="100"
                   />
                 </div>
-              </div>
-
-              <div className="mt-2 small text-muted">
-                {progressoModulo === 0 && mensagensInicio[modulo.id]}
-                {progressoModulo === 100 && mensagensFim[modulo.id]}
               </div>
 
               <h4 className="mt-5" style={{ color: "#99CBC8" }}>
@@ -104,6 +117,61 @@ const Modulos = () => {
           </div>
         </div>
       </div>
+
+      {/*colocar apenas quando o conclui e não sempre que entra no módulo*/}
+      <Modal
+        show={showModal}
+        onHide={() => setShowModal(false)}
+        centered
+        backdrop="static"
+        keyboard={false}
+      >
+        <Modal.Header
+          closeButton
+          style={{
+            backgroundColor: "#99CBC8",
+            borderBottom: "none",
+            color: "#fff",
+          }}
+        >
+          <Modal.Title style={{ fontWeight: "600" }}>
+            ✨ Uma reflexão para ti
+          </Modal.Title>
+        </Modal.Header>
+
+        <Modal.Body
+          style={{
+            padding: "1.5rem",
+            fontSize: "1.05rem",
+            color: "#234970",
+            backgroundColor: "#F5FDFC",
+          }}
+        >
+          {mensagemModal}
+        </Modal.Body>
+
+        <Modal.Footer
+          style={{
+            borderTop: "none",
+            backgroundColor: "#F5FDFC",
+            justifyContent: "center",
+          }}
+        >
+          <Button
+            onClick={() => setShowModal(false)}
+            style={{
+              backgroundColor: "#234970",
+              borderColor: "#234970",
+              borderRadius: "20px",
+              padding: "0.5rem 1.5rem",
+              fontWeight: "500",
+            }}
+          >
+            Fechar
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
     </div>
   );
 };

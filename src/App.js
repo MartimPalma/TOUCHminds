@@ -20,6 +20,8 @@ import LinhaAnsiedade from './components/atividades/modulo1/linhaAnsiedade';
 import AnsiedadeSemFiltros from './components/atividades/modulo1/ansiedadeSemFiltros';
 import AtividadeResumo from './components/atividades/modulo1/atividadeResumo';
 import UnindoExperiencias from './components/atividades/modulo1/unindoExperiencias';
+import PodcastTouchminds from './components/atividades/modulo2/podcast';
+import VerdadeOuMito from './components/atividades/modulo2/verdadeOuMito';
 
 
 import useDesbloquearModulos from './components/desbloquearModulos';
@@ -97,11 +99,15 @@ const App = () => {
           {/* Página principal de cada módulo */}
           <Route path="/modulos/:id" element={<Modulos />} />
 
-          {/* Atividades dentro de um módulo */}
+          {/* Atividades módulo 1*/}
           <Route path="/modulos/:id/atividade/banda-desenhada" element={<BandaDesenhada />} />
           <Route path="/modulos/:id/atividade/linha-ansiedade" element={<LinhaAnsiedade />} />
           <Route path="/modulos/:id/atividade/ansiedade-sem-filtros" element={<AnsiedadeSemFiltros />} />
           <Route path="/modulos/:id/atividade/unindo-experiencias" element={<UnindoExperiencias />} />
+          {/* Atividade módulo 2 */}
+          <Route path="/modulos/:id/atividade/podcast" element={<PodcastTouchminds />} />
+          <Route path="/modulos/:id/atividade/verdade-ou-mito" element={<VerdadeOuMito />} />
+
           {/* Resumo da atividade */}
           <Route path="/modulos/:id/atividade/atividade-resumo" element={<AtividadeResumo />} />
         </Routes>

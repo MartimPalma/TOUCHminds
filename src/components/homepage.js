@@ -5,7 +5,7 @@ import Sidebar from './sidebar';
 import { useNavigate } from 'react-router-dom';
 import ModuloCard from './moduloCardHome'; 
 import modulos from '../data/modulos'; 
-
+import Loading from './loading'; 
 const Homepage = () => {
   const { userData } = useContext(UserContext);
   const navigate = useNavigate();
@@ -13,7 +13,7 @@ const Homepage = () => {
   console.log("HomePage:" , userData);
 
   if (!userData) {
-    return <div className="text-center p-5">A carregar dados do utilizador...</div>;
+    return <Loading message="A carregar a tua página inicial..." />;
   }
 
   const handleNavigate = (moduloId) => {
