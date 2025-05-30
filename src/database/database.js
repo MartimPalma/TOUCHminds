@@ -51,7 +51,6 @@ export async function registerAluno(codigoParticipante, password) {
     await setDoc(doc(db, "alunos", user.uid), {
       codigoParticipante,
       modulosConcluidos: 0,
-      tempoGasto: 0,
       periodicidade: {
         // guarda a data do registo e quando faz login
         registo: `Registo realizado em ${formatoData}`,
@@ -60,7 +59,7 @@ export async function registerAluno(codigoParticipante, password) {
       },
       modulos: {
         // ter em conta o numero de atividades de cada modulo
-        modulo1: { status: "desbloqueado", tempo: 0,  datafim: "" , desafioSemanal: [],  
+        modulo1: { status: "desbloqueado",  datafim: "" , desafioSemanal: [],  
           atividades: [
           { status: "desbloqueado", concluido: false },
           { status: "bloqueado", concluido: false },
@@ -68,35 +67,35 @@ export async function registerAluno(codigoParticipante, password) {
           { status: "bloqueado", concluido: false },
           { status: "bloqueado", concluido: false }
         ]},
-        modulo2: { status: "bloqueado", tempo: 0,  datafim: "" , desafioSemanal: [], atividades: [
+        modulo2: { status: "bloqueado",  datafim: "" , desafioSemanal: [], atividades: [
           { status: "desbloqueado", concluido: false },
           { status: "bloqueado", concluido: false },
           { status: "bloqueado", concluido: false },
           { status: "bloqueado", concluido: false },
           { status: "bloqueado", concluido: false }
         ]},
-        modulo3: { status: "bloqueado", tempo: 0,  datafim: "" , desafioSemanal: [], atividades: [
+        modulo3: { status: "bloqueado",  datafim: "" , desafioSemanal: [], atividades: [
           { status: "desbloqueado", concluido: false },
           { status: "bloqueado", concluido: false },
           { status: "bloqueado", concluido: false },
           { status: "bloqueado", concluido: false },
           { status: "bloqueado", concluido: false }
         ]},
-        modulo4: { status: "bloqueado", tempo: 0,  datafim: "" , desafioSemanal: [], atividades: [
+        modulo4: { status: "bloqueado",  datafim: "" , desafioSemanal: [], atividades: [
           { status: "desbloqueado", concluido: false },
           { status: "bloqueado", concluido: false },
           { status: "bloqueado", concluido: false },
           { status: "bloqueado", concluido: false },
           { status: "bloqueado", concluido: false }
         ]},
-        modulo5: { status: "bloqueado", tempo: 0,  datafim: "" , desafioSemanal: [], atividades: [
+        modulo5: { status: "bloqueado",  datafim: "" , desafioSemanal: [], atividades: [
           { status: "desbloqueado", concluido: false },
           { status: "bloqueado", concluido: false },
           { status: "bloqueado", concluido: false },
           { status: "bloqueado", concluido: false },
           { status: "bloqueado", concluido: false }
         ]},
-        modulo6: { status: "bloqueado", tempo: 0,  datafim: "" , desafioSemanal: [], atividades: [
+        modulo6: { status: "bloqueado",  datafim: "" , desafioSemanal: [], atividades: [
           { status: "desbloqueado", concluido: false },
           { status: "bloqueado", concluido: false },
           { status: "bloqueado", concluido: false },

@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Accordion } from "react-bootstrap";
 import { FaArrowDown } from 'react-icons/fa';
 import logo from "../imgs/logositeazul.png";
-import cerebro from "../imgs/cerebro.png";
 import Footer from "./footer";
 import ModuleCard from "./moduleCardLanding";
 import mod1 from "../imgs/module1.jpg";
@@ -81,11 +80,10 @@ const LandingPage = () => {
           <h1 className="fw-bold font-poppins py-4" style={{ color: "#99CBC8", fontSize: "clamp(1.8rem, 4vw, 2.5rem)" }}>
             Procurar ajuda é o começo da mudança!
           </h1>
-          <p className="text-muted mt-4 font-lato py-4" style={{ fontSize: "clamp(1rem, 2.5vw, 1.3rem)" }}>
-            O TOUCHminds oferece um programa online gratuito destinado a ajudar os adolescentes entre os 15 e os 17 anos a compreender a ansiedade e a promover a procurar de ajuda.
-          </p>
-          <div className="py-4 mb-5">
-            <div className="py-4 mb-5">
+          <p className="text-muted mt-4 font-lato py-3">
+              Bem-vindo/a ao, TOUCHminds. Procurar ajuda é o começo da mudança! <br></br>O TOUCHminds oferece um programa online gratuito destinado a ajudar os adolescentes entre os 15 e os 17 anos a compreender a ansiedade e a promover a procurar de ajuda          </p>
+          <div className="py-4 ">
+            <div className="py-4">
               <button
                 className="btn btn-lg font-poppins fw-bold py-3 px-5"
                 style={{
@@ -108,7 +106,7 @@ const LandingPage = () => {
           </div>
         </div>
         <div className="w-50 text-center">
-          <img src={cerebro} alt="Brain Illustration" className="img-fluid w-50" />
+          <img src={""} alt="Colocar animação ou algo mais apelativo" className="img-fluid w-50" />
         </div>
       </section>
 
