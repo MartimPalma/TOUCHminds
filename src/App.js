@@ -15,19 +15,26 @@ import Contactos from './components/contactos';
 import Definições from './components/def';
 import Homepage from './components/homepage';
 import Modulos from './components/modulo';
+
 import BandaDesenhada from './components/atividades/modulo1/bandaDesenhada';
 import LinhaAnsiedade from './components/atividades/modulo1/linhaAnsiedade';
 import AnsiedadeSemFiltros from './components/atividades/modulo1/ansiedadeSemFiltros';
 import AtividadeResumo from './components/atividades/modulo1/atividadeResumo';
 import UnindoExperiencias from './components/atividades/modulo1/unindoExperiencias';
+
 import PodcastTouchminds from './components/atividades/modulo2/podcast';
 import VerdadeOuMito from './components/atividades/modulo2/verdadeOuMito';
+
+import VozCriticaVozCompassiva from './components/atividades/modulo3/vozes';
+import MaiorInimigo from './components/atividades/modulo3/maiorInimigo';
+import AbracarMe from './components/atividades/modulo3/abracar';
 
 
 import useDesbloquearModulos from './components/desbloquearModulos';
 
 
 import { dadosAlunos } from './database/database';
+import AtividadeResumoCarta from './components/atividades/modulo3/atividadeResumo';
 
 export const UserContext = createContext(null);
 
@@ -104,12 +111,32 @@ const App = () => {
           <Route path="/modulos/:id/atividade/linha-ansiedade" element={<LinhaAnsiedade />} />
           <Route path="/modulos/:id/atividade/ansiedade-sem-filtros" element={<AnsiedadeSemFiltros />} />
           <Route path="/modulos/:id/atividade/unindo-experiencias" element={<UnindoExperiencias />} />
+          <Route path="/modulos/:id/atividade/atividade-resumo" element={<AtividadeResumo />} />
+
           {/* Atividade módulo 2 */}
           <Route path="/modulos/:id/atividade/podcast" element={<PodcastTouchminds />} />
           <Route path="/modulos/:id/atividade/verdade-ou-mito" element={<VerdadeOuMito />} />
+          {/* Alterar element para o correto */}
+          <Route path="/modulos/:id/atividade/atividade-resumo2" element={<AtividadeResumoCarta />} />
+
+
+          {/* Atividade módulo 3 */}
+          <Route path="/modulos/:id/atividade/voz-critica-compassiva" element={<VozCriticaVozCompassiva />} />
+          <Route path="/modulos/:id/atividade/nosso-maior-inimigo" element={<MaiorInimigo />} />
+          <Route path="/modulos/:id/atividade/abracar-me-a-mim-mesmo" element={<AbracarMe />} />
+          <Route path="/modulos/:id/atividade/atividade-resumo3" element={<AtividadeResumoCarta />} />
+
+
+          {/* Atividade módulo 4 */}
+
+
+          {/* Atividade módulo 5 */}
+
+          {/* Atividade módulo 6 */}
+
+
 
           {/* Resumo da atividade */}
-          <Route path="/modulos/:id/atividade/atividade-resumo" element={<AtividadeResumo />} />
         </Routes>
       </Router>
     </UserContext.Provider>

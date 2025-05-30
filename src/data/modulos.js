@@ -87,7 +87,7 @@ const modulos = [
             imagem: "../imgs/module1.jpg"
           },
           {
-            url: "atividade-resumo",
+            url: "atividade-resumo2",
             titulo: "Atividade Resumo",
             tipo: "video",
             descricao: "Vídeo com relatos reais sobre ansiedade.",
@@ -123,7 +123,7 @@ const modulos = [
             imagem: "../imgs/module1.jpg"
           },
           {
-            url: "atividade-resumo",
+            url: "atividade-resumo3",
             titulo: "Atividade Resumo",
             tipo: "imagem",
             descricao: "Imagens estilo Instagram sobre ansiedade na adolescência.",
@@ -156,7 +156,7 @@ const modulos = [
             imagem: "../imgs/module1.jpg"
           },
           {
-            url: "atividade-resumo",
+            url: "atividade-resumo4",
             titulo: "Atividade Resumo",
             descricao: "Imagens estilo Instagram sobre ansiedade na adolescência.",
             imagem: "../imgs/module1.jpg"

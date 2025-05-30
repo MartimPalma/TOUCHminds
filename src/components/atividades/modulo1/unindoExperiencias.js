@@ -159,7 +159,7 @@ const UnindoExperiencias = () => {
                     </button>
                     <AtividadeProgressao
                       moduloId={moduloId}
-                      atividadeIndex={3}
+                      atividadeIndex={2}
                       updateUserData={updateUserData}
                     />
                   </div>

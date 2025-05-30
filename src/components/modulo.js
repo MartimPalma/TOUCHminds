@@ -2,7 +2,13 @@ import React, { useContext, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Navbar from './navbar';
 import Sidebar from './sidebar';
-import DesafioSemanal from './desafioSemanal';
+import DesafioSemanal from './atividades/modulo1/desafioSemanal';
+import DesafioSemanal2 from './atividades/modulo1/desafioSemanal';
+import DesafioSemanal3 from './atividades/modulo3/desafioSemanal';
+import DesafioSemanal4 from './atividades/modulo3/desafioSemanal';
+import DesafioSemanal5 from './atividades/modulo3/desafioSemanal';
+import DesafioSemanal6 from './atividades/modulo3/desafioSemanal';
+
 import { UserContext } from '../App';
 import modulos from '../data/modulos';
 import AtividadeCard from './atividadeCard';
@@ -32,8 +38,6 @@ const Modulos = () => {
   const { userData } = useContext(UserContext);  
 
   const modulo = modulos.find((m) => m.id === id);
-
-  // Se não houver dados ainda, prepara o estado inicial para evitar erro
   const moduloUserKey = modulo ? `modulo${modulo.id}` : '';
   const atividadesStatus = userData?.modulos?.[moduloUserKey]?.atividades || [];
   const atividadesConcluidas = atividadesStatus.filter((a) => a.concluido).length;
@@ -41,21 +45,39 @@ const Modulos = () => {
     ? (atividadesConcluidas / atividadesStatus.length) * 100
     : 0;
 
-  const mensagemInicial = modulo
-    ? progressoModulo === 0
-      ? mensagensInicio[modulo.id]
-      : progressoModulo === 100
-      ? mensagensFim[modulo.id]
-      : ''
-    : '';
+  const modalShownKey = `modalShown_modulo_${modulo?.id}`;
+  const modalAlreadyShown = localStorage.getItem(modalShownKey) === 'true';
 
-  const [showModal, setShowModal] = useState(!!mensagemInicial);
-  const [mensagemModal] = useState(mensagemInicial);
+  const [showModal, setShowModal] = useState(() => {
+    if (!modulo) return false;
+    return (progressoModulo === 100 && !modalAlreadyShown) || progressoModulo === 0;
+  });
+
+  const [mensagemModal] = useState(() => {
+    if (!modulo) return '';
+    if (progressoModulo === 100 && !modalAlreadyShown) {
+      return mensagensFim[modulo.id];
+    } else if (progressoModulo === 0) {
+      return mensagensInicio[modulo.id];
+    }
+    return '';
+  });
 
   if (!userData || !modulo) {
     return <Loading message="A carregar o módulo..." />;
   }
 
+  const renderDesafioSemanal = () => {
+    switch (id) {
+      case '1': return <DesafioSemanal id={modulo.id} />;
+      case '2': return <DesafioSemanal2 id={modulo.id} />;
+      case '3': return <DesafioSemanal3 id={modulo.id} />;
+      case '4': return <DesafioSemanal4 id={modulo.id} />;
+      case '5': return <DesafioSemanal5 id={modulo.id} />;
+      case '6': return <DesafioSemanal6 id={modulo.id} />;
+      default: return null;
+    }
+  };
 
   return (
     <div className="container-fluid vh-100 p-0">
@@ -113,12 +135,14 @@ const Modulos = () => {
               ))}
             </div>
 
-            <DesafioSemanal id={modulo.id} />
+            <div className="mt-5">
+              {renderDesafioSemanal()}
+            </div>
+
           </div>
         </div>
       </div>
 
-      {/*colocar apenas quando o conclui e não sempre que entra no módulo*/}
       <Modal
         show={showModal}
         onHide={() => setShowModal(false)}
@@ -158,7 +182,12 @@ const Modulos = () => {
           }}
         >
           <Button
-            onClick={() => setShowModal(false)}
+            onClick={() => {
+              setShowModal(false);
+              if (progressoModulo === 100) {
+                localStorage.setItem(modalShownKey, 'true');
+              }
+            }}
             style={{
               backgroundColor: "#234970",
               borderColor: "#234970",
@@ -171,7 +200,6 @@ const Modulos = () => {
           </Button>
         </Modal.Footer>
       </Modal>
-
     </div>
   );
 };

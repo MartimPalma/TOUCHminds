@@ -70,20 +70,16 @@ export async function registerAluno(codigoParticipante, password) {
         modulo2: { status: "bloqueado", desafioSemanal: [], atividades: [
           { status: "desbloqueado", concluido: false },
           { status: "bloqueado", concluido: false },
-          { status: "bloqueado", concluido: false },
-          { status: "bloqueado", concluido: false },
           { status: "bloqueado", concluido: false }
         ]},
         modulo3: { status: "bloqueado", desafioSemanal: [], atividades: [
           { status: "desbloqueado", concluido: false },
           { status: "bloqueado", concluido: false },
           { status: "bloqueado", concluido: false },
-          { status: "bloqueado", concluido: false },
           { status: "bloqueado", concluido: false }
         ]},
         modulo4: { status: "bloqueado", desafioSemanal: [], atividades: [
           { status: "desbloqueado", concluido: false },
-          { status: "bloqueado", concluido: false },
           { status: "bloqueado", concluido: false },
           { status: "bloqueado", concluido: false },
           { status: "bloqueado", concluido: false }

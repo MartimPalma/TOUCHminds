@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { UserContext } from '../App';
+import { UserContext } from '../../../App';
 
 const DesafioSemanal = ({ id }) => {
   const { userData, updateUserData } = useContext(UserContext);
