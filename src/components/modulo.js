@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import Navbar from './navbar';
 import Sidebar from './sidebar';
 import DesafioSemanal from './atividades/modulo1/desafioSemanal';
-import DesafioSemanal2 from './atividades/modulo1/desafioSemanal';
+import DesafioSemanal2 from './atividades/modulo2/desafioSemanal';
 import DesafioSemanal3 from './atividades/modulo3/desafioSemanal';
 import DesafioSemanal4 from './atividades/modulo3/desafioSemanal';
 import DesafioSemanal5 from './atividades/modulo3/desafioSemanal';
