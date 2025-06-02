@@ -184,7 +184,8 @@ const AtividadeResumo = () => {
             <div className="modal-footer">
               <button type="button" className="btn btn-primary" onClick={() => {
                 onClose();
-              }}>Compreendo</button>
+                avancarPagina(); // Automatically advance to the next page after closing the modal
+              }}>Próximo</button>
             </div>
           </div>
         </div>
