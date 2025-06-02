@@ -1,6 +1,3 @@
-import React from "react";
-import Navbar from "../../navbar";
-import Sidebar from "../../sidebar";
 
 const DesafioSemanal3 = () => {
   return (
@@ -35,7 +32,7 @@ const DesafioSemanal3 = () => {
             <p className="fw-bold">Vamos em frente! #SêAmigoDeTiMesmo</p>
             <p>Até para a Semana!</p>
             
-            </div>
+    </div>
           
   );
 };
