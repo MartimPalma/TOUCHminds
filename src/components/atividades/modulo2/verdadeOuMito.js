@@ -75,7 +75,7 @@ const VerdadeOuMito = () => {
   const [mostrarPopup, setMostrarPopup] = useState(false);
   const { id: moduloId } = useParams();
   const { updateUserData } = useContext(UserContext);
-  
+
 
   const avancarPagina = () => {
     setRespostaSelecionada(null);
@@ -113,15 +113,23 @@ const VerdadeOuMito = () => {
                   Verdade ou Mito?
                 </h4>
                 <p className="lead mb-3">
-                    Sê muito bem-vindo ou bem-vinda ao Verdade ou Mito?! <br></br>
+                  Sê muito bem-vindo ou bem-vinda ao Verdade ou Mito?! <br></br>
 
-                    Nesta atividade, terás a oportunidade de explorar diversas afirmações sobre a ansiedade. <br></br>
+                  Nesta atividade, terás a oportunidade de explorar diversas afirmações sobre a ansiedade. <br></br>
 
-                    Para cada uma delas, deverás decidir se é verdade ou se se trata de um mito. <br></br>
+                  Para cada uma delas, deverás decidir se é verdade ou se se trata de um mito. <br></br>
 
-                    Após a tua escolha, aparecerá uma explicação que te ajudará a entender melhor o que está por trás de cada afirmação.                
+                  Após a tua escolha, aparecerá uma explicação que te ajudará a entender melhor o que está por trás de cada afirmação.
                 </p>
-                <button className="btn btn-primary px-4 py-2" onClick={avancarPagina}>
+                <button className="btn btn-primary px-4 py-2"
+                  style={{
+                    backgroundColor: "#66BFBF",
+                    color: "white",
+                    borderRadius: "8px",
+                    fontSize: "1.05rem",
+                    border: "none",
+                  }}
+                  onClick={avancarPagina}>
                   Vamos começar?
                 </button>
               </div>
@@ -156,17 +164,31 @@ const VerdadeOuMito = () => {
                 <div className="d-flex justify-content-between mt-4">
                   <button
                     className="btn btn-outline-secondary"
+                    style={{
+                      backgroundColor: "#E7C8C2",
+                      color: "white",
+                      borderRadius: "8px",
+                      fontSize: "1.05rem",
+                      border: "none"
+                    }}
                     onClick={retrocederPagina}
                     disabled={pagina === 0}
                   >
-                    Anterior
+                   <i className="bi bi-arrow-left me-2"></i> Anterior
                   </button>
                   <button
                     className="btn btn-primary"
+                    style={{
+                      backgroundColor: "#66BFBF",
+                      color: "white",
+                      borderRadius: "8px",
+                      fontSize: "1.05rem",
+                      border: "none",
+                    }}
                     onClick={avancarPagina}
                     disabled={!mostrarPopup}
                   >
-                    Próximo
+                    Próximo<i className="bi bi-arrow-right ms-2"></i>
                   </button>
                 </div>
               </div>
@@ -187,8 +209,16 @@ const VerdadeOuMito = () => {
                   Quando aprendemos a identificar e desconstruir esses mitos, damos passos importantes para melhorar o nosso bem-estar.
                 </p>
                 <div className="d-flex justify-content-between mt-4">
-                  <button className="btn btn-outline-secondary" onClick={retrocederPagina}>
-                    Anterior
+                  <button className="btn btn-outline-secondary" 
+                  style={{
+                      backgroundColor: "#E7C8C2",
+                      color: "white",
+                      borderRadius: "8px",
+                      fontSize: "1.05rem",
+                      border: "none"
+                    }}
+                    onClick={retrocederPagina}>
+                    <i className="bi bi-arrow-left me-2"></i>Anterior
                   </button>
                   <AtividadeProgressao
                     moduloId={moduloId}

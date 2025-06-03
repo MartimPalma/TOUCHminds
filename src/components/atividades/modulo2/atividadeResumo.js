@@ -198,7 +198,7 @@ const AtividadeResumoModulo2 = () => {
                                                 }} */
 
                                                 style={{
-                                                    backgroundColor: opcaoSelecionada === index ? "#234970" : "#6B8BA4",
+                                                    backgroundColor: opcaoSelecionada === index ? '#234970' : '#6B8BA4',
                                                     color: "white",
                                                     borderRadius: "8px",
                                                     fontSize: "1rem",
