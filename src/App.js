@@ -29,13 +29,19 @@ import AtividadeResumoModulo2 from './components/atividades/modulo2/atividadeRes
 import VozCriticaVozCompassiva from './components/atividades/modulo3/vozes';
 import MaiorInimigo from './components/atividades/modulo3/maiorInimigo';
 import AbracarMe from './components/atividades/modulo3/abracar';
+import AtividadeResumoCarta from './components/atividades/modulo3/atividadeResumo';
 
+import FerramentaMudanca from './components/atividades/modulo4/ferramentaMudanca';
+import BalancaVirtual from './components/atividades/modulo4/balancaVirtual';
+import JaFosteCapaz from './components/atividades/modulo4/jaFosteCapaz';
 
 import useDesbloquearModulos from './components/desbloquearModulos';
 
 
 import { dadosAlunos } from './database/database';
-import AtividadeResumoCarta from './components/atividades/modulo3/atividadeResumo';
+import AtividadeResumoMudanca from './components/atividades/modulo4/atividadeResumo';
+
+
 
 export const UserContext = createContext(null);
 
@@ -129,6 +135,10 @@ const App = () => {
 
 
           {/* Atividade módulo 4 */}
+          <Route path="/modulos/:id/atividade/ferramentas-mudanca" element={<FerramentaMudanca />} />
+          <Route path="/modulos/:id/atividade/balanca-virtual" element={<BalancaVirtual />} />
+          <Route path="/modulos/:id/atividade/ja-foste-capaz" element={<JaFosteCapaz />} />
+          <Route path="/modulos/:id/atividade/atividade-resumo4" element={<AtividadeResumoMudanca />} />
 
 
           {/* Atividade módulo 5 */}
