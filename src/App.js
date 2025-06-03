@@ -24,6 +24,7 @@ import UnindoExperiencias from './components/atividades/modulo1/unindoExperienci
 
 import PodcastTouchminds from './components/atividades/modulo2/podcast';
 import VerdadeOuMito from './components/atividades/modulo2/verdadeOuMito';
+import AtividadeResumoModulo2 from './components/atividades/modulo2/atividadeResumo';
 
 import VozCriticaVozCompassiva from './components/atividades/modulo3/vozes';
 import MaiorInimigo from './components/atividades/modulo3/maiorInimigo';
@@ -117,7 +118,7 @@ const App = () => {
           <Route path="/modulos/:id/atividade/podcast" element={<PodcastTouchminds />} />
           <Route path="/modulos/:id/atividade/verdade-ou-mito" element={<VerdadeOuMito />} />
           {/* Alterar element para o correto */}
-          <Route path="/modulos/:id/atividade/atividade-resumo2" element={<AtividadeResumoCarta />} />
+          <Route path="/modulos/:id/atividade/atividade-resumo2" element={<AtividadeResumoModulo2 />} />
 
 
           {/* Atividade módulo 3 */}
