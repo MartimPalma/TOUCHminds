@@ -325,7 +325,13 @@ const LinhaAnsiedade = () => {
                   {/* CONCLUSÃO DA ATIVIDADE */}
                     <h4 className="fw-bold mb-3" style={{ color: "#234970" }}>Conclusão da atividade</h4>
                     <p className="lead">
-                      Espero que esta atividade tenha sido um primeiro passo importante para compreenderes melhor a ansiedade! Lembra-te que a ansiedade é útil e ajuda-nos a preparar para situações difíceis. No entanto, alguns comportamentos, como evitar certas situações, podem acabar por nos manter ansiosos, de tal maneira que parece que toda a nossa vida gira em torno da ansiedade. Nem todo o tipo de evitamento é pouco útil ou problemático; às vezes, pode ser a única maneira de lidar com uma situação difícil. O importante é reconheceres quando o evitamento ajuda e quando ele se torna um problema. Aprender a reconhecer e lidar com a ansiedade é um passo importante para o teu bem-estar.
+                      <strong>Espero que esta atividade tenha sido um primeiro passo importante para compreenderes melhor a ansiedade!</strong> <br></br><br></br>
+                      <strong>Lembra-te</strong> que a <strong>ansiedade</strong> é útil e ajuda-nos a <strong>preparar</strong> para situações difíceis. <br></br><br></br>
+                      No entanto, alguns <strong>comportamentos</strong>, como <strong>evitar</strong> certas situações, podem acabar por nos <strong>manter ansiosos</strong>, de tal maneira que parece que toda a nossa 
+                      vida gira em torno da ansiedade. <br></br><br></br>
+                      <strong>Nem todo o tipo de evitamento</strong> é pouco útil ou problemático; às vezes, pode ser a única maneira de lidar com uma situação difícil.<br></br><br></br>
+                       O importante é <strong>reconheceres</strong> quando o <strong>evitamento</strong> ajuda e quando ele se torna um <strong>problema</strong>. <br></br><br></br>
+                       <strong>Aprender</strong> a reconhecer e <strong>lidar com a ansiedade</strong> é um passo importante para o teu <strong>bem-estar</strong>.
                     </p>
 
                   <div className="d-flex justify-content-between mt-4">
