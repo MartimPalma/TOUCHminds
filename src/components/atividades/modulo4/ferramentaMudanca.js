@@ -95,9 +95,9 @@ const FerramentasMudanca = () => {
                             style={{ cursor: "pointer" }}
                         >
                             <img
-                            src={`/images/ferramentas/${f.id}.png`}
+                            src={`/imgs/modulo4/ferramentas/${f.id}.png`}
                             alt={f.titulo}
-                            style={{ maxWidth: "100px", height: "auto" }}
+                            style={{ maxWidth: "130px", height: "auto" }}
                             />
                             <p className="mt-2 fw-semibold">{f.titulo}</p>
                         </button>
