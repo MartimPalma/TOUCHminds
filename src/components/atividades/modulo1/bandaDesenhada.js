@@ -70,51 +70,35 @@ const BandaDesenhada = () => {
               </div>
             </div>
 
-            <div className="container bg-white rounded shadow-sm p-4">
+           
               {/* INTRODUÇÃO */}
               {pagina === 0 && (
-                <div className="text-center py-4">
+                <div className="text-start py-4 ps-2">
                   <h2 className="fw-bold mb-4" style={{ color: "#234970" }}>{atividade?.titulo || "Ansiedade: Aliada ou Empecilho?"}</h2>
-                  <div className="row justify-content-center">
-                    <div className="col-md-8">
+                  <div className="row ">
+                    <div className="col-md-12">
                       <p className="lead">
                         <strong>Sê muito bem-vindo ou bem-vinda à Banda Desenhada da Ansiedade: Aliada ou Empecilho?</strong>!
                         Nesta <strong>banda desenhada</strong>, vais conhecer dois tipos de ansiedade:
                       </p>
-                      <ul className="text-start mb-3" style={{ display: "inline-block" }}>
-                        <li>
-                          <strong>Ansiedade comum</strong>, que nos ajuda a enfrentar desafios
-                        </li>
-                        <li>
-                          <strong>Ansiedade SOS</strong>, que pode atrapalhar o nosso bem-estar
-                        </li>
-                      </ul>
+                      <p className=""><strong>Ansiedade comum</strong>, que nos ajuda a enfrentar desafios</p>
+                      <p className=""><strong>Ansiedade SOS</strong>, que pode atrapalhar o nosso bem-estar</p>
+
                       <p className="lead">
                         O teu <strong>desafio</strong> é compreender a diferença entre estas duas formas de ansiedade. Para isso, lê com atenção os
                         quadros da banda desenhada. No final, <strong>escreve duas palavras</strong> que, para ti, represente:
                       </p>
-                      <ul className="text-start mb-3" style={{ display: "inline-block" }}>
-                        <li>
-                          o que é a <strong>ansiedade comum</strong>
-                        </li>
-                        <li>
-                          o que é a <strong>ansiedade SOS</strong>
-                        </li>
-                      </ul>
+                      <p className="">O que é a <strong>ansiedade comum?</strong></p>
+                      <p className="">O que é a <strong>ansiedade SOS?</strong></p>
+
                       <p className="lead">
-                        Escreve essas duas palavras no espaço indicado.
-                        <strong>Não há respostas certas ou erradas</strong> — o importante é o que <strong>tu</strong> compreendeste!
+                        Escreve essas duas palavras no espaço indicado. <strong>Não há respostas certas ou erradas</strong> — o importante é o que <strong>tu</strong> compreendeste!
                       </p>
-                      <button className="btn btn-primary mt-3 px-4 py-2 " style={{
-                        backgroundColor: "#66BFBF",
-                        color: "white",
-                        fontWeight: "600",
-                        borderRadius: "8px",
-                        fontSize: "1.05rem",
-                        border: "none",
-                      }} onClick={avancarPagina}>
-                        <i className="bi bi-play-fill me-2"  ></i>Vamos a isto?
-                      </button>
+                      <div className="text-center">
+                        <button className="custom-btn-turquoise mt-3 px-4 py-2" onClick={avancarPagina}>
+                          <i className="bi bi-play-fill me-2"></i>Vamos a isto?
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -126,22 +110,10 @@ const BandaDesenhada = () => {
                     <img src={quadros[pagina - 1].imagem} alt={`Quadro ${pagina}`} className="img-fluid mb-4" style={{ maxHeight: "500px" }} />
                   </div>
                   <div className="d-flex justify-content-between">
-                    <button className="btn btn-outline-secondary" style={{
-                        backgroundColor: "#E7C8C2",
-                        color: "white",
-                        borderRadius: "8px",
-                        fontSize: "1.05rem",
-                        border: "none",
-                      }} onClick={retrocederPagina}>
+                    <button className="custom-btn-pink" onClick={retrocederPagina}>
                       <i className="bi bi-arrow-left me-2"></i>Anterior
                     </button>
-                    <button className="btn btn-primary" style={{
-                        backgroundColor: "#66BFBF",
-                        color: "white",
-                        borderRadius: "8px",
-                        fontSize: "1.05rem",
-                        border: "none",
-                      }} onClick={avancarPagina}>
+                    <button className="custom-btn-turquoise" onClick={avancarPagina}>
                       {pagina === quadros.length ? "Refletir" : "Próximo"}
                       <i className="bi bi-arrow-right ms-2"></i>
                     </button>
@@ -207,22 +179,10 @@ const BandaDesenhada = () => {
                   </div>
 
                   <div className="d-flex justify-content-between mt-4">
-                    <button className="btn btn-outline-secondary" style={{
-                        backgroundColor: "#E7C8C2",
-                        color: "white",
-                        borderRadius: "8px",
-                        fontSize: "1.05rem",
-                        border: "none",
-                      }} onClick={retrocederPagina}>
+                    <button className="custom-btn-pink" onClick={retrocederPagina}>
                       <i className="bi bi-arrow-left me-2" ></i>Anterior
                     </button>
-                    <button className="btn btn-primary" style={{
-                        backgroundColor: "#234970",
-                        color: "white",
-                        borderRadius: "8px",
-                        fontSize: "1.05rem",
-                        border: "none",
-                      }} onClick={avancarPagina}>
+                    <button className="custom-btn-turquoise" onClick={avancarPagina}>
                       Conclusão
                       <i className="bi bi-check-lg ms-2"></i>
                     </button>
@@ -233,7 +193,7 @@ const BandaDesenhada = () => {
               {/* CONCLUSÃO */}
               {pagina === quadros.length + 2 && (
                 <>
-                  <h4 className="fw-bold mb-4" style={{ color: "#234970" }}>Conclusão da Atividade</h4>
+                  <h4 className="fw-bold mb-4 text-start" style={{ color: "#234970" }}>Conclusão da Atividade</h4>
                   <p className="lead">
                     Espero que tenha sido um <strong>primeiro passo importante</strong> para compreenderes melhor como
                     a <strong>ansiedade</strong>  pode afetar a tua vida. <br></br>Lembra-te de que a <strong>ansiedade comum</strong>
@@ -244,7 +204,7 @@ const BandaDesenhada = () => {
                     saber <strong>distinguir</strong> quando a ansiedade está a ser <strong>útil</strong> e quando está a tornar-se um <strong>problema</strong>.
                   </p>
                   <div className="d-flex justify-content-between mt-4">
-                    <button className="btn btn-outline-secondary" onClick={retrocederPagina}>
+                    <button className="custom-btn-pink" onClick={retrocederPagina}>
                       <i className="bi bi-arrow-left me-2"></i>Anterior
                     </button>
                     <AtividadeProgressao
@@ -255,7 +215,6 @@ const BandaDesenhada = () => {
                   </div>
                 </>
               )}
-            </div>
           </div>
         </div>
       </div>

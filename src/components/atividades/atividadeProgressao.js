@@ -65,14 +65,7 @@ const AtividadeProgressao = ({ moduloId, atividadeIndex, updateUserData }) => {
     };
 
     return (
-        <button onClick={concluirAtividade} className="btn btn-success"
-            style={{
-                backgroundColor: "#234970",
-                color: "white",
-                borderRadius: "8px",
-                fontSize: "1.05rem",
-                border: "none"
-            }}>
+        <button onClick={concluirAtividade} className="custom-btn-complete">
             Concluir Atividade
         </button>
     );

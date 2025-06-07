@@ -1,5 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { UserContext } from '../../../App';
+import { color } from 'framer-motion';
 
 const DesafioSemanal = ({ id }) => {
   const { userData, updateUserData } = useContext(UserContext);
@@ -68,7 +69,7 @@ const DesafioSemanal = ({ id }) => {
 
   return (
     <div className="p-4 bg-white rounded shadow-sm">
-      <h3 className="mb-4">Desafio Semanal</h3>
+      <h3 className="mb-4" style={{ color: "#234970" }}>Desafio Semanal</h3>
       <p><b>Queria lançar-te um desafio para esta semana! </b>Ao longo dos próximos dias, sempre que sentires <b>ansiedade</b> em alguma situação, convido-te a <b>refletir</b> sobre a tua experiência.
         <br />Se quiseres, podes depois vir aqui e registar o que pensaste sobre a situação.
         <br />A ideia é que <b>reflitas como te sentes</b>, o que <b>pensas</b> e como te <b>comportas</b> nessa situação.

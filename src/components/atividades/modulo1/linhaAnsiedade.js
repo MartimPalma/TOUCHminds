@@ -72,13 +72,13 @@ const LinhaAnsiedade = () => {
         <div className="col px-4 py-4" style={{ backgroundColor: "#FBF9F9" }}>
           <div className="container p-5 bg-white rounded shadow-sm">
 
-            <div className="container bg-white rounded shadow-sm p-4">
+            
               {/* INTRODUÇÃO */}
               {pagina === 0 && (
-                <div className="text-center py-4">
+                <div className="text-start py-4">
                   <h2 className="fw-bold mb-4" style={{ color: "#234970" }}>{atividade?.titulo || "Linha da Ansiedade"}</h2>
                   <div className="row justify-content-center">
-                    <div className="col-md-8">
+                    <div className="col-md-12">
                       <p className="lead">
                         <strong>Sê muito bem-vindo ou bem-vinda à Linha da Ansiedade!</strong><br></br><br></br>
                          Nesta <strong>atividade interativa</strong>, vais explorar como a ansiedade 
@@ -86,19 +86,15 @@ const LinhaAnsiedade = () => {
                          A <strong>ansiedade</strong> é <strong>normal</strong> e <strong>útil</strong>, mas 
                          quando <strong>intensa</strong> pode tornar-se um <strong>problema</strong>. Aqui, vais observar como uma mesma situação
                           pode ser sentida como <strong>ansiedade comum</strong>, que nos ajuda a <strong>preparar</strong> para desafios, ou como
-                           <strong> ansiedade SOS</strong>, que pode prejudicar o nosso <strong>bem-estar</strong><br></br><br></br>. O objetivo é que explores as duas 
+                           <strong> ansiedade SOS</strong>, que pode prejudicar o nosso <strong>bem-estar</strong><br></br><br></br> O objetivo é que explores as duas 
                            linhas da ansiedade, observando o que acontece <strong>antes, durante e depois</strong> de uma situação 
                            <strong>desafiadora</strong>. Vamos começar?
                       </p>
-                      <button className="btn btn-primary mt-3 px-4 py-2" style={{
-                        backgroundColor: "#66BFBF",
-                        color: "white",
-                        borderRadius: "8px",
-                        fontSize: "1.05rem",
-                        border: "none",
-                      }} onClick={avancarPagina}>
+                      <div className="text-center">
+                      <button className="custom-btn-turquoise mt-3 px-4 py-2" onClick={avancarPagina}>
                         <i className="bi bi-play-fill me-2"></i>Vamos começar
                       </button>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -109,29 +105,17 @@ const LinhaAnsiedade = () => {
                 <>
                   <h4 className="fw-bold mb-3" style={{ color: "#234970" }}>Linha da Ansiedade</h4>
                   
-                  <div className="bg-light p-4 mb-4 rounded">
-                    <h5 className="fw-bold">SITUAÇÃO:</h5>
+                  <div className="p-4 mb-4 rounded" style={{ backgroundColor: "#fbf9f9" }}> {/* Alterei o tom da caixa de texto, caso seja para ficar*/}
+                    <h5 className="fw-bold">Situação:</h5>
                     <p className="mb-0 fs-5">A Maria não gosta de fazer apresentações orais, mas amanhã terá de apresentar um trabalho de grupo na aula de português.</p>
                   </div>
 
                   <div className="d-flex justify-content-between mt-4">
-                    <button className="btn btn-secondary" style={{
-                        backgroundColor: "#E7C8C2",
-                        color: "white",
-                        borderRadius: "8px",
-                        fontSize: "1.05rem",
-                        border: "none",
-                      }} onClick={retrocederPagina}>
+                    <button className="custom-btn-pink"  onClick={retrocederPagina}>
                       <i className="bi bi-arrow-left me-2"></i>Anterior
                     </button>
 
-                    <button className="btn btn-primary" style={{
-                        backgroundColor: "#66BFBF",
-                        color: "white",
-                        borderRadius: "8px",
-                        fontSize: "1.05rem",
-                        border: "none",
-                      }} onClick={avancarPagina}>
+                    <button className="custom-btn-turquoise"  onClick={avancarPagina}>
                       <i className="bi bi-arrow-right me-2"></i>Próximo
                     </button>
                   </div>
@@ -223,23 +207,11 @@ const LinhaAnsiedade = () => {
                   </div>
 
                   <div className="d-flex justify-content-between mt-4">
-                    <button className="btn btn-secondary" style={{
-                        backgroundColor: "#E7C8C2",
-                        color: "white",
-                        borderRadius: "8px",
-                        fontSize: "1.05rem",
-                        border: "none",
-                      }} onClick={retrocederPagina}>
+                    <button className="custom-btn-pink"  onClick={retrocederPagina}>
                       <i className="bi bi-arrow-left me-2"></i>Anterior
                     </button>
 
-                    <button className="btn btn-primary" style={{
-                        backgroundColor: "#66BFBF",
-                        color: "white",
-                        borderRadius: "8px",
-                        fontSize: "1.05rem",
-                        border: "none",
-                      }} onClick={avancarPagina}>
+                    <button className="custom-btn-turquoise" onClick={avancarPagina}>
                       <i className="bi bi-arrow-right me-2"></i>Próximo
                     </button>
                   </div>
@@ -331,17 +303,11 @@ const LinhaAnsiedade = () => {
                   </div>
 
                   <div className="d-flex justify-content-between mt-4">
-                    <button className="btn btn-secondary" style={{
-                        backgroundColor: "#E7C8C2",
-                        color: "white",
-                        borderRadius: "8px",
-                        fontSize: "1.05rem",
-                        border: "none",
-                      }} onClick={retrocederPagina}>
+                    <button className="custom-btn-pink" onClick={retrocederPagina}>
                       <i className="bi bi-arrow-left me-2"></i>Anterior
                     </button>
 
-                    <button className="btn btn-primary" style={{
+                    <button className="custom-btn-turquoise" style={{
                         backgroundColor: "#66BFBF",
                         color: "white",
                         borderRadius: "8px",
@@ -357,21 +323,13 @@ const LinhaAnsiedade = () => {
               {pagina === 4 && (
                 <>
                   {/* CONCLUSÃO DA ATIVIDADE */}
-                  <div className="bg-light p-4 rounded mt-4">
-                    <h5 className="fw-bold mb-3">CONCLUSÃO DA ATIVIDADE</h5>
-                    <p>
+                    <h4 className="fw-bold mb-3" style={{ color: "#234970" }}>Conclusão da atividade</h4>
+                    <p className="lead">
                       Espero que esta atividade tenha sido um primeiro passo importante para compreenderes melhor a ansiedade! Lembra-te que a ansiedade é útil e ajuda-nos a preparar para situações difíceis. No entanto, alguns comportamentos, como evitar certas situações, podem acabar por nos manter ansiosos, de tal maneira que parece que toda a nossa vida gira em torno da ansiedade. Nem todo o tipo de evitamento é pouco útil ou problemático; às vezes, pode ser a única maneira de lidar com uma situação difícil. O importante é reconheceres quando o evitamento ajuda e quando ele se torna um problema. Aprender a reconhecer e lidar com a ansiedade é um passo importante para o teu bem-estar.
                     </p>
-                  </div>
 
                   <div className="d-flex justify-content-between mt-4">
-                    <button className="btn btn-outline-secondary" style={{
-                        backgroundColor: "#E7C8C2",
-                        color: "white",
-                        borderRadius: "8px",
-                        fontSize: "1.05rem",
-                        border: "none",
-                      }} onClick={retrocederPagina}>
+                    <button className="custom-btn-pink" onClick={retrocederPagina}>
                       <i className="bi bi-arrow-left me-2"></i>Anterior
                     </button>
                     <AtividadeProgressao
@@ -382,7 +340,7 @@ const LinhaAnsiedade = () => {
                   </div>
                 </>
               )}
-            </div>
+            
           </div>
         </div>
       </div>

@@ -43,6 +43,8 @@ const AtividadeResumo = () => {
     setPagina((prev) => prev + 1);
   };
 
+  const [hoverIndex, setHoverIndex] = useState(null); // State to track which option is being hovered
+
   const retrocederPagina = () => setPagina((prev) => prev - 1);
 
   const progresso = Math.round((pagina / 7) * 100);
@@ -182,17 +184,10 @@ const AtividadeResumo = () => {
               />
             </div>
             <div className="modal-footer">
-              <button type="button" className="btn btn-primary"
-                style={{
-                  backgroundColor: "#66BFBF",
-                  color: "white",
-                  borderRadius: "8px",
-                  fontSize: "1.05rem",
-                  border: "none",
-                }}
+              <button type="button" className="custom-btn-turquoise"
                 onClick={() => {
                   onClose();
-                  avancarPagina(); // Automatically advance to the next page after closing the modal
+                  /*avancarPagina(); // Automatically advance to the next page after closing the modal*/
                 }}>Próximo</button>
             </div>
           </div>
@@ -227,289 +222,237 @@ const AtividadeResumo = () => {
               </div>
             </div>
 
-            <div className="container bg-white rounded shadow-sm p-4">
-              {/* INTRODUÇÃO */}
-              {pagina === 0 && (
-                <div className="text-center py-4">
-                  <h2 className="fw-bold mb-4" style={{ color: "#234970" }}>{atividade?.titulo || "Ansiedade: Aliada ou Empecilho?"}</h2>
-                  <div className="row justify-content-center">
-                    <div className="col-md-8">
-                      <p className="lead">
-                        Sê muito bem-vindo ou bem-vinda à atividade resumo do Módulo 1 – 'Ansiedade NÃO é Bicho Papão!'.
-                        O objetivo desta atividade é consolidar os conteúdos que explorámos ao longo do módulo. Imagina que és tu que estás
-                        na situação que te vou apresentar, e seleciona a opção que melhor representa a forma como te irias comportar nessa situação.
-                        Cada escolha representará um comportamento e influenciará como a personagem lida com a ansiedade e se relaciona com os outros.
-                        Este exercício é uma oportunidade para refletires sobre como os teus comportamentos e escolhas podem moldar as tuas
-                        experiências em momentos de ansiedade e em interações sociais. Vamos a isto!
-                      </p>
-                      <button className="btn btn-primary mt-3 px-4 py-2"
-                        style={{
-                          backgroundColor: "#66BFBF",
-                          color: "white",
-                          borderRadius: "8px",
-                          fontSize: "1.05rem",
-                          border: "none",
-                        }}
-                        onClick={avancarPagina}>
+
+            {/* INTRODUÇÃO */}
+            {pagina === 0 && (
+              <div className="text-start py-4">
+                <h2 className="fw-bold mb-4" style={{ color: "#234970" }}>{atividade?.titulo || "Ansiedade: Aliada ou Empecilho?"}</h2>
+                <div className="row justify-content-center">
+                  <div className="col-md-12">
+                    <p className="lead">
+                      <strong>Sê muito bem-vindo(a) à atividade resumo do Módulo 1</strong> – <strong>"Ansiedade NÃO é Bicho Papão!"</strong>.
+                      O <strong>objetivo</strong> desta atividade é <strong>consolidar</strong> os conteúdos que explorámos ao longo do módulo. <br></br><br></br>
+                      Imagina que <strong>és tu</strong> que estás na situação que te vou apresentar, e <strong>seleciona</strong> a opção que melhor representa a forma
+                      como te irias <strong>comportar</strong> nessa situação.<br></br><br></br>
+                      Cada escolha representará um <strong>comportamento</strong> e influenciará como a personagem lida com a ansiedade e se relaciona com os outros.<br></br><br></br>
+                      Este exercício é uma oportunidade para <strong>refletires</strong> sobre como os teus <strong>comportamentos e escolhas</strong> podem moldar as tuas
+                      <strong>experiências</strong> em momentos de ansiedade e em interações sociais.
+                    </p>
+                    <div className="text-center">
+                      <button className="custom-btn-turquoise mt-3 px-4 py-2" onClick={avancarPagina}>
                         <i className="bi bi-play-fill me-2"></i>Vamos a isto?
                       </button>
                     </div>
                   </div>
                 </div>
-              )}
+              </div>
+            )}
 
-              {pagina === 1 && (
-                <div className="text-center py-4">
-                  <div className="row justify-content-center">
-                    <div className="col-md-12">
-                      <img
-                        src="/imgs/modulo1/resumo/resumo_0.png"
-                        alt="O Primeiro Dia no Clube de Teatro"
-                        className="img-fluid mb-4"
-                        style={{ maxWidth: "350px", height: "auto" }}
-                      />
-                      <div className="d-flex justify-content-between">
-                        <button className="btn btn-outline-secondary"
-                          style={{
-                            backgroundColor: "#E7C8C2",
-                            color: "white",
-                            borderRadius: "8px",
-                            fontSize: "1.05rem",
-                            border: "none",
-                          }}
-                          onClick={retrocederPagina}>
-                          <i className="bi bi-arrow-left me-2"></i>Anterior
-                        </button>
-                        <button className="btn btn-primary"
-                          style={{
-                            backgroundColor: "#66BFBF",
-                            color: "white",
-                            borderRadius: "8px",
-                            fontSize: "1.05rem",
-                            border: "none",
-                          }} onClick={avancarPagina}>
-                          Próximo<i className="bi bi-arrow-right ms-2"></i>
-                        </button>
-                      </div>
+            {pagina === 1 && (
+              <div className="text-center py-4">
+                <div className="row justify-content-center">
+                  <div className="col-md-12">
+                    <img
+                      src="/imgs/modulo1/resumo/resumo_0.png"
+                      alt="O Primeiro Dia no Clube de Teatro"
+                      className="img-fluid mb-4"
+                      style={{ maxWidth: "350px", height: "auto" }}
+                    />
+                    <div className="d-flex justify-content-between">
+                      <button className="custom-btn-pink" onClick={retrocederPagina}>
+                        <i className="bi bi-arrow-left me-2"></i>Anterior
+                      </button>
+                      <button className="custom-btn-turquoise" onClick={avancarPagina}>
+                        Próximo<i className="bi bi-arrow-right ms-2"></i>
+                      </button>
                     </div>
                   </div>
                 </div>
-              )}
+              </div>
+            )}
 
-              {/* QUIZ PAGES (2-4) */}
-              {pagina >= 2 && pagina <= 4 && (
-                <>
-                  <h4 className="fw-bold mb-3" style={{ color: "#234970" }}>{quizPages[pagina - 2].title}</h4>
-                  <div className="mb-4">
-                    {/* Display question image */}
-                    <div className="text-center mb-4">
-                      <img
-                        src={quizPages[pagina - 2].questionImage}
-                        alt={`Pergunta ${pagina - 1}`}
-                        className="img-fluid"
-                        style={{ maxWidth: "300px", height: "auto" }}
-                      />
-                    </div>
+            {/* QUIZ PAGES (2-4) */}
+            {pagina >= 2 && pagina <= 4 && (
+              <>
+                <h4 className="fw-bold mb-3" style={{ color: "#234970" }}>{quizPages[pagina - 2].title}</h4>
+                <div className="mb-4">
+                  {/* Display question image */}
+                  <div className="text-center mb-4">
+                    <img
+                      src={quizPages[pagina - 2].questionImage}
+                      alt={`Pergunta ${pagina - 1}`}
+                      className="img-fluid"
+                      style={{ maxWidth: "300px", height: "auto" }}
+                    />
+                  </div>
 
-                    {/* Display option images as clickable buttons */}
-                    <div className="d-flex flex-column gap-3">
-                      {quizPages[pagina - 2].options.map((option, index) => {
-                        const isSelected = userChoices[pagina - 2] && userChoices[pagina - 2].text === option.text;
+                  {/* Display option images as clickable buttons */}
+                  <div className="d-flex flex-column gap-3">
+                    {quizPages[pagina - 2].options.map((option, index) => {
+                      const isSelected = userChoices[pagina - 2] && userChoices[pagina - 2].text === option.text;
 
-                        return (
-                          <button
-                            key={index}
-                            className={`btn ${isSelected ? 'btn-primary' : 'btn-outline-secondary'} text-${isSelected ? 'white' : 'dark'} p-3 text-start`}
+                      return (
+
+
+                        <button
+                          key={index}
+                          onMouseEnter={() => setHoverIndex(index)}
+                          onMouseLeave={() => setHoverIndex(null)}
+                          className={`btn ${isSelected ? 'btn-primary' : 'btn-outline-secondary'} text-${isSelected ? 'white' : 'dark'} p-3 text-start`}
+                          style={{
+                            backgroundColor: isSelected ? '#99CBC8' : hoverIndex === index ? '#5AAAA5' : '#ffffff',
+                            color: isSelected ? 'white' : hoverIndex === index ? 'white' : '#99CBC8',
+                            border: `2px solid ${isSelected ? '#99CBC8' : '#99CBC8'}`,
+                            borderRadius: '10px',
+                            fontWeight: isSelected ? '300' : 'normal',
+                            transition: 'all 0.3s ease',
+                          }}
+                          onClick={() => handleOptionClick(option.feedbackImage, option, pagina - 2)}
+                        >
+                          {option.text}
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                {/* Warning message - moved here to show on quiz pages */}
+                {showWarning && (
+                  <div className="alert alert-warning mt-3 text-center" role="alert">
+                    <i className="bi bi-exclamation-triangle-fill me-2"></i>
+                    Por favor, seleciona uma opção antes de continuar.
+                  </div>
+                )}
+
+                <div className="d-flex justify-content-between">
+                  <button className="custom-btn-pink" onClick={retrocederPagina}>
+                    <i className="bi bi-arrow-left me-2"></i>Anterior
+                  </button>
+                  <button className="custom-btn-turquoise" onClick={avancarPagina}>
+                    Próximo<i className="bi bi-arrow-right ms-2"></i>
+                  </button>
+                </div>
+              </>
+            )}
+
+            {/* QUIZ PAGE 5 - ADDITIONAL CONTENT */}
+            {pagina === 5 && (
+              <>
+                <h4 className="fw-bold mb-4" style={{ color: "#234970" }}>Tabela Resumo</h4>
+
+                <div className="table-responsive">
+                  <table className="table table-bordered">
+                    <thead style={{ backgroundColor: "#99CBC8" }}>
+                      <tr>
+                        <th style={{ width: "20%", backgroundColor: "#99CBC8", textAlign: "center" }}>Cenário</th>
+                        <th style={{ width: "26.6%", backgroundColor: "#99CBC8", textAlign: "center" }}>Opção A</th>
+                        <th style={{ width: "26.6%", backgroundColor: "#99CBC8", textAlign: "center" }}>Opção B</th>
+                        <th style={{ width: "26.6%", backgroundColor: "#99CBC8", textAlign: "center" }}>Opção C</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {quizPages.map((page, idx) => (
+                        <tr key={idx}>
+                          <td
                             style={{
-                              backgroundColor: isSelected ? '#234970' : '#ffffff',
-                              color: isSelected ? 'white' : '#234970',
-                              border: `2px solid ${isSelected ? '#234970' : '#234970'}`,
-                              borderRadius: '10px',
-                              fontWeight: isSelected ? '600' : 'normal',
-                              transition: 'all 0.3s ease',
+                              backgroundColor: "#99CBC8",
+                              fontWeight: "bold",
+                              verticalAlign: "middle",
+                              textAlign: "center",  // alinhamento à esquerda
                             }}
-                            onClick={() => handleOptionClick(option.feedbackImage, option, pagina - 2)}
                           >
-                            {option.text}
-                          </button>
-                        );
-                      })}
-                    </div>
-                  </div>
+                            {page.title}
+                          </td>
+                          {page.options.map((option, optIdx) => {
+                            const isSelected = userChoices[idx] && userChoices[idx].text === option.text;
 
-                  {/* Warning message - moved here to show on quiz pages */}
-                  {showWarning && (
-                    <div className="alert alert-warning mt-3 text-center" role="alert">
-                      <i className="bi bi-exclamation-triangle-fill me-2"></i>
-                      Por favor, seleciona uma opção antes de continuar.
-                    </div>
-                  )}
-
-                  <div className="d-flex justify-content-between">
-                    <button className="btn btn-outline-secondary"
-                      style={{
-                        backgroundColor: "#E7C8C2",
-                        color: "white",
-                        borderRadius: "8px",
-                        fontSize: "1.05rem",
-                        border: "none",
-                      }}
-                      onClick={retrocederPagina}>
-                      <i className="bi bi-arrow-left me-2"></i>Anterior
-                    </button>
-                    <button className="btn btn-primary"
-                      style={{
-                        backgroundColor: "#66BFBF",
-                        color: "white",
-                        borderRadius: "8px",
-                        fontSize: "1.05rem",
-                        border: "none",
-                      }}
-                      onClick={avancarPagina}>
-                      Próximo<i className="bi bi-arrow-right ms-2"></i>
-                    </button>
-                  </div>
-                </>
-              )}
-
-              {/* QUIZ PAGE 5 - ADDITIONAL CONTENT */}
-              {pagina === 5 && (
-                <>
-                  <h4 className="fw-bold mb-4" style={{ color: "#234970" }}>Tabela Resumo</h4>
-
-                  <div className="table-responsive">
-                    <table className="table table-bordered">
-                      <thead style={{ backgroundColor: "#99CBC8" }}>
-                        <tr>
-                          <th style={{ width: "20%", backgroundColor: "#99CBC8" }}>Cenário</th>
-                          <th style={{ width: "26.6%", backgroundColor: "#99CBC8" }}>Opção A</th>
-                          <th style={{ width: "26.6%", backgroundColor: "#99CBC8" }}>Opção B</th>
-                          <th style={{ width: "26.6%", backgroundColor: "#99CBC8" }}>Opção C</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {quizPages.map((page, idx) => {
-                          console.log(`Rendering row for page ${idx}`);
-                          console.log(`Current choice for this page:`, userChoices[idx]);
-
-                          return (
-                            <tr key={idx}>
-                              <td style={{ backgroundColor: "#99CBC8", fontWeight: "bold", verticalAlign: "middle" }}>{page.title}</td>
-                              {page.options.map((option, optIdx) => {
-                                // Check if this option was selected
-                                const isSelected = userChoices[idx] && userChoices[idx].text === option.text;
-                                console.log(`Row ${idx}, Option ${optIdx} selected:`, isSelected);
-
-                                return (
-                                  <td
-                                    key={optIdx}
+                            return (
+                              <td
+                                key={optIdx}
+                                style={{
+                                  position: "relative",
+                                  verticalAlign: "middle",
+                                  textAlign: "left",  // alinhamento à esquerda
+                                }}
+                              >
+                                {isSelected && (
+                                  <div
                                     style={{
-                                      position: "relative",
-                                      verticalAlign: "middle",
-                                      textAlign: "center"
+                                      textDecoration: "underline",
+                                      fontWeight: "bold",
+                                      marginBottom: "5px",
+                                      textAlign: "center",
                                     }}
                                   >
-                                    {isSelected && (
-                                      <div style={{
-                                        textDecoration: "underline",
-                                        fontWeight: "bold",
-                                        marginBottom: "5px"
-                                      }}>
-                                        A tua escolha:
-                                      </div>
-                                    )}
-                                    {option.summaryImage && (
-                                      <img
-                                        src={option.summaryImage}
-                                        alt=""
-                                        style={{
-                                          width: "100px",
-                                          height: "100px",
-                                          objectFit: "cover",
-                                          marginBottom: "0px",
-                                          display: "block",
-                                          margin: "0 auto 00px auto"
-                                        }}
-                                      />
-                                    )}
-                                    {option.summary}
-                                  </td>
-                                );
-                              })}
-                            </tr>
-                          );
-                        })}
-                      </tbody>
-                    </table>
-                  </div>
+                                    A tua escolha:
+                                  </div>
+                                )}
+                                {option.summaryImage && (
+                                  <img
+                                    src={option.summaryImage}
+                                    alt=""
+                                    style={{
+                                      width: "100px",
+                                      height: "100px",
+                                      objectFit: "cover",
+                                      marginBottom: "0px",
+                                      display: "block",
+                                      margin: "0 auto 00px auto",
+                                    }}
+                                  />
+                                )}
+                                {option.summary}
+                              </td>
+                            );
+                          })}
+                        </tr>
+                      ))}
+                    </tbody>
 
-                  <div className="d-flex justify-content-between">
-                    <button className="btn btn-outline-secondary"
-                      style={{
-                        backgroundColor: "#E7C8C2",
-                        color: "white",
-                        borderRadius: "8px",
-                        fontSize: "1.05rem",
-                        border: "none",
-                      }}
-                      onClick={retrocederPagina}>
-                      <i className="bi bi-arrow-left me-2"></i>Anterior
-                    </button>
-                    <button className="btn btn-primary"
-                      style={{
-                        backgroundColor: "#66BFBF",
-                        color: "white",
-                        borderRadius: "8px",
-                        fontSize: "1.05rem",
-                        border: "none",
-                      }}
-                      onClick={avancarPagina}>
-                      Conclusão<i className="bi bi-arrow-right ms-2"></i>
-                    </button>
-                  </div>
-                </>
-              )}
+                  </table>
+                </div>
 
-              {pagina === 6 && (
-                <>
-                  <h4 className="fw-bold mb-3" style={{ color: "#234970" }}>Conclusão da atividade</h4>
-                  <div className="row justify-content-center">
-                    <div className="col-md-12">
-                      <p className="lead">
-                        Espero que esta atividade tenha sido útil e que te tenha permitido refletir sobre a tua própria forma de
-                        lidar com a ansiedade. Assim como a Sara, todos nós tomamos decisões todos os dias que moldam as nossas
-                        experiências e as nossas interações com os outros. Mesmo quando estamos ansiosos, as escolhas que fazemos
-                        têm impacto na forma como vivemos e superamos esses momentos. Embora evitar situações possa trazer alívio
-                        temporário, isso pode tornar mais difícil lidar com elas no futuro. Enfrentar o desconforto pode não só
-                        ajudar-te a criar relações novas, mas também a reduzir a ansiedade ao longo do tempo. Lembra-te: a
-                        ansiedade é algo comum e todos nós a sentimos. Ao enfrentar os desafios e praticar novas formas de agir,
-                        poderás fortalecer as tuas relações e melhorar a forma como te vês e te sentes contigo mesmo/a.
-                      </p>
+                <div className="d-flex justify-content-between">
+                  <button className="custom-btn-pink" onClick={retrocederPagina}>
+                    <i className="bi bi-arrow-left me-2"></i>Anterior
+                  </button>
+                  <button className="custom-btn-turquoise" onClick={avancarPagina}>
+                    Conclusão<i className="bi bi-arrow-right ms-2"></i>
+                  </button>
+                </div>
+              </>
+            )}
+
+            {pagina === 6 && (
+              <>
+                <h4 className="fw-bold mb-4" style={{ color: "#234970" }}>Conclusão da Atividade</h4>
+                <div className="row justify-content-center">
+                  <div className="col-md-12">
+                    <p className="lead">
+                      <strong>Espero que esta atividade tenha sido útil</strong> e que te tenha permitido <strong>refletir</strong> sobre a tua própria forma delidar com a <strong>ansiedade</strong>. <br></br> <br></br>
+                      Assim como a Sara, todos nós tomamos <strong>decisões</strong> todos os dias que <strong>moldam</strong> as nossas experiências e as nossas interações com os outros.
+                      Mesmo quando estamos ansiosos, as <strong>escolhas</strong> que fazemos têm impacto na forma como vivemos e superamos esses momentos.<br></br> <br></br>
+                      Embora <strong>evitar situações</strong> possa trazer <strong>alívio temporário</strong>, isso pode tornar mais difícil lidar com elas no futuro.
+                      <strong>Enfrentar o desconforto</strong> pode não só ajudar-te a criar <strong>relações novas</strong>, mas também a <strong>reduzir a ansiedade</strong> ao longo do tempo. <br></br> <br></br>
+                      Lembra-te: a <strong>ansiedade é algo comum</strong> e todos nós a sentimos. Ao <strong>enfrentar os desafios</strong> e <strong>praticar novas formas de agir</strong>,
+                      poderás <strong>fortalecer as tuas relações</strong> e <strong>melhorar a forma como te vês e te sentes contigo mesmo(a)</strong>.
+                    </p>
 
 
-                      <div className="d-flex justify-content-between mt-4">
-                        <button className="btn btn-outline-secondary"
-                          style={{
-                            backgroundColor: "#E7C8C2",
-                            color: "white",
-                            borderRadius: "8px",
-                            fontSize: "1.05rem",
-                            border: "none",
-                          }}
-                          onClick={retrocederPagina}>
-                          <i className="bi bi-arrow-left me-2"></i>Anterior
-                        </button>
-                        <AtividadeProgressao
-                          moduloId={moduloId}
-                          atividadeIndex={4}
-                          updateUserData={updateUserData}
-                        />
-                      </div>
+                    <div className="d-flex justify-content-between mt-4">
+                      <button className="custom-btn-pink" onClick={retrocederPagina}>
+                        <i className="bi bi-arrow-left me-2"></i>Anterior
+                      </button>
+                      <AtividadeProgressao
+                        moduloId={moduloId}
+                        atividadeIndex={4}
+                        updateUserData={updateUserData}
+                      />
                     </div>
                   </div>
-                </>
-              )}
-            </div>
+                </div>
+              </>
+            )}
           </div>
         </div>
       </div>

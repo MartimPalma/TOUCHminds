@@ -275,10 +275,6 @@ select:focus {
   transition: all 0.3s ease;
 }
 
-/* Botões principais */
-.btn {
-  transition: all 0.3s ease;
-}
 
 /* Botão específico para o login */
 .btn-login {
@@ -305,6 +301,59 @@ select:focus {
   background-color: #deb9b2;
   transform: translateY(-2px);
 }
+
+
+/* Efeitos dos Botões */
+
+.custom-btn-turquoise {
+  background-color: #99CBC8;
+  color: white;
+  border-radius: 8px;
+  font-size: 1.05rem;
+  padding: 8px 20px;
+   min-width: 140px; /* Garante que o botão nunca seja menor que isto */
+  text-align: center;
+  border: none;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.custom-btn-turquoise:hover {
+  background-color: #5AAAA5;
+}
+
+.custom-btn-pink {
+  background-color: #E7C8C2;
+  color: white;
+  border-radius: 8px;
+  font-size: 1.05rem;
+  padding: 8px 20px;
+   min-width: 140px; /* Garante que o botão nunca seja menor que isto */
+  text-align: center;
+  border: none;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.custom-btn-pink:hover {
+  background-color: #DC9587;
+}
+
+.custom-btn-complete {
+  background-color: #234970; /* Azul forte */
+  color: white;
+  border-radius: 8px;
+  font-size: 1.05rem;
+  padding: 8px 20px;
+   min-width: 140px; /* Garante que o botão nunca seja menor que isto */
+  text-align: center;
+  border: none;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.custom-btn-complete:hover {
+  background-color: #1c3a5a; /* Tom mais escuro para o hover */
+}
+
+
 
 /* Overlay para popups */
 .modal-overlay {
