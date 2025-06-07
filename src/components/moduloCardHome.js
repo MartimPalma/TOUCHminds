@@ -1,13 +1,9 @@
 import React from "react";
-import { CheckCircle } from "lucide-react";
+import { CheckCircle, Lock } from "lucide-react";
 
 const ModuloCard = ({ imagem, titulo, subtitulo, status, atividades, onNavigate }) => {
-
   const isBloqueado = status === "bloqueado";
-
-  // Verifica se todas as atividades foram concluídas
   const todasConcluidas = atividades.length > 0 && atividades.every((a) => a.concluido === true);
-
 
   return (
     <div
@@ -34,10 +30,10 @@ const ModuloCard = ({ imagem, titulo, subtitulo, status, atividades, onNavigate 
 
         {isBloqueado && (
           <div
-            className="position-absolute top-50 start-50 translate-middle bg-dark bg-opacity-75 text-white rounded px-3 py-1"
-            style={{ fontSize: "0.9rem" }}
+            className="position-absolute top-0 end-0 m-2 bg-secondary text-white rounded-pill px-2 py-1 d-flex align-items-center"
+            style={{ fontSize: "0.8rem" }}
           >
-            Módulo Bloqueado
+            <Lock size={16} className="me-1" /> Bloqueado
           </div>
         )}
 
@@ -52,10 +48,10 @@ const ModuloCard = ({ imagem, titulo, subtitulo, status, atividades, onNavigate 
       </div>
 
       <div className="mt-3 text-start">
-        <h5 className="fw-bold font-poppins" style={{ color: "#99CBC8" }}>
+        <h5 className="fw-bold" style={{ color: "#99CBC8" }}>
           {titulo}
         </h5>
-        <p className="mb-1 font-poppins fw-bold" style={{ color: "#234970" }}>
+        <p className="mb-1 fw-bold" style={{ color: "#234970" }}>
           {subtitulo}
         </p>
       </div>
