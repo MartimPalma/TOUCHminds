@@ -34,13 +34,18 @@ import AtividadeResumoCarta from './components/atividades/modulo3/atividadeResum
 import FerramentaMudanca from './components/atividades/modulo4/ferramentaMudanca';
 import BalancaVirtual from './components/atividades/modulo4/balancaVirtual';
 import JaFosteCapaz from './components/atividades/modulo4/jaFosteCapaz';
+import AtividadeResumoMudanca from './components/atividades/modulo4/atividadeResumo';
+
+import AnsiedadeSOSPOD from './components/atividades/modulo5/podcast2';
+
+import CodigoDoPsicologo from './components/atividades/modulo6/codigoPsicologo';
+import NaoEstasSozinho from './components/atividades/modulo6/naoSozinho';
+import AtividadeResumo6 from './components/atividades/modulo6/atividadeResumo';
 
 import useDesbloquearModulos from './components/desbloquearModulos';
 
 
 import { dadosAlunos } from './database/database';
-import AtividadeResumoMudanca from './components/atividades/modulo4/atividadeResumo';
-
 
 
 export const UserContext = createContext(null);
@@ -142,12 +147,14 @@ const App = () => {
 
 
           {/* Atividade módulo 5 */}
+          <Route path="/modulos/:id/atividade/podcast2" element={<AnsiedadeSOSPOD/>} />
 
           {/* Atividade módulo 6 */}
+          <Route path='/modulos/:id/atividade/codigo-psicologo' element={<CodigoDoPsicologo />} />
+          <Route path="/modulos/:id/atividade/viagem-bemestar" element={''} />
+          <Route path="/modulos/:id/atividade/nao-estas-sozinho" element={<NaoEstasSozinho />} /> 
+          <Route path="/modulos/:id/atividade/atividade-resumo6" element={<AtividadeResumo6 />} /> 
 
-
-
-          {/* Resumo da atividade */}
         </Routes>
       </Router>
     </UserContext.Provider>
