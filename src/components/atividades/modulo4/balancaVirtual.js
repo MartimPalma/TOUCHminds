@@ -1,5 +1,3 @@
-// BalancaVirtual.jsx
-
 import React, { useState, useContext } from "react";
 import { useParams } from "react-router-dom";
 import Navbar from "../../navbar";
@@ -103,10 +101,16 @@ const BalancaVirtual = () => {
     naoMudar: [],
     contraNaoMudar: [],
   });
+  const [showValidationError, setShowValidationError] = useState(false);
 
   const handleDragEnd = (result) => {
     if (!result.destination) return;
     const { source, destination, draggableId } = result;
+
+    // Clear validation error when user interacts
+    if (showValidationError) {
+      setShowValidationError(false);
+    }
 
     if (source.droppableId === "frasesDisponiveis") {
       setFrasesDisponiveis((prev) => prev.filter((f) => f !== draggableId));
@@ -132,6 +136,42 @@ const BalancaVirtual = () => {
     return 0;
   };
 
+  const validateQuadrantes = () => {
+    return quadrantes.every(quadrante => respostas[quadrante.id].length > 0);
+  };
+
+  const handleProceedToReflection = () => {
+    if (validateQuadrantes()) {
+      setPagina(3);
+      setShowValidationError(false);
+    } else {
+      setShowValidationError(true);
+    }
+  };
+
+  const renderImage = () => {
+    const resultado = avaliar();
+    if (resultado > 0) {
+      return (
+        <div className="text-center mb-4">
+          <img src="/imgs/modulo4/balanca/mudar.png" alt="Balança inclinada para mudar" className="img-fluid" style={{ maxHeight: '200px' }} />
+        </div>
+      );
+    } else if (resultado < 0) {
+      return (
+        <div className="text-center mb-4">
+          <img src="/imgs/modulo4/balanca/naomudar.png" alt="Balança inclinada para não mudar" className="img-fluid" style={{ maxHeight: '200px' }} />
+        </div>
+      );
+    } else {
+      return (
+        <div className="text-center mb-4">
+          <img src="/imgs/modulo4/balanca/empate.png" alt="Balança equilibrada" className="img-fluid" style={{ maxHeight: '200px' }} />
+        </div>
+      );
+    }
+  };
+
   const renderFeedback = () => {
     const resultado = avaliar();
     if (resultado > 0) {
@@ -147,7 +187,18 @@ const BalancaVirtual = () => {
     setComportamento(key);
     const todas = [].concat(...Object.values(comportamentos[key].frases));
     setFrasesDisponiveis(todas);
+    setRespostas({
+      mudar: [],
+      contraMudar: [],
+      naoMudar: [],
+      contraNaoMudar: [],
+    });
+    setShowValidationError(false);
     setPagina(2);
+  };
+
+  const getEmptyQuadrantes = () => {
+    return quadrantes.filter(quadrante => respostas[quadrante.id].length === 0);
   };
 
   return (
@@ -189,6 +240,21 @@ Lembra-te de que a escolha é tua, e o objetivo é entender melhor as implicaç�
               <DragDropContext onDragEnd={handleDragEnd}>
                 <>
                   <h5>Arrasta as frases disponíveis para os quadrantes</h5>
+                  <p className="text-muted small mb-3">
+                    Para prosseguir, deves colocar pelo menos uma frase em cada um dos quatro quadrantes.
+                  </p>
+                  
+                  {showValidationError && (
+                    <div className="alert alert-warning mb-3">
+                      <strong>Atenção!</strong> Precisas de colocar pelo menos uma frase em cada quadrante antes de prosseguir. 
+                      {getEmptyQuadrantes().length > 0 && (
+                        <div className="mt-2">
+                          <small>Quadrantes em falta: {getEmptyQuadrantes().map(q => q.titulo).join(", ")}</small>
+                        </div>
+                      )}
+                    </div>
+                  )}
+
                   <Droppable droppableId="frasesDisponiveis" direction="horizontal">
                     {(provided) => (
                       <div ref={provided.innerRef} {...provided.droppableProps} className="d-flex flex-wrap gap-2 mb-4">
@@ -208,10 +274,21 @@ Lembra-te de que a escolha é tua, e o objetivo é entender melhor as implicaç�
                   <div className="row">
                     {quadrantes.map((q) => (
                       <div className="col-md-6 mb-3" key={q.id}>
-                        <h6>{q.titulo}</h6>
+                        <h6 className={showValidationError && respostas[q.id].length === 0 ? "text-warning" : ""}>
+                          {q.titulo}
+                          {showValidationError && respostas[q.id].length === 0 && (
+                            <small className="text-warning ms-2">⚠️ Precisa de pelo menos uma frase</small>
+                          )}
+                        </h6>
                         <Droppable droppableId={q.id}>
                           {(provided) => (
-                            <div ref={provided.innerRef} {...provided.droppableProps} className="min-vh-25 border rounded p-2 bg-light">
+                            <div 
+                              ref={provided.innerRef} 
+                              {...provided.droppableProps} 
+                              className={`min-vh-25 border rounded p-2 bg-light ${
+                                showValidationError && respostas[q.id].length === 0 ? "border-warning" : ""
+                              }`}
+                            >
                               {respostas[q.id].map((frase, index) => (
                                 <Draggable key={frase} draggableId={frase} index={index}>
                                   {(provided) => (
@@ -230,7 +307,7 @@ Lembra-te de que a escolha é tua, e o objetivo é entender melhor as implicaç�
                   </div>
                   <div className="d-flex justify-content-between mt-4">
                     <button className="btn btn-outline-secondary" onClick={() => setPagina(1)}>Anterior</button>
-                    <button className="btn btn-primary" onClick={() => setPagina(3)}>Refletir</button>
+                    <button className="btn btn-primary" onClick={handleProceedToReflection}>Refletir</button>
                   </div>
                 </>
               </DragDropContext>
@@ -239,12 +316,13 @@ Lembra-te de que a escolha é tua, e o objetivo é entender melhor as implicaç�
             {pagina === 3 && (
               <>
                 <h5>Vamos refletir!</h5>
-                                <p>
+                <p>
                   Agora que adicionaste os prós e contras de mudar e de não mudar o comportamento, podes ver os resultados na balança. 
                   O sistema calculou automaticamente a soma das frases que colocaste de cada lado e gerou-te um feedback personalizado baseado no que escolheste. 
                   Podes observar qual lado da balança está mais pesado: se o lado de mudar; se o lado de não mudar. 
                   Lê o feedback que recebeste e reflete sobre a tua situação atual.
                 </p>
+                {renderImage()}
                 <p className="mt-4 fw-semibold">{renderFeedback()}</p>
                 <div className="d-flex justify-content-between mt-4">
                   <button className="btn btn-outline-secondary" onClick={() => setPagina(2)}>Anterior</button>

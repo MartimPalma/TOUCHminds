@@ -1,3 +1,4 @@
+/**Temos de refazer isto tudo mas também tenho algumas dúvidas*/
 import React, { useState, useContext } from "react";
 import { useParams } from "react-router-dom";
 import Navbar from "../../navbar";
@@ -152,15 +153,13 @@ const AtividadeResumoMudanca = () => {
                 </h4>
                 <div className="mb-4">
                   <img 
-                    src="/images/onda-mudanca.jpg" 
+                    src="/imgs/modulo4/resumo/resumo1.png" 
                     alt="Metáfora da onda da mudança" 
                     className="img-fluid rounded shadow-sm"
                     style={{ maxHeight: "400px", objectFit: "cover" }}
                   />
                 </div>
-                <p className="lead">
-                  Visualiza a mudança como uma onda que podes aprender a surfar.
-                </p>
+                
                 <div className="d-flex justify-content-between mt-4">
                   <button className="btn btn-outline-secondary" onClick={retrocederPagina}>
                     <i className="bi bi-arrow-left me-2"></i>Anterior
