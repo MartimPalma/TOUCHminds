@@ -7,26 +7,40 @@ import AtividadeProgressao from "../atividadeProgressao";
 
 const AtividadeVozCritica = () => {
   const [pagina, setPagina] = useState(0);
+  const [vozCritica, setVozCritica] = useState("");
+  const [vozCompassiva, setVozCompassiva] = useState("");
+  const [mostrarErro, setMostrarErro] = useState(false);
   const { id: moduloId } = useParams();
   const { updateUserData } = useContext(UserContext);
 
-  const avancarPagina = () => setPagina((prev) => prev + 1);
+  const avancarPagina = () => {
+    // Validação para a página de reflexão (página 10)
+    if (pagina === 10) {
+      if (!vozCritica.trim() || !vozCompassiva.trim()) {
+        setMostrarErro(true);
+        return;
+      }
+      setMostrarErro(false);
+    }
+    setPagina((prev) => prev + 1);
+  };
+  
   const retrocederPagina = () => setPagina((prev) => prev - 1);
 
   const progresso = Math.round((pagina / 12) * 100);
 
   const imagens = [
     null, // Página 0: instrução
-    "imagem1.jpg",
-    "imagem2.jpg",
-    "imagem3.jpg",
-    "imagem4.jpg",
-    "imagem5.jpg",
-    "imagem6.jpg",
-    "imagem7.jpg",
-    "imagem8.jpg",
-    "imagem9.jpg",
-    "imagem10.jpg",
+    "/imgs/modulo3/vozes/vozes1.png",
+    "/imgs/modulo3/vozes/vozes2.png",
+    "/imgs/modulo3/vozes/vozes3.png",
+    "/imgs/modulo3/vozes/vozes4.png",
+    "/imgs/modulo3/vozes/vozes5.png",
+    "/imgs/modulo3/vozes/vozes6.png",
+    "/imgs/modulo3/vozes/vozes7.png",
+    "/imgs/modulo3/vozes/vozes8.png",
+    "/imgs/modulo3/vozes/vozes9.png",
+    null,
     null, // Reflexão
     null  // Conclusão
   ];
@@ -64,10 +78,34 @@ const AtividadeVozCritica = () => {
     <>
       <h4>Vamos refletir!</h4>
       <p>Pensa no pensamento mais comum que a tua voz crítica te diz e escreve uma resposta mais gentil e acolhedora.</p>
+      {mostrarErro && (
+        <div className="alert alert-danger" role="alert">
+          <i className="bi bi-exclamation-triangle-fill me-2"></i>
+          Por favor, preenche ambos os campos antes de avançar.
+        </div>
+      )}
       <label>O que é que a tua voz crítica te costuma dizer nos momentos difíceis?</label>
-      <textarea required className="form-control mb-3" placeholder="Exemplo: Nunca faço nada de jeito"></textarea>
+      <textarea 
+        required 
+        className="form-control mb-3" 
+        placeholder="Exemplo: Nunca faço nada de jeito"
+        value={vozCritica}
+        onChange={(e) => {
+          setVozCritica(e.target.value);
+          if (mostrarErro) setMostrarErro(false);
+        }}
+      ></textarea>
       <label>Como poderias responder a essa voz com mais gentileza e compreensão?</label>
-      <textarea required className="form-control mb-3" placeholder="Exemplo: Eu sei que te sentes desapontado..."></textarea>
+      <textarea 
+        required 
+        className="form-control mb-3" 
+        placeholder="Exemplo: Eu sei que te sentes desapontado..."
+        value={vozCompassiva}
+        onChange={(e) => {
+          setVozCompassiva(e.target.value);
+          if (mostrarErro) setMostrarErro(false);
+        }}
+      ></textarea>
     </>,
     // Página 11 - Conclusão
     <>
@@ -98,16 +136,17 @@ const AtividadeVozCritica = () => {
                 aria-valuemax="100"
               ></div>
             </div>
-
             {imagens[pagina] && (
-              <img
-                src={`/imagens/${imagens[pagina]}`}
-                alt={`Página ${pagina}`}
-                className="img-fluid mb-4"
-              />
+              <div className="text-center mb-4">
+                <img
+                  src={imagens[pagina]}
+                  alt={`Página ${pagina}`}
+                  className="img-fluid"
+                  style={{ maxWidth: "400px", height: "auto" }}
+                />
+              </div>
             )}
             <div className="mb-4">{textos[pagina]}</div>
-
             <div className="d-flex justify-content-between">
               {pagina > 0 && (
                 <button className="btn btn-outline-secondary" onClick={retrocederPagina}>

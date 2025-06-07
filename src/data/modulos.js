@@ -170,31 +170,21 @@ const modulos = [
         subtitulo: "Reviravolta em Rede!",
         atividades: [
           {
-            url: "banda-desenhada",
-            titulo: "Ansiedade: Aliada ou Empecilho?",
-            tipo: "texto",
+            url: "podcast2",
+            titulo: "Ansiedade SOS: Quando o Corpo Fala Mais Alto",
             descricao: "Banda desenhada que explica ansiedade comum vs. SOS.",
             imagem: "../imgs/module1.jpg"
           },
           {
-            url: "linha-ansiedade",
-            titulo: "Linha da Ansiedade",
-            tipo: "popup",
+            url: "escolha-certa",
+            titulo: "Escolha Certa",
             descricao: "Explora ansiedade normativa vs. patológica numa situação.",
             imagem: "../imgs/module1.jpg"
           },
           {
-            url: "unindo-experiencias",
-            titulo: "Unindo Experiências",
-            tipo: "video",
+            url: "atividade-resumo5",
+            titulo: "Atividade Resumo",
             descricao: "Vídeo com relatos reais sobre ansiedade.",
-            imagem: "../imgs/module1.jpg"
-          },
-          {
-            url: "ansiedade-sem-filtros",
-            titulo: "Ansiedade sem Filtros",
-            tipo: "imagem",
-            descricao: "Imagens estilo Instagram sobre ansiedade na adolescência.",
             imagem: "../imgs/module1.jpg"
           },
         ],
@@ -206,30 +196,26 @@ const modulos = [
         subtitulo: "Um novo Começo!",
         atividades: [
           {
-            url: "banda-desenhada",
-            titulo: "Ansiedade: Aliada ou Empecilho?",
-            tipo: "texto",
+            url: "codigo-psicologo",
+            titulo: "Código do Psicólogo",
             descricao: "Banda desenhada que explica ansiedade comum vs. SOS.",
             imagem: "../imgs/module1.jpg"
           },
           {
-            url: "linha-ansiedade",
-            titulo: "Linha da Ansiedade",
-            tipo: "popup",
+            url: "viagem-bemestar",
+            titulo: "Viagem ao Bem-Estar",
             descricao: "Explora ansiedade normativa vs. patológica numa situação.",
             imagem: "../imgs/module1.jpg"
           },
           {
-            url: "unindo-experiencias",
-            titulo: "Unindo Experiências",
-            tipo: "video",
+            url: "nao-estas-sozinho",
+            titulo: "Não Estás Sozinho/a",
             descricao: "Vídeo com relatos reais sobre ansiedade.",
             imagem: "../imgs/module1.jpg"
           },
           {
-            url: "ansiedade-sem-filtros",
-            titulo: "Ansiedade sem Filtros",
-            tipo: "imagem",
+            url: "atividade-resumo6",
+            titulo: "Atividade Resumo",
             descricao: "Imagens estilo Instagram sobre ansiedade na adolescência.",
             imagem: "../imgs/module1.jpg"
           },
