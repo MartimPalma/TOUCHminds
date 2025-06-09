@@ -154,7 +154,7 @@ const AnsiedadeSemFiltros = () => {
                     </span>
                     <input
                       type="text"
-                      className={`form-control ${inputError ? 'is-invalid' : ''}`}
+                      className={`bdform-control form-control ${inputError ? 'is-invalid' : ''}`}
                       style={{
                         border: '2px solid #99CBC8',
                         borderLeft: 'none',
