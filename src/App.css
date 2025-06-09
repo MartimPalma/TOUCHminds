@@ -41,9 +41,17 @@ select:focus {
   font-style: normal !important;
 }
 
-.input-group .form-control {
+.input-group {
   border-right: none;
   border-radius: 12px 0 0 12px !important;
+}
+.form-control{
+    border-top-left-radius: 0 !important;
+  border-bottom-left-radius: 0 !important;
+  border-top-right-radius: 0.375rem !important;
+  border-bottom-right-radius: 0.375rem !important;
+  border: 2px solid #99CBC8 !important;
+  border-left: none !important;
 }
 
 .input-group .btn-toggle {
@@ -350,7 +358,7 @@ select:focus {
 }
 
 .custom-btn-complete:hover {
-  background-color: #1c3a5a; /* Tom mais escuro para o hover */
+  background-color: #142940; /* Tom mais escuro para o hover */
 }
 
 
@@ -477,3 +485,4 @@ select:focus {
 .lead{
   text-align: left !important;
 }
+

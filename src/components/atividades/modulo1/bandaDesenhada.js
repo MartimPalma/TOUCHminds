@@ -144,7 +144,7 @@ const BandaDesenhada = () => {
                     </label>
                     <input
                       type="text"
-                      className={`form-control ${inputError && !ansiedadeComum.trim() ? 'is-invalid' : ''}`}
+                      className={`form-control ${inputError && !ansiedadeComum.trim() ? 'is-invalid' : ''}`} style={{ border: '2px solid #99CBC8' }}
                       id="ansiedadeComum"
                       value={ansiedadeComum}
                       onChange={handleAnsiedadeComumChange}
@@ -164,7 +164,7 @@ const BandaDesenhada = () => {
                     </label>
                     <input
                       type="text"
-                      className={`form-control ${inputError && !ansiedadeSOS.trim() ? 'is-invalid' : ''}`}
+                      className={`form-control ${inputError && !ansiedadeSOS.trim() ? 'is-invalid' : ''}`} style={{ border: '2px solid #99CBC8' }}
                       id="ansiedadeSOS"
                       value={ansiedadeSOS}
                       onChange={handleAnsiedadeSOSChange}

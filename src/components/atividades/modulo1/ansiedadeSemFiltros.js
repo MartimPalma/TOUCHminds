@@ -141,12 +141,28 @@ const AnsiedadeSemFiltros = () => {
 
                   {/* Hashtag input with error state */}
                   <div className="input-group mx-auto" style={{ maxWidth: "500px" }}>
-                    <span className="input-group-text" id="hashtag-addon">
+                    <span className="input-group-text" id="hashtag-addon" style={{
+                      border: '2px solid #99CBC8',
+                      borderRight: 'none',
+                      backgroundColor: 'white',
+                      borderTopLeftRadius: '0.375rem',
+                      borderBottomLeftRadius: '0.375rem',
+                      borderTopRightRadius: '0',
+                      borderBottomRightRadius: '0',
+                    }}>
                       <i className="bi bi-hash"></i>
                     </span>
                     <input
                       type="text"
                       className={`form-control ${inputError ? 'is-invalid' : ''}`}
+                      style={{
+                        border: '2px solid #99CBC8',
+                        borderLeft: 'none',
+                        borderTopRightRadius: '0.375rem',
+                        borderBottomRightRadius: '0.375rem',
+                        borderTopLeftRadius: '0',
+                        borderBottomLeftRadius: '0',
+                      }}
                       placeholder="hashtag"
                       value={hashtags[pagina - 1]}
                       onChange={(e) => handleHashtagChange(pagina - 1, e.target.value)}
@@ -189,12 +205,12 @@ const AnsiedadeSemFiltros = () => {
                 <p className="lead">
                   Agora que refletiste sobre as imagens e reagiste com <strong>hashtags</strong>, percebeste que a <strong>ansiedade</strong> não é algo <strong>isolado</strong>. Pelo
                   contrário, afeta muitos <strong>jovens</strong> e pode, por vezes, ser um <strong>problema maior</strong> do que parece.<br></br><br></br>
-                  Ao longo das imagens, <strong>exploraste</strong> como a ansiedade pode <strong>surgir</strong>, como ela pode <strong>persistir</strong> ao longo do 
-                  tempo e os <strong>desafios</strong> que traz a muitos adolescentes.<br></br><br></br> 
+                  Ao longo das imagens, <strong>exploraste</strong> como a ansiedade pode <strong>surgir</strong>, como ela pode <strong>persistir</strong> ao longo do
+                  tempo e os <strong>desafios</strong> que traz a muitos adolescentes.<br></br><br></br>
                   Ao mesmo tempo, <strong>aprendeste</strong> que a ansiedade não é um problema que deva ser <strong>ignorado</strong>, mas sim <strong>reconhecido</strong> e <strong>cuidado</strong>,
-                   para evitar consequências mais graves no futuro.<br></br><br></br>
+                  para evitar consequências mais graves no futuro.<br></br><br></br>
                   A informação que partilhaste através dos hashtags ajuda-te a entender e expressar as diferentes <strong>emoções</strong> que sentiste ao aprender sobre as diversas
-                   formas de ansiedade e como elas afetam o nosso <strong>bem-estar</strong>, a nossa <strong>saúde mental</strong> e o nosso <strong>futuro</strong>.<br></br><br></br>
+                  formas de ansiedade e como elas afetam o nosso <strong>bem-estar</strong>, a nossa <strong>saúde mental</strong> e o nosso <strong>futuro</strong>.<br></br><br></br>
                   Lembra-te que <strong>falar</strong> sobre isso é <strong>fundamental</strong> para lidar com os desafios da saúde mental.
                 </p>
                 <div className="d-flex justify-content-between mt-4">

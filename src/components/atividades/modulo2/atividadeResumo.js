@@ -6,7 +6,7 @@ import { UserContext } from "../../../App";
 import modulos from '../../../data/modulos';
 import AtividadeProgressao from '../atividadeProgressao';
 import Modal from 'react-bootstrap/Modal';
-import Button from 'react-bootstrap/Button';
+
 
 const AtividadeResumoModulo2 = () => {
     const { id: moduloId } = useParams();
@@ -16,13 +16,15 @@ const AtividadeResumoModulo2 = () => {
     const [mensagemPopUp, setMensagemPopUp] = useState("");
     const [mostrarOpcoes, setMostrarOpcoes] = useState(false);
     const [opcaoSelecionada, setOpcaoSelecionada] = useState(null);
+    const [hoverIndex, setHoverIndex] = useState(null);
 
     const modulo = modulos.find((m) => m.id === moduloId);
     const atividade = modulo?.atividades.find(a => a.url === "atividade-resumo");
 
     const cenarios = [
         {
-            imagem: "/imgs/modulo2/resumo/resumo2_1.png",
+            imagemBase: "/imgs/modulo2/resumo/resumo2_1.png",
+            imagemMao: "/imgs/modulo2/resumo/resumo2_1_mao.png",
             opcoes: [
                 <><b>Reforçar o estigma:</b> Concordar com os comentários e afastar-se."</>,
                 <><b>Responder com empatia:</b> Defender o colega, contrariar o julgamento e mostrar compreensão.</>
@@ -34,7 +36,8 @@ const AtividadeResumoModulo2 = () => {
             )
         },
         {
-            imagem: "/imgs/modulo2/resumo/resumo2_2.png",
+            imagemBase: "/imgs/modulo2/resumo/resumo2_2.png",
+            imagemMao: "/imgs/modulo2/resumo/resumo2_2_mao.png",
             opcoes: [
                 <><b>Reforçar o estigma:</b> Ignorar ou afastar-se da pessoa.</>,
                 <><b>Responder com empatia:</b> Aproximar-se, perguntar se está bem, oferecer companhia.</>
@@ -46,7 +49,8 @@ const AtividadeResumoModulo2 = () => {
             )
         },
         {
-            imagem: "/imgs/modulo2/resumo/resumo2_3.png",
+            imagemBase: "/imgs/modulo2/resumo/resumo2_3.png",
+            imagemMao: "/imgs/modulo2/resumo/resumo2_3_mao.png",
             opcoes: [
                 <><b>Reforçar o estigma:</b> Rir, comentar com colegas, não levar a apresentação a sério.</>,
                 <><b>Responder com empatia:</b> Encorajar, sorrir de forma acolhedora, apoiar verbalmente.</>
@@ -59,7 +63,8 @@ const AtividadeResumoModulo2 = () => {
             )
         },
         {
-            imagem: "/imgs/modulo2/resumo/resumo2_4.png",
+            imagemBase: "/imgs/modulo2/resumo/resumo2_4.png",
+            imagemMao: "/imgs/modulo2/resumo/resumo2_4_mao.png",
             opcoes: [
                 <><b>Reforçar o estigma:</b> Ignorar o que está a acontecer, fazer scroll, ou até concordar com os comentários.</>,
                 <><b>Responder com empatia:</b> Denunciar os comentários, lembrar-lhe que não está sozinho.</>
@@ -117,7 +122,7 @@ const AtividadeResumoModulo2 = () => {
 
                         {pagina === 0 && (
                             <>
-                                <h2 className="fw-bold mb-4" style={{ color: "#234970" }}>
+                                <h2 className="fw-bold mb-4 text-start" style={{ color: "#234970" }}>
                                     {atividade?.titulo || "Atividade Resumo – Desmistificar a Ansiedade"}
                                 </h2>
                                 <p className="lead">
@@ -133,13 +138,7 @@ const AtividadeResumoModulo2 = () => {
                                     <br /><br />
                                     <strong>Estás pronto/a para fazer a diferença?</strong>
                                 </p>
-                                <button className="btn mt-3 px-4 py-2" style={{
-                                    backgroundColor: "#66BFBF",
-                                    color: "white",
-                                    borderRadius: "8px",
-                                    fontSize: "1.05rem",
-                                    border: "none",
-                                }} onClick={() => setPagina(1)}>
+                                <button className="custom-btn-turquoise mt-3 px-4 py-2" onClick={() => setPagina(1)}>
                                     Vamos começar!
                                 </button>
                             </>
@@ -151,72 +150,68 @@ const AtividadeResumoModulo2 = () => {
                                     Cenário {pagina} de {cenarios.length}
                                 </h4>
 
-                                <div className="position-relative d-flex justify-content-center mb-4">
+                                <div className="d-flex flex-column align-items-center mb-4" style={{ width: "100%" }}>
+                                    {/* Imagem principal (topo) */}
                                     <img
-                                        src={cenarios[pagina - 1].imagem}
+                                        src={cenarios[pagina - 1].imagemBase}
                                         alt={`Cenário ${pagina}`}
-                                        className="img-fluid rounded"
-                                        style={{ maxHeight: "400px", objectFit: "contain" }}
-                                    />
-                                    <div
-                                        onClick={() => setMostrarOpcoes(true)}
+                                        className="img-fluid"
                                         style={{
-                                            position: "absolute",
-                                            bottom: "10px",
-                                            left: "50%",
-                                            transform: "translateX(-50%)",
+                                            maxWidth: "100%",
+                                            objectFit: "contain",
+                                            borderTopLeftRadius: "1rem",
+                                            borderTopRightRadius: "1rem",
+                                            borderBottomLeftRadius: 0,
+                                            borderBottomRightRadius: 0,
+                                        }}
+                                    />
+
+                                    {/* Imagem da mão (base) */}
+                                    <img
+                                        src={cenarios[pagina - 1].imagemMao}
+                                        alt="Ícone da mão"
+                                        onClick={() => setMostrarOpcoes(true)}
+                                        className="img-fluid"
+                                        style={{
+                                            maxWidth: "100%",
+                                            objectFit: "contain",
+                                            borderTopLeftRadius: 0,
+                                            borderTopRightRadius: 0,
+                                            borderBottomLeftRadius: "1rem",
+                                            borderBottomRightRadius: "1rem",
                                             cursor: "pointer"
                                         }}
-                                    >
-                                        <img
-                                            src="/imgs/modulo2/resumo/maozinha.png"
-                                            alt="Interagir"
-                                            style={{ height: "50px" }}
-                                            onError={() => console.error("Erro ao carregar ícone da mãozinha")}
-                                        />
-                                    </div>
+                                    />
                                 </div>
 
                                 {mostrarOpcoes && (
                                     <div className="d-flex flex-column gap-3">
-                                        {cenarios[pagina - 1].opcoes.map((opcao, index) => (
-                                            <button
-                                                key={index}
-                                                className="btn"
-                                                disabled={opcaoSelecionada !== null && opcaoSelecionada !== index}
-                                                /*style={{ Para encurtar as caixas de texto
-                                                    backgroundColor: opcaoSelecionada === index ? "#234970" : "#6B8BA4",
-                                                    color: "white",
-                                                    borderRadius: "8px",
-                                                    fontSize: "1rem",
-                                                    maxWidth: "600px",
-                                                    width: "100%",
-                                                    margin: "0 auto",
-                                                    cursor: opcaoSelecionada !== null && opcaoSelecionada !== index ? "not-allowed" : "pointer",
-                                                    opacity: opcaoSelecionada !== null && opcaoSelecionada !== index ? 0.6 : 1,
-                                                    transition: "background-color 0.3s ease"
-                                                }} */
+                                        {cenarios[pagina - 1].opcoes.map((opcao, index) => {
+                                            const isSelected = opcaoSelecionada === index;
+                                            const isDisabled = opcaoSelecionada !== null && !isSelected;
 
-                                                style={{
-                                                    backgroundColor: opcaoSelecionada === index ? '#234970' : '#6B8BA4',
-                                                    color: "white",
-                                                    borderRadius: "8px",
-                                                    fontSize: "1rem",
-                                                    cursor: opcaoSelecionada !== null && opcaoSelecionada !== index ? "not-allowed" : "pointer",
-                                                    opacity: opcaoSelecionada !== null && opcaoSelecionada !== index ? 0.6 : 1,
-                                                    transition: "background-color 0.3s ease"
-                                                }}
-                                                onMouseEnter={(e) => {
-                                                    if (opcaoSelecionada === null) e.target.style.backgroundColor = "#234970";
-                                                }}
-                                                onMouseLeave={(e) => {
-                                                    if (opcaoSelecionada === null) e.target.style.backgroundColor = "#6B8BA4";
-                                                }}
-                                                onClick={() => escolherOpcao(index)}
-                                            >
-                                                {opcao}
-                                            </button>
-                                        ))}
+                                            return (
+                                                <div
+                                                    key={index}
+                                                    onClick={() => !isDisabled && escolherOpcao(index)}
+                                                    onMouseEnter={() => setHoverIndex(index)}
+                                                    onMouseLeave={() => setHoverIndex(null)}
+                                                    className={`btn ${isSelected ? 'btn-primary' : 'btn-outline-secondary'} text-${isSelected ? 'white' : 'dark'} p-3 text-start`}
+                                                    style={{
+                                                        backgroundColor: isSelected ? '#99CBC8' : hoverIndex === index ? '#5AAAA5' : '#ffffff',
+                                                        color: isSelected ? 'white' : hoverIndex === index ? 'white' : '#99CBC8',
+                                                        border: `2px solid ${isSelected ? '#99CBC8' : '#99CBC8'}`,
+                                                        borderRadius: '10px',
+                                                        fontWeight: isSelected ? '300' : 'normal',
+                                                        transition: 'all 0.3s ease',
+                                                    }}
+                                                >
+                                                    {opcao}
+                                                </div>
+                                            );
+                                        })}
+
+
                                     </div>
                                 )}
 
@@ -228,51 +223,47 @@ const AtividadeResumoModulo2 = () => {
 
                         {pagina === cenarios.length + 1 && (
                             <>
-                                <h4 className="fw-bold mb-4" style={{ color: "#234970" }}>Conclusão da Atividade!</h4>
-                                <div className="text-start lead" style={{ maxWidth: "900px", margin: "0 auto" }}>
-                                    <p><strong>Terminaste a visita pela Sala do Estigma!</strong>
-                                    Durante esta atividade, exploraste diferentes situações do dia a dia em que o <strong>estigma em relação à ansiedade</strong> pode surgir.
-                                    Viste como <strong>palavras</strong>, <strong>olhares</strong> ou a <strong>ausência de apoio</strong> podem afetar profundamente quem vive com ansiedade — e também como um gesto de <strong>empatia</strong> pode transformar uma situação difícil num momento de <strong>acolhimento</strong> e <strong>compreensão</strong>.</p>
-                                    <p>A <strong>ansiedade</strong> não é uma falha, nem uma fraqueza. É uma <strong>resposta humana, natural</strong>, e todos merecem ser tratados com <strong>respeito</strong>, <strong>apoio</strong> e <strong>empatia</strong>.</p>
-                                    <p>Ao escolheres intervir de forma positiva em cada cenário, mostraste que tens o poder de contribuir para um <strong>ambiente mais seguro e inclusivo</strong>, onde ninguém se sinta sozinho nas suas dificuldades.</p>
-                                    <p><strong>Lembra-te:</strong> combater o estigma começa com pequenas ações — e <strong>começa contigo</strong>.</p>
+                                <h4 className="fw-bold mb-4 text-start" style={{ color: "#234970" }}>Conclusão da Atividade!</h4>
+                                <div className="text-start lead">
+                                    <p><strong>Terminaste a visita pela Sala do Estigma!</strong> Durante esta atividade, exploraste diferentes situações do dia a dia em que o <strong>estigma</strong> em relação à <strong>ansiedade</strong> pode surgir.
+                                        Viste como <strong>palavras</strong>, <strong>olhares</strong> ou a <strong>ausência de apoio</strong> podem afetar profundamente quem vive com 
+                                        ansiedade — e também como um gesto de <strong>empatia</strong> pode transformar uma situação difícil num 
+                                        momento de <strong>acolhimento</strong> e <strong>compreensão</strong>.</p>
+
+                                    <p><strong>A ansiedadenão é uma falha, nem uma fraqueza</strong> . É uma resposta <strong>humana</strong>, <strong>natural</strong>, e todos merecem ser 
+                                    tratados com <strong>respeito</strong>, <strong>apoio</strong> e <strong>empatia</strong>.</p>
+
+                                    <p>Ao escolheres <strong>intervir de forma positiva</strong> em cada cenário, mostraste que tens o poder de contribuir para um ambiente mais
+                                         <strong>seguro</strong> e <strong>inclusivo</strong>, onde ninguém se sinta <strong>sozinho</strong> nas suas <strong>dificuldades</strong>.</p>
+
+                                    <p><strong>Lembra-te:</strong> combater o estigma começa com <strong>pequenas ações</strong> — e começa <strong>contigo</strong>.</p>
                                 </div>
 
-                                <AtividadeProgressao
-                                    moduloId={moduloId}
-                                    atividadeIndex={2}
-                                    updateUserData={updateUserData}
-                                />
+                                <div className="d-flex justify-content-between mt-4">
+                                    <button className="custom-btn-pink" onClick={retroceder}>
+                                        <i className="bi bi-arrow-left me-2"></i>Anterior
+                                    </button>
+                                    <AtividadeProgressao
+                                        moduloId={moduloId}
+                                        atividadeIndex={4}
+                                        updateUserData={updateUserData}
+                                    />
+                                </div>
+
                             </>
                         )}
 
                         <div className="d-flex justify-content-between mt-4">
-                            {pagina > 0 && (
+                            {pagina > 0 &&  pagina <= cenarios.length && (
                                 <button
-                                    className="btn"
-                                    style={{
-                                        backgroundColor: "#E7C8C2",
-                                        color: "white",
-                                        borderRadius: "8px",
-                                        fontSize: "1.05rem",
-                                        border: "none"
-                                    }}
-                                    onClick={retroceder}
+                                    className="custom-btn-pink" onClick={retroceder}
                                 >
                                     <i className="bi bi-arrow-left me-2"></i> Anterior
                                 </button>
                             )}
                             {pagina > 0 && pagina <= cenarios.length && (
                                 <button
-                                    className="btn"
-                                    style={{
-                                        backgroundColor: pagina === cenarios.length ? "#66BFBF" : "#66BFBF",
-                                        color: "white",
-                                        borderRadius: "8px",
-                                        fontSize: "1.05rem",
-                                        border: "none"
-                                    }}
-                                    onClick={avancar}
+                                    className="custom-btn-turquoise" onClick={avancar}
                                     disabled={opcaoSelecionada === null}
                                 >
                                     {pagina === cenarios.length ? "Conclusão" : "Continuar"} <i className="bi bi-arrow-right ms-2"></i>
@@ -289,9 +280,9 @@ const AtividadeResumoModulo2 = () => {
                 </Modal.Header>
                 <Modal.Body>{mensagemPopUp}</Modal.Body>
                 <Modal.Footer>
-                    <Button style={{ backgroundColor: "#234970", border: "none" }} onClick={() => setModalAberto(false)}>
+                    <button className="custom-btn-turquoise" onClick={() => setModalAberto(false)}>
                         Continuar
-                    </Button>
+                    </button>
                 </Modal.Footer>
             </Modal>
 
