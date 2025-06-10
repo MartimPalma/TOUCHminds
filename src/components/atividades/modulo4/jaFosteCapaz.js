@@ -72,28 +72,30 @@ const JaFosteCapaz = () => {
 
             {/* PÁGINA 0 - INTRODUÇÃO */}
             {pagina === 0 && (
-              <div className="text-center py-4">
-                <h3 className="fw-bold mb-4" style={{ color: "#234970" }}>
+              <div className="text-start py-4">
+                <h2 className="fw-bold mb-4" style={{ color: "#234970" }}>
                   Já Foste Capaz!
-                </h3>
-                <p className="lead mb-4">
+                </h2>
+                <p className="lead mb-3">
                   Sê muito <strong>bem-vindo</strong> ou <strong>bem-vinda</strong> à atividade <strong>"Já Foste Capaz"</strong>!
                 </p>
-                <p className="mb-3">
+                <p className="mb-3 lead">
                   Nesta <strong>atividade</strong> vais ter a oportunidade de <strong>parar um pouco</strong> e <strong>refletir</strong> sobre <strong>situações</strong> em que ultrapassaste <strong>dificuldades</strong>, mesmo quando parecia <strong>difícil</strong>.
                 </p>
-                <p className="mb-3">
+                <p className="mb-3 lead">
                   A ideia é ajudares-te a ti próprio/a a <strong>reconhecer</strong> tudo o que já foste <strong>capaz</strong> de fazer, mesmo em momentos de <strong>dúvida</strong> ou <strong>ansiedade</strong>.
                 </p>
-                <p className="mb-3">
+                <p className="mb-3 lead">
                   Ao longo da atividade, vais <strong>lembrar-te</strong> de <strong>experiências tuas</strong>, de <strong>outras pessoas</strong> que te <strong>inspiraram</strong> e do <strong>impacto</strong> que o <strong>apoio dos outros</strong> pode ter em ti.
                 </p>
-                <p className="mb-4">
+                <p className="mb-4 lead">
                   Quando estiveres <strong>pronto/a</strong>, começa a <strong>explorar</strong> — esta <strong>viagem é sobre ti</strong>. <strong>Ouve os áudios que se seguem</strong>, que te irão guiar nesta reflexão.
                 </p>
-                <button className="btn btn-primary mt-2 px-4 py-2" onClick={avancarPagina}>
-                  <i className="bi bi-play-fill me-2"></i> Vamos a isto?
-                </button>
+                 <div className="text-center">
+                  <button className="custom-btn-turquoise mt-2 px-4 py-2" onClick={avancarPagina}>
+                   <i className="bi bi-play-fill me-2"></i> Vamos a isto?
+                  </button>
+                </div>
               </div>
             )}
 
@@ -127,11 +129,11 @@ const JaFosteCapaz = () => {
                 )}
 
                 <div className="d-flex justify-content-between mt-4">
-                  <button className="btn btn-outline-secondary" onClick={retrocederPagina}>
+                  <button className="custom-btn-pink" onClick={retrocederPagina}>
                     <i className="bi bi-arrow-left me-2"></i>Anterior
                   </button>
                   <button 
-                    className="btn btn-primary" 
+                    className="custom-btn-turquoise" 
                     onClick={avancarPagina}
                     disabled={!canAdvance(pagina)}
                   >
@@ -145,30 +147,28 @@ const JaFosteCapaz = () => {
             {/* PÁGINA 5 - CONCLUSÃO */}
             {pagina === 5 && (
               <>
-                <h4 className="fw-bold mb-4" style={{ color: "#234970" }}>
-                  Conclusão da atividade!
-                </h4>
+                <h4 className="fw-bold mb-4 text-start" style={{ color: "#234970" }}>Conclusão da Atividade</h4>
                 <p className="mb-3">
                   Com esta <strong>atividade</strong> pudeste perceber que a nossa <strong>confiança</strong> em ser capaz de <strong>enfrentar</strong> e <strong>superar desafios</strong> vem da <strong>crença</strong> de que conseguimos realizar o que nos propomos.
                 </p>
-                <p className="mb-3">
+                <p className="mb-3 lead">
                   As <strong>experiências passadas</strong>, especialmente as em que <strong>superamos dificuldades</strong>, ajudam-nos a perceber que somos <strong>capazes</strong> de lidar com <strong>situações difíceis</strong>.
                 </p>
-                <p className="mb-3">
+                <p className="mb-3 lead">
                   Além disso, ver <strong>outras pessoas</strong> a conseguirem o que parecia <strong>impossível</strong> pode nos fazer <strong>acreditar</strong> que também somos capazes.
                 </p>
-                <p className="mb-3">
+                <p className="mb-3 lead">
                   O <strong>apoio</strong> de quem acredita em nós, como <strong>professores</strong> ou <strong>familiares</strong>, aumenta essa confiança.
                 </p>
-                <p className="mb-3">
+                <p className="mb-3 lead">
                   A maneira como lidamos com a <strong>ansiedade</strong>, como as <strong>mãos a suar</strong> ou o <strong>coração acelerado</strong>, também influencia como nos vemos.
                 </p>
-                <p className="mb-4">
+                <p className="mb-4 lead">
                   Quando conseguimos <strong>continuar</strong> apesar destas <strong>sensações físicas</strong>, estamos a demonstrar que somos capazes de <strong>enfrentar desafios</strong>.
                 </p>
 
                 <div className="d-flex justify-content-between mt-4">
-                  <button className="btn btn-outline-secondary" onClick={retrocederPagina}>
+                  <button className="custom-btn-pink" onClick={retrocederPagina}>
                     <i className="bi bi-arrow-left me-2"></i>Anterior
                   </button>
                   <AtividadeProgressao

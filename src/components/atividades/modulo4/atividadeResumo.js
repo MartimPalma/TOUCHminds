@@ -14,7 +14,7 @@ const AtividadeResumoMudanca = () => {
   const [contras, setContras] = useState("");
   const [confianca, setConfianca] = useState("");
   const [confiancaDetalhes, setConfiancaDetalhes] = useState("");
-  
+
   const { id: moduloId } = useParams();
   const { updateUserData } = useContext(UserContext);
 
@@ -117,31 +117,33 @@ const AtividadeResumoMudanca = () => {
 
             {/* PÁGINA 0 - INTRODUÇÃO */}
             {pagina === 0 && (
-              <div className="text-center py-4">
-                <h3 className="fw-bold mb-4" style={{ color: "#234970" }}>
+              <div className="text-start py-4">
+                <h2 className="fw-bold mb-4" style={{ color: "#234970" }}>
                   Atividade Resumo
-                </h3>
-                <p className="lead mb-4">
+                </h2>
+                <p className="lead mb-3">
                   Sê muito <strong>bem-vindo</strong> ou <strong>bem-vinda</strong> à atividade <strong>resumo do Módulo 4 – O Poder da Mudança</strong>!
                 </p>
-                <p className="mb-3">
+                <p className="mb-3 lead">
                   O <strong>objetivo</strong> desta atividade é <strong>consolidar</strong> os <strong>conteúdos</strong> que explorámos ao longo do <strong>módulo</strong>.
                 </p>
-                <p className="mb-3">
+                <p className="mb-3 lead">
                   A <strong>mudança</strong> é como <strong>surfar uma onda</strong>: há momentos de <strong>calmaria</strong>, mas também há <strong>desafios</strong>.
                 </p>
-                <p className="mb-3">
+                <p className="mb-3 lead">
                   Às vezes estamos <strong>prontos</strong> para apanhar a <strong>onda</strong> e, noutras, ela acaba por nos <strong>derrubar</strong>.
                 </p>
-                <p className="mb-3">
+                <p className="mb-3 lead">
                   Usando esta <strong>metáfora</strong>, vais criar o teu próprio <strong>percurso de mudança</strong>.
                 </p>
-                <p className="mb-4">
+                <p className="mb-4 lead">
                   Pensa na <strong>mudança</strong> que gostarias de fazer e como a <strong>metáfora da onda</strong> pode ajudar-te a <strong>refletir</strong> sobre este <strong>processo</strong>.
                 </p>
-                <button className="btn btn-primary mt-2 px-4 py-2" onClick={avancarPagina}>
-                  <i className="bi bi-play-fill me-2"></i> Vamos a isto?
-                </button>
+                <div className="text-center">
+                  <button className="custom-btn-turquoise mt-2 px-4 py-2" onClick={avancarPagina}>
+                    <i className="bi bi-play-fill me-2"></i> Vamos a isto?
+                  </button>
+                </div>
               </div>
             )}
 
@@ -152,19 +154,19 @@ const AtividadeResumoMudanca = () => {
                   A Metáfora da Onda
                 </h4>
                 <div className="mb-4">
-                  <img 
-                    src="/imgs/modulo4/resumo/resumo1.png" 
-                    alt="Metáfora da onda da mudança" 
+                  <img
+                    src="/imgs/modulo4/resumo/resumo1.png"
+                    alt="Metáfora da onda da mudança"
                     className="img-fluid rounded shadow-sm"
                     style={{ maxHeight: "400px", objectFit: "cover" }}
                   />
                 </div>
-                
+
                 <div className="d-flex justify-content-between mt-4">
-                  <button className="btn btn-outline-secondary" onClick={retrocederPagina}>
+                  <button className="custom-btn-pink" onClick={retrocederPagina}>
                     <i className="bi bi-arrow-left me-2"></i>Anterior
                   </button>
-                  <button className="btn btn-primary" onClick={avancarPagina}>
+                  <button className="custom-btn-turquoise" onClick={avancarPagina}>
                     Próximo
                     <i className="bi bi-arrow-right ms-2"></i>
                   </button>
@@ -187,7 +189,7 @@ const AtividadeResumoMudanca = () => {
                     <div key={key} className="col-12 col-md-6 col-lg-4 mb-3">
                       <div className="card h-100">
                         <div className="card-body text-center">
-                          <div 
+                          <div
                             className="btn btn-outline-primary rounded-circle mb-3"
                             style={{ width: "60px", height: "60px", display: "flex", alignItems: "center", justifyContent: "center" }}
                             onClick={() => handleFaseClick(key)}
@@ -196,10 +198,10 @@ const AtividadeResumoMudanca = () => {
                           </div>
                           <h6 className="fw-bold">{fase.titulo}</h6>
                           <div className="form-check mt-3">
-                            <input 
-                              className="form-check-input" 
-                              type="radio" 
-                              name="fase" 
+                            <input
+                              className="form-check-input"
+                              type="radio"
+                              name="fase"
                               id={`fase-${key}`}
                               checked={faseEscolhida === key}
                               onChange={() => handleFaseSelect(key)}
@@ -228,11 +230,11 @@ const AtividadeResumoMudanca = () => {
                 )}
 
                 <div className="d-flex justify-content-between mt-4">
-                  <button className="btn btn-outline-secondary" onClick={retrocederPagina}>
+                  <button className="custom-btn-pink" onClick={retrocederPagina}>
                     <i className="bi bi-arrow-left me-2"></i>Anterior
                   </button>
-                  <button 
-                    className="btn btn-primary" 
+                  <button
+                    className="custom-btn-turquoise"
                     onClick={avancarPagina}
                     disabled={!canAdvanceFromPage(2)}
                   >
@@ -259,8 +261,8 @@ const AtividadeResumoMudanca = () => {
                       <i className="bi bi-plus-circle text-success me-2"></i>
                       Prós (o que te atrai na mudança) *
                     </label>
-                    <textarea 
-                      className="form-control" 
+                    <textarea
+                      className="form-control"
                       rows="6"
                       placeholder="Escreve os teus prós aqui"
                       value={pros}
@@ -272,8 +274,8 @@ const AtividadeResumoMudanca = () => {
                       <i className="bi bi-dash-circle text-warning me-2"></i>
                       Contras (o que te deixa receoso sobre a mudança) *
                     </label>
-                    <textarea 
-                      className="form-control" 
+                    <textarea
+                      className="form-control"
                       rows="6"
                       placeholder="Escreve os teus contras aqui"
                       value={contras}
@@ -290,11 +292,11 @@ const AtividadeResumoMudanca = () => {
                 )}
 
                 <div className="d-flex justify-content-between mt-4">
-                  <button className="btn btn-outline-secondary" onClick={retrocederPagina}>
+                  <button className="custom-btn-pink" onClick={retrocederPagina}>
                     <i className="bi bi-arrow-left me-2"></i>Anterior
                   </button>
-                  <button 
-                    className="btn btn-primary" 
+                  <button
+                    className="custom-btn-turquoise"
                     onClick={avancarPagina}
                     disabled={!canAdvanceFromPage(3)}
                   >
@@ -318,28 +320,48 @@ const AtividadeResumoMudanca = () => {
                 <div className="row mb-4">
                   {Object.entries(niveisConfianca).map(([key, nivel]) => (
                     <div key={key} className="col-12 mb-3">
-                      <div className="card">
+                      <div className="card" style={{ border: '2px solid #99CBC8' }}>
                         <div className="card-body">
                           <div className="d-flex align-items-center">
-                            <button 
-                              className="btn btn-outline-info me-3"
+                            <button
+                              className="btn me-3"
+                              style={{
+                                border: '2px solid #99CBC8',
+                                color: '#99CBC8',
+                                backgroundColor: 'transparent',
+                                transition: 'all 0.3s ease'
+                              }}
+                              onMouseEnter={(e) => {
+                                e.target.style.backgroundColor = '#88bab7';
+                                e.target.style.color = 'white';
+                                e.target.style.borderColor = '#88bab7';
+                              }}
+                              onMouseLeave={(e) => {
+                                e.target.style.backgroundColor = 'transparent';
+                                e.target.style.color = '#99CBC8';
+                                e.target.style.borderColor = '#99CBC8';
+                              }}
                               onClick={() => handleConfiancaClick(key)}
                             >
                               <i className="bi bi-info-circle"></i>
                             </button>
-                            <div className="flex-grow-1">
+                            <div className="flex-grow-1" >
                               <h6 className="fw-bold mb-0">{nivel.titulo}</h6>
                             </div>
                             <div className="form-check">
-                              <input 
-                                className="form-check-input" 
-                                type="radio" 
-                                name="confianca" 
+                              <input
+                                className="form-check-input custom-radio"
+                                type="radio"
+                                name="confianca"
                                 id={`confianca-${key}`}
                                 checked={confianca === key}
                                 onChange={() => handleConfiancaSelect(key)}
                               />
-                              <label className="form-check-label" htmlFor={`confianca-${key}`}>
+                              <label
+                                className="form-check-label"
+                                htmlFor={`confianca-${key}`}
+                                style={{ color: 'black' }}
+                              >
                                 Selecionar
                               </label>
                             </div>
@@ -351,8 +373,8 @@ const AtividadeResumoMudanca = () => {
                 </div>
 
                 {confiancaDetalhes && (
-                  <div className="alert alert-info">
-                    <p className="mb-0">{confiancaDetalhes}</p>
+                  <div className="alert alert-info" style={{ backgroundColor: '#fbf9f9', border: '1px solid #dee2e6' }}>
+                    <p className="mb-0"style={{ color:'black' }}>{confiancaDetalhes}</p>
                   </div>
                 )}
 
@@ -364,11 +386,11 @@ const AtividadeResumoMudanca = () => {
                 )}
 
                 <div className="d-flex justify-content-between mt-4">
-                  <button className="btn btn-outline-secondary" onClick={retrocederPagina}>
+                  <button className="custom-btn-pink" onClick={retrocederPagina}>
                     <i className="bi bi-arrow-left me-2"></i>Anterior
                   </button>
-                  <button 
-                    className="btn btn-primary" 
+                  <button
+                    className="custom-btn-turquoise"
                     onClick={avancarPagina}
                     disabled={!canAdvanceFromPage(4)}
                   >
@@ -382,25 +404,23 @@ const AtividadeResumoMudanca = () => {
             {/* PÁGINA 5 - CONCLUSÃO */}
             {pagina === 5 && (
               <>
-                <h4 className="fw-bold mb-4" style={{ color: "#234970" }}>
-                  Conclusão da atividade!
-                </h4>
-                <p className="mb-3">
+                <h4 className="fw-bold mb-4 text-start" style={{ color: "#234970" }}>Conclusão da Atividade</h4>
+                <p className="mb-3 lead">
                   <strong>Refletir sobre o teu percurso de mudança</strong> é um passo importante – é como <strong>parar por um momento em cima da prancha</strong> e <strong>olhar para o mar à tua volta</strong>.
                 </p>
-                <p className="mb-3">
+                <p className="mb-3 lead">
                   A <strong>mudança</strong>, tal como <strong>surfar uma onda</strong>, exige <strong>equilíbrio</strong>, <strong>prática</strong>, <strong>paciência</strong> e <strong>coragem</strong>.
                 </p>
-                <p className="mb-3">
+                <p className="mb-3 lead">
                   Houve momentos em que <strong>identificaste o que queres mudar</strong>, <strong>pensaste nos desafios</strong> e <strong>reconheceste o teu próprio nível de confiança</strong>.
                 </p>
-                <p className="mb-3">
+                <p className="mb-3 lead">
                   Lembraste-te que, mesmo quando o <strong>mar está agitado</strong>, tens a capacidade de <strong>ajustar a tua posição</strong> e <strong>continuar</strong>.
                 </p>
-                <p className="mb-3">
+                <p className="mb-3 lead">
                   O importante <strong>não é nunca cair</strong>, mas <strong>saber levantar-te e remar de novo</strong>.
                 </p>
-                <p className="mb-3">
+                <p className="mb-3 lead">
                   Guarda esta <strong>metáfora contigo</strong> e lembra-te: <strong>estás sempre em movimento</strong>, e <strong>cada tentativa é uma oportunidade para aprender</strong>.
                 </p>
                 <p className="mb-4 text-center fw-bold" style={{ color: "#234970" }}>
@@ -408,12 +428,12 @@ const AtividadeResumoMudanca = () => {
                 </p>
 
                 <div className="d-flex justify-content-between mt-4">
-                  <button className="btn btn-outline-secondary" onClick={retrocederPagina}>
+                  <button className="custom-btn-pink" onClick={retrocederPagina}>
                     <i className="bi bi-arrow-left me-2"></i>Anterior
                   </button>
                   <AtividadeProgressao
                     moduloId={moduloId}
-                    atividadeIndex={3} 
+                    atividadeIndex={3}
                     updateUserData={updateUserData}
                   />
                 </div>

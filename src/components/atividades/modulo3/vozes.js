@@ -56,7 +56,7 @@ const AtividadeVozCritica = () => {
       <p className="mb-3 lead">No final da atividade, vais <strong>refletir</strong> sobre a tua própria <strong>voz crítica</strong> e <strong>voz compassiva</strong>. Vais ser convidado/a a pensar no que a tua voz crítica costuma dizer-te nos <strong>momentos difíceis</strong> e em como poderias <strong>responder a ela com mais gentileza e compreensão</strong>.</p>
       <div className="text-center">
         <button className="custom-btn-turquoise mt-2 px-4 py-2" onClick={avancarPagina}>
-          Vamos a isto?
+         <i className="bi bi-play-fill me-2"></i> Vamos a isto?
         </button>
       </div>
     </>,

@@ -200,6 +200,7 @@ const BalancaVirtual = () => {
   const getEmptyQuadrantes = () => {
     return quadrantes.filter(quadrante => respostas[quadrante.id].length === 0);
   };
+  const progresso = Math.round((pagina / 4) * 100);
 
   return (
     <div className="container-fluid vh-100 p-0 font-poppins">
@@ -208,22 +209,34 @@ const BalancaVirtual = () => {
         <Sidebar />
         <div className="col px-4 py-4" style={{ backgroundColor: "#FBF9F9" }}>
           <div className="container p-5 bg-white rounded shadow-sm">
+            <div className="progress mb-4" style={{ height: "8px" }}>
+              <div
+                className="progress-bar"
+                role="progressbar"
+                style={{ width: `${progresso}%`, backgroundColor: "#99CBC8" }}
+                aria-valuenow={progresso}
+                aria-valuemin="0"
+                aria-valuemax="100">
+              </div>
+            </div>
             {pagina === 0 && (
               <>
-                <h4>Balança Virtual</h4>
-                <p>Sê muito bem-vindo ou bem-vinda à atividade da Balança Virtual!</p>
-                <p>Esta atividade vai ajudar-te a refletir de forma interativa sobre os prós e contras de mudar comportamentos. 
-
-Para começar, seleciona um comportamento dos exemplos a seguir que gostarias de mudar. Escolhe aquele que mais se aproxima da tua experiência e que faz mais sentido para ti neste momento da tua vida. 
-
-Lembra-te de que a escolha é tua, e o objetivo é entender melhor as implicações de mudar ou de não mudar esse comportamento. </p>
-                <button className="btn btn-primary mt-3" onClick={() => setPagina(1)}>Vamos a isto?</button>
+                <h2 className="fw-bold mb-4" style={{ color: "#234970" }}>Balança Virtual</h2>
+                <p className="mb-3 lead"><strong>Sê muito bem-vindo ou bem-vinda à atividade da Balança Virtual!</strong></p>
+                <p className="mb-3 lead">Esta atividade vai ajudar-te a <strong>refletir de forma interativa</strong> sobre os <strong>prós e contras de mudar comportamentos</strong>.</p>
+                <p className="mb-3 lead">Para começar, seleciona um <strong>comportamento</strong> dos exemplos a seguir que gostarias de <strong>mudar</strong>. Escolhe aquele que mais se aproxima da tua <strong>experiência</strong> e que faz mais <strong>sentido para ti neste momento da tua vida</strong>.</p>
+                <p className="mb-3 lead">Lembra-te de que a <strong>escolha é tua</strong>, e o objetivo é <strong>entender melhor as implicações de mudar ou de não mudar esse comportamento</strong>. </p>
+                <div className="text-center">
+                  <button className="custom-btn-turquoise mt-2 px-4 py-2" onClick={() => setPagina(1)}>
+                    <i className="bi bi-play-fill me-2"></i>Vamos a isto?</button>
+                </div>
               </>
             )}
 
             {pagina === 1 && (
               <>
-                <h5>Escolhe um comportamento</h5>
+                <p className="lead"><strong>Começa por escolher um comportamento</strong> dos exemplos apresentados em seguida que queiras <strong>mudar</strong>. Escolhe o comportamento que se aproxima mais da tua <strong>experiência</strong>, ou seja, aquele que <strong>faça mais sentido para ti</strong>.
+</p>
                 {Object.entries(comportamentos).map(([key, obj]) => (
                   <div key={key} className="mb-3">
                     <button className="btn btn-outline-primary w-100 text-start" onClick={() => iniciarFrases(key)}>
@@ -232,21 +245,22 @@ Lembra-te de que a escolha é tua, e o objetivo é entender melhor as implicaç�
                     </button>
                   </div>
                 ))}
-                <button className="btn btn-outline-secondary mt-3" onClick={() => setPagina(0)}>Anterior</button>
+                <button className="custom-btn-pink mt-3" onClick={() => setPagina(0)}><i className="bi bi-arrow-left me-2"></i>Anterior</button>
               </>
             )}
 
             {pagina === 2 && (
               <DragDropContext onDragEnd={handleDragEnd}>
                 <>
-                  <h5>Arrasta as frases disponíveis para os quadrantes</h5>
+                  <p className="lead">Agora que escolheste o <strong>comportamento</strong> que queres mudar, reflete sobre os <strong>prós</strong> e os <strong>contras</strong> dessa mudança. 
+                    A <strong>balança</strong> está dividida em quatro <strong>quadrantes</strong>, e o teu objetivo é arrastares as <strong>frases</strong> que achas que se aplicam a cada um</p>
                   <p className="text-muted small mb-3">
                     Para prosseguir, deves colocar pelo menos uma frase em cada um dos quatro quadrantes.
                   </p>
-                  
+
                   {showValidationError && (
                     <div className="alert alert-warning mb-3">
-                      <strong>Atenção!</strong> Precisas de colocar pelo menos uma frase em cada quadrante antes de prosseguir. 
+                      <strong>Atenção!</strong> Precisas de colocar pelo menos uma frase em cada quadrante antes de prosseguir.
                       {getEmptyQuadrantes().length > 0 && (
                         <div className="mt-2">
                           <small>Quadrantes em falta: {getEmptyQuadrantes().map(q => q.titulo).join(", ")}</small>
@@ -282,12 +296,11 @@ Lembra-te de que a escolha é tua, e o objetivo é entender melhor as implicaç�
                         </h6>
                         <Droppable droppableId={q.id}>
                           {(provided) => (
-                            <div 
-                              ref={provided.innerRef} 
-                              {...provided.droppableProps} 
-                              className={`min-vh-25 border rounded p-2 bg-light ${
-                                showValidationError && respostas[q.id].length === 0 ? "border-warning" : ""
-                              }`}
+                            <div
+                              ref={provided.innerRef}
+                              {...provided.droppableProps}
+                              className={`min-vh-25 border rounded p-2 bg-light ${showValidationError && respostas[q.id].length === 0 ? "border-warning" : ""
+                                }`}
                             >
                               {respostas[q.id].map((frase, index) => (
                                 <Draggable key={frase} draggableId={frase} index={index}>
@@ -306,8 +319,8 @@ Lembra-te de que a escolha é tua, e o objetivo é entender melhor as implicaç�
                     ))}
                   </div>
                   <div className="d-flex justify-content-between mt-4">
-                    <button className="btn btn-outline-secondary" onClick={() => setPagina(1)}>Anterior</button>
-                    <button className="btn btn-primary" onClick={handleProceedToReflection}>Refletir</button>
+                    <button className="custom-btn-pink" onClick={() => setPagina(1)}><i className="bi bi-arrow-left me-2"></i>Anterior</button>
+                    <button className="custom-btn-turquoise" onClick={handleProceedToReflection}>Refletir<i className="bi bi-arrow-right ms-2"></i></button>
                   </div>
                 </>
               </DragDropContext>
@@ -315,40 +328,40 @@ Lembra-te de que a escolha é tua, e o objetivo é entender melhor as implicaç�
 
             {pagina === 3 && (
               <>
-                <h5>Vamos refletir!</h5>
-                <p>
-                  Agora que adicionaste os prós e contras de mudar e de não mudar o comportamento, podes ver os resultados na balança. 
-                  O sistema calculou automaticamente a soma das frases que colocaste de cada lado e gerou-te um feedback personalizado baseado no que escolheste. 
-                  Podes observar qual lado da balança está mais pesado: se o lado de mudar; se o lado de não mudar. 
-                  Lê o feedback que recebeste e reflete sobre a tua situação atual.
+                <h5 className="fw-bold mb-3 text-start" style={{ color: "#234970" }}>Vamos refletir!</h5>
+                <p className="lead">
+                  <strong>Agora</strong> que adicionaste os <strong>prós</strong> e <strong>contras</strong> de <strong>mudar</strong> e de <strong>não mudar</strong> o comportamento, podes ver os <strong>resultados</strong> na <strong>balança</strong>.
+                  O <strong>sistema</strong> calculou automaticamente a <strong>soma das frases</strong> que colocaste de cada lado e gerou-te um <strong>feedback personalizado</strong> baseado no que escolheste.
+                  Podes observar qual lado da balança está mais <strong>pesado</strong>: se o lado de <strong>mudar</strong>; se o <strong>lado de não mudar</strong>.
+                  Lê o <strong>feedback</strong> que recebeste e <strong>reflete</strong> sobre a tua <strong>situação atual</strong>.
                 </p>
                 {renderImage()}
                 <p className="mt-4 fw-semibold">{renderFeedback()}</p>
                 <div className="d-flex justify-content-between mt-4">
-                  <button className="btn btn-outline-secondary" onClick={() => setPagina(2)}>Anterior</button>
-                  <button className="btn btn-primary" onClick={() => setPagina(4)}>Conclusão</button>
+                  <button className="custom-btn-pink" onClick={() => setPagina(2)}><i className="bi bi-arrow-left me-2"></i>Anterior</button>
+                  <button className="custom-btn-turquoise" onClick={() => setPagina(4)}>Conclusão<i className="bi bi-arrow-right ms-2"></i></button>
                 </div>
               </>
             )}
 
             {pagina === 4 && (
               <>
-                <h4>Conclusão da atividade!</h4>
-                <p>Ao longo desta atividade, exploraste formas de pensar sobre a mudança de comportamento.</p>
-                <p>
-                  Lembra-te da importância de usar a estratégia de pensar nos prós e contras, 
-                  tanto de mudar quanto de não mudar, nas situações do dia-a-dia.
+                <h4 className="fw-bold mb-4 text-start" style={{ color: "#234970" }}>Conclusão da Atividade</h4>
+                <p className="mb-3 lead">Ao longo desta <strong>atividade</strong>, exploraste formas de pensar sobre a <strong>mudança de comportamento</strong>.</p>
+                <p className="mb-3 lead">
+                  Lembra-te da importância de usar a <strong>estratégia</strong> de pensar nos <strong>prós e contras</strong>,
+                  tanto de <strong>mudar</strong> quanto de <strong>não mudar</strong>, nas situações <strong>do dia-a-dia</strong>.
                 </p>
-                <p>
-                  Sempre que te deparares com a necessidade de tomar uma decisão sobre a mudança de um comportamento, 
-                  faz uma pausa e reflete sobre os contras e os prós de mudar, assim como os prós e contras de não mudar e manter o comportamento atual.
+                <p className="mb-3 lead">
+                  Sempre que te deparares com a necessidade de tomar uma <strong>decisão</strong> sobre a <strong>mudança</strong> de um <strong>comportamento</strong>,
+                  faz uma <strong>pausa</strong> e <strong>reflete</strong> sobre os <strong>contras e os prós de mudar</strong>, assim como os <strong>prós e contras de não mudar</strong> e manter o <strong>comportamento atual</strong>.
                 </p>
-                <p>
-                  Esta abordagem vai ajudar-te a ter uma perspetiva mais clara e equilibrada, 
-                  permitindo-te fazer escolhas mais conscientes e que promovam o teu bem-estar.
+                <p className="mb-3 lead">
+                  Esta <strong>abordagem</strong> vai ajudar-te a ter uma <strong>perspetiva mais clara</strong> e <strong>equilibrada</strong>,
+                  permitindo-te fazer <strong>escolhas mais conscientes</strong> e que promovam o teu <strong>bem-estar</strong>.
                 </p>
                 <div className="d-flex justify-content-between mt-4">
-                  <button className="btn btn-outline-secondary" onClick={() => setPagina(3)}>Anterior</button>
+                  <button className="custom-btn-pink" onClick={() => setPagina(3)}><i className="bi bi-arrow-left me-2"></i>Anterior</button>
                   <AtividadeProgressao
                     moduloId={moduloId}
                     atividadeIndex={1}
