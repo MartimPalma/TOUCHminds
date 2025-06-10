@@ -68,12 +68,15 @@ const AtividadeResumoCarta = () => {
 
             {pagina === 0 && (
               <div>
-                <h4 className="fw-bold mb-4">Atividade Resumo</h4>
-                <p className="mb-3">Sê muito bem-vindo ou bem-vinda à atividade resumo do Módulo 3 – "Sê Amigo de Ti Mesmo!"</p>
-                <p className="mb-3">O objetivo desta atividade é consolidar os conteúdos que explorámos ao longo do módulo.</p>
-                <p className="mb-3">Convido-te a escrever uma carta para ti próprio/a, que será uma ferramenta para usares nos momentos difíceis, para te lembrares de que és merecedor/a de compaixão e que os desafios fazem parte da experiência humana.</p>
-                <p className="mb-4">Aproveita esta oportunidade para te tratares com carinho, aceitação e compreensão. No final, poderás fazer o download da carta para recorreres a ela sempre que considerares necessário.</p>
-                <button className="btn btn-primary" onClick={() => setPagina(1)}>Vamos a isto?</button>
+                <h2 className="fw-bold mb-4" style={{ color: "#234970" }}>Atividade Resumo</h2>
+                <p className="mb-3 lead"><strong>Sê muito bem-vindo ou bem-vinda à atividade resumo do Módulo 3 – "Sê Amigo de Ti Mesmo!"</strong></p>
+                <p className="mb-3 lead">O objetivo desta atividade é <strong>consolidar os conteúdos</strong> que explorámos ao longo do módulo.</p>
+                <p className="mb-3 lead">Convido-te a <strong>escrever uma carta para ti próprio/a</strong>, que será uma ferramenta para usares nos <strong>momentos difíceis</strong>, para te lembrares de que és <strong>merecedor/a de compaixão</strong> e que os <strong>desafios fazem parte da experiência humana</strong>.</p>
+                <p className="mb-3 lead">Aproveita esta oportunidade para te tratares com <strong>carinho</strong>, <strong>aceitação</strong> e <strong>compreensão</strong>. </p>
+                <p className="mb-4 lead">No final, poderás fazer o <strong>download da carta</strong> para recorreres a ela sempre que considerares necessário.</p>
+                <div className="text-center">
+                <button className="custom-btn-turquoise mt-2 px-4 py-2" onClick={() => setPagina(1)}>Vamos a isto?</button>
+                </div>
               </div>
             )}
 
@@ -81,7 +84,7 @@ const AtividadeResumoCarta = () => {
               <div>
                 <h5 className="fw-bold mb-3">Carta</h5>
 
-                <div className="alert alert-light border mt-4 white-space-pre-wrap" style={{ whiteSpace: 'pre-wrap' }}>
+                <div className="alert alert-light border mt-4 white-space-pre-wrap" style={{ whiteSpace: 'pre-wrap' ,backgroundColor: '#fbf9f9' }}>
                   <h5 className="fw-bold">Pré-visualização da Carta</h5>
                   <p>{gerarConteudoCarta()}</p>
                 </div>
@@ -104,27 +107,27 @@ const AtividadeResumoCarta = () => {
                 ))}
 
                 <div className="mb-4">
-                  <button className="btn btn-success me-3" onClick={gerarCarta}>Download</button>
+                  <button className="custom-btn-complete me-3" onClick={gerarCarta}>Download</button>
                 </div>
 
                 <div className="d-flex justify-content-between mt-4">
-                  <button className="btn btn-outline-secondary" onClick={() => setPagina(0)}>
+                  <button className="custom-btn-pink" onClick={() => setPagina(0)}>
                     <i className="bi bi-arrow-left me-2"></i>Anterior
                   </button>
-                  <button className="btn btn-primary" onClick={validarCampos}>Conclusão</button>
+                  <button className="custom-btn-turquoise" onClick={validarCampos}>Conclusão</button>
                 </div>
               </div>
             )}
 
             {pagina === 2 && (
               <div>
-                <h4 className="fw-bold mb-4">Conclusão da atividade!</h4>
-                <p className="mb-3">Ao escreveres esta carta para ti próprio/a, estás a cultivar uma prática de autocompaixão que te permitirá lidar com os momentos difíceis de forma gentil.</p>
-                <p className="mb-3">Lembra-te de que todos enfrentam desafios e que os erros fazem parte da condição humana.</p>
-                <p className="mb-3">Ao tratares-te com bondade e compreensão, estás a reforçar a tua capacidade de cuidar de ti mesmo nas situações mais complicadas.</p>
-                <p className="mb-4">Sempre que precisares de um lembrete, recorre a esta carta e lembra-te de que és digno/a de compaixão e que mereces tratar-te com bondade e de forma gentil.</p>
+                <h4 className="fw-bold mb-4 text-start" style={{ color: "#234970" }}>Conclusão da Atividade</h4>
+                <p className="mb-3 lead"><strong>Ao escreveres esta carta para ti próprio/a</strong>, estás a cultivar uma prática de <strong>autocompaixão</strong> que te permitirá lidar com os <strong>momentos difíceis</strong> de forma <strong>gentil</strong>.</p>
+                <p className="mb-3 lead">Lembra-te de que <strong>todos enfrentam desafios</strong> e que os <strong>erros fazem parte da condição humana</strong>.</p>
+                <p className="mb-3 lead">Ao tratares-te com <strong>bondade</strong> e <strong>compreensão</strong>, estás a reforçar a tua <strong>capacidade de cuidar de ti mesmo</strong> nas situações mais complicadas.</p>
+                <p className="mb-4 lead">Sempre que precisares de um <strong>lembrete</strong>, recorre a esta carta e lembra-te de que és <strong>digno/a de compaixão</strong> e que <strong>mereces tratar-te com bondade e de forma gentil</strong>.</p>
                 <div className="d-flex justify-content-between">
-                  <button className="btn btn-outline-secondary" onClick={() => setPagina(1)}>
+                  <button className="custom-btn-pink" onClick={() => setPagina(1)}>
                     <i className="bi bi-arrow-left me-2"></i>Anterior
                   </button>
                   <AtividadeProgressao

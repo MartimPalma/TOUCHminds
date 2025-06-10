@@ -34,26 +34,28 @@ const MaiorInimigo = () => {
             </div>
 
             {pagina === 0 && (
-              <div className="text-center py-4">
-                <h4 className="fw-bold mb-4">O Nosso Maior Inimigo</h4>
-                <p className="mb-3">
-                  Sê muito bem-vindo ou bem-vinda ao "O Nosso Maior Inimigo"!
+              <div className="text-start py-4">
+                <h2 className="fw-bold mb-4" style={{ color: "#234970" }}>O Nosso Maior Inimigo</h2>
+                <p className="mb-3 lead">
+                  <strong>Sê muito bem-vindo ou bem-vinda ao "O Nosso Maior Inimigo"!</strong>
                 </p>
-                <p className="mb-3">
-                  Nesta atividade, vou convidar-te a fazer um exercício de imaginação que te ajudará a perceber melhor como é que a tua voz crítica se manifesta e como isso te pode afetar.
+                <p className="mb-3 lead">
+                  Nesta atividade, vou convidar-te a fazer um <strong>exercício de imaginação</strong> que te ajudará a perceber melhor como é que a tua <strong>voz crítica</strong> se manifesta e como isso te pode <strong>afetar</strong>.
                 </p>
-                <p className="mb-3">
-                  Vou pedir-te que recordes uma situação específica, que tenha acontecido recentemente, em que sentiste que foste crítico contigo mesmo/a. Pode ser um momento em que cometeste um erro, ou uma situação em que te sentiste frustrado ou insatisfeito com algo que não conseguiste atingir.
+                <p className="mb-3 lead">
+                  Vou pedir-te que recordes uma <strong>situação específica</strong>, que tenha acontecido recentemente, em que sentiste que foste <strong>crítico contigo mesmo/a</strong>. Pode ser um momento em que <strong>cometeste um erro</strong>, ou uma situação em que te sentiste <strong>frustrado</strong> ou <strong>insatisfeito</strong> com algo que não conseguiste atingir.
                 </p>
-                <p className="mb-3">
-                  Lembra-te de que as imagens que vais criar na tua mente não precisam de ser nítidas como uma fotografia. E, se a tua mente se distrair, o que é completamente normal, basta trazê-la gentilmente de volta para a atividade.
+                <p className="mb-3 lead">
+                  Lembra-te de que as <strong>imagens</strong> que vais criar na tua mente <strong>não precisam de ser nítidas</strong> como uma fotografia. E, se a tua <strong>mente se distrair</strong>, o que é completamente normal, basta <strong>trazê-la gentilmente de volta</strong> para a atividade.
                 </p>
-                <p className="mb-4">
-                  Ouve o áudio "O Nosso Maior Inimigo", que te irá guiar pela atividade.
+                <p className="mb-4 lead">
+                  <strong>Ouve o áudio "O Nosso Maior Inimigo"</strong>, que te irá guiar pela atividade.
                 </p>
-                <button className="btn btn-primary mt-2 px-4 py-2" onClick={avancarPagina}>
-                  Vamos a isto?
-                </button>
+                <div className="text-center">
+                  <button className="custom-btn-turquoise mt-2 px-4 py-2" onClick={avancarPagina}>
+                    Vamos a isto?
+                  </button>
+                </div>
               </div>
             )}
 
@@ -65,10 +67,10 @@ const MaiorInimigo = () => {
                   O teu navegador não suporta a reprodução de áudio.
                 </audio>
                 <div className="d-flex justify-content-between mt-4">
-                  <button className="btn btn-outline-secondary" onClick={retrocederPagina}>
+                  <button className="custom-btn-pink" onClick={retrocederPagina}>
                     <i className="bi bi-arrow-left me-2"></i>Anterior
                   </button>
-                  <button className="btn btn-primary" onClick={avancarPagina}>
+                  <button className="custom-btn-turquoise" onClick={avancarPagina}>
                     Conclusão <i className="bi bi-arrow-right ms-2"></i>
                   </button>
                 </div>
@@ -77,22 +79,22 @@ const MaiorInimigo = () => {
 
             {pagina === 2 && (
               <div className="py-4">
-                <h4 className="fw-bold mb-4">Conclusão da atividade!</h4>
-                <p className="mb-3">
-                  Este momento serviu para te ajudar a reconhecer a forma como falas contigo próprio/a em situações difíceis.
+                <h4 className="fw-bold mb-4 text-start" style={{ color: "#234970" }}>Conclusão da Atividade</h4>
+                <p className="mb-3 lead">
+                  <strong>Este momento</strong> serviu para te ajudar a <strong>reconhecer</strong> a forma como falas contigo próprio/a em <strong>situações difíceis</strong>.
                 </p>
-                <p className="mb-3">
-                  Ao refletires sobre a tua voz crítica, percebeste que, muitas vezes, nós somos excessivamente duros connosco na tentativa de nos motivarmos a melhorar.
+                <p className="mb-3 lead">
+                  Ao refletires sobre a tua <strong>voz crítica</strong>, percebeste que, muitas vezes, nós somos <strong>excessivamente duros</strong> connosco na tentativa de nos <strong>motivarmos a melhorar</strong>.
                 </p>
-                <p className="mb-3">
-                  Embora a intenção por trás dessa crítica seja de nos ajudar a evitar erros, o impacto emocional que ela nos causa pode ser negativo, alimentando emoções de raiva, ansiedade e frustração.
+                <p className="mb-3 lead">
+                  Embora a <strong>intenção</strong> por trás dessa crítica seja de nos ajudar a <strong>evitar erros</strong>, o <strong>impacto emocional</strong> que ela nos causa pode ser <strong>negativo</strong>, alimentando emoções de <strong>raiva</strong>, <strong>ansiedade</strong> e <strong>frustração</strong>.
                 </p>
-                <p className="mb-4">
-                  Se não usamos esse discurso tão severo com os outros, por que o fazemos connosco?
+                <p className="mb-4 lead">
+                  Se não usamos esse <strong>discurso tão severo</strong> com os outros, <strong>por que o fazemos connosco</strong>?
                 </p>
 
                 <div className="d-flex justify-content-between mt-4">
-                  <button className="btn btn-outline-secondary" onClick={retrocederPagina}>
+                  <button className="custom-btn-pink" onClick={retrocederPagina}>
                     <i className="bi bi-arrow-left me-2"></i>Anterior
                   </button>
                   <AtividadeProgressao

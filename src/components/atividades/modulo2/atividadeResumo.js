@@ -223,7 +223,7 @@ const AtividadeResumoModulo2 = () => {
 
                         {pagina === cenarios.length + 1 && (
                             <>
-                                <h4 className="fw-bold mb-4 text-start" style={{ color: "#234970" }}>Conclusão da Atividade!</h4>
+                                <h4 className="fw-bold mb-4 text-start" style={{ color: "#234970" }}>Conclusão da Atividade</h4>
                                 <div className="text-start lead">
                                     <p><strong>Terminaste a visita pela Sala do Estigma!</strong> Durante esta atividade, exploraste diferentes situações do dia a dia em que o <strong>estigma</strong> em relação à <strong>ansiedade</strong> pode surgir.
                                         Viste como <strong>palavras</strong>, <strong>olhares</strong> ou a <strong>ausência de apoio</strong> podem afetar profundamente quem vive com 

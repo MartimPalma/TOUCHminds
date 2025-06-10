@@ -323,7 +323,7 @@ const LinhaAnsiedade = () => {
               {pagina === 4 && (
                 <>
                   {/* CONCLUSÃO DA ATIVIDADE */}
-                    <h4 className="fw-bold mb-3" style={{ color: "#234970" }}>Conclusão da atividade</h4>
+                    <h4 className="fw-bold mb-4" style={{ color: "#234970" }}>Conclusão da Atividade</h4>
                     <p className="lead">
                       <strong>Espero que esta atividade tenha sido um primeiro passo importante para compreenderes melhor a ansiedade!</strong> <br></br><br></br>
                       <strong>Lembra-te</strong> que a <strong>ansiedade</strong> é útil e ajuda-nos a <strong>preparar</strong> para situações difíceis. <br></br><br></br>

@@ -71,7 +71,7 @@ const AtividadeSemanal2 = () => {
 
   return (
     <div className="p-4 bg-white rounded shadow-sm">
-      <h3 className="mb-4" style={{ color: "#234970" }}>Desafio Semanal</h3>
+      <h2 className="mb-4 fw-bold" style={{ color: "#234970" }}>Desafio Semanal</h2>
       
       <div className="mb-4">
         <b>Queria lançar-te um desafio para esta semana!</b><br />

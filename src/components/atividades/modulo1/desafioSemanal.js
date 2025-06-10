@@ -69,7 +69,7 @@ const DesafioSemanal = ({ id }) => {
 
   return (
     <div className="p-4 bg-white rounded shadow-sm">
-      <h2 className="mb-4" style={{ color: "#234970" }}>Desafio Semanal</h2>
+      <h2 className="mb-4 fw-bold" style={{ color: "#234970" }}>Desafio Semanal</h2>
       <p><b>Queria lançar-te um desafio para esta semana! </b>Ao longo dos próximos dias, sempre que sentires <b>ansiedade</b> em alguma situação, convido-te a <b>refletir</b> sobre a tua experiência.
         <br />Se quiseres, podes depois vir aqui e registar o que pensaste sobre a situação.
         <br />A ideia é que <b>reflitas como te sentes</b>, o que <b>pensas</b> e como te <b>comportas</b> nessa situação.

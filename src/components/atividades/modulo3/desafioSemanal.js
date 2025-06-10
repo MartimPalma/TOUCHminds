@@ -2,7 +2,7 @@
 const DesafioSemanal3 = () => {
   return (
     <div className="p-4 bg-white rounded shadow-sm">
-      <h3 className="mb-4">Desafio Semanal</h3>
+      <h2 className="fw-bold mb-4" style={{ color: "#234970" }}>Desafio Semanal</h2>
 
             <p className="mb-3 fw-bold">
               Queria lançar-te um desafio para esta semana!
