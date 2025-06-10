@@ -4,7 +4,6 @@ import { UserContext } from '../../../App';
 const AtividadeSemanal2 = () => {
   const { userData, updateUserData } = useContext(UserContext);
   
-  // Initialize form with 7 situations and reflections
   const [form, setForm] = useState(() => {
     const module2Form = {};
     for (let i = 1; i <= 7; i++) {
@@ -22,7 +21,6 @@ const AtividadeSemanal2 = () => {
   };
 
   const handleAdd = async () => {
-    // Check if at least one situation is filled
     const hasContent = Object.values(form).some(val => val.trim() !== '');
     if (!hasContent) {
       setFeedback('Por favor, preenche pelo menos uma situação.');
@@ -42,8 +40,8 @@ const AtividadeSemanal2 = () => {
         ...userData.modulos,
         modulo2: {
           ...userData.modulos.modulo2,
-          atividadeSemanal: [
-            ...(userData.modulos.modulo2?.atividadeSemanal || []),
+          desafioSemanal: [
+            ...(userData.modulos.modulo2?.desafioSemanal || []),
             novoRegisto,
           ],
         },
@@ -66,12 +64,22 @@ const AtividadeSemanal2 = () => {
     }
   };
 
-  // Get saved records
-  const registos = userData.modulos?.modulo2?.atividadeSemanal || [];
+  const registos = userData.modulos?.modulo2?.desafioSemanal || [];
 
   return (
-    <div className="p-4 bg-white rounded shadow-sm">
-      <h2 className="mb-4 fw-bold" style={{ color: "#234970" }}>Desafio Semanal</h2>
+    <div className="bg-white">
+
+     <h4 className="mb-4" style={{ color: "#99CBC8" }}>
+                <span
+                  style={{
+                    borderBottom: "3px solid #99CBC8",
+                    display: "inline-block",
+                    paddingBottom: "2px",
+                  }}
+                >
+                  Desafio Semanal
+                </span>
+      </h4>
       
       <div className="mb-4">
         <b>Queria lançar-te um desafio para esta semana!</b><br />

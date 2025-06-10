@@ -1,162 +1,702 @@
 import Navbar from './navbar';
 import Sidebar from './sidebar';
-import { useContext } from 'react';
+import { useContext, useEffect, useRef } from 'react';
 import { UserContext } from '../App';
 import Loading from './loading';
 import modulosData from '../data/modulos';
 
 const LinhaTemporal = () => {
   const { userData } = useContext(UserContext);
+  const timelineRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animate-in');
+          }
+        });
+      },
+      {
+        threshold: 0.2,
+        rootMargin: '0px 0px -50px 0px',
+      }
+    );
+
+    const items = timelineRef.current?.querySelectorAll('.timeline-item') || [];
+    items.forEach((item) => observer.observe(item));
+
+    return () => observer.disconnect();
+  }, [userData]);
 
   if (!userData || !userData.modulos) {
     return <Loading message="A carregar o progresso..." />;
   }
 
-  // Obter progresso do user para cada módulo
-  const progressoDoUser = Object.entries(userData.modulos).map(([key, value], index) => {
-    const moduloBase = modulosData[index]; // Assume que a ordem em modulosData é correta (modulo1, modulo2...)
+  console.log('User modulo 1:', userData.modulos['modulo1']); 
 
-    // Verifica se todas as atividades estão concluídas
-    const atividadesCompletas = value.atividades?.every((a) => a.concluido);
-    const statusModulo = atividadesCompletas ? "concluído" : "em progresso";
 
-    // Pega o status do desafio semanal da última atividade
-    const ultimaAtividade = value.atividades?.[value.atividades.length - 1];
-    const desafioStatus = ultimaAtividade?.status || "bloqueado";
+  const progressoDoUser = modulosData.map((moduloBase) => {
+    
+  const userModulo = userData.modulos[`modulo${moduloBase.id}`]; 
+
+    if (!userModulo) {
+      return {
+        ...moduloBase,
+        status: 'bloqueado',
+        totalAtividades: moduloBase.atividades.length,
+        atividadesConcluidas: 0,
+        percentualConcluido: 0,
+        atividades: moduloBase.atividades.map(a => ({ ...a, concluido: false })),
+        desafioSemana1: { status: 'bloqueado' },
+        dataFim: null,
+      };
+    }
+
+    const atividades = moduloBase.atividades.map((atividade, idx) => ({
+      ...atividade,
+      concluido: Boolean(userModulo.atividades?.[idx]?.concluido),
+      status: userModulo.atividades?.[idx]?.status || 'bloqueado'
+    }));
+
+    const totalAtividades = atividades.length;
+    const atividadesConcluidas = atividades.filter(a => a.concluido).length;
+
+    // Se todas as atividades concluídas, modulo concluído
+    const atividadesCompletas = totalAtividades > 0 && atividadesConcluidas === totalAtividades;
+    const statusModulo = atividadesCompletas ? 'concluído' : 'em progresso';
 
     return {
       ...moduloBase,
       status: statusModulo,
-      atividades: moduloBase.atividades.map((atividade, idx) => ({
-        ...atividade,
-        concluido: value.atividades?.[idx]?.concluido || false
-      })),
-      desafioSemana1: { status: desafioStatus }
+      dataFim: userModulo.dataFim || null,
+      totalAtividades,
+      atividadesConcluidas,
+      percentualConcluido: totalAtividades > 0 ? Math.min(100, (atividadesConcluidas / totalAtividades) * 100) : 0,
+      atividades,
     };
   });
+
+  const formatarData = (timestamp) => {
+    if (!timestamp?.seconds) return null;
+    const data = new Date(timestamp.seconds * 1000);
+    return data.toLocaleDateString('pt-PT', {
+      day: '2-digit',
+      month: '2-digit',
+      year: 'numeric',
+    });
+  };
 
   return (
     <div className="container-fluid vh-100 p-0">
       <Navbar />
       <div className="row h-100 m-0">
         <Sidebar />
-        <div className="col px-4 py-4" style={{ backgroundColor: "#FBF9F9" }}>
+        <div className="col px-4 py-4" style={{ backgroundColor: '#FBF9F9' }}>
           <div className="container p-4 bg-white rounded shadow-sm">
-            <h2 className="mb-3 fw-semibold" style={{ color: "#99CBC8" }}>Linha Temporal</h2>
+            <h2 className="mb-3 fw-semibold" style={{ color: '#99CBC8' }}>Linha Temporal</h2>
             <p className="text-muted" style={{ fontSize: '1rem' }}>
-              Acompanhe seu progresso nos diferentes módulos do programa.
+              Acompanha o teu progresso nos diferentes módulos do programa.
             </p>
 
-            <div className="timeline mt-4">
-              {progressoDoUser.map((modulo, index) => (
-                <div key={modulo.id} className="timeline-item">
-                  <div className="timeline-marker">
-                    {modulo.status === "concluído" ? (
-                      <span className="icon has-background-success">
-                        <i className="fas fa-check"></i>
-                      </span>
-                    ) : (
-                      <span className={`icon has-background-${index === 0 || progressoDoUser[index - 1]?.status === "concluído" ? 'info' : 'light'}`}>
-                        <i className={`fas ${index === 0 || progressoDoUser[index - 1]?.status === "concluído" ? 'fa-play' : 'fa-lock'}`}></i>
-                      </span>
-                    )}
-                  </div>
+            <div className="timeline-container mt-5" ref={timelineRef}>
+              <div className="timeline-line"></div>
 
-                  <div className="timeline-content p-4 mb-4 rounded shadow-sm"
-                       style={{ backgroundColor: modulo.status === "concluído" ? '#E3F4F4' : '#F0FAFA' }}>
-                    <div className="d-flex justify-content-between align-items-center">
-                      <div>
-                        <h5 className="fw-semibold mb-0" style={{ color: '#3B9C9C' }}>
-                          {modulo.titulo}
-                        </h5>
-                        <p className="small mb-0 text-muted">{modulo.subtitulo}</p>
-                      </div>
-                      <span className={`badge ${modulo.status === "concluído" ? 'bg-success' :
-                        (index === 0 || progressoDoUser[index - 1]?.status === "concluído" ? 'bg-primary' : 'bg-secondary')}`}>
-                        {modulo.status === "concluído" ? 'Concluído' :
-                          (index === 0 || progressoDoUser[index - 1]?.status === "concluído" ? 'Disponível' : 'Bloqueado')}
-                      </span>
+              {progressoDoUser.map((modulo, index) => {
+                const moduloAnteriorConcluido = index === 0 || progressoDoUser[index - 1].status === 'concluído';
+                const bloqueado = !moduloAnteriorConcluido && modulo.status !== 'concluído';
+
+                return (
+                  <div key={modulo.id} className={`timeline-item ${index % 2 === 0 ? 'left' : 'right'}`}>
+                    <div className="timeline-marker">
+                      {modulo.status === 'concluído' ? (
+                        <div className="marker-icon completed">
+                          <i className="fas fa-medal"></i>
+                        </div>
+                      ) : (
+                        <div className={`marker-icon ${bloqueado ? 'locked' : 'available'}`}>
+                          <i className={`fas ${bloqueado ? 'fa-lock' : 'fa-play'}`}></i>
+                        </div>
+                      )}
+                      <div className="marker-number">{index + 1}</div>
                     </div>
 
-                    <div className="mt-3">
-                      <h6 className="fw-semibold">Atividades:</h6>
-                      <div className="d-flex flex-wrap gap-2 mt-2">
-                        {modulo.atividades.map((atividade, idx) => (
-                          <span key={atividade.url} className={`badge ${atividade.concluido ? 'bg-success' :
-                            (idx === 0 || modulo.atividades[idx - 1]?.concluido ? 'bg-light text-dark' : 'bg-secondary text-light')}`}>
-                            {atividade.titulo} {atividade.concluido ? '✓' :
-                              (idx === 0 || modulo.atividades[idx - 1]?.concluido ? '⌛' : '🔒')}
-                          </span>
-                        ))}
+                    <div className="timeline-content">
+                      <div className="content-card">
+                        <div className="card-header">
+                          <div className="header-top">
+                            <h4 className="module-title">{modulo.titulo}</h4>
+                            <span className={`status-badge ${modulo.status === 'concluído' ? 'completed' : (bloqueado ? 'locked' : 'available')}`}>
+                              {modulo.status === 'concluído' ? 'Concluído' : (bloqueado ? 'Bloqueado' : 'Disponível')}
+                            </span>
+                          </div>
+                          <p className="module-subtitle">{modulo.subtitulo}</p>
+
+                          {modulo.status === 'concluído' && modulo.dataFim && (
+                            <div className="completion-date">
+                              <i className="fas fa-calendar-check me-2"></i>
+                              <span>Concluído em {formatarData(modulo.dataFim)}</span>
+                            </div>
+                          )}
+                        </div>
+
+                        <div className="card-body">
+                          <div className="progress-section">
+                            <div className="progress-header">
+                              <h6 className="section-title">
+                                <i className="fas fa-tasks me-2"></i>
+                                Progresso das Atividades
+                              </h6>
+                              <span className="progress-text">
+                                {modulo.atividadesConcluidas}/{modulo.totalAtividades}
+                              </span>
+                            </div>
+
+                            <div className="progress-bar-container">
+                              <div className="progress-bar">
+                                <div
+                                  className="progress-fill"
+                                  style={{ width: `${modulo.percentualConcluido}%` }}
+                                ></div>
+                              </div>
+                              <span className="progress-percentage">
+                                {Math.round(modulo.percentualConcluido)}%
+                              </span>
+                            </div>
+                          </div>
+
+                          <div className="activities-summary">
+                            <div className="summary-grid">
+                              <div className="summary-item completed">
+                                <div className="summary-icon">
+                                  <i className="fas fa-check-circle"></i>
+                                </div>
+                                <div className="summary-info">
+                                  <span className="summary-number">{modulo.atividadesConcluidas}</span>
+                                  <span className="summary-label">Concluídas</span>
+                                </div>
+                              </div>
+                             
+                              <div className="summary-item total">
+                                <div className="summary-icon">
+                                  <i className="fas fa-list"></i>
+                                </div>
+                                <div className="summary-info">
+                                  <span className="summary-number">{modulo.totalAtividades}</span>
+                                  <span className="summary-label">Total</span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     </div>
-
-                    {modulo.desafioSemana1 && (
-                      <div className="mt-3">
-                        <h6 className="fw-semibold">Desafio da Semana:</h6>
-                        <span className={`badge ${modulo.desafioSemana1.status === "concluído" ? 'bg-success' :
-                          (modulo.desafioSemana1.status === "desbloqueado" ? 'bg-info' : 'bg-secondary')}`}>
-                          {modulo.desafioSemana1.status === "concluído" ? 'Concluído' :
-                            (modulo.desafioSemana1.status === "desbloqueado" ? 'Desbloqueado' : 'Bloqueado')}
-                        </span>
-                      </div>
-                    )}
                   </div>
                 </div>
-              ))}
+                );
+              })}
             </div>
 
             <style jsx>{`
-              .timeline {
+              .timeline-container {
                 position: relative;
-                padding-left: 2rem;
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 2rem 0;
               }
-              .timeline:before {
-                content: '';
+
+              .timeline-line {
                 position: absolute;
-                left: 18px;
+                left: 50%;
                 top: 0;
                 bottom: 0;
-                width: 2px;
-                background: #99CBC8;
+                width: 4px;
+                background: linear-gradient(to bottom, #90C8CA, #C8C2AF);
+                transform: translateX(-50%);
+                border-radius: 2px;
+                box-shadow: 0 0 10px rgba(144, 200, 202, 0.3);
               }
+
               .timeline-item {
                 position: relative;
-                margin-bottom: 1rem;
+                margin: 4rem 0;
+                opacity: 0;
+                transform: translateY(50px);
+                transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
               }
+
+              .timeline-item.animate-in {
+                opacity: 1;
+                transform: translateY(0);
+              }
+
+              .timeline-item.left {
+                transform: translateY(50px) translateX(-30px);
+              }
+
+              .timeline-item.right {
+                transform: translateY(50px) translateX(30px);
+              }
+
+              .timeline-item.animate-in.left,
+              .timeline-item.animate-in.right {
+                transform: translateY(0) translateX(0);
+              }
+
               .timeline-marker {
                 position: absolute;
-                left: -2rem;
-                width: 2.5rem;
-                height: 2.5rem;
+                left: 50%;
+                top: 2rem;
+                transform: translateX(-50%);
+                z-index: 10;
+              }
+
+              .marker-icon {
+                width: 70px;
+                height: 70px;
                 border-radius: 50%;
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                background: white;
-                border: 2px solid #99CBC8;
+                font-size: 1.8rem;
+                margin-bottom: 0.5rem;
+                box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+                border: 5px solid white;
+                transition: transform 0.3s ease;
               }
-              .timeline-content {
-                margin-left: 2.5rem;
+
+              .marker-icon:hover {
+                transform: scale(1.1);
               }
-              .icon {
-                display: inline-flex;
+
+              .marker-icon.completed {
+                background: linear-gradient(135deg, #FBF9F9, #FDFDFD);
+                color: #234970;
+                border: 3px solid #E7C8C2;
+              }
+
+              .marker-icon.available {
+                background: linear-gradient(135deg, #90C8CA, #234970);
+                color: white;
+              }
+
+              .marker-icon.locked {
+                background: linear-gradient(135deg, #C8C2AF, #90C8CA);
+                color: #234970;
+              }
+
+              .marker-number {
+                background: rgba(253, 253, 253, 0.95);
+                color: #234970;
+                width: 35px;
+                height: 35px;
+                border-radius: 50%;
+                display: flex;
                 align-items: center;
                 justify-content: center;
-                width: 1.5rem;
-                height: 1.5rem;
-                border-radius: 50%;
+                font-weight: bold;
+                font-size: 1rem;
+                margin: 0 auto;
+                box-shadow: 0 3px 10px rgba(35, 73, 112, 0.15);
               }
-              .has-background-success {
-                background-color: #28a745 !important;
+
+              .timeline-content {
+                width: 45%;
+                position: relative;
+              }
+
+              .timeline-item.left .timeline-content {
+                margin-left: 0;
+                margin-right: 55%;
+              }
+
+              .timeline-item.right .timeline-content {
+                margin-left: 55%;
+                margin-right: 0;
+              }
+
+              .content-card {
+                background: #FDFDFD;
+                border-radius: 20px;
+                overflow: hidden;
+                box-shadow: 0 10px 30px rgba(35, 73, 112, 0.1);
+                transition: all 0.4s ease;
+                border: 1px solid rgba(144, 200, 202, 0.2);
+              }
+
+              .content-card:hover {
+                transform: translateY(-8px);
+                box-shadow: 0 20px 40px rgba(35, 73, 112, 0.15);
+              }
+
+              .card-header {
+                padding: 2rem;
+                background: linear-gradient(135deg, #FBF9F9, #FDFDFD);
+                border-bottom: 1px solid rgba(144, 200, 202, 0.1);
+              }
+
+              .header-top {
+                display: flex;
+                justify-content: space-between;
+                align-items: flex-start;
+                margin-bottom: 1rem;
+              }
+
+              .module-title {
+                font-size: 1.5rem;
+                font-weight: 700;
+                color: #234970;
+                margin: 0;
+                line-height: 1.3;
+                flex: 1;
+                margin-right: 1rem;
+              }
+
+              .module-subtitle {
+                font-size: 1.1rem;
+                color: #90C8CA;
+                margin-bottom: 1rem;
+                line-height: 1.5;
+              }
+
+              .completion-date {
+                display: flex;
+                align-items: center;
+                color: #234970;
+                font-weight: 600;
+                font-size: 0.95rem;
+                background: rgba(144, 200, 202, 0.1);
+                padding: 0.5rem 1rem;
+                border-radius: 25px;
+                border: 1px solid rgba(144, 200, 202, 0.3);
+              }
+
+              .status-badge {
+                display: inline-block;
+                padding: 0.5rem 1.2rem;
+                border-radius: 25px;
+                font-size: 0.85rem;
+                font-weight: 700;
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+                white-space: nowrap;
+              }
+
+              .status-badge.completed {
+                background: linear-gradient(135deg, #90C8CA, #234970);
                 color: white;
+                box-shadow: 0 4px 15px rgba(144, 200, 202, 0.4);
               }
-              .has-background-info {
-                background-color: #17a2b8 !important;
-                color: white;
+
+              .status-badge.available {
+                background: linear-gradient(135deg, #C8C2AF, #90C8CA);
+                color: #234970;
+                box-shadow: 0 4px 15px rgba(200, 194, 175, 0.4);
               }
-              .has-background-light {
-                background-color: #f8f9fa !important;
+
+              .status-badge.locked {
+                background: linear-gradient(135deg, #E7C8C2, #FBF9F9);
+                color: #234970;
+                box-shadow: 0 4px 15px rgba(231, 200, 194, 0.3);
+              }
+
+              .card-body {
+                padding: 2rem;
+              }
+
+              .progress-section {
+                margin-bottom: 2rem;
+              }
+
+              .progress-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 1rem;
+              }
+
+              .section-title {
+                font-size: 1.1rem;
+                font-weight: 600;
+                color: #234970;
+                margin: 0;
+                display: flex;
+                align-items: center;
+              }
+
+              .progress-text {
+                font-weight: 600;
+                color: #90C8CA;
+                font-size: 1.1rem;
+              }
+
+              .progress-bar-container {
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+              }
+
+              .progress-bar {
+                flex: 1;
+                height: 12px;
+                background: #E7C8C2;
+                border-radius: 6px;
+                overflow: hidden;
+                position: relative;
+              }
+
+              .progress-fill {
+                height: 100%;
+                background: linear-gradient(135deg, #90C8CA, #234970);
+                border-radius: 6px;
+                transition: width 1s ease-out;
+                position: relative;
+              }
+
+              .progress-fill::after {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+                animation: shimmer 2s infinite;
+              }
+
+              @keyframes shimmer {
+                0% { transform: translateX(-100%); }
+                100% { transform: translateX(100%); }
+              }
+
+              .progress-percentage {
+                font-weight: 700;
+                color: #234970;
+                font-size: 1.1rem;
+                min-width: 45px;
+                text-align: right;
+              }
+
+              .activities-summary {
+                margin-bottom: 2rem;
+              }
+
+              .summary-grid {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 1rem;
+              }
+
+              .summary-item {
+                display: flex;
+                align-items: center;
+                padding: 1rem;
+                border-radius: 12px;
+                transition: transform 0.3s ease;
+              }
+
+              .summary-item:hover {
+                transform: translateY(-2px);
+              }
+
+              .summary-item.completed {
+                background: linear-gradient(135deg, #FDFDFD, #FBF9F9);
+                border: 1px solid #90C8CA;
+              }
+
+              .summary-item.pending {
+                background: linear-gradient(135deg, #FBF9F9, #E7C8C2);
+                border: 1px solid #C8C2AF;
+              }
+
+              .summary-item.total {
+                background: linear-gradient(135deg, #E7C8C2, #C8C2AF);
+                border: 1px solid #234970;
+              }
+
+              .summary-icon {
+                margin-right: 0.75rem;
+                font-size: 1.5rem;
+              }
+
+              .summary-item.completed .summary-icon {
+                color: #90C8CA;
+              }
+
+              .summary-item.pending .summary-icon {
+                color: #C8C2AF;
+              }
+
+              .summary-item.total .summary-icon {
+                color: #234970;
+              }
+
+              .summary-info {
+                display: flex;
+                flex-direction: column;
+              }
+
+              .summary-number {
+                font-size: 1.5rem;
+                font-weight: 700;
+                line-height: 1;
+              }
+
+              .summary-label {
+                font-size: 0.85rem;
+                font-weight: 600;
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+                opacity: 0.8;
+              }
+
+              .challenge-section {
+                border-top: 1px solid rgba(144, 200, 202, 0.1);
+                padding-top: 1.5rem;
+              }
+
+              .challenge-card {
+                display: flex;
+                align-items: center;
+                padding: 1rem 1.5rem;
+                border-radius: 12px;
+                transition: all 0.3s ease;
+              }
+
+              .challenge-card:hover {
+                transform: translateX(5px);
+              }
+
+              .challenge-card.concluído {
+                background: linear-gradient(135deg, #90C8CA, #C8C2AF);
+                border: 1px solid #234970;
+              }
+
+              .challenge-card.desbloqueado {
+                background: linear-gradient(135deg, #FBF9F9, #FDFDFD);
+                border: 1px solid #90C8CA;
+              }
+
+              .challenge-card.bloqueado {
+                background: linear-gradient(135deg, #E7C8C2, #C8C2AF);
+                border: 1px solid #234970;
+              }
+
+              .challenge-icon {
+                margin-right: 1rem;
+                font-size: 1.5rem;
+              }
+
+              .challenge-card.concluído .challenge-icon {
+                color: #234970;
+              }
+
+              .challenge-card.desbloqueado .challenge-icon {
+                color: #90C8CA;
+              }
+
+              .challenge-card.bloqueado .challenge-icon {
+                color: #234970;
+              }
+
+              .challenge-status {
+                font-weight: 600;
+                font-size: 1rem;
+              }
+
+              .timeline-arrow {
+                position: absolute;
+                top: 2.5rem;
+                width: 0;
+                height: 0;
+                border: 20px solid transparent;
+                z-index: 5;
+              }
+
+              .timeline-item.left .timeline-arrow {
+                right: -40px;
+                border-left-color: white;
+                border-right: none;
+                filter: drop-shadow(2px 0 4px rgba(0,0,0,0.1));
+              }
+
+              .timeline-item.right .timeline-arrow {
+                left: -40px;
+                border-right-color: white;
+                border-left: none;
+                filter: drop-shadow(-2px 0 4px rgba(0,0,0,0.1));
+              }
+
+              @media (max-width: 768px) {
+                .timeline-line {
+                  left: 35px;
+                }
+
+                .timeline-marker {
+                  left: 35px;
+                }
+
+                .marker-icon {
+                  width: 60px;
+                  height: 60px;
+                  font-size: 1.5rem;
+                }
+
+                .marker-number {
+                  width: 30px;
+                  height: 30px;
+                  font-size: 0.9rem;
+                }
+
+                .timeline-content {
+                  width: calc(100% - 90px);
+                  margin-left: 90px !important;
+                  margin-right: 0 !important;
+                }
+
+                .timeline-arrow {
+                  display: none;
+                }
+
+                .timeline-item {
+                  margin: 3rem 0;
+                }
+
+                .summary-grid {
+                  grid-template-columns: 1fr;
+                }
+
+                .header-top {
+                  flex-direction: column;
+                  align-items: flex-start;
+                  gap: 1rem;
+                }
+
+                .module-title {
+                  margin-right: 0;
+                }
+              }
+
+              @media (max-width: 480px) {
+                .timeline-container {
+                  padding: 1rem 0;
+                }
+
+                .card-header, .card-body {
+                  padding: 1.5rem;
+                }
+
+                .module-title {
+                  font-size: 1.3rem;
+                }
+
+                .summary-item {
+                  padding: 0.75rem;
+                }
+
+                .summary-number {
+                  font-size: 1.3rem;
+                }
               }
             `}</style>
           </div>
