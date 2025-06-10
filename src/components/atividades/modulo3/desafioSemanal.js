@@ -1,8 +1,19 @@
 
 const DesafioSemanal3 = () => {
   return (
-    <div className="p-4 bg-white rounded shadow-sm">
-      <h3 className="mb-4">Desafio Semanal</h3>
+    <div className="bg-white">
+
+     <h4 className="mb-4" style={{ color: "#99CBC8" }}>
+                <span
+                  style={{
+                    borderBottom: "3px solid #99CBC8",
+                    display: "inline-block",
+                    paddingBottom: "2px",
+                  }}
+                >
+                  Desafio Semanal
+                </span>
+      </h4>
 
             <p className="mb-3 fw-bold">
               Queria lançar-te um desafio para esta semana!

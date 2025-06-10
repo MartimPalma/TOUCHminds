@@ -1,7 +1,5 @@
 import React, { useState, useContext } from 'react';
 import { UserContext } from '../../../App';
-import { color } from 'framer-motion';
-
 const DesafioSemanal = ({ id }) => {
   const { userData, updateUserData } = useContext(UserContext);
   const [form, setForm] = useState({
@@ -68,8 +66,20 @@ const DesafioSemanal = ({ id }) => {
     userData.modulos?.[`modulo${id}`]?.desafioSemanal || [];
 
   return (
-    <div className="p-4 bg-white rounded shadow-sm">
-      <h3 className="mb-4" style={{ color: "#234970" }}>Desafio Semanal</h3>
+    <div className="bg-white">
+
+     <h4 className="mb-4" style={{ color: "#99CBC8" }}>
+                <span
+                  style={{
+                    borderBottom: "3px solid #99CBC8",
+                    display: "inline-block",
+                    paddingBottom: "2px",
+                  }}
+                >
+                  Desafio Semanal
+                </span>
+      </h4>
+      
       <p><b>Queria lançar-te um desafio para esta semana! </b>Ao longo dos próximos dias, sempre que sentires <b>ansiedade</b> em alguma situação, convido-te a <b>refletir</b> sobre a tua experiência.
         <br />Se quiseres, podes depois vir aqui e registar o que pensaste sobre a situação.
         <br />A ideia é que <b>reflitas como te sentes</b>, o que <b>pensas</b> e como te <b>comportas</b> nessa situação.
