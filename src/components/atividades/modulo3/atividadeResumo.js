@@ -75,7 +75,9 @@ const AtividadeResumoCarta = () => {
                 <p className="mb-3 lead">Aproveita esta oportunidade para te tratares com <strong>carinho</strong>, <strong>aceitação</strong> e <strong>compreensão</strong>. </p>
                 <p className="mb-4 lead">No final, poderás fazer o <strong>download da carta</strong> para recorreres a ela sempre que considerares necessário.</p>
                 <div className="text-center">
-                <button className="custom-btn-turquoise mt-2 px-4 py-2" onClick={() => setPagina(1)}>Vamos a isto?</button>
+                  <button className="custom-btn-turquoise mt-2 px-4 py-2" onClick={() => setPagina(1)}>
+                    <i className="bi bi-play-fill me-2"></i>Vamos a isto?
+                  </button>
                 </div>
               </div>
             )}
@@ -84,7 +86,7 @@ const AtividadeResumoCarta = () => {
               <div>
                 <h5 className="fw-bold mb-3">Carta</h5>
 
-                <div className="alert alert-light border mt-4 white-space-pre-wrap" style={{ whiteSpace: 'pre-wrap' ,backgroundColor: '#fbf9f9' }}>
+                <div className="alert alert-light border mt-4 white-space-pre-wrap" style={{ whiteSpace: 'pre-wrap', backgroundColor: '#fbf9f9' }}>
                   <h5 className="fw-bold">Pré-visualização da Carta</h5>
                   <p>{gerarConteudoCarta()}</p>
                 </div>

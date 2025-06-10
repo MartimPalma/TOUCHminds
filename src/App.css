@@ -490,3 +490,12 @@ select:focus {
   text-align: left !important;
 }
 
+.custom-radio {
+  accent-color: #99CBC8 !important;
+}
+
+.custom-radio:checked {
+  background-color: #99CBC8 !important;
+  border-color: #99CBC8 !important;
+}
+

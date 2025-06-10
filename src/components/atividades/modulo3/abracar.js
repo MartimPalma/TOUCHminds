@@ -54,7 +54,7 @@ const AbracarMe = () => {
                 </p>
                 <div className="text-center">
                   <button className="custom-btn-turquoise mt-2 px-4 py-2" onClick={avancarPagina}>
-                    Vamos começar?
+                    <i className="bi bi-play-fill me-2"></i>Vamos começar?
                   </button>
                 </div>
               </div>
