@@ -268,8 +268,8 @@ const AtividadeResumoRede = () => {
             {/* PÁGINA 5 - CONCLUSÃO */}
             {pagina === 5 && (
               <>
-                <h4 className="fw-bold mb-4" style={{ color: "#234970" }}>
-                  Conclusão da atividade!
+                <h4 className="fw-bold mb-4 text-start" style={{ color: "#234970" }}>
+                  Conclusão da Atividade
                 </h4>
                 <div>
                   <p className="lead">

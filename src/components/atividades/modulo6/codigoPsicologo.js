@@ -10,7 +10,7 @@ const CodigoDoPsicologo = () => {
   const [pagina, setPagina] = useState(0);
   const [codigoInput, setCodigoInput] = useState("");
   const [inputError, setInputError] = useState(false);
-  
+
   const { id: moduloId } = useParams();
   const { updateUserData } = useContext(UserContext);
 
@@ -22,9 +22,9 @@ const CodigoDoPsicologo = () => {
     { numeros: "13 - 15 - 20 - 9 - 22 - 1", palavra: "MOTIVA" },
     { numeros: "22 - 5 - 18 - 4 - 1 - 4 - 5", palavra: "VERDADE" },
     { numeros: "16 - 18 - 9 - 22 - 1 - 3 - 9 - 4 - 1 - 4 - 5", palavra: "PRIVACIDADE" },
-    { numeros: "12 - 5 - 22 - 1 - 18 - 1 - 19 - 5 - 18 - 9 - 15", palavra: "LEVARASÉRIO" },
-    { numeros: "16 - 1 - 18 - 20 - 9 - 3 - 9 - 16 - 1 - 3 - 1 - 15", palavra: "PARTICIPAÇÃO" },
-    { numeros: "15 - 16 - 9 - 14 - 9 - 1 - 15", palavra: "OPINIÃO" }
+    { numeros: "12 - 5 - 22 - 1 - 18 - 1 - 19 - 5 - 18 - 9 - 15", palavra: "LEVARASERIO" },
+    { numeros: "16 - 1 - 18 - 20 - 9 - 3 - 9 - 16 - 1 - 3 - 1 - 15", palavra: "PARTICIPACAO" },
+    { numeros: "15 - 16 - 9 - 14 - 9 - 1 - 15", palavra: "OPINIAO" }
   ];
 
   const tabelaSubstituicao = [
@@ -68,7 +68,8 @@ const CodigoDoPsicologo = () => {
     }
   ];
 
-  const progresso = Math.round((pagina / 8) * 100);
+  const totalPaginas = 8;;
+  const progresso = Math.round(((pagina + 1) / totalPaginas) * 100);
 
   const avancarPagina = () => {
     // Verificar se é página de código e se o código está correto
@@ -79,12 +80,12 @@ const CodigoDoPsicologo = () => {
         return;
       }
     }
-    
+
     setInputError(false);
     setCodigoInput("");
     setPagina((prev) => prev + 1);
   };
-  
+
   const retrocederPagina = () => {
     setInputError(false);
     setPagina((prev) => prev - 1);
@@ -115,172 +116,150 @@ const CodigoDoPsicologo = () => {
               </div>
             </div>
 
-            <div className="container bg-white rounded shadow-sm p-4">
-              {/* INTRODUÇÃO */}
-              {pagina === 0 && (
-                <div className="text-center py-4">
-                  <h2 className="fw-bold mb-4" style={{ color: "#234970" }}>Código do Psicólogo</h2>
-                  <div className="row justify-content-center">
-                    <div className="col-md-8">
-                      <p className="lead mb-4">
-                        <strong>Sê muito bem-vindo ou bem-vinda ao Código do Psicólogo!</strong>
-                      </p>
-                      <p className="mb-3">
-                        O objetivo desta atividade é <strong>descobrires mais sobre o papel do psicólogo</strong> e os <strong>direitos que tens durante as consultas</strong>.
-                      </p>
-                      <p className="mb-3">
-                        Ao longo da atividade vais encontrar <strong>códigos secretos</strong>. Esses códigos estão <strong>disfarçados por números</strong> e representam <strong>palavras-chave</strong> que são <strong>essenciais</strong> para entender o papel do psicólogo e os teus <strong>direitos</strong>.
-                      </p>
-                      <p className="mb-4">
-                        Usa a <strong>tabela de substituição</strong> fornecida para <strong>converter os números em letras</strong>. Cada número corresponde a uma <strong>letra do alfabeto</strong>, e ao converteres os números em letras, vais revelar <strong>palavras-chave</strong> que te ajudarão a <strong>compreender melhor o que o psicólogo faz</strong> e como os teus <strong>direitos são respeitados</strong> nas consultas.
-                      </p>
-                      <button className="btn btn-primary mt-3 px-4 py-2" style={{
-                        backgroundColor: "#66BFBF",
-                        color: "white",
-                        borderRadius: "8px",
-                        fontSize: "1.05rem",
-                        border: "none",
-                      }} onClick={avancarPagina}>
-                        Vamos a isto?
-                      </button>
-                    </div>
+
+            {/* INTRODUÇÃO */}
+            {pagina === 0 && (
+              <div className="text-start py-4 ps-2">
+                <h2 className="fw-bold mb-4" style={{ color: "#234970" }}>Código do Psicólogo</h2>
+
+                <div className="col-md-12">
+                  <p className="lead mb-3">
+                    <strong>Sê muito bem-vindo ou bem-vinda ao Código do Psicólogo!</strong>
+                  </p>
+                  <p className="mb-3 lead">
+                    O objetivo desta atividade é <strong>descobrires mais sobre o papel do psicólogo</strong> e os <strong>direitos que tens durante as consultas</strong>.
+                  </p>
+                  <p className="mb-3 lead">
+                    Ao longo da atividade vais encontrar <strong>códigos secretos</strong>. Esses códigos estão <strong>disfarçados por números</strong> e representam <strong>palavras-chave</strong> que são <strong>essenciais</strong> para entender o papel do psicólogo e os teus <strong>direitos</strong>.
+                  </p>
+                  <p className="mb-4 lead">
+                    Usa a <strong>tabela de substituição</strong> fornecida para <strong>converter os números em letras</strong>. Cada número corresponde a uma <strong>letra do alfabeto</strong>, e ao converteres os números em letras, vais revelar <strong>palavras-chave</strong> que te ajudarão a <strong>compreender melhor o que o psicólogo faz</strong> e como os teus <strong>direitos são respeitados</strong> nas consultas.
+                  </p>
+                  <div className="text-center">
+                    <button className="custom-btn-turquoise mt-3 px-4 py-2" onClick={avancarPagina}>
+                      <i className="bi bi-play-fill me-2"></i>Vamos a isto?
+                    </button>
                   </div>
                 </div>
-              )}
 
-              {/* PÁGINAS DE CÓDIGOS */}
-              {pagina > 0 && pagina <= 6 && (
-                <>
-                  <h4 className="fw-bold mb-4" style={{ color: "#234970" }}>
-                    Descodifica o código apresentado a seguir!
-                  </h4>
-                  <p className="mb-4">
-                    Para isso, usa a <strong>tabela de substituição fornecida</strong> e <strong>converte os números em letras</strong>.
-                  </p>
+              </div>
+            )}
 
-                  {/* Tabela de Substituição */}
-                  <div className="row mb-4">
-                    <div className="col-md-6 mx-auto">
-                      <table className="table table-bordered table-sm">
-                        <thead>
-                          <tr>
-                            <th><strong>Letra</strong></th>
-                            <th><strong>Número</strong></th>
+            {/* PÁGINAS DE CÓDIGOS */}
+            {pagina > 0 && pagina <= 6 && (
+              <>
+                <h4 className="fw-bold mb-4" style={{ color: "#234970" }}>
+                  Descodifica o código apresentado a seguir!
+                </h4>
+                <p className="mb-4">
+                  Para isso, usa a <strong>tabela de substituição fornecida</strong> e <strong>converte os números em letras</strong>.
+                </p>
+
+                {/* Tabela de Substituição */}
+                <div className="row mb-4">
+                  <div className="col-md-6 mx-auto">
+                    <table className="table table-bordered table-sm">
+                      <thead>
+                        <tr>
+                          <th><strong>Letra</strong></th>
+                          <th><strong>Número</strong></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {tabelaSubstituicao.map(([letra, numero], index) => (
+                          <tr key={index}>
+                            <td>{letra}</td>
+                            <td>{numero}</td>
                           </tr>
-                        </thead>
-                        <tbody>
-                          {tabelaSubstituicao.map(([letra, numero], index) => (
-                            <tr key={index}>
-                              <td>{letra}</td>
-                              <td>{numero}</td>
-                            </tr>
-                          ))}
-                        </tbody>
-                      </table>
-                    </div>
+                        ))}
+                      </tbody>
+                    </table>
                   </div>
+                </div>
 
-                  {/* Texto explicativo */}
-                  <div className="mb-4 p-3 bg-light rounded">
-                    <p dangerouslySetInnerHTML={{ __html: textosPorPagina[pagina - 1].texto.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') }}></p>
-                  </div>
+                {/* Texto explicativo */}
+                <div className="mb-4 p-3 bg-light rounded">
+                  <p dangerouslySetInnerHTML={{ __html: textosPorPagina[pagina - 1].texto.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') }}></p>
+                </div>
 
-                  {/* Código para descodificar */}
-                  <div className="text-center mb-4">
-                    <h5 className="fw-bold" style={{ color: "#234970" }}>
-                      {textosPorPagina[pagina - 1].codigo.numeros}
-                    </h5>
-                  </div>
+                {/* Código para descodificar */}
+                <div className="text-center mb-4">
+                  <h5 className="fw-bold" style={{ color: "#234970" }}>
+                    {textosPorPagina[pagina - 1].codigo.numeros}
+                  </h5>
+                </div>
 
-                  {/* Input para resposta */}
-                  <div className="mb-4">
-                    <label className="form-label fw-bold">Descodifica o Código Aqui</label>
-                    <input
-                      type="text"
-                      className={`form-control ${inputError ? 'is-invalid' : ''}`}
-                      value={codigoInput}
-                      onChange={(e) => handleCodigoChange(e.target.value)}
-                      placeholder="Escreve a palavra descodificada aqui..."
-                      required
-                    />
-                    {inputError && (
-                      <div className="invalid-feedback">
-                        Código incorreto. Verifica a tabela de substituição e tenta novamente.
-                      </div>
-                    )}
-                  </div>
-
-                  {/* Mostrar resposta se código estiver correto */}
-                  {codigoInput.toUpperCase() === textosPorPagina[pagina - 1].codigo.palavra && (
-                    <div className="alert alert-success">
-                      <p dangerouslySetInnerHTML={{ __html: textosPorPagina[pagina - 1].resposta.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') }}></p>
+                {/* Input para resposta */}
+                <div className="mb-4">
+                  <label className="form-label fw-bold">Descodifica o Código Aqui</label>
+                  <input
+                    type="text"
+                    className={`form-control ${inputError ? 'is-invalid' : ''}`}
+                    value={codigoInput}
+                    onChange={(e) => handleCodigoChange(e.target.value)}
+                    placeholder="Escreve a palavra descodificada aqui..."
+                    required
+                  />
+                  {inputError && (
+                    <div className="invalid-feedback">
+                      Código incorreto. Verifica a tabela de substituição e tenta novamente.
                     </div>
                   )}
+                </div>
 
-                  <div className="d-flex justify-content-between">
-                    <button className="btn btn-outline-secondary" style={{
-                        backgroundColor: "#E7C8C2",
-                        color: "white",
-                        borderRadius: "8px",
-                        fontSize: "1.05rem",
-                        border: "none",
-                      }} onClick={retrocederPagina}>
-                      <i className="bi bi-arrow-left me-2"></i>Anterior
-                    </button>
-                    <button 
-                      className="btn btn-primary" style={{
-                        backgroundColor: "#66BFBF",
-                        color: "white",
-                        borderRadius: "8px",
-                        fontSize: "1.05rem",
-                        border: "none",
-                      }}
-                      onClick={avancarPagina}
-                    >
-                      {pagina === 6 ? "Conclusão" : "Próximo"}
-                      <i className="bi bi-arrow-right ms-2"></i>
-                    </button>
+                {/* Mostrar resposta se código estiver correto */}
+                {codigoInput.toUpperCase() === textosPorPagina[pagina - 1].codigo.palavra && (
+                  <div className="alert alert-success">
+                    <p dangerouslySetInnerHTML={{ __html: textosPorPagina[pagina - 1].resposta.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') }}></p>
                   </div>
-                </>
-              )}
+                )}
 
-              {/* CONCLUSÃO */}
-              {pagina === 7 && (
-                <>
-                  <h4 className="fw-bold mb-4" style={{ color: "#234970" }}>Conclusão da atividade!</h4>
-                  <div className="lead">
-                    <p className="mb-3">
-                      <strong>Esperamos que esta atividade te tenha ajudado</strong> a entender melhor o <strong>papel do psicólogo</strong> e os <strong>direitos que tens durante as consultas</strong>.
-                    </p>
-                    <p className="mb-3">
-                      <strong>Lembraste-te</strong> de que o psicólogo está aqui para te <strong>apoiar</strong>, <strong>motivar</strong> e <strong>ouvir</strong>, sempre com <strong>respeito</strong> e <strong>honestidade</strong>.
-                    </p>
-                    <p className="mb-3">
-                      Durante a terapia, tens o <strong>direito de ser respeitado</strong>, de manter a <strong>privacidade das tuas informações</strong>, de ser <strong>levado a sério</strong> e de <strong>participar nas decisões</strong>.
-                    </p>
-                    <p className="mb-4">
-                      A tua <strong>opinião é importante</strong>, e <strong>nunca estarás sozinho/a no teu percurso de mudança</strong>.
-                    </p>
-                  </div>
-                  <div className="d-flex justify-content-between mt-4">
-                    <button className="btn btn-outline-secondary" style={{
-                        backgroundColor: "#E7C8C2",
-                        color: "white",
-                        borderRadius: "8px",
-                        fontSize: "1.05rem",
-                        border: "none",
-                      }} onClick={retrocederPagina}>
-                      <i className="bi bi-arrow-left me-2"></i>Anterior
-                    </button>
-                    <AtividadeProgressao
-                      moduloId={moduloId}
-                      atividadeIndex={0}
-                      updateUserData={updateUserData}
-                    />
-                  </div>
-                </>
-              )}
-            </div>
+                <div className="d-flex justify-content-between">
+                  <button className="custom-btn-pink" onClick={retrocederPagina}>
+                    <i className="bi bi-arrow-left me-2"></i>Anterior
+                  </button>
+                  <button
+                    className="custom-btn-turquoise"
+                    onClick={avancarPagina}
+                  >
+                    {pagina === 6 ? "Conclusão" : "Próximo"}
+                    <i className="bi bi-arrow-right ms-2"></i>
+                  </button>
+                </div>
+              </>
+            )}
+
+            {/* CONCLUSÃO */}
+            {pagina === 7 && (
+              <>
+                <h4 className="fw-bold mb-4 text-start" style={{ color: "#234970" }}>Conclusão da Atividade</h4>
+                <div className="lead">
+                  <p className="mb-3">
+                    <strong>Esperamos que esta atividade te tenha ajudado</strong> a entender melhor o <strong>papel do psicólogo</strong> e os <strong>direitos que tens durante as consultas</strong>.
+                  </p>
+                  <p className="mb-3">
+                    <strong>Lembraste-te</strong> de que o psicólogo está aqui para te <strong>apoiar</strong>, <strong>motivar</strong> e <strong>ouvir</strong>, sempre com <strong>respeito</strong> e <strong>honestidade</strong>.
+                  </p>
+                  <p className="mb-3">
+                    Durante a terapia, tens o <strong>direito de ser respeitado</strong>, de manter a <strong>privacidade das tuas informações</strong>, de ser <strong>levado a sério</strong> e de <strong>participar nas decisões</strong>.
+                  </p>
+                  <p className="mb-4">
+                    A tua <strong>opinião é importante</strong>, e <strong>nunca estarás sozinho/a no teu percurso de mudança</strong>.
+                  </p>
+                </div>
+                <div className="d-flex justify-content-between mt-4">
+                  <button className="custom-btn-pink" onClick={retrocederPagina}>
+                    <i className="bi bi-arrow-left me-2"></i>Anterior
+                  </button>
+                  <AtividadeProgressao
+                    moduloId={moduloId}
+                    atividadeIndex={0}
+                    updateUserData={updateUserData}
+                  />
+                </div>
+              </>
+            )}
+
           </div>
         </div>
       </div>

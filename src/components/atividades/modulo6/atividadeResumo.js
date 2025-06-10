@@ -43,31 +43,31 @@ const AtividadeResumo6 = () => {
     const { source, destination } = result;
 
     // Se não tiver destino ou for o mesmo lugar, não faz nada
-    if (!destination || 
-        (source.droppableId === destination.droppableId && 
-         source.index === destination.index)) {
+    if (!destination ||
+      (source.droppableId === destination.droppableId &&
+        source.index === destination.index)) {
       return;
     }
 
     // Movendo da área de frases para uma coluna
     if (source.droppableId === "frasesDisponiveis" && destination.droppableId !== "frasesDisponiveis") {
       const fraseMovida = frasesDisponiveis[source.index];
-      
+
       setFrasesEmColunas(prev => ({
         ...prev,
         [destination.droppableId]: [...prev[destination.droppableId], fraseMovida]
       }));
 
-      setFrasesDisponiveis(prev => 
+      setFrasesDisponiveis(prev =>
         prev.filter((_, index) => index !== source.index)
       );
     }
     // Movendo de volta para a área de frases
     else if (source.droppableId !== "frasesDisponiveis" && destination.droppableId === "frasesDisponiveis") {
       const fraseMovida = frasesEmColunas[source.droppableId][source.index];
-      
+
       setFrasesDisponiveis(prev => [...prev, fraseMovida]);
-      
+
       setFrasesEmColunas(prev => ({
         ...prev,
         [source.droppableId]: prev[source.droppableId].filter((_, index) => index !== source.index)
@@ -76,7 +76,7 @@ const AtividadeResumo6 = () => {
     // Movendo entre colunas (se quiser permitir)
     else if (source.droppableId !== "frasesDisponiveis" && destination.droppableId !== "frasesDisponiveis") {
       const fraseMovida = frasesEmColunas[source.droppableId][source.index];
-      
+
       setFrasesEmColunas(prev => ({
         ...prev,
         [source.droppableId]: prev[source.droppableId].filter((_, index) => index !== source.index),
@@ -86,7 +86,7 @@ const AtividadeResumo6 = () => {
   };
 
   // Verifica se todas as frases estão nas colunas corretas
-  const todasCorretas = frasesDisponiveis.length === 0 && 
+  const todasCorretas = frasesDisponiveis.length === 0 &&
     Object.entries(frasesEmColunas).every(([coluna, frases]) =>
       frases.length > 0 && frases.every(f => f.coluna === coluna)
     );
@@ -116,14 +116,17 @@ const AtividadeResumo6 = () => {
             </div>
 
             {pagina === 0 && (
-              <div className="text-center py-4">
-                <h2 className="fw-bold mb-4" style={{ color: "#234970" }}>Atividade Resumo</h2>
+              <div className="text-center py-4 ps-2">
+                <h2 className="fw-bold mb-4 text-start" style={{ color: "#234970" }}>Atividade Resumo</h2>
                 <p className="lead"><strong>Sê muito bem-vindo ou bem-vinda</strong> à atividade <strong>resumo do Módulo 6 – Um Novo Começo</strong>!</p>
                 <p className="lead">
-                    O objetivo desta atividade é consolidar os conteúdos que exploramos ao longo do módulo. Nesta atividade, vais colocar em prática o que aprendeste sobre o ajuda formal: quem pode ajudar, como acontece o processo terapêutico e onde procurar ajuda. 
-                    Vais encontrar frases que representam diferentes aspetos do caminho de pedir ajuda. O teu desafio é arrastá-las para a coluna certa, usando o que já sabes.
+                  O objetivo desta atividade é <strong>consolidar os conteúdos</strong> que exploramos ao longo do módulo. Nesta atividade, vais colocar em prática o que aprendeste sobre o ajuda formal: quem pode ajudar, como acontece o processo terapêutico e onde procurar ajuda.
+                  <br></br><br></br>
+                  Vais <strong>encontrar frases</strong> que representam diferentes aspetos do caminho de pedir ajuda. O teu desafio é <strong>arrastá-las</strong> para a coluna certa, usando o que já sabes.
+                  <br></br><br></br>
+                  <strong>Estás Pronto/a?</strong>
                 </p>
-                <button className="btn btn-success mt-4 px-4 py-2" style={{ backgroundColor: "#66BFBF", border: "none", fontSize: "1.1rem", borderRadius: "8px" }} onClick={() => setPagina(1)}>
+                <button className="custom-btn-turquoise mt-3 px-4 py-2" onClick={() => setPagina(1)}>
                   <i className="bi bi-play-fill me-2"></i>Vamos começar!
                 </button>
               </div>
@@ -133,7 +136,7 @@ const AtividadeResumo6 = () => {
               <div className="py-4">
                 <h2 className="fw-bold mb-4 text-center" style={{ color: "#234970" }}>Caminho de Pedir Ajuda</h2>
                 <p className="text-center mb-4">Arraste cada frase para a coluna correta:</p>
-                
+
                 <DragDropContext onDragEnd={onDragEnd}>
                   <div className="row g-3">
                     {/* Área de frases disponíveis */}
@@ -142,8 +145,8 @@ const AtividadeResumo6 = () => {
                         <h5 className="mb-3">Frases para organizar</h5>
                         <Droppable droppableId="frasesDisponiveis" direction="horizontal">
                           {(provided) => (
-                            <div 
-                              ref={provided.innerRef} 
+                            <div
+                              ref={provided.innerRef}
                               {...provided.droppableProps}
                               className="d-flex flex-wrap gap-2 min-h-100px"
                             >
@@ -188,9 +191,8 @@ const AtividadeResumo6 = () => {
                                         ref={provided.innerRef}
                                         {...provided.draggableProps}
                                         {...provided.dragHandleProps}
-                                        className={`bg-white border rounded p-3 mb-2 ${
-                                          frase.coluna === colunaNome ? "border-success" : "border-danger"
-                                        }`}
+                                        className={`bg-white border rounded p-3 mb-2 ${frase.coluna === colunaNome ? "border-success" : "border-danger"
+                                          }`}
                                       >
                                         {frase.frase}
                                       </div>
@@ -208,31 +210,24 @@ const AtividadeResumo6 = () => {
                 </DragDropContext>
 
                 <div className="d-flex justify-content-between mt-4">
-                  <button 
-                    className="btn btn-outline-secondary" 
-                    style={{ backgroundColor: "#E7C8C2", color: "white", border: "none", borderRadius: "8px" }} 
-                    onClick={() => setPagina(0)}
+                  <button
+                    className="custom-btn-pink" onClick={() => setPagina(0)}
                   >
                     <i className="bi bi-arrow-left me-2"></i>Anterior
                   </button>
-                  
+
                   <div>
-                    <button 
-                      className="btn btn-outline-secondary me-2" 
+                    <button
+                      className="btn btn-outline-secondary me-2"
                       style={{ borderColor: "#66BFBF", color: "#66BFBF", borderRadius: "8px" }}
                       onClick={resetarAtividade}
                     >
                       <i className="bi bi-arrow-counterclockwise me-2"></i>Recomeçar
                     </button>
-                    
-                    <button 
-                      className="btn btn-success" 
-                      style={{ 
-                        backgroundColor: todasCorretas ? "#66BFBF" : "#ccc", 
-                        border: "none", 
-                        borderRadius: "8px" 
-                      }} 
-                      disabled={!todasCorretas} 
+
+                    <button
+                      className="custom-btn-turquoise" 
+                      disabled={!todasCorretas}
                       onClick={() => setPagina(2)}
                     >
                       Verificar e Continuar<i className="bi bi-arrow-right ms-2"></i>
@@ -265,10 +260,10 @@ const AtividadeResumo6 = () => {
                   </table>
                 </div>
                 <div className="d-flex justify-content-between mt-4">
-                  <button className="btn btn-outline-secondary" style={{ backgroundColor: "#E7C8C2", color: "white", border: "none", borderRadius: "8px" }} onClick={() => setPagina(1)}>
+                  <button className="custom-btn-pink" onClick={() => setPagina(1)}>
                     <i className="bi bi-arrow-left me-2"></i>Anterior
                   </button>
-                  <button className="btn btn-success" style={{ backgroundColor: "#66BFBF", border: "none", borderRadius: "8px" }} onClick={() => setPagina(3)}>
+                  <button className="custom-btn-turquoise" onClick={() => setPagina(3)}>
                     Conclusão<i className="bi bi-arrow-right ms-2"></i>
                   </button>
                 </div>
@@ -277,22 +272,22 @@ const AtividadeResumo6 = () => {
 
             {pagina === 3 && (
               <div className="text-center py-4">
-                <h2 className="fw-bold mb-4" style={{ color: "#234970" }}>Conclusão da atividade!</h2>
-                <p className="lead">Nesta atividade, resumiste o que aprendeste neste módulo sobre o caminho de pedir ajuda.  
-                Descobriste que o psicólogo não traz respostas feitas, mas pode ajudar-te a compreender melhor o que estás a sentir e a encontrar, contigo, o caminho mais certo. 
-                Percebeste que o processo terapêutico tem etapas — começa com confiança, passa por desafios, estratégias e pequenas conquistas que fazem a diferença. 
-                E aprendeste também que não estás sozinho/a: há lugares, pessoas e profissionais disponíveis quando precisamos de ajuda. Lembra-te: procurar ajuda não é sinal de fraqueza — é um passo corajoso. 
-                Pode não ser fácil, mas agora sabes que há um caminho. E que ele começa com o simples gesto de pedir ajuda.
+                <h4 className="fw-bold mb-4 text-start" style={{ color: "#234970" }}>Conclusão da Atividade</h4>
+                <p className="lead">Nesta atividade, resumiste o que aprendeste neste módulo sobre o caminho de pedir ajuda.<br></br><br></br>
+                  Descobriste <strong>que o psicólogo não traz respostas feitas</strong>, mas pode ajudar-te a compreender melhor o que estás a sentir e a encontrar, contigo, o caminho mais certo.<br></br><br></br>
+                  Percebeste <strong>que o processo terapêutico tem etapas</strong> — começa com confiança, passa por desafios, estratégias e pequenas conquistas que fazem a diferença.<br></br><br></br>
+                  E aprendeste também <strong>que não estás sozinho/a</strong>: há lugares, pessoas e profissionais disponíveis quando precisamos de ajuda. Lembra-te: procurar ajuda não é sinal de fraqueza — é um passo corajoso.<br></br><br></br>
+                  Pode não ser fácil, mas agora <strong>sabes que há um caminho</strong>. E que ele começa com o simples <strong>gesto de pedir ajuda</strong>.<br></br><br></br>
                 </p>
                 <div className="d-flex justify-content-between mt-4">
-                  <button className="btn btn-outline-secondary" style={{ backgroundColor: "#E7C8C2", color: "white", border: "none", borderRadius: "8px" }} onClick={() => setPagina(2)}>
+                  <button className="custom-btn-pink" onClick={() => setPagina(2)}>
                     <i className="bi bi-arrow-left me-2"></i>Anterior
                   </button>
-                  <AtividadeProgressao 
-                    moduloId={moduloId} 
-                    atividadeIndex={3} 
-                    updateUserData={updateUserData} 
-                    />
+                  <AtividadeProgressao
+                    moduloId={moduloId}
+                    atividadeIndex={3}
+                    updateUserData={updateUserData}
+                  />
                 </div>
               </div>
             )}

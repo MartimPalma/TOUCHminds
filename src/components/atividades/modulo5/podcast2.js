@@ -95,7 +95,7 @@ const AnsiedadeSOSPOD = () => {
             {/* CONCLUSÃO */}
             {pagina === 2 && (
               <>
-                <h4 className="fw-bold mb-4" style={{ color: "#234970" }}>Conclusão da Atividade</h4>
+                <h4 className="fw-bold mb-4 text-start" style={{ color: "#234970" }}>Conclusão da Atividade</h4>
                 <p className="lead">
                   <strong>Chegámos ao fim deste episódio</strong>, e antes de terminarmos, quero deixar-te com uma <strong>reflexão importante: a ansiedade SOS é algo real</strong>, e por vezes pode <strong>tomar conta de nós sem aviso</strong>.<br /><br />
                   O que é fundamental é perceber que <strong>é possível entender esses sinais</strong> e começar a <strong>reagir de forma diferente</strong>.<br></br><br></br>
