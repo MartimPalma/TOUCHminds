@@ -287,14 +287,14 @@ const AtividadeResumoModulo2 = () => {
                               Reflexão
                             </Modal.Title>
                           </Modal.Header>
-                            <Modal.Body className="text-center">
+                            <Modal.Body className="text-start">
                                     {mensagemPopUp}
                             </Modal.Body>
                 <Modal.Footer
                             style={{
                               borderTop: "none",
                               backgroundColor: "#F5FDFC",
-                              justifyContent: "center",
+                              textAlign: "center",
                             }}
                           >
                             <Button

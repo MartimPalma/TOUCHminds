@@ -7,13 +7,14 @@ import AtividadeProgressao from "../atividadeProgressao";
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 
+
 const AtividadeResumoRede = () => {
   const [pagina, setPagina] = useState(0);
   const [modalAberto, setModalAberto] = useState(false);
   const [mensagemPopUp, setMensagemPopUp] = useState("");
   const [mostrarOpcoes, setMostrarOpcoes] = useState(false);
   const [opcaoSelecionada, setOpcaoSelecionada] = useState(null);
-  
+
   const { id: moduloId } = useParams();
   const { updateUserData } = useContext(UserContext);
 
@@ -34,6 +35,8 @@ const AtividadeResumoRede = () => {
     setOpcaoSelecionada(index);
     setModalAberto(true);
   };
+
+  const [hoverIndex, setHoverIndex] = useState(null);
 
   const progresso = Math.round((pagina / 6) * 100);
 
@@ -91,9 +94,9 @@ const AtividadeResumoRede = () => {
       feedback: (
         <>
           As <strong>sensações</strong> como o <strong>aumento da frequência cardíaca</strong> e a <strong>respiração acelerada</strong> são <strong>respostas naturais do corpo à ansiedade</strong> e são bastante comuns em momentos de <strong>stress</strong>.
-          <br/><br/>
+          <br /><br />
           Nessas situações, <strong>utilizar uma aplicação de meditação</strong> ou <strong>técnicas de respiração</strong> pode ser uma <strong>boa opção</strong>. Essas <strong>ferramentas</strong> podem ser um <strong>excelente complemento</strong> a outras formas de ajuda, como a <strong>ajuda de amigos e familiares</strong>, <strong>professores</strong> ou de <strong>psicólogos</strong>.
-          <br/><br/>
+          <br /><br />
           No entanto, é fundamental <strong>escolher aplicações de meditação que sejam seguras</strong> e <strong>comprovadamente eficazes</strong>, preferencialmente aquelas <strong>recomendadas por especialistas na área</strong>. Isso garante que o uso dessas ferramentas seja <strong>realmente benéfico</strong> e contribua para o teu <strong>bem-estar</strong>.
         </>
       ),
@@ -162,24 +165,17 @@ const AtividadeResumoRede = () => {
                 <div className="row justify-content-center">
                   <div className="col-md-12">
                     <p className="lead">
-                      <strong>Sê muito bem-vindo ou bem-vinda à atividade resumo do Módulo 5</strong> – <strong>Reviravolta em Rede!</strong>  
-                        O <strong>objetivo</strong> desta atividade é <strong>consolidar os conteúdos</strong> que exploramos ao longo do módulo.<br></br><br></br>  
-                        Como já vimos, quando <strong>precisamos de ajuda</strong>, temos várias opções disponíveis. Podes contar com a <strong>ajuda de amigos, familiares ou professores</strong>, procurar <strong>ajuda de profissionais</strong> ou até recorrer a <strong>ferramentas de autoajuda</strong>.<br></br><br></br>  
-                        Vamos explorar alguns <strong>exemplos</strong> para perceber <strong>quando é mais adequado escolher cada tipo de ajuda</strong>!<br></br><br></br>  
-                        Nesta atividade, serás apresentado a <strong>diversas situações do dia a dia</strong>. O teu objetivo é <strong>ler cada situação e escolher</strong>, entre as opções dadas, a <strong>melhor forma de procurar ajuda</strong> nessa situação.<br></br><br></br>  
-                        Ao fazeres a tua escolha, vais receber um <strong>feedback imediato</strong> que te ajudará a compreender qual a <strong>melhor opção para cada caso</strong>.<br></br><br></br>  
-                        <strong>Vamos a isto?</strong> 
+                      <strong>Sê muito bem-vindo ou bem-vinda à atividade resumo do Módulo 5</strong> – <strong>Reviravolta em Rede!</strong>
+                      O <strong>objetivo</strong> desta atividade é <strong>consolidar os conteúdos</strong> que exploramos ao longo do módulo.<br></br><br></br>
+                      Como já vimos, quando <strong>precisamos de ajuda</strong>, temos várias opções disponíveis. Podes contar com a <strong>ajuda de amigos, familiares ou professores</strong>, procurar <strong>ajuda de profissionais</strong> ou até recorrer a <strong>ferramentas de autoajuda</strong>.<br></br><br></br>
+                      Vamos explorar alguns <strong>exemplos</strong> para perceber <strong>quando é mais adequado escolher cada tipo de ajuda</strong>!<br></br><br></br>
+                      Nesta atividade, serás apresentado a <strong>diversas situações do dia a dia</strong>. O teu objetivo é <strong>ler cada situação e escolher</strong>, entre as opções dadas, a <strong>melhor forma de procurar ajuda</strong> nessa situação.<br></br><br></br>
+                      Ao fazeres a tua escolha, vais receber um <strong>feedback imediato</strong> que te ajudará a compreender qual a <strong>melhor opção para cada caso</strong>.<br></br><br></br>
+                      <strong>Vamos a isto?</strong>
                     </p>
                     <div className="text-center">
-                      <button 
-                        className="btn mt-3 px-4 py-2" 
-                        style={{
-                          backgroundColor: "#66BFBF",
-                          color: "white",
-                          borderRadius: "8px",
-                          fontSize: "1.05rem",
-                          border: "none",
-                        }}
+                      <button
+                        className="custom-btn-turquoise"
                         onClick={avancarPagina}
                       >
                         <i className="bi bi-play-fill me-2"></i>Vamos a isto!
@@ -198,9 +194,9 @@ const AtividadeResumoRede = () => {
                 </h4>
 
                 <div className="mb-4">
-                  <img 
-                    src={cenarios[pagina - 1].imagem} 
-                    alt={`Cenário ${pagina}`} 
+                  <img
+                    src={cenarios[pagina - 1].imagem}
+                    alt={`Cenário ${pagina}`}
                     className="img-fluid rounded shadow-sm"
                     style={{ maxHeight: "300px", objectFit: "cover" }}
                   />
@@ -214,58 +210,52 @@ const AtividadeResumoRede = () => {
 
                 {/* Opções */}
                 <div className="d-flex flex-column gap-3 mb-4">
-                  {cenarios[pagina - 1].opcoes.map((opcao, index) => (
-                    <button
-                      key={index}
-                      className="btn"
-                      disabled={opcaoSelecionada !== null && opcaoSelecionada !== index}
-                      style={{
-                        backgroundColor: opcaoSelecionada === index ? '#234970' : '#6B8BA4',
-                        color: "white",
-                        borderRadius: "8px",
-                        fontSize: "1rem",
-                        cursor: opcaoSelecionada !== null && opcaoSelecionada !== index ? "not-allowed" : "pointer",
-                        opacity: opcaoSelecionada !== null && opcaoSelecionada !== index ? 0.6 : 1,
-                        transition: "background-color 0.3s ease",
-                        textAlign: "left",
-                        padding: "12px 20px"
-                      }}
-                      onMouseEnter={(e) => {
-                        if (opcaoSelecionada === null) e.target.style.backgroundColor = "#234970";
-                      }}
-                      onMouseLeave={(e) => {
-                        if (opcaoSelecionada === null) e.target.style.backgroundColor = "#6B8BA4";
-                      }}
-                      onClick={() => escolherOpcao(index, cenarios[pagina - 1].feedback)}
-                    >
-                      {opcao.texto}
-                    </button>
-                  ))}
+                  {cenarios[pagina - 1].opcoes.map((opcao, index) => {
+                    const isSelected = opcaoSelecionada === index;
+                    const isDisabled = opcaoSelecionada !== null && !isSelected;
+                    const isHovered = hoverIndex === index;
+
+                    return (
+                      <div
+                        key={index}
+                        onClick={() => !isDisabled && escolherOpcao(index, cenarios[pagina - 1].feedback)}
+                        onMouseEnter={() => !isDisabled && setHoverIndex(index)}
+                        onMouseLeave={() => !isDisabled && setHoverIndex(null)}
+                        className="p-3 text-start"
+                        style={{
+                          backgroundColor: isSelected
+                            ? '#99CBC8'
+                            : isHovered
+                              ? '#5AAAA5'
+                              : '#ffffff',
+                          color: isSelected
+                            ? 'white'
+                            : isHovered
+                              ? 'white'
+                              : '#000000', // texto preto por defeito
+                          border: '2px solid #99CBC8',
+                          borderRadius: '10px',
+                          cursor: isDisabled ? 'default' : 'pointer',
+                          fontWeight: isSelected ? '200' : 'normal',
+                          transition: 'all 0.3s ease',
+                        }}
+                      >
+                        {opcao.texto}
+                      </div>
+                    );
+                  })}
                 </div>
 
+
                 <div className="d-flex justify-content-between mt-4">
-                  <button 
-                    className="btn"
-                    style={{
-                      backgroundColor: "#E7C8C2",
-                      color: "white",
-                      borderRadius: "8px",
-                      fontSize: "1.05rem",
-                      border: "none"
-                    }}
+                  <button
+                    className="custom-btn-pink"
                     onClick={retrocederPagina}
                   >
                     <i className="bi bi-arrow-left me-2"></i>Anterior
                   </button>
-                  <button 
-                    className="btn"
-                    style={{
-                      backgroundColor: "#66BFBF",
-                      color: "white",
-                      borderRadius: "8px",
-                      fontSize: "1.05rem",
-                      border: "none",
-                    }}
+                  <button
+                    className="custom-btn-turquoise"
                     onClick={avancarPagina}
                     disabled={opcaoSelecionada === null}
                   >
@@ -282,37 +272,31 @@ const AtividadeResumoRede = () => {
                   Conclusão da atividade!
                 </h4>
                 <div>
-                <p className="lead">
-                      Como pudeste perceber, existem <strong>várias formas de procurar ajuda</strong>, e a <strong>escolha</strong> de qual delas é mais adequada depende da <strong>frequência</strong> e do <strong>impacto</strong> que tem na tua vida.<br></br><br></br>
+                  <p className="lead">
+                    Como pudeste perceber, existem <strong>várias formas de procurar ajuda</strong>, e a <strong>escolha</strong> de qual delas é mais adequada depende da <strong>frequência</strong> e do <strong>impacto</strong> que tem na tua vida.<br></br><br></br>
 
-                      Por vezes, a ajuda pode vir de quem está <strong>perto de ti</strong>, como <strong>amigos</strong>, <strong>família</strong> ou <strong>professores</strong>, que podem oferecer <strong>conselhos</strong> ou até mesmo algumas <strong>dicas</strong> para melhorar a situação.<br></br><br></br>
+                    Por vezes, a ajuda pode vir de quem está <strong>perto de ti</strong>, como <strong>amigos</strong>, <strong>família</strong> ou <strong>professores</strong>, que podem oferecer <strong>conselhos</strong> ou até mesmo algumas <strong>dicas</strong> para melhorar a situação.<br></br><br></br>
 
-                      Noutras ocasiões, especialmente quando as coisas se tornam <strong>mais difíceis de lidar</strong>, <strong>recorrer a um profissional</strong>, como um <strong>psicólogo</strong>, pode ser <strong>fundamental</strong> para encontrar <strong>estratégias eficazes e personalizadas</strong>.<br></br><br></br>
+                    Noutras ocasiões, especialmente quando as coisas se tornam <strong>mais difíceis de lidar</strong>, <strong>recorrer a um profissional</strong>, como um <strong>psicólogo</strong>, pode ser <strong>fundamental</strong> para encontrar <strong>estratégias eficazes e personalizadas</strong>.<br></br><br></br>
 
-                      O mais importante é que, ao <strong>procurar ajuda</strong>, demonstraste a tua <strong>capacidade de reconhecer o que precisas</strong> e de dar o <strong>primeiro passo para o teu bem-estar</strong>. Isso é algo <strong>valioso</strong>, pois, por vezes, <strong>reconhecer que precisamos de ajuda</strong> é o <strong>maior e mais difícil passo</strong>.<br></br><br></br>
+                    O mais importante é que, ao <strong>procurar ajuda</strong>, demonstraste a tua <strong>capacidade de reconhecer o que precisas</strong> e de dar o <strong>primeiro passo para o teu bem-estar</strong>. Isso é algo <strong>valioso</strong>, pois, por vezes, <strong>reconhecer que precisamos de ajuda</strong> é o <strong>maior e mais difícil passo</strong>.<br></br><br></br>
 
-                      <strong>Lembra-te</strong> de que <strong>procurar ajuda não é sinal de fraqueza</strong>, mas de <strong>coragem</strong>. <strong>Cuida de ti</strong> e continua a <strong>valorizar o teu bem-estar</strong>!
+                    <strong>Lembra-te</strong> de que <strong>procurar ajuda não é sinal de fraqueza</strong>, mas de <strong>coragem</strong>. <br></br><br></br>
+                    <strong>Cuida de ti</strong> e continua a <strong>valorizar o teu bem-estar</strong>!
 
-                    </p>
+                  </p>
                 </div>
 
                 <div className="d-flex justify-content-between mt-4">
-                  <button 
-                    className="btn"
-                    style={{
-                      backgroundColor: "#E7C8C2",
-                      color: "white",
-                      borderRadius: "8px",
-                      fontSize: "1.05rem",
-                      border: "none"
-                    }}
+                  <button
+                    className="custom-btn-pink"
                     onClick={retrocederPagina}
                   >
                     <i className="bi bi-arrow-left me-2"></i>Anterior
                   </button>
                   <AtividadeProgressao
                     moduloId={moduloId}
-                    atividadeIndex={3} 
+                    atividadeIndex={3}
                     updateUserData={updateUserData}
                   />
                 </div>
@@ -323,18 +307,46 @@ const AtividadeResumoRede = () => {
         </div>
       </div>
 
-      {/* Modal for feedback */}
-      <Modal show={modalAberto} onHide={() => setModalAberto(false)} centered>
-        <Modal.Header closeButton>
-          <Modal.Title>Feedback</Modal.Title>
+      {/* Modal for feedback */}<Modal show={modalAberto} onHide={() => setModalAberto(false)} centered>
+        <Modal.Header
+          closeButton
+          style={{
+            backgroundColor: "#99CBC8",
+            borderBottom: "none",
+            color: "#fff",
+          }}
+        >
+          <Modal.Title style={{ fontWeight: "600" }}>
+            Reflexão
+          </Modal.Title>
         </Modal.Header>
-        <Modal.Body>{mensagemPopUp}</Modal.Body>
-        <Modal.Footer>
-          <Button style={{ backgroundColor: "#234970", border: "none" }} onClick={() => setModalAberto(false)}>
-            Continuar
+        <Modal.Body className="text-start">
+          {mensagemPopUp}
+        </Modal.Body>
+        <Modal.Footer
+          style={{
+            borderTop: "none",
+            backgroundColor: "#F5FDFC",
+            textAlign: "center",
+          }}
+        >
+          <Button
+            onClick={() => {
+              setModalAberto(false);
+            }}
+            style={{
+              backgroundColor: "#234970",
+              borderColor: "#234970",
+              borderRadius: "20px",
+              padding: "0.5rem 1.5rem",
+              fontWeight: "500",
+            }}
+          >
+            Fechar
           </Button>
         </Modal.Footer>
       </Modal>
+
     </div>
   );
 };
