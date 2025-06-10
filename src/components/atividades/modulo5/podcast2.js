@@ -39,31 +39,24 @@ const AnsiedadeSOSPOD = () => {
 
             {/* INTRODUÇÃO */}
             {pagina === 0 && (
-              <div className="text-center py-4">
+              <div className="text-start py-4">
                 <h2 className="fw-bold mb-4" style={{ color: "#234970" }}>
                   {atividade?.titulo || "Ansiedade SOS: Quando o Corpo Fala Mais Alto"}
                 </h2>
                 <p className="lead">
-                  Sê muito bem-vindo ou bem-vinda ao Podcast TOUCHminds!<br /><br />
-                  Neste episódio, "Ansiedade SOS: Quando o Corpo Fala Mais Alto", vamos explorar um tema que afeta muitas pessoas,
-                  mas que nem sempre é falado: a ansiedade SOS.<br /><br />
-                  Vamos perceber como a ansiedade pode passar de algo momentâneo para uma sensação intensa e constante, afetando o
-                  nosso corpo, pensamentos e até os nossos comportamentos. Vais através de exemplos do dia a dia aprender a identificar
-                  os sinais de alerta e conhecer alguns recursos que podem ajudar a lidar com isso.<br /><br />
-                  Pronto para descobrir mais sobre este tema?
+                  <strong>Sê muito bem-vindo ou bem-vinda ao Podcast TOUCHminds!</strong><br /><br />
+                  Neste episódio, <strong>"Ansiedade SOS: Quando o Corpo Fala Mais Alto"</strong>, vamos explorar um tema que afeta muitas pessoas,
+                  mas que nem sempre é falado: <strong>a ansiedade SOS</strong>.<br /><br />
+                  Vamos perceber como a <strong>ansiedade pode passar de algo momentâneo para uma sensação intensa e constante</strong>, afetando o
+                  nosso corpo, pensamentos e até os nossos comportamentos. <br></br><br></br>
+                  Vais através de <strong>exemplos do dia a dia</strong> aprender a identificar <strong>os sinais de alerta</strong> e conhecer alguns <strong>recursos que podem ajudar a lidar com isso</strong>.<br /><br />
+                  <strong>Pronto para descobrir mais sobre este tema?</strong>
                 </p>
-                <button className="btn btn-primary mt-3 px-4 py-2"
-                  style={{
-                    backgroundColor: "#66BFBF",
-                    color: "white",
-                    borderRadius: "8px",
-                    fontSize: "1.05rem",
-                    border: "none"
-                  }}
-                  onClick={avancarPagina}
-                >
-                  <i className="bi bi-play-fill me-2"></i>Vamos a isto?
-                </button>
+                <div className="text-center">
+                  <button className="custom-btn-turquoise mt-3 px-4 py-2" onClick={avancarPagina}>
+                    <i className="bi bi-play-fill me-2"></i>Vamos a isto?
+                  </button>
+                </div>
               </div>
             )}
 
@@ -92,22 +85,10 @@ const AnsiedadeSOSPOD = () => {
                   </div>
                 </div>
                 <div className="d-flex justify-content-between">
-                  <button className="btn btn-outline-secondary" style={{
-                    backgroundColor: "#E7C8C2",
-                    color: "white",
-                    borderRadius: "8px",
-                    fontSize: "1.05rem",
-                    border: "none"
-                  }} onClick={retrocederPagina}>
+                  <button className="custom-btn-pink" onClick={retrocederPagina}>
                     <i className="bi bi-arrow-left me-2"></i>Anterior
                   </button>
-                  <button className="btn btn-primary" style={{
-                    backgroundColor: "#66BFBF",
-                    color: "white",
-                    borderRadius: "8px",
-                    fontSize: "1.05rem",
-                    border: "none"
-                  }} onClick={avancarPagina}>
+                  <button className="custom-btn-turquoise" onClick={avancarPagina}>
                     Conclusão <i className="bi bi-arrow-right ms-2"></i>
                   </button>
                 </div>
@@ -119,12 +100,10 @@ const AnsiedadeSOSPOD = () => {
               <>
                 <h4 className="fw-bold mb-4" style={{ color: "#234970" }}>Conclusão da Atividade</h4>
                 <p className="lead">
-                  Chegámos ao fim deste episódio, e antes de terminarmos, quero deixar-te com uma reflexão importante:
-                  a ansiedade SOS é algo real, e por vezes pode tomar conta de nós sem aviso.<br /><br />
-                  O que é fundamental é perceber que é possível entender esses sinais e começar a reagir de forma diferente.
-                  Não se trata de ignorar a ansiedade ou de a 'aguentar' até ao limite. Trata-se de reconhecer quando ela aparece
-                  e procurar maneiras de lidar com ela.<br /><br />
-                  Lembra-te que a ansiedade não precisa de ser um bicho-papão.
+                  <strong>Chegámos ao fim deste episódio</strong>, e antes de terminarmos, quero deixar-te com uma <strong>reflexão importante: a ansiedade SOS é algo real</strong>, e por vezes pode <strong>tomar conta de nós sem aviso</strong>.<br /><br />
+                  O que é fundamental é perceber que <strong>é possível entender esses sinais</strong> e começar a <strong>reagir de forma diferente</strong>.<br></br><br></br>
+                  <strong>Não se trata de ignorar a ansiedade</strong> ou de a <strong>'aguentar'</strong> até ao limite. Trata-se de <strong>reconhecer quando ela aparece e procurar maneiras de lidar com ela</strong>.<br /><br />
+                  <strong>Lembra-te</strong> que <strong>a ansiedade não precisa de ser um bicho-papão</strong>.
                 </p>
                 <div className="d-flex justify-content-between mt-4">
                   <button className="btn btn-outline-secondary" style={{

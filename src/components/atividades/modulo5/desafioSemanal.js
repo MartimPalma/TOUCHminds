@@ -1,7 +1,6 @@
 const DesafioSemanal5 = () => {
   return (
     <div className="bg-white">
-            <h2 className="fw-semibold" style={{ color: "#99CBC8" }}>TEM QUE SER ALTERADO</h2>
 
           <h4 className="mb-4" style={{ color: "#99CBC8" }}>
                       <span
@@ -19,28 +18,20 @@ const DesafioSemanal5 = () => {
         Queria lançar-te um desafio para esta semana!
       </p>
       <p className="mb-3">
-        Cria <span className="fw-bold">lembretes com frases compassivas</span> no teu telemóvel. Escreve
-        uma <span className="fw-bold">frase compassiva</span> que faça sentido para ti.
+       Identifica uma <strong>situação durante esta semana</strong> em que sintas <strong>desconforto</strong> ou <strong>dificuldade em lidar com ela</strong>,
+        e que, normalmente, em situações semelhantes como essas, <strong>não recorres a nenhuma fonte de ajuda</strong>.
       </p>
       <p className="mb-3">
-        Depois, <span className="fw-bold">vai ao calendário do teu telemóvel</span> e cria um lembrete com
-        a frase escolhida. Define a hora e os dias em que queres que o
-        lembrete apareça, escolhendo momentos em que sabes que a tua voz
-        crítica costuma surgir, como antes de um teste ou de uma
-        apresentação.
+        Tenta <strong>refletir</strong> perante essa situação <strong>qual das fontes de ajuda</strong> que falamos neste módulo <strong>seria mais útil recorreres</strong>.
       </p>
       <p className="mb-3">
-        Estes lembretes vão ser uma ajuda para te lembrares de ser <span className="fw-bold">mais
-        gentil contigo mesmo</span>, especialmente nos momentos difíceis, e vão
-        ajudar-te a <span className="fw-bold">lidar melhor com as tuas emoções</span>.
+        Este desafio tem como objetivo <strong>ajudar-te a identificar e avaliar as opções de ajuda disponíveis</strong>.
       </p>
-      <p className="mb-4 fw-bold">
-        Espero que esta semana te ajude a aprofundar a tua prática de
-        autocompaixão e a compreender melhor como ela pode transformar a
-        tua relação contigo mesmo/a.
+      <p className="mb-4">
+        <strong>Lembra-te</strong> de que <strong>reconhecer que precisas de ajuda</strong> é um <strong>passo importante para cuidar de ti mesmo/a</strong>.
       </p>
 
-      <p className="fw-bold">Vamos em frente! #SêAmigoDeTiMesmo</p>
+      <p className="fw-bold">Vamos em frente! #ReviravoltaEmRede </p>
       <p>Até para a Semana!</p>
     </div>
   );
