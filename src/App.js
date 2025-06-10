@@ -37,6 +37,7 @@ import JaFosteCapaz from './components/atividades/modulo4/jaFosteCapaz';
 import AtividadeResumoMudanca from './components/atividades/modulo4/atividadeResumo';
 
 import AnsiedadeSOSPOD from './components/atividades/modulo5/podcast2';
+import AtividadeResumoRede from './components/atividades/modulo5/atividadeResumo';
 
 import CodigoDoPsicologo from './components/atividades/modulo6/codigoPsicologo';
 import NaoEstasSozinho from './components/atividades/modulo6/naoSozinho';
@@ -148,6 +149,8 @@ const App = () => {
 
           {/* Atividade módulo 5 */}
           <Route path="/modulos/:id/atividade/podcast2" element={<AnsiedadeSOSPOD/>} />
+          <Route path="/modulos/:id/atividade/atividade-resumo5" element={<AtividadeResumoRede/>} />
+
 
           {/* Atividade módulo 6 */}
           <Route path='/modulos/:id/atividade/codigo-psicologo' element={<CodigoDoPsicologo />} />
