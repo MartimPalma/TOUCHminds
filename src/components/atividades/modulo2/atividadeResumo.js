@@ -196,7 +196,8 @@ const AtividadeResumoModulo2 = () => {
                                                     onClick={() => !isDisabled && escolherOpcao(index)}
                                                     onMouseEnter={() => setHoverIndex(index)}
                                                     onMouseLeave={() => setHoverIndex(null)}
-                                                    className={`btn ${isSelected ? 'btn-primary' : 'btn-outline-secondary'} text-${isSelected ? 'white' : 'dark'} p-3 text-start`}
+                                                    className={`btn ${isSelected ? 'btn-primary' : 'btn-outline-secondary'} 
+                                                    text-${isSelected ? 'white' : 'dark'} p-3 text-start`}
                                                     style={{
                                                         backgroundColor: isSelected ? '#99CBC8' : hoverIndex === index ? '#5AAAA5' : '#ffffff',
                                                         color: isSelected ? 'white' : hoverIndex === index ? 'white' : '#99CBC8',
