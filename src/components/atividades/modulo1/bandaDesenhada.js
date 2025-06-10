@@ -164,7 +164,7 @@ const BandaDesenhada = () => {
                     </label>
                     <input
                       type="text"
-                      className={`form-control ${inputError && !ansiedadeSOS.trim() ? 'is-invalid' : ''}`}
+                      className={`form-control  ${inputError && !ansiedadeSOS.trim() ? 'is-invalid' : ''}`}
                       id="ansiedadeSOS"
                       value={ansiedadeSOS}
                       onChange={handleAnsiedadeSOSChange}

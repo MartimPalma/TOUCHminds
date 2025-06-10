@@ -77,13 +77,13 @@ export default function LoginModal({ onClose, onSwitchToSignup }) {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
-                style={{ borderRadius: "12px 0 0 12px" }}
+                style={{ borderRadius: "12px 0 0 12px"}}
               />
               <button
                 type="button"
                 className="btn btn-outline-secondary"
                 onClick={() => setMostrarSenha(!mostrarSenha)}
-                style={{ borderRadius: "0 12px 12px 0" }}
+                style={{ borderRadius: "0 12px 12px 0", border:' 2px solid #99CBC8', borderLeft: 'none'}}
               >
                 {mostrarSenha ? <EyeOff size={18} /> : <Eye size={18} />}
               </button>

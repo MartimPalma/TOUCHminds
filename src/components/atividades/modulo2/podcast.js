@@ -40,31 +40,31 @@ const PodcastTouchminds = () => {
 
             {/* PÁGINA 0 - INTRODUÇÃO */}
             {pagina === 0 && (
+
               <div className="text-center py-4">
+                <h2 className="fw-bold mb-4 text-start" style={{ color: "#234970" }}>
+                  Podcast TOUCHminds
+                </h2>
+                <p className="lead mb-3">
+                  <strong>Episódio: “O Peso Do Silêncio – Estigma, Ansiedade E Histórias Que Precisam De Ser Ouvidas”</strong>.
+                </p>
+                <p className="lead mb-3">
+                  <strong>Sê muito bem-vindo ou bem-vinda ao Podcast TOUCHminds!</strong>
+                </p>
+                <p className="lead mb-3">
+                 Nesta atividade, vamos ouvir um episódio do podcast <strong>TOUCHminds</strong> (podcast criado para a intervenção <strong>TOUCHminds</strong>).
+                </p>
                 <p className="lead mb-4">
-                  Sê muito bem-vindo(a) ao <strong>Podcast TOUCHminds</strong>!
+                  O episódio chama-se <strong>“O Peso do Silêncio”</strong> e traz <strong>cinco histórias reais</strong> de jovens e adultos que viveram de perto com a <strong>ansiedade</strong>.
                 </p>
-                <p className="mb-3">
-                  Nesta atividade, vais ouvir um episódio especial do podcast TOUCHminds — uma iniciativa criada para dar voz a histórias reais sobre saúde mental.
+                 <p className="lead mb-4">
+                  Vais perceber como, muitas vezes, o que impede alguém de procurar ajuda não é a <strong>ansiedade em si… mas sim o medo do julgamento, 
+                  da rejeição, daquilo que os outros vão pensar</strong> — ou seja, o <strong>estigma</strong>.
                 </p>
-                <p className="mb-3">
-                  O episódio chama-se <strong>“O Peso do Silêncio”</strong> e reúne relatos verdadeiros de jovens e adultos que viveram de perto com a ansiedade.
+                 <p className="lead mb-4">
+                  Ao ouvires estas histórias, vais poder <strong>refletir sobre a tua própria experiência ou a de quem está à tua volta</strong>.
                 </p>
-                <p className="mb-3">
-                  Vais perceber que, muitas vezes, o maior obstáculo não é a ansiedade em si, mas o medo do julgamento, da rejeição ou daquilo que os outros possam pensar — o <strong>estigma</strong>.
-                </p>
-                <p className="mb-4">
-                  Ao ouvires estas histórias, poderás refletir sobre a tua própria experiência ou sobre a de alguém próximo. Ouvir é o primeiro passo para compreender e ajudar.
-                </p>
-                <button className="btn btn-primary mt-2 px-4 py-2"
-                  style={{
-                    backgroundColor: "#66BFBF",
-                    color: "white",
-                    borderRadius: "8px",
-                    fontSize: "1.05rem",
-                    border: "none",
-                  }}
-                  onClick={avancarPagina}>
+                <button className="custom-btn-turquoise mt-2 px-4 py-2" onClick={avancarPagina}>
                   <i className="bi bi-play-fill me-2"></i> Vamos a isto?
                 </button>
               </div>
@@ -86,26 +86,10 @@ const PodcastTouchminds = () => {
                 </audio>
 
                 <div className="d-flex justify-content-between mt-4">
-                  <button className="btn btn-outline-secondary"
-                    style={{
-                      backgroundColor: "#E7C8C2",
-                      color: "white",
-                      borderRadius: "8px",
-                      fontSize: "1.05rem",
-                      border: "none"
-                    }}
-                    onClick={retrocederPagina}>
+                  <button className="custom-btn-pink" onClick={retrocederPagina}>
                     <i className="bi bi-arrow-left me-2"></i>Anterior
                   </button>
-                  <button className="btn btn-primary"
-                    style={{
-                      backgroundColor: "#66BFBF",
-                      color: "white",
-                      borderRadius: "8px",
-                      fontSize: "1.05rem",
-                      border: "none",
-                    }}
-                    onClick={avancarPagina}>
+                  <button className="custom-btn-turquoise" onClick={avancarPagina}>
                     Conclusão
                     <i className="bi bi-arrow-right ms-2"></i>
                   </button>
@@ -121,31 +105,32 @@ const PodcastTouchminds = () => {
                   Conclusão da Atividade
                 </h4>
                 <p className="lead mb-3">
-                  Chegamos ao fim deste episódio, e esperamos que ele tenha trazido reflexão e empatia.
+                  <strong>Chegamos ao fim deste episódio</strong>, e fica uma reflexão importante.
                 </p>
-                <p className="mb-3">
-                  A ansiedade faz parte da vida, mas o estigma que a rodeia torna-a ainda mais difícil de enfrentar. O medo de ser julgado ou de não ser compreendido pode levar ao silêncio — e esse silêncio pesa.
+                <p className="lead mb-3">
+                  O <strong>estigma associado à ansiedade</strong> é uma realidade presente na vida de muitas pessoas, criando <strong>barreiras difíceis de superar</strong>,
+                  como o <strong>medo de ser julgado</strong> e a <strong>vergonha de pedir ajuda</strong>.
                 </p>
-                <p className="mb-3">
-                  Falar sobre o que sentimos é um ato de coragem. Quando partilhamos as nossas experiências, damos espaço à compreensão e ajudamos a quebrar tabus.
+                <p className="lead mb-3">
+                  Esse medo, muitas vezes, leva ao <strong>isolamento</strong>, intensificando a sensação de que é necessário enfrentar a ansiedade sozinho.
+                  Mas a verdade é que, quando <strong>não se fala sobre o que se sente</strong>, o <strong>sofrimento só tende a crescer</strong>.
                 </p>
-                <p className="mb-3">
-                  Lembra-te: procurar ajuda não é sinal de fraqueza, mas sim de maturidade e cuidado contigo próprio(a). Todos merecem ser ouvidos e acolhidos.
+                <p className="lead mb-3">
+                  A <strong>ansiedade não é um sinal de fraqueza</strong>; é uma <strong>resposta natural do corpo</strong>, e todos passam por momentos em que ela se torna mais intensa.
                 </p>
-                <p className="mb-4">
-                  Ao desconstruir o estigma, contribuímos para um mundo mais empático, solidário e saudável para todos.
+                <p className="lead mb-4">
+                  Ao <strong>falar abertamente sobre a ansiedade</strong>, <strong>desmistifica-se o tema</strong> e cria-se um ambiente onde as pessoas se sentem mais à vontade para <strong>partilhar as suas
+                    experiências sem medo de serem julgadas</strong>.
+                </p>
+                <p className="lead mb-3">
+                  Através da <strong>partilha de histórias e vivências</strong>, é possível <strong>quebrar preconceitos</strong>, promover <strong>empatia</strong> e cultivar uma comunidade mais <strong>solidária e acolhedora</strong>.
+                </p>
+                <p className="lead mb-3">
+                  <strong>Lembra-te</strong>: isso <strong>não só ajuda a diminuir o estigma</strong>, mas também <strong>contribui para o bem-estar de todos</strong>.
                 </p>
 
                 <div className="d-flex justify-content-between mt-4">
-                  <button className="btn btn-outline-secondary"
-                    style={{
-                      backgroundColor: "#E7C8C2",
-                      color: "white",
-                      borderRadius: "8px",
-                      fontSize: "1.05rem",
-                      border: "none"
-                    }}
-                    onClick={retrocederPagina}>
+                  <button className="custom-btn-pink" onClick={retrocederPagina}>
                     <i className="bi bi-arrow-left me-2"></i>Anterior
                   </button>
                   <AtividadeProgressao

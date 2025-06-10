@@ -139,20 +139,20 @@ export default function SignupModal({ onClose, onSwitchToLogin }) {
 
           <div className="mb-3">
             <label className="form-label">Palavra-passe*</label>
-            <div className="input-group">
+             <div className="input-group" style={{ borderRadius: "12px", overflow: "hidden" }}>
               <input
                 type={mostrarSenha ? "text" : "password"}
                 className="form-control"
-                style={{ borderRadius: "12px" }}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
+                style={{ borderRadius: "12px 0 0 12px"}}
               />
               <button
                 type="button"
                 className="btn btn-outline-secondary"
-                style={{ borderRadius: "12px" }}
                 onClick={() => setMostrarSenha(!mostrarSenha)}
+                style={{ borderRadius: "0 12px 12px 0", border:' 2px solid #99CBC8', borderLeft: 'none'}}
               >
                 {mostrarSenha ? <EyeOff size={18} /> : <Eye size={18} />}
               </button>

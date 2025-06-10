@@ -57,33 +57,35 @@ const FerramentasMudanca = () => {
 
             {/* PÁGINA 0: INSTRUÇÃO */}
             {pagina === 0 && (
-              <div className="text-center">
-                <h4 className="fw-bold mb-4">Ferramentas de Mudança</h4>
-                <p>
-                  Sê muito bem-vindo ou bem-vinda à atividade “Ferramentas de Mudança”!
+              <div className="text-start py-4">
+                <h2 className="fw-bold mb-4" style={{ color: "#234970" }}>Ferramentas de Mudança</h2>
+                <p className="mb-3 lead">
+                  <strong>Sê muito bem-vindo ou bem-vinda à atividade “Ferramentas de Mudança”!</strong>
                 </p>
-                <p>
-                  Nesta atividade, vamos explorar o ciclo da mudança, que nos ajuda a compreender melhor o que acontece quando lidamos com a ansiedade e outros desafios do dia-a-dia e sentimos que não sabemos por onde começar.
+                <p className="mb-3 lead">
+                  Nesta atividade, vamos explorar o <strong>ciclo da mudança</strong>, que nos ajuda a compreender melhor o que acontece quando lidamos com a <strong>ansiedade</strong> e outros <strong>desafios do dia-a-dia</strong> e sentimos que <strong>não sabemos por onde começar</strong>.
                 </p>
-                <p>
-                  O ciclo de mudança ajuda-nos a perceber que a evolução não acontece de uma só vez, mas sim aos poucos, com cada pequeno passo a fazer a diferença.
+                <p className="mb-3 lead">
+                  O ciclo de mudança ajuda-nos a perceber que a <strong>evolução</strong> não acontece de uma só vez, mas sim <strong>aos poucos</strong>, com cada <strong>pequeno passo</strong> a fazer a diferença.
                 </p>
-                <p>
-                  Durante esta atividade, vais conhecer cinco fases importantes que fazem parte deste processo — desde o momento em que ainda não sabemos bem o que se passa, até ao momento em que conseguimos manter as mudanças que nos fazem bem.
+                <p className="mb-3 lead">
+                  Durante esta atividade, vais conhecer <strong>cinco fases importantes</strong> que fazem parte deste processo — desde o momento em que ainda <strong>não sabemos bem o que se passa</strong>, até ao momento em que conseguimos <strong>manter as mudanças que nos fazem bem</strong>.
                 </p>
-                <p>
-                  Para te ajudar a refletir sobre cada fase, vamos usar ferramentas simbólicas — como a lupa, a bússola, o mapa, a âncora ou o martelo — que representam atitudes ou gestos que podem ser úteis em diferentes momentos.
+                <p className="mb-4 lead">
+                  Para te ajudar a <strong>refletir</strong> sobre cada fase, vamos usar <strong>ferramentas simbólicas</strong> — como a <strong>lupa</strong>, a <strong>bússola</strong>, o <strong>mapa</strong>, a <strong>âncora</strong> ou o <strong>martelo</strong> — que representam <strong>atitudes ou gestos</strong> que podem ser úteis em diferentes momentos.
                 </p>
-                <button className="btn btn-primary mt-3 px-4 py-2" onClick={() => setPagina(1)}>
+                <div className="text-center">
+                <button className="custom-btn-turquoise mt-2 px-4 py-2" onClick={() => setPagina(1)}>
                   Vamos começar?
                 </button>
+                </div>
               </div>
             )}
 
             {/* PÁGINA 1: FERRAMENTAS */}
             {pagina === 1 && (
               <div className="text-center">
-                <h4 className="fw-bold mb-4">Explora as Ferramentas</h4>
+                <h4 className="fw-bold mb-4" style={{ color: "#234970" }}>Explora as Ferramentas</h4>
                 <p>Clica em cada ferramenta para saberes mais. Só podes fechar o áudio após ouvi-lo até ao fim.</p>
                 <div className="d-flex flex-wrap justify-content-center gap-3 mt-3">
                   <div className="row row-cols-2 row-cols-md-3 g-4 justify-content-center">
@@ -107,11 +109,11 @@ const FerramentasMudanca = () => {
 
                 </div>
                 <div className="d-flex justify-content-between mt-4">
-                  <button className="btn btn-outline-secondary" onClick={() => setPagina(0)}>
-                    Anterior
+                  <button className="custom-btn-pink" onClick={() => setPagina(0)}>
+                   <i className="bi bi-arrow-left me-2"></i>Anterior
                   </button>
-                  <button className="btn btn-primary" onClick={() => setPagina(2)}>
-                    Conclusão
+                  <button className="custom-btn-turquoise" onClick={() => setPagina(2)}>
+                    Conclusão<i className="bi bi-arrow-right ms-2"></i>
                   </button>
                 </div>
               </div>
@@ -120,26 +122,26 @@ const FerramentasMudanca = () => {
             {/* PÁGINA 2: CONCLUSÃO */}
             {pagina === 2 && (
               <>
-                <h4 className="fw-bold mb-4">Conclusão da Atividade</h4>
-                <p>
-                  Agora que exploraste o ciclo da mudança e experimentaste cada uma das ferramentas simbólicas, é importante parares um pouco e pensares no que levas desta viagem.
+                <h4 className="fw-bold mb-4 text-start" style={{ color: "#234970" }}>Conclusão da Atividade</h4>
+                <p className="mb-3 lead">
+                  <strong>Agora que exploraste o ciclo da mudança</strong> e experimentaste cada uma das <strong>ferramentas simbólicas</strong>, é importante parares um pouco e pensares no que levas desta <strong>viagem</strong>.
                 </p>
-                <p>
-                  Percebeste que mudar não acontece de um dia para o outro — é um processo. Um caminho com momentos de dúvida, reflexão, pequenas vitórias e, por vezes, tropeços.
+                <p className="mb-3 lead">
+                  Percebeste que <strong>mudar não acontece de um dia para o outro</strong> — é um <strong>processo</strong>. Um <strong>caminho</strong> com momentos de <strong>dúvida</strong>, <strong>reflexão</strong>, <strong>pequenas vitórias</strong> e, por vezes, <strong>tropeços</strong>.
                 </p>
-                <p>
-                  Cada fase do ciclo tem o seu valor, e não há uma forma "certa" de passar por elas. O mais importante é ires prestando atenção ao que sentes, ao que precisas e ao que te faz bem.
+                <p className="mb-3 lead">
+                  Cada fase do ciclo tem o seu <strong>valor</strong>, e <strong>não há uma forma "certa"</strong> de passar por elas. O mais importante é ires <strong>prestando atenção ao que sentes</strong>, ao que <strong>precisas</strong> e ao que <strong>te faz bem</strong>.
                 </p>
-                <p>
-                  Tal como usaste a lupa para observar mais de perto, a bússola para refletir sobre o caminho, o mapa para planear, o martelo para agir, a âncora para manter, e caso precises podes recorrer à borracha para reajustar, lembra-te: todas estas ferramentas estão sempre contigo.
+                <p className="mb-3 lead">
+                  Tal como usaste a <strong>lupa</strong> para observar mais de perto, a <strong>bússola</strong> para refletir sobre o caminho, o <strong>mapa</strong> para planear, o <strong>martelo</strong> para agir, a <strong>âncora</strong> para manter, e caso precises podes recorrer à <strong>borracha</strong> para reajustar, lembra-te: <strong>todas estas ferramentas estão sempre contigo</strong>.
                 </p>
-                <p>Podes usá-las quando precisares.</p>
-                <p>
-                  Não te esqueças: não há problema nenhum em precisar de voltar atrás para seguir em frente.
+                <p className="mb-3 lead"><strong>Podes usá-las quando precisares.</strong></p>
+                <p className="mb-3 lead">
+                  <strong>Não te esqueças: não há problema nenhum em precisar de voltar atrás para seguir em frente.</strong>
                 </p>
                 <div className="d-flex justify-content-between mt-4">
-                  <button className="btn btn-outline-secondary" onClick={() => setPagina(1)}>
-                    Anterior
+                  <button className="custom-btn-pink" onClick={() => setPagina(1)}>
+                    <i className="bi bi-arrow-left me-2"></i>Anterior
                   </button>
                   <AtividadeProgressao
                     moduloId={moduloId}

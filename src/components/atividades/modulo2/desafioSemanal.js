@@ -87,6 +87,10 @@ const AtividadeSemanal2 = () => {
         Pode ser algo que ouças em <b>conversas</b>, vejas nas <b>redes sociais</b> ou observes em situações do teu <b>dia-a-dia</b>.<br />
         Depois de a <b>notares</b>, convido-te a <b>refletir</b> sobre como poderias <b>intervir</b> ou <b>apoiar</b> a pessoa envolvida e podes <b>registar</b> aqui ou simplesmente refletires sobre isso.<br />
         Podes usar esta <b>tabela</b> para registares:
+        <ul style={{ marginTop: "0px" }}>
+          <li><b>Situação Observada:</b> Descrição breve da situação, como uma conversa ou um comentário feito por alguém.</li>
+          <li><b>Reflexão/Resposta Empática:</b> Reflete como poderias responder ou agir de forma empática.</li>
+        </ul>
       </div>
 
       <div className="table-responsive mb-4">
@@ -146,10 +150,7 @@ const AtividadeSemanal2 = () => {
           </tbody>
         </table>
         
-        <ul style={{ marginTop: "0px" }}>
-          <li><b>Situação Observada:</b> Descrição breve da situação, como uma conversa ou um comentário feito por alguém.</li>
-          <li><b>Reflexão/Resposta Empática:</b> Reflete como poderias responder ou agir de forma empática.</li>
-        </ul>
+        
         
         <div className="mt-3">
           Ao <b>tirares estes minutos para refletir</b> sobre o que aprendeste com essas <b>observações</b>, estarás a mudar a tua <b>perceção</b> sobre a ansiedade e o <b>estigma</b> associado a ela.<br />
