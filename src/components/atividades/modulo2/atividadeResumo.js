@@ -5,16 +5,16 @@ import Sidebar from "../../sidebar";
 import { UserContext } from "../../../App";
 import modulos from '../../../data/modulos';
 import AtividadeProgressao from '../atividadeProgressao';
-import Modal from 'react-bootstrap/Modal';
+import {Modal , Button } from 'react-bootstrap';
 
 
 const AtividadeResumoModulo2 = () => {
     const { id: moduloId } = useParams();
     const { updateUserData } = useContext(UserContext);
     const [pagina, setPagina] = useState(0);
-    const [modalAberto, setModalAberto] = useState(false);
     const [mensagemPopUp, setMensagemPopUp] = useState("");
     const [mostrarOpcoes, setMostrarOpcoes] = useState(false);
+    const [modalShow, setModalShow] = useState(false);
     const [opcaoSelecionada, setOpcaoSelecionada] = useState(null);
     const [hoverIndex, setHoverIndex] = useState(null);
 
@@ -95,7 +95,7 @@ const AtividadeResumoModulo2 = () => {
         const explicacao = cenarios[pagina - 1].explicacao;
         setMensagemPopUp(explicacao);
         setOpcaoSelecionada(index);
-        setModalAberto(true);
+        setModalShow(true);
     };
 
 
@@ -274,17 +274,47 @@ const AtividadeResumoModulo2 = () => {
                 </div>
             </div>
 
-            <Modal show={modalAberto} onHide={() => setModalAberto(false)} centered>
-                <Modal.Header closeButton>
-                    <Modal.Title>Reflexão</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>{mensagemPopUp}</Modal.Body>
-                <Modal.Footer>
-                    <button className="custom-btn-turquoise" onClick={() => setModalAberto(false)}>
-                        Continuar
-                    </button>
-                </Modal.Footer>
+            <Modal show={modalShow} onHide={() => setModalShow(false)} centered>
+                <Modal.Header
+                            closeButton
+                            style={{
+                              backgroundColor: "#99CBC8",
+                              borderBottom: "none",
+                              color: "#fff",
+                            }}
+                          >
+                            <Modal.Title style={{ fontWeight: "600" }}>
+                              Reflexão
+                            </Modal.Title>
+                          </Modal.Header>
+                            <Modal.Body className="text-center">
+                                    {mensagemPopUp}
+                            </Modal.Body>
+                <Modal.Footer
+                            style={{
+                              borderTop: "none",
+                              backgroundColor: "#F5FDFC",
+                              justifyContent: "center",
+                            }}
+                          >
+                            <Button
+                              onClick={() => {
+                                setModalShow(false);
+                              }}
+                              style={{
+                                backgroundColor: "#234970",
+                                borderColor: "#234970",
+                                borderRadius: "20px",
+                                padding: "0.5rem 1.5rem",
+                                fontWeight: "500",
+                              }}
+                            >
+                              Fechar
+                            </Button>
+                          </Modal.Footer>
             </Modal>
+
+           
 
         </div>
     );

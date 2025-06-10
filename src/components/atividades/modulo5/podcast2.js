@@ -63,7 +63,7 @@ const AnsiedadeSOSPOD = () => {
             {/* ÁUDIO PAUSADO / CONTEÚDO PRINCIPAL */}
             {pagina === 1 && (
               <>
-                <h4 className="fw-bold mb-4" style={{ color: "#234970" }}>Episódio em reprodução</h4>
+                <h4 className="fw-bold mb-4" style={{ color: "#234970" }}>Quando o Corpo Fala Mais Alto</h4>
                 <div className="text-center mb-4">
                   <img
                     src="/imgs/podcast_cover.png"
@@ -71,19 +71,16 @@ const AnsiedadeSOSPOD = () => {
                     className="img-fluid rounded mb-3"
                     style={{ maxWidth: "300px" }}
                   />
-                  <p className="text-muted">
-                    Os conteúdos gerados por IA poderão estar incorretos.
+                  <p>
                   </p>
                   {/* Simulação do player (podes substituir por um real depois) */}
-                  <div className="btn-group mt-2">
-                    <button className="btn btn-outline-primary">
-                      <i className="bi bi-play-fill"></i> Reproduzir
-                    </button>
-                    <button className="btn btn-outline-secondary">
-                      <i className="bi bi-pause-fill"></i> Pausar
-                    </button>
-                  </div>
+                   <audio controls style={{ width: "100%", maxWidth: "600px" }}>
+                  <source src="/audios/abracar-me-a-mim-mesmo.mp3" type="audio/mpeg" />
+                  O teu navegador não suporta a reprodução de áudio.
+                </audio>
                 </div>
+
+
                 <div className="d-flex justify-content-between">
                   <button className="custom-btn-pink" onClick={retrocederPagina}>
                     <i className="bi bi-arrow-left me-2"></i>Anterior

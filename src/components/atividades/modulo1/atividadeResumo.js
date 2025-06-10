@@ -26,24 +26,22 @@ const AtividadeResumo = () => {
   const atividade = modulo?.atividades.find(a => a.url === "atividade-resumo");
 
   useEffect(() => {
-    // Clean up warning when page changes
     setShowWarning(false);
   }, [pagina]);
 
   const avancarPagina = () => {
-    // Check if user is on a quiz page (2, 3, or 4) and hasn't made a choice
     if (pagina >= 2 && pagina <= 4) {
       const questionIndex = pagina - 2;
       if (!userChoices[questionIndex]) {
         setShowWarning(true);
-        setTimeout(() => setShowWarning(false), 3000); // Hide warning after 3 seconds
+        setTimeout(() => setShowWarning(false), 3000); 
         return;
       }
     }
     setPagina((prev) => prev + 1);
   };
 
-  const [hoverIndex, setHoverIndex] = useState(null); // State to track which option is being hovered
+  const [hoverIndex, setHoverIndex] = useState(null); 
 
   const retrocederPagina = () => setPagina((prev) => prev - 1);
 
@@ -58,9 +56,8 @@ const AtividadeResumo = () => {
   const handleOptionClick = (feedbackImage, option, questionIndex) => {
     setModalContent(feedbackImage);
     setShowModal(true);
-    setSelectedOption(option.text.substring(0, 20)); // Store abbreviated version to identify selection
+    setSelectedOption(option.text.substring(0, 20)); 
 
-    // Store user choice for the current question (store the entire option object)
     setUserChoices(prev => {
       const newChoices = {
         ...prev,
@@ -69,7 +66,6 @@ const AtividadeResumo = () => {
       return newChoices;
     });
 
-    // Hide warning if it was showing
     if (showWarning) {
       setShowWarning(false);
     }
@@ -79,7 +75,6 @@ const AtividadeResumo = () => {
     setShowModal(false);
   };
 
-  // Quiz content for pages 2, 3, and 4
   const quizPages = [
     {
       title: "Chegada ao Clube",
@@ -169,40 +164,71 @@ const AtividadeResumo = () => {
     if (!show) return null;
 
     return (
-      <div className="modal fade show" style={{ display: 'block', backgroundColor: 'rgba(0,0,0,0.5)' }}>
-        <div className="modal-dialog modal-dialog-centered modal-lg">
-          <div className="modal-content">
-            <div className="modal-header fw-bold" style={{ color: "black" }}>
-              <h5 className="modal-title">Resultado da tua escolha</h5>
-            </div>
-            <div className="modal-body pt-4 ps-4 pe-4 text-center">
-              <img
-                src={content}
-                alt="Resultado da escolha"
-                className="img-fluid"
-                style={{ maxWidth: "350px", height: "auto" }}
-              />
-            </div>
-            <div className="modal-footer">
-              <button type="button" className="custom-btn-turquoise"
-                onClick={() => {
-                  onClose();
-                  /*avancarPagina(); // Automatically advance to the next page after closing the modal*/
-                }}>Próximo</button>
+        <div
+          className="modal fade show"
+          style={{
+            display: "block",
+            backgroundColor: "rgba(0,0,0,0.5)",
+          }}
+        >
+          <div className="modal-dialog modal-dialog-centered modal-lg">
+            <div className="modal-content">
+              <div
+                className="modal-header"
+                style={{
+                  backgroundColor: "#99CBC8",
+                  borderBottom: "none",
+                  color: "#fff",
+                }}
+              >
+                <h5 className="modal-title" style={{ fontWeight: "600" }}>
+                  Resultado da tua escolha
+                </h5>
+                <button
+                  type="button"
+                  className="btn-close"
+                  style={{ filter: "invert(1)" }}
+                  aria-label="Close"
+                  onClick={onClose}
+                ></button>
+              </div>
+              <div className="modal-body pt-4 ps-4 pe-4 text-center">
+                <img
+                  src={content}
+                  alt="Resultado da escolha"
+                  className="img-fluid"
+                  style={{ maxHeight: "300px", objectFit: "contain" }}
+                />
+              </div>
+              <div
+                className="modal-footer"
+                style={{
+                  borderTop: "none",
+                  backgroundColor: "#F5FDFC",
+                  justifyContent: "center",
+                }}
+              >
+                <button
+                  type="button"
+                  onClick={onClose}
+                  style={{
+                    backgroundColor: "#234970",
+                    borderColor: "#234970",
+                    color: "white",
+                    borderRadius: "20px",
+                    padding: "0.5rem 1.5rem",
+                    fontWeight: "500",
+                  }}
+                >
+                  Próximo
+                </button>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    );
+      );
   };
 
-  // Debug function to check if an option is selected
-  const isOptionSelected = (pageIdx, option) => {
-    if (!userChoices[pageIdx]) return false;
-
-    // Compare text values as a simple way to compare objects
-    return userChoices[pageIdx].text === option.text;
-  };
 
   return (
     <div className="container-fluid vh-100 p-0 font-poppins">
