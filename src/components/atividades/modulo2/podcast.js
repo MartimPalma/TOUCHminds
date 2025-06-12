@@ -73,7 +73,7 @@ const PodcastTouchminds = () => {
             {/* PÁGINA 1 */}
             {pagina === 1 && (
               <div className="text-center py-4">
-                <h4 className="fw-bold mb-4" style={{ color: "#234970" }}>
+                <h4 className="fw-bold mb-4 text-start" style={{ color: "#234970" }}>
                   Episódio: O Peso do Silêncio
                 </h4>
                 <p className="lead mb-3">

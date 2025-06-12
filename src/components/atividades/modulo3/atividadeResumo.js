@@ -86,7 +86,14 @@ const AtividadeResumoCarta = () => {
               <div>
                 <h5 className="fw-bold mb-3">Carta</h5>
 
-                <div className="alert alert-light border mt-4 white-space-pre-wrap" style={{ whiteSpace: 'pre-wrap', backgroundColor: '#fbf9f9' }}>
+                <div
+                  className="alert border mt-4 white-space-pre-wrap"
+                  style={{
+                    whiteSpace: 'pre-wrap',
+                    backgroundColor: '#fbf9f9',
+                    color: '#000', // opcional: garante legibilidade sobre fundo claro
+                    borderColor: '#ddd', // opcional: borda mais suave
+                  }}>
                   <h5 className="fw-bold">Pré-visualização da Carta</h5>
                   <p>{gerarConteudoCarta()}</p>
                 </div>
