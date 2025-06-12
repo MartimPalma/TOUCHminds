@@ -74,18 +74,18 @@ const LandingPage = () => {
 
       <img src={logo} alt="TOUCHminds Logo" className="mt-4 mx-auto d-block" style={{ width: "10%" }} />
 
-      {/* Hero */}
-      <section className="container py-5 d-flex align-items-center ">
-        <div className="text-center text-md-start w-50">
-          <h1 className="fw-bold font-poppins py-4" style={{ color: "#99CBC8", fontSize: "clamp(1.8rem, 4vw, 2.5rem)" }}>
-            Procurar ajuda é o começo da mudança!
-          </h1>
-          <p className="text-muted mt-4 font-lato py-3">
-              Bem-vindo/a ao, TOUCHminds. Procurar ajuda é o começo da mudança! <br></br>O TOUCHminds oferece um programa online gratuito destinado a ajudar os adolescentes entre os 15 e os 17 anos a compreender a ansiedade e a promover a procurar de ajuda          </p>
-          <div className="py-4 ">
-            <div className="py-4">
+      <section className="container py-5">
+        <div className="row align-items-center">
+          <div className="col-12 col-md-6 text-center text-md-start">
+            <h1 className="fw-bold font-poppins py-3" style={{ color: "#99CBC8", fontSize: "clamp(1.8rem, 4vw, 2.5rem)" }}>
+              Procurar ajuda é o começo da mudança!
+            </h1>
+            <p className="text-muted font-lato py-3">
+              Bem-vindo/a ao TOUCHminds. O TOUCHminds oferece um programa online gratuito destinado a ajudar os adolescentes entre os 15 e os 17 anos a compreender a ansiedade e a promover a procura de ajuda.
+            </p>
+            <div className="py-3">
               <button
-                className="btn btn-lg font-poppins fw-bold py-3 px-5"
+                className="btn font-poppins fw-bold py-2 px-4 py-md-3 px-md-5 btn-lg"
                 style={{
                   backgroundColor: "#E7C8C2",
                   borderColor: "#E7C8C2",
@@ -93,22 +93,27 @@ const LandingPage = () => {
                   borderRadius: "12px",
                   boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
                   transition: "transform 0.2s",
+                  fontSize: "clamp(0.8rem, 1.5vw, 1.1rem)"
                 }}
                 onClick={handleOpenSignup}
-                onMouseEnter={e => e.currentTarget.style.transform = 'scale(1.05)'}
-                onMouseLeave={e => e.currentTarget.style.transform = 'scale(1)'}
+                onMouseEnter={e => (e.currentTarget.style.transform = 'scale(1.05)')}
+                onMouseLeave={e => (e.currentTarget.style.transform = 'scale(1)')}
               >
                 Começa a tua jornada agora
               </button>
+
             </div>
-
-
+          </div>
+          <div className="d-none d-md-block w-50 text-center">
+            <img
+              src={''}
+              alt="Ilustração do programa"
+              className="img-fluid w-75 mx-auto d-block"
+            />
           </div>
         </div>
-        <div className="w-50 text-center">
-          <img src={""} alt="Colocar animação ou algo mais apelativo" className="img-fluid w-50" />
-        </div>
       </section>
+
 
       <div className="text-center pb-4" style={{ color: "#234970" }}>
         <a href="#faq" style={{ textDecoration: "none", color: "#234970" }}>
@@ -166,28 +171,6 @@ const LandingPage = () => {
           <ModuleCard image={mod6} title="Módulo 6" subtitle="Um Novo Começo!" description="Conhece o papel do psicólogo, compreende as etapas da psicoterapia e explora recursos disponíveis para pedires ajuda sempre que precisares." />
         </div>
       </section>
-
-      {/* Call to Action 
-      <section className="text-start py-5 ps-5" style={{ backgroundColor: "#E7C8C2", color: "#ffffff" }}>
-        <p className="fs-2 ms-5 fw-semibold font-poppins">Dá o primeiro passo para o teu bem-estar mental!</p>
-        <p className="mb-5 ms-5 fs-3 mt-2 font-poppins" style={{ color: "#234970" }}>Regista-te agora no TOUCHminds!</p>
-        <div className="d-flex ms-5 mt-4 mb-2">
-          <button
-            className="btn btn-lg me-3 font-poppins fw-semibold"
-            style={{ backgroundColor: "#ffffff", color: "#99CBC8", border: "none" }}
-            onClick={handleOpenSignup}
-          >
-            Criar Conta
-          </button>
-          <button
-            className="btn btn-lg font-poppins fw-semibold"
-            style={{ backgroundColor: "white", color: "#C8C2AF", border: "none" }}
-            onClick={handleOpenLogin}
-          >
-            Entrar
-          </button>
-        </div>
-      </section>*/}
 
       <Footer />
     </div>
