@@ -18,7 +18,7 @@ const NaoEstasSozinho = () => {
 
   const handleDownload = () => {
     const link = document.createElement("a");
-    link.href = "/imgs/flyers/flyer-ajuda.png"; // Caminho fictício
+    link.href = "/imgs/modulo6/flyer/flyer.png"; 
     link.download = "nao_estas_sozinho_flyer.png";
     document.body.appendChild(link);
     link.click();
