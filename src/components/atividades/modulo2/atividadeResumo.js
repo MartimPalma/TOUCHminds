@@ -5,7 +5,7 @@ import Sidebar from "../../sidebar";
 import { UserContext } from "../../../App";
 import modulos from '../../../data/modulos';
 import AtividadeProgressao from '../atividadeProgressao';
-import {Modal , Button } from 'react-bootstrap';
+import { Modal, Button } from 'react-bootstrap';
 
 
 const AtividadeResumoModulo2 = () => {
@@ -189,21 +189,33 @@ const AtividadeResumoModulo2 = () => {
                                         {cenarios[pagina - 1].opcoes.map((opcao, index) => {
                                             const isSelected = opcaoSelecionada === index;
                                             const isDisabled = opcaoSelecionada !== null && !isSelected;
-
+                                            const isHovered = hoverIndex === index;
                                             return (
                                                 <div
                                                     key={index}
-                                                    onClick={() => !isDisabled && escolherOpcao(index)}
-                                                    onMouseEnter={() => setHoverIndex(index)}
-                                                    onMouseLeave={() => setHoverIndex(null)}
-                                                    className={`btn ${isSelected ? 'btn-primary' : 'btn-outline-secondary'} 
-                                                    text-${isSelected ? 'white' : 'dark'} p-3 text-start`}
+                                                    onClick={() => !isDisabled && escolherOpcao(index, cenarios[pagina - 1].feedback)}
+                                                    onMouseEnter={() => !isDisabled && setHoverIndex(index)}
+                                                    onMouseLeave={() => !isDisabled && setHoverIndex(null)}
+                                                    className="p-3 text-start"
                                                     style={{
-                                                        backgroundColor: isSelected ? '#99CBC8' : hoverIndex === index ? '#5AAAA5' : '#ffffff',
-                                                        color: isSelected ? 'white' : hoverIndex === index ? 'white' : '#99CBC8',
-                                                        border: `2px solid ${isSelected ? '#99CBC8' : '#99CBC8'}`,
+                                                        backgroundColor: isSelected
+                                                            ? '#99CBC8'
+                                                            : isHovered
+                                                                ? '#5AAAA5'
+                                                                : '#ffffff',
+                                                        color: isSelected
+                                                            ? 'white'
+                                                            : isHovered
+                                                                ? 'white'
+                                                                : '#000000', // texto preto por defeito
+                                                        border: isSelected
+                                                            ? '1px solid #99CBC8'
+                                                            : isHovered
+                                                                ? '1px solid #5AAAA5'
+                                                                : '1px solid #99CBC8',
                                                         borderRadius: '10px',
-                                                        fontWeight: isSelected ? '300' : 'normal',
+                                                        cursor: isDisabled ? 'default' : 'pointer',
+                                                        fontWeight: isSelected ? '200' : 'normal',
                                                         transition: 'all 0.3s ease',
                                                     }}
                                                 >
@@ -227,15 +239,15 @@ const AtividadeResumoModulo2 = () => {
                                 <h4 className="fw-bold mb-4 text-start" style={{ color: "#234970" }}>Conclusão da Atividade</h4>
                                 <div className="text-start lead">
                                     <p><strong>Terminaste a visita pela Sala do Estigma!</strong> Durante esta atividade, exploraste diferentes situações do dia a dia em que o <strong>estigma</strong> em relação à <strong>ansiedade</strong> pode surgir.
-                                        Viste como <strong>palavras</strong>, <strong>olhares</strong> ou a <strong>ausência de apoio</strong> podem afetar profundamente quem vive com 
-                                        ansiedade — e também como um gesto de <strong>empatia</strong> pode transformar uma situação difícil num 
+                                        Viste como <strong>palavras</strong>, <strong>olhares</strong> ou a <strong>ausência de apoio</strong> podem afetar profundamente quem vive com
+                                        ansiedade — e também como um gesto de <strong>empatia</strong> pode transformar uma situação difícil num
                                         momento de <strong>acolhimento</strong> e <strong>compreensão</strong>.</p>
 
-                                    <p><strong>A ansiedadenão é uma falha, nem uma fraqueza</strong> . É uma resposta <strong>humana</strong>, <strong>natural</strong>, e todos merecem ser 
-                                    tratados com <strong>respeito</strong>, <strong>apoio</strong> e <strong>empatia</strong>.</p>
+                                    <p><strong>A ansiedadenão é uma falha, nem uma fraqueza</strong> . É uma resposta <strong>humana</strong>, <strong>natural</strong>, e todos merecem ser
+                                        tratados com <strong>respeito</strong>, <strong>apoio</strong> e <strong>empatia</strong>.</p>
 
                                     <p>Ao escolheres <strong>intervir de forma positiva</strong> em cada cenário, mostraste que tens o poder de contribuir para um ambiente mais
-                                         <strong>seguro</strong> e <strong>inclusivo</strong>, onde ninguém se sinta <strong>sozinho</strong> nas suas <strong>dificuldades</strong>.</p>
+                                        <strong>seguro</strong> e <strong>inclusivo</strong>, onde ninguém se sinta <strong>sozinho</strong> nas suas <strong>dificuldades</strong>.</p>
 
                                     <p><strong>Lembra-te:</strong> combater o estigma começa com <strong>pequenas ações</strong> — e começa <strong>contigo</strong>.</p>
                                 </div>
@@ -255,7 +267,7 @@ const AtividadeResumoModulo2 = () => {
                         )}
 
                         <div className="d-flex justify-content-between mt-4">
-                            {pagina > 0 &&  pagina <= cenarios.length && (
+                            {pagina > 0 && pagina <= cenarios.length && (
                                 <button
                                     className="custom-btn-pink" onClick={retroceder}
                                 >
@@ -277,45 +289,45 @@ const AtividadeResumoModulo2 = () => {
 
             <Modal show={modalShow} onHide={() => setModalShow(false)} centered>
                 <Modal.Header
-                            closeButton
-                            style={{
-                              backgroundColor: "#99CBC8",
-                              borderBottom: "none",
-                              color: "#fff",
-                            }}
-                          >
-                            <Modal.Title style={{ fontWeight: "600" }}>
-                              Reflexão
-                            </Modal.Title>
-                          </Modal.Header>
-                            <Modal.Body className="text-start">
-                                    {mensagemPopUp}
-                            </Modal.Body>
+                    closeButton
+                    style={{
+                        backgroundColor: "#99CBC8",
+                        borderBottom: "none",
+                        color: "#fff",
+                    }}
+                >
+                    <Modal.Title style={{ fontWeight: "600" }}>
+                        Reflexão
+                    </Modal.Title>
+                </Modal.Header>
+                <Modal.Body className="text-start">
+                    {mensagemPopUp}
+                </Modal.Body>
                 <Modal.Footer
-                            style={{
-                              borderTop: "none",
-                              backgroundColor: "#F5FDFC",
-                              textAlign: "center",
-                            }}
-                          >
-                            <Button
-                              onClick={() => {
-                                setModalShow(false);
-                              }}
-                              style={{
-                                backgroundColor: "#234970",
-                                borderColor: "#234970",
-                                borderRadius: "20px",
-                                padding: "0.5rem 1.5rem",
-                                fontWeight: "500",
-                              }}
-                            >
-                              Fechar
-                            </Button>
-                          </Modal.Footer>
+                    style={{
+                        borderTop: "none",
+                        backgroundColor: "#F5FDFC",
+                        textAlign: "center",
+                    }}
+                >
+                    <Button className="custom-btn-complete"
+                        onClick={() => {
+                            setModalShow(false);
+                        }}
+                        style={{
+                            backgroundColor: "#234970",
+                            borderColor: "#234970",
+                            borderRadius: "8px",
+                            padding: "0.5rem 1.5rem",
+                            fontWeight: "500",
+                        }}
+                    >
+                        Fechar
+                    </Button>
+                </Modal.Footer>
             </Modal>
 
-           
+
 
         </div>
     );

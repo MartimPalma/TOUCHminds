@@ -106,7 +106,7 @@ const LinhaAnsiedade = () => {
                   <h4 className="fw-bold mb-3" style={{ color: "#234970" }}>Linha da Ansiedade</h4>
                   
                   <div className="p-4 mb-4 rounded" style={{ backgroundColor: "#fbf9f9" }}> {/* Alterei o tom da caixa de texto, caso seja para ficar*/}
-                    <h5 className="" style={{fontWeight:'500'}}>Situação:</h5>
+                    <h5 className="lead" style={{fontWeight:'500'}}>Situação:</h5>
                     <p className="lead mb-0 fs-5">A Maria não gosta de fazer apresentações orais, mas amanhã terá de apresentar um trabalho de grupo na aula de português.</p>
                   </div>
 
@@ -183,25 +183,25 @@ const LinhaAnsiedade = () => {
                     
                     {mostrarAnsiedadeNormativa.antes && (
                       <div className="alert alert-info">
-                        <p>A Maria sente-se agitada, tensa, pensa que a apresentação vai correr mal, que se poderá engasgar ou ter uma "branca" e que isso poderá prejudicar o grupo. Nessa noite, a Maria teve alguma dificuldade para adormecer.</p>
+                        <p className="lead">A Maria sente-se agitada, tensa, pensa que a apresentação vai correr mal, que se poderá engasgar ou ter uma "branca" e que isso poderá prejudicar o grupo. Nessa noite, a Maria teve alguma dificuldade para adormecer.</p>
                       </div>
                     )}
                     
                     {mostrarAnsiedadeNormativa.durante && (
                       <div className="alert alert-info">
-                        <p>A Maria acorda na manhã da apresentação com o coração acelerado e uma sensação de nó no estômago. Enquanto se prepara para ir para a escola, surgem pensamentos como: "E se eu me esquecer de tudo? E se eu me esqueço de alguma coisa ou me engasgo e toda a turma goza comigo?". Mesmo assim, a Maria decide que vai para a escola, pensando que é melhor enfrentar a situação do que fugir dela. No caminho, a ansiedade continua a acompanhá-la, fazendo com que ela se pergunte se "conseguirá fazer uma boa apresentação". Ao entrar na sala de aula, a Maria sente o coração a bater muito rápido, as mãos a tremer e surgem pensamentos como "e se eu me engasgo ou não me lembro do que tenho que dizer?". No início da apresentação, a ansiedade é intensa e desconfortável, mas a Maria nota, quando começa a apresentar, que a intensidade da ansiedade gradualmente vai baixando.</p>
+                        <p className="lead">A Maria acorda na manhã da apresentação com o coração acelerado e uma sensação de nó no estômago. Enquanto se prepara para ir para a escola, surgem pensamentos como: "E se eu me esquecer de tudo? E se eu me esqueço de alguma coisa ou me engasgo e toda a turma goza comigo?". Mesmo assim, a Maria decide que vai para a escola, pensando que é melhor enfrentar a situação do que fugir dela. No caminho, a ansiedade continua a acompanhá-la, fazendo com que ela se pergunte se "conseguirá fazer uma boa apresentação". Ao entrar na sala de aula, a Maria sente o coração a bater muito rápido, as mãos a tremer e surgem pensamentos como "e se eu me engasgo ou não me lembro do que tenho que dizer?". No início da apresentação, a ansiedade é intensa e desconfortável, mas a Maria nota, quando começa a apresentar, que a intensidade da ansiedade gradualmente vai baixando.</p>
                       </div>
                     )}
                     
                     {mostrarAnsiedadeNormativa.depois && (
                       <div className="alert alert-info">
-                        <p>Embora ainda esteja com algumas sensações físicas desconfortáveis, a Maria sente-se aliviada por ter feito a apresentação. E apesar de não ter dito alguma a coisa que considerava importante e de se ter atrapalhado um bocadinho em certos momentos, a Maria está contente com a sua prestação e com o feedback que recebeu da professora e dos colegas, que foi muito positivo. Na verdade, começa já a pensar no intervalo e no que vai fazer que os seus amigos/as.</p>
+                        <p className="lead">Embora ainda esteja com algumas sensações físicas desconfortáveis, a Maria sente-se aliviada por ter feito a apresentação. E apesar de não ter dito alguma a coisa que considerava importante e de se ter atrapalhado um bocadinho em certos momentos, a Maria está contente com a sua prestação e com o feedback que recebeu da professora e dos colegas, que foi muito positivo. Na verdade, começa já a pensar no intervalo e no que vai fazer que os seus amigos/as.</p>
                       </div>
                     )}
                     
                     {mostrarAnsiedadeNormativa.conclusao && (
                       <div className="alert alert-info">
-                        <p>Nesta situação, apesar da Maria estar ansiosa e de ter várias sensações físicas desconfortáveis por estar ansiosa, decide ir à apresentação. Ela não deixou de estar preocupada e desconfortável, porque era algo difícil para ela, mas foi capaz de ir à escola e fazer a apresentação. Notou, também, que ao fazê-lo a sua ansiedade começou a diminuir e quando terminou estava pronta para continuar com o seu dia e deixar a apresentação para trás. Neste caso, a ansiedade é normativa. Todos nós em apresentações orais sentimos alguma ansiedade e ela é útil, pois é essa ansiedade que nos permite preparar a apresentação. E, embora isso seja desconfortável, não deixamos de fazer as apresentações, que, tal como outras coisas, são importantes para nós.</p>
+                        <p className="lead">Nesta situação, apesar da Maria estar ansiosa e de ter várias sensações físicas desconfortáveis por estar ansiosa, decide ir à apresentação. Ela não deixou de estar preocupada e desconfortável, porque era algo difícil para ela, mas foi capaz de ir à escola e fazer a apresentação. Notou, também, que ao fazê-lo a sua ansiedade começou a diminuir e quando terminou estava pronta para continuar com o seu dia e deixar a apresentação para trás. Neste caso, a ansiedade é normativa. Todos nós em apresentações orais sentimos alguma ansiedade e ela é útil, pois é essa ansiedade que nos permite preparar a apresentação. E, embora isso seja desconfortável, não deixamos de fazer as apresentações, que, tal como outras coisas, são importantes para nós.</p>
                       </div>
                     )}
                   </div>
@@ -279,25 +279,25 @@ const LinhaAnsiedade = () => {
                     
                     {mostrarAnsiedadePatologica.antes && (
                       <div className="alert alert-danger">
-                        <p>A Maria sente-se agitada, tensa, e pensa que a apresentação vai correr mal. Ela acredita que sua dificuldade em falar em público pode prejudicar o desempenho do grupo. Além disso, acredita que se vai engasgar ou ter uma "branca", esquecendo-se do que tem de dizer. Se isso acontecer, a Maria imagina que o grupo ficará irritado com ela e que todos na turma se vão rir dela. Fica tão ansiosa que não consegue dormir bem nessa noite, sempre a pensar na desgraça que será a apresentação.</p>
+                        <p className="lead">A Maria sente-se agitada, tensa, e pensa que a apresentação vai correr mal. Ela acredita que sua dificuldade em falar em público pode prejudicar o desempenho do grupo. Além disso, acredita que se vai engasgar ou ter uma "branca", esquecendo-se do que tem de dizer. Se isso acontecer, a Maria imagina que o grupo ficará irritado com ela e que todos na turma se vão rir dela. Fica tão ansiosa que não consegue dormir bem nessa noite, sempre a pensar na desgraça que será a apresentação.</p>
                       </div>
                     )}
                     
                     {mostrarAnsiedadePatologica.durante && (
                       <div className="alert alert-danger">
-                        <p>Maria acorda na manhã da apresentação sentindo o coração a bater muito rápido, como se quisesse saltar do peito e um nó na garganta que a impede de engolir. O estômago está em constantes reviravoltas, como se uma tempestade estivesse dentro dela. Surgem pensamentos como: "Não vou conseguir. Vou-me engasgar de certeza e todos se vão rir de mim." Acredita que não é capaz de enfrentar esta situação e diz à mãe que não se sente bem e que é melhor não ir à escola.</p>
+                        <p className="lead">Maria acorda na manhã da apresentação sentindo o coração a bater muito rápido, como se quisesse saltar do peito e um nó na garganta que a impede de engolir. O estômago está em constantes reviravoltas, como se uma tempestade estivesse dentro dela. Surgem pensamentos como: "Não vou conseguir. Vou-me engasgar de certeza e todos se vão rir de mim." Acredita que não é capaz de enfrentar esta situação e diz à mãe que não se sente bem e que é melhor não ir à escola.</p>
                       </div>
                     )}
                     
                     {mostrarAnsiedadePatologica.depois && (
                       <div className="alert alert-danger">
-                        <p>A sensação de alívio é imediata. No entanto, pouco tempo depois, a Maria pensa que o facto de não ter ido à apresentação prejudicou os seus colegas de grupo, que contavam com ela. A ideia de que a professora poderá pedir que ela apresente sozinha noutra aula aparece e é ainda assustadora, intensificando a sua ansiedade. A Maria sente que faça o que fizer está sempre errado e fica a matutar que devia conseguir fazer diferente, mas parece que nunca consegue fazer a 'coisa certa'.</p>
+                        <p className="lead">A sensação de alívio é imediata. No entanto, pouco tempo depois, a Maria pensa que o facto de não ter ido à apresentação prejudicou os seus colegas de grupo, que contavam com ela. A ideia de que a professora poderá pedir que ela apresente sozinha noutra aula aparece e é ainda assustadora, intensificando a sua ansiedade. A Maria sente que faça o que fizer está sempre errado e fica a matutar que devia conseguir fazer diferente, mas parece que nunca consegue fazer a 'coisa certa'.</p>
                       </div>
                     )}
                     
                     {mostrarAnsiedadePatologica.conclusao && (
                       <div className="alert alert-danger">
-                        <p>Esta situação, ilustra como a ansiedade se pode tornar debilitante e levar ao evitamento de diferentes situações. Certos comportamentos que nos levam a evitar ou fugir de emoções desconfortáveis, podem ajudar a que nossas dificuldades se mantenham. Apesar de algumas estratégias poderem parecer funcionar a curto prazo, a longo prazo o desconforto e a ansiedade mantêm-se ou tornam-se ainda maiores. Neste caso, é verdade que no imediato a Maria se sentiu aliviada por não ter feito a apresentação e por não ter de lidar com aquele desconforto. A Maria quis fugir do que antecipou ser uma situação horrível – o fazer a apresentação – mas acabou a sentir-se ansiosa na mesma, e até encontrou novos motivos para ficar ansiosa, incluindo o ter fugido desta apresentação. Quando fugimos ou evitamos muitas vezes, a nossa mente começa a utilizar automaticamente essa estratégia: "faz a mesma coisa que fizeste da última vez, mesmo que isso só signifique que te sintas melhor por um bocadinho de tempo". Depois de evitarmos ou fugirmos por algum tempo, podemos sentir que não existem outras opções e que esta é a única estratégia que vai funcionar para nós. Evitar aquilo que nos faz sentir desconfortável pode resultar num ciclo vicioso: "o ciclo do evitamento".</p>
+                        <p className="lead">Esta situação, ilustra como a ansiedade se pode tornar debilitante e levar ao evitamento de diferentes situações. Certos comportamentos que nos levam a evitar ou fugir de emoções desconfortáveis, podem ajudar a que nossas dificuldades se mantenham. Apesar de algumas estratégias poderem parecer funcionar a curto prazo, a longo prazo o desconforto e a ansiedade mantêm-se ou tornam-se ainda maiores. Neste caso, é verdade que no imediato a Maria se sentiu aliviada por não ter feito a apresentação e por não ter de lidar com aquele desconforto. A Maria quis fugir do que antecipou ser uma situação horrível – o fazer a apresentação – mas acabou a sentir-se ansiosa na mesma, e até encontrou novos motivos para ficar ansiosa, incluindo o ter fugido desta apresentação. Quando fugimos ou evitamos muitas vezes, a nossa mente começa a utilizar automaticamente essa estratégia: "faz a mesma coisa que fizeste da última vez, mesmo que isso só signifique que te sintas melhor por um bocadinho de tempo". Depois de evitarmos ou fugirmos por algum tempo, podemos sentir que não existem outras opções e que esta é a única estratégia que vai funcionar para nós. Evitar aquilo que nos faz sentir desconfortável pode resultar num ciclo vicioso: "o ciclo do evitamento".</p>
                       </div>
                     )}
                   </div>
@@ -307,13 +307,7 @@ const LinhaAnsiedade = () => {
                       <i className="bi bi-arrow-left me-2"></i>Anterior
                     </button>
 
-                    <button className="custom-btn-turquoise" style={{
-                        backgroundColor: "#66BFBF",
-                        color: "white",
-                        borderRadius: "8px",
-                        fontSize: "1.05rem",
-                        border: "none",
-                      }} onClick={avancarPagina}>
+                    <button className="custom-btn-turquoise" onClick={avancarPagina}>
                       <i className="bi bi-arrow-right me-2"></i>Próximo
                     </button>
                   </div>

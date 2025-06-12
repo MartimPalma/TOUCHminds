@@ -24,7 +24,7 @@ const Contactos = () => {
               A nossa equipa de investigação está disponível para esclarecer qualquer dúvida e oferecer o apoio necessário.
             </p>
 
-            <div className="mt-4 p-4 rounded" style={{ backgroundColor: '#E3F4F4' }}>
+            <div className="mt-4 p-4 rounded" style={{ backgroundColor: '#fbf9f9' }}>
               <h5 className="fw-semibold mb-2" style={{ color: '#3B9C9C' }}>📧 Contacto direto</h5>
               <p className="mb-1">
                 Podes entrar em contacto com a <strong>Psicóloga Catarina Monteiro</strong>:
@@ -37,7 +37,7 @@ const Contactos = () => {
               </a>
             </div>
 
-            <div className="mt-4 p-4 rounded" style={{ backgroundColor: '#F0FAFA' }}>
+            <div className="mt-4 p-4 rounded" style={{ backgroundColor: '#fbf9f9' }}>
               <h5 className="fw-semibold mb-2" style={{ color: '#3B9C9C' }}>📞 Outras opções de apoio</h5>
               <ul style={{ listStyleType: 'none', paddingLeft: 0, lineHeight: '1.8' }}>
                 <li>

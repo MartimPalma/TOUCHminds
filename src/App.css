@@ -491,7 +491,7 @@ select:focus {
 .lead {
   text-align: left !important;
   font-family: 'Lato', sans-serif !important;
-  font-size: clamp(12px, 2.5vw, 16px);
+  font-size: clamp(12px, 2.5vw, 16px) !important;
 }
 
 
@@ -504,3 +504,17 @@ select:focus {
   border-color: #99CBC8 !important;
 }
 
+.message {
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 6px;
+  font-family: 'Lato', sans-serif;
+  font-size: 14px;
+}
+
+/* Estilo para mensagens de sucesso */
+.message.success {
+  background-color: #99CBC8; /* Azul claro de fundo */
+  color: #234970;            /* Azul escuro do texto */
+  border: 1px solid #99CBC8;
+}

@@ -135,12 +135,14 @@ const BandaDesenhada = () => {
 
                   <p className="lead">
                     <strong>Escreve aqui duas palavras que para ti</strong> representem a o que é a ansiedade comum e o que é a ansiedade SOS.
-                    Escreve essas duas palavras no espaço indicado. <br></br> <strong>Não há respostas certas ou erradas</strong> — o importante é o que <strong>tu</strong> compreendeste! Vamos a isto?
+                    <br></br>
+                    Escreve essas duas palavras no espaço indicado. <br></br> 
+                    <strong>Não há respostas certas ou erradas</strong> — o importante é o que <strong>tu</strong> compreendeste! Vamos a isto?
                   </p>
 
                   <div className="mb-3">
-                    <label htmlFor="ansiedadeComum" className="form-label fw-bold lead">
-                      A minha palavra para definir a ansiedade comum é:
+                    <label htmlFor="ansiedadeComum" className="form-label lead">
+                      <strong>A minha palavra para definir a ansiedade comum é:</strong>
                     </label>
                     <input
                       type="text"
@@ -159,8 +161,8 @@ const BandaDesenhada = () => {
                   </div>
 
                   <div className="mb-3">
-                    <label htmlFor="ansiedadeSOS" className="form-label fw-bold lead">
-                      A minha palavra para definir a ansiedade SOS é:
+                    <label htmlFor="ansiedadeSOS" className="form-label lead">
+                      <strong>A minha palavra para definir a ansiedade SOS é:</strong>
                     </label>
                     <input
                       type="text"

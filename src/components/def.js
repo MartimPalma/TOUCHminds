@@ -33,7 +33,7 @@ const Definicoes = () => {
     setAvatarOptions([
       { id: "avatar1", src: avatar1 },
       { id: "avatar2", src: avatar2 },
-      { id: "avatar3", src: avatar3 },  
+      { id: "avatar3", src: avatar3 },
       { id: "avatar4", src: avatar4 },
       { id: "avatar5", src: avatar5 },
       { id: "avatar6", src: avatar6 },
@@ -89,13 +89,13 @@ const Definicoes = () => {
             </p>
 
             {message.text && (
-              <div className={`alert ${message.type === 'success' ? 'alert-success' : 'alert-danger'} mb-4`}>
+              <div className={`message ${message.type}`}>
                 {message.text}
               </div>
             )}
 
             <form onSubmit={handleSave}>
-              <div className="mt-4 p-4 rounded" style={{ backgroundColor: '#E3F4F4' }}>
+              <div className="mt-4 p-4 rounded" style={{ backgroundColor: '#fbf9f9' }}>
                 <h5 className="fw-semibold mb-2" style={{ color: '#3B9C9C' }}>✏️ Nome na Plataforma</h5>
                 <p>Como queres ser chamado/a na plataforma:</p>
                 <input
@@ -109,7 +109,7 @@ const Definicoes = () => {
                 />
               </div>
 
-              <div className="mt-4 p-4 rounded" style={{ backgroundColor: '#F0FAFA' }}>
+              <div className="mt-4 p-4 rounded" style={{ backgroundColor: '#fbf9f9' }}>
                 <h5 className="fw-semibold mb-2" style={{ color: '#3B9C9C' }}>🧑 Escolhe o teu avatar</h5>
                 <p>Seleciona uma imagem que te represente:</p>
                 <div className="d-flex flex-wrap gap-3 mt-3">
@@ -142,14 +142,7 @@ const Definicoes = () => {
               <div className="mt-4 text-center">
                 <button
                   type="submit"
-                  className="btn px-4 py-2"
-                  style={{
-                    backgroundColor: "#66BFBF",
-                    color: "white",
-                    fontWeight: "600",
-                    borderRadius: "8px",
-                    fontSize: "1.05rem"
-                  }}
+                  className="custom-btn-turquoise px-4 py-2"
                   disabled={loading}
                 >
                   {loading ? (

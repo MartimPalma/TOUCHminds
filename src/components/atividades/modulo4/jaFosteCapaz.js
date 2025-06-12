@@ -91,9 +91,9 @@ const JaFosteCapaz = () => {
                 <p className="mb-4 lead">
                   Quando estiveres <strong>pronto/a</strong>, começa a <strong>explorar</strong> — esta <strong>viagem é sobre ti</strong>. <strong>Ouve os áudios que se seguem</strong>, que te irão guiar nesta reflexão.
                 </p>
-                 <div className="text-center">
+                <div className="text-center">
                   <button className="custom-btn-turquoise mt-2 px-4 py-2" onClick={avancarPagina}>
-                   <i className="bi bi-play-fill me-2"></i> Vamos a isto?
+                    <i className="bi bi-play-fill me-2"></i> Vamos a isto?
                   </button>
                 </div>
               </div>
@@ -102,17 +102,17 @@ const JaFosteCapaz = () => {
             {/* PÁGINAS 1-4 - ÁUDIOS */}
             {pagina >= 1 && pagina <= 4 && (
               <div className="text-center py-4">
-                <h4 className="fw-bold mb-4" style={{ color: "#234970" }}>
+                <h4 className="fw-bold mb-4 text-start" style={{ color: "#234970" }}>
                   Áudio {pagina} de 4
                 </h4>
                 <p className="lead mb-4">
                   Ouve com atenção este áudio que te vai guiar na reflexão.
                 </p>
-                
+
                 <div className="mb-4">
-                  <audio 
+                  <audio
                     ref={el => audioRefs.current[pagina - 1] = el}
-                    controls 
+                    controls
                     style={{ width: "100%", maxWidth: "600px" }}
                     onEnded={() => handleAudioEnded(pagina - 1)}
                   >
@@ -122,7 +122,8 @@ const JaFosteCapaz = () => {
                 </div>
 
                 {!audioCompleted[pagina - 1] && (
-                  <div className="alert alert-info mb-4">
+                  <div className="alert mb-4 text-white"
+                    style={{ backgroundColor: '#99CBC8', border: 'none' }}>
                     <i className="bi bi-info-circle me-2"></i>
                     É necessário ouvir o áudio até ao fim para continuar.
                   </div>
@@ -132,8 +133,8 @@ const JaFosteCapaz = () => {
                   <button className="custom-btn-pink" onClick={retrocederPagina}>
                     <i className="bi bi-arrow-left me-2"></i>Anterior
                   </button>
-                  <button 
-                    className="custom-btn-turquoise" 
+                  <button
+                    className="custom-btn-turquoise"
                     onClick={avancarPagina}
                     disabled={!canAdvance(pagina)}
                   >
@@ -173,7 +174,7 @@ const JaFosteCapaz = () => {
                   </button>
                   <AtividadeProgressao
                     moduloId={moduloId}
-                    atividadeIndex={2} 
+                    atividadeIndex={2}
                     updateUserData={updateUserData}
                   />
                 </div>
