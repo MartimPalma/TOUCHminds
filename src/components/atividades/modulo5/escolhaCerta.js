@@ -200,7 +200,7 @@ const EscolhaCerta = () => {
                                     </button>
                                     <AtividadeProgressao
                                         moduloId={moduloId}
-                                        atividadeIndex={2}
+                                        atividadeIndex={1}
                                         updateUserData={updateUserData}
                                     />
                                 </div>
