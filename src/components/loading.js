@@ -51,7 +51,7 @@ const styles = {
     textAlign: 'center',
   },
   touchminds: {
-    fontSize: '5rem',
+    fontSize: 'clamp(2.5rem, 8vw, 5rem)', // responsivo: entre 2.5rem e 5rem, conforme 8% da largura da viewport
     fontWeight: '900',
     fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
     background: 'linear-gradient(90deg, #234970 25%, #99CBC8 50%, #234970 75%)',
@@ -65,10 +65,11 @@ const styles = {
   },
   message: {
     marginTop: '16px',
-    fontSize: '1.3rem',
+    fontSize: 'clamp(1rem, 3vw, 1.3rem)', // responsivo entre 1rem e 1.3rem, conforme 3% da largura da viewport
     color: '#234970',
     fontWeight: '600',
   }
 };
+
 
 export default Loading;

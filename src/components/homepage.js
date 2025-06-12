@@ -1,4 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react';
+import { Modal, Button } from 'react-bootstrap';
 
 import { UserContext } from '../App'; 
 import Navbar from './navbar';
@@ -10,7 +11,6 @@ import Loading from './loading';
 import Login from "./login";
 import Signup from "./signup";
 
-
 const Homepage = () => {
   const { userData } = useContext(UserContext);
   const navigate = useNavigate();
@@ -19,18 +19,20 @@ const Homepage = () => {
   const [showSignup, setShowSignup] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
-  // Use useEffect to handle the side effect when userData is null
+  // Estado da modal de aviso móvel
+  const [modalShow, setModalShow] = useState(true);
+  const mensagemPopUp = "⚠️ Atenção: O site pode não ter a melhor experiência em dispositivos móveis.";
+
+  // Use useEffect para mostrar login se userData não existir
   useEffect(() => {
     if (!userData) {
       setIsLoading(true);
       
-      // Show loading for 2 seconds, then show login
       const timer = setTimeout(() => {
         setIsLoading(false);
         setShowLogin(true);
       }, 2000);
 
-      // Cleanup timer if component unmounts or userData changes
       return () => clearTimeout(timer);
     }
   }, [userData]);
@@ -57,18 +59,14 @@ const Homepage = () => {
 
   console.log("HomePage:" , userData);
 
-  // Show loading when user is not authenticated and still loading
   if (!userData && isLoading) {
     return <Loading message="A carregar a tua página inicial..." />;
   }
 
-  // Show login/signup modals when user is not authenticated and loading is done
   if (!userData) {
     return (
       <div className="min-vh-100 d-flex align-items-center justify-content-center" 
-         style={{ 
-         backgroundColor: 'white'
-         }}>
+         style={{ backgroundColor: 'white' }}>
         {showLogin && (
           <Login
             show={showLogin}
@@ -97,11 +95,57 @@ const Homepage = () => {
   const percentagem = Math.round((concluidos / totalModulos) * 100);
 
   return (
-    <div className="container-fluid vh-100 p-0">
+    <div className="container-fluid vh-100 p-0" style={{ position: 'relative' }}>
+      {/* Modal de aviso móvel */}
+      <Modal
+        show={modalShow}
+        onHide={() => setModalShow(false)}
+        centered
+      >
+        <Modal.Header
+          closeButton
+          style={{
+            backgroundColor: "#D9534F",  
+            borderBottom: "none",
+            color: "#fff",
+          }}
+        >
+          <Modal.Title style={{ fontWeight: "600" }}>
+            Aviso
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body className="text-start" style={{ color: "#721c24" }}>
+          {mensagemPopUp}
+        </Modal.Body>
+        <Modal.Footer
+          style={{
+            borderTop: "none",
+            backgroundColor: "#f8d7da", 
+            textAlign: "center",
+            alignItems: "center",
+            justifyContent: "center"
+          }}
+        >
+          <Button
+            onClick={() => {
+              setModalShow(false);
+            }}
+            style={{
+              backgroundColor: "#D9534F",
+              borderColor: "#D43F3A",
+              borderRadius: "20px",
+              padding: "0.5rem 1.5rem",
+              fontWeight: "500",
+            }}
+          >
+            Fechar
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
       <Navbar />
       <div className="row h-100 m-0">
         <Sidebar />
-
         <div className="col px-4 py-4" style={{ backgroundColor: "#FBF9F9" }}>
           <div className="container p-4 bg-white rounded shadow-sm">
             <h2 className="mb-3 fw-semibold" style={{ color: "#99CBC8" }}>
