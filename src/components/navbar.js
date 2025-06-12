@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Bell, BoxArrowRight } from 'react-bootstrap-icons';
+import { Bell, BoxArrowRight, List, House, Envelope, Trophy, People, Gear } from 'react-bootstrap-icons';
 import { UserContext } from '../App';
 import { logoutAluno } from "../database/database";
 import logo from "../imgs/logoazul.png";
@@ -15,11 +15,6 @@ import avatar7 from "../imgs/avatar7.jpg";
 import avatar8 from "../imgs/avatar8.jpg";
 import avatar9 from "../imgs/avatar9.jpg";
 import avatar10 from "../imgs/avatar10.jpg";
-
-// Alterar notificações semanais , no 1 dia após o desbloqueio de um módulo, e no 5 dia após o desbloqueio de um módulo
-// AlTerar a mensagem o texto
-
-
 
 const Navbar = () => {
   const avatarOptions = [
@@ -40,6 +35,7 @@ const Navbar = () => {
   const [showTooltip, setShowTooltip] = useState(false);
   const [notificacaoVisivel, setNotificacaoVisivel] = useState(false);
   const [notificacaoSemanal, setNotificacaoSemanal] = useState('');
+  const [menuAberto, setMenuAberto] = useState(false);
 
   const handleLogout = async () => {
     try {
@@ -50,20 +46,16 @@ const Navbar = () => {
     }
   };
 
-  const toggleTooltip = () => {
-    setShowTooltip(prev => !prev);
-  };
+  const toggleTooltip = () => setShowTooltip(prev => !prev);
 
-  // Função que verifica as notificações conforme o dia da semana e estado dos módulos
   const verificarNotificacoesSemanais = () => {
     const hoje = new Date();
-    const diaSemana = hoje.getDay(); // 0 = Domingo, 1 = Segunda, ..., 6 = Sábado
+    const diaSemana = hoje.getDay();
     const todayStr = hoje.toDateString();
     const lastShown = localStorage.getItem('lastNotificationDate');
 
-    if (lastShown === todayStr) return; // Já mostrou notificação hoje
+    if (lastShown === todayStr) return;
 
-    // Verifica se existe algum módulo incompleto
     const hasModuloIncompleto = Object.values(userData?.modulos || {}).some(mod =>
       (mod.atividades || []).some(ativ => !ativ.concluido)
     );
@@ -86,95 +78,114 @@ const Navbar = () => {
   };
 
   useEffect(() => {
-    if (userData) {
-      verificarNotificacoesSemanais();
-    }
+    if (userData) verificarNotificacoesSemanais();
   }, [userData]);
 
-  // Esconde notificação após 5 segundos
   useEffect(() => {
     if (notificacaoVisivel) {
-      const timer = setTimeout(() => {
-        setNotificacaoVisivel(false);
-      }, 5000);
-
+      const timer = setTimeout(() => setNotificacaoVisivel(false), 5000);
       return () => clearTimeout(timer);
     }
   }, [notificacaoVisivel]);
 
-  let avatarSelecionado;
-  for (let i = 0; i < avatarOptions.length; i++) {
-    if (avatarOptions[i].id === userData?.avatarId) {
-      avatarSelecionado = avatarOptions[i].src;
-      break;
-    }
-  }
+  let avatarSelecionado = avatarOptions.find(a => a.id === userData?.avatarId)?.src;
+
+  const navItems = [
+    { icon: <House size={24} />, text: 'Página Inicial', path: '/homepage' },
+    { icon: <Envelope size={24} />, text: 'Progresso', path: '/progresso' },
+    { icon: <Trophy size={24} />, text: 'Conquistas', path: '/conquistas' },
+    { icon: <People size={24} />, text: 'Contactos', path: '/contactos' },
+    { icon: <Gear size={24} />, text: 'Definições', path: '/definicoes' },
+  ];
 
   return (
     <div className="navbar navbar-light bg-white py-2 px-4 position-relative">
-      <div className="container-fluid">
-        <a
-          className="navbar-brand text-info"
-          onClick={() => navigate('/homepage')}
-          style={{ width: "15%", cursor: 'pointer' }}
-        >
-          <img src={logo} alt="TOUCHminds Logo" className="mt-1" style={{ width: "80%" }} />
-        </a>
+      <div className="container-fluid d-flex justify-content-between align-items-center">
 
+        {/* Botão de menu (hambúrguer) e logo */}
         <div className="d-flex align-items-center">
-          {/* Botão de notificação */}
-          <div className="position-relative me-3">
-            <button className="btn btn-link text-secondary position-relative">
-              <Bell size={20} />
-              {notificacaoVisivel && (
-                <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-success">
-                  1
-                </span>
-              )}
-            </button>
-          </div>
+          <button className="btn d-md-none me-3" onClick={() => setMenuAberto(true)}>
+            <List size={28} />
+          </button>
+          <a
+            className="navbar-brand text-info d-flex align-items-center"
+            onClick={() => navigate('/homepage')}
+            style={{ cursor: 'pointer' }}
+          >
+            <img src={logo} alt="TOUCHminds Logo" style={{ width: "120px" }} />
+          </a>
+        </div>
 
-          {/* Avatar e Logout */}
-          <div className="position-relative">
-            <img
-              src={avatarSelecionado}
-              alt="Avatar"
-              className="rounded-circle"
-              style={{ width: "44px", height: "44px", cursor: "pointer" }}
-              onClick={toggleTooltip}
-            />
-            {showTooltip && (
-              <div
-                className="position-absolute bg-white border rounded-3 shadow-lg mt-2 p-1"
-                style={{ right: 0, zIndex: 1000, width: '160px', transition: 'transform 0.3s ease-in-out' }}
+        {/* Avatar com tooltip/logout */}
+        <div className="position-relative">
+          <img
+            src={avatarSelecionado}
+            alt="Avatar"
+            className="rounded-circle"
+            style={{ width: "44px", height: "44px", cursor: "pointer" }}
+            onClick={toggleTooltip}
+          />
+          {showTooltip && (
+            <div
+              className="position-absolute bg-white border rounded-3 shadow-lg mt-2 p-1"
+              style={{ right: 0, zIndex: 1000, width: '160px' }}
+            >
+              <button
+                className="btn btn-sm btn-danger w-100 px-4 py-2 rounded-3 d-flex align-items-center justify-content-center"
+                onClick={handleLogout}
               >
-                <button
-                  className="btn btn-sm btn-danger w-100 font-poppins px-4 py-2 rounded-3 d-flex align-items-center justify-content-center"
-                  onClick={handleLogout}
-                  style={{
-                    backgroundColor: '#dc3545',
-                    border: 'none',
-                    color: 'white',
-                    fontWeight: 'bold',
-                    transition: 'background-color 0.3s ease',
-                  }}
-                  onMouseEnter={(e) => e.target.style.backgroundColor = "#c82333"}
-                  onMouseLeave={(e) => e.target.style.backgroundColor = "#dc3545"}
-                >
-                  <BoxArrowRight size={20} className="me-2" />
-                  SAIR
-                </button>
-              </div>
-            )}
-          </div>
+                <BoxArrowRight size={20} className="me-2" />
+                SAIR
+              </button>
+            </div>
+          )}
         </div>
       </div>
 
-      {/* Notificação semanal */}
+      {/* Menu lateral */}
+      {menuAberto && (
+        <div
+          className="position-fixed top-0 start-0 w-100 h-100"
+          style={{ zIndex: 1050, backgroundColor: 'rgba(0,0,0,0.5)' }}
+          onClick={() => setMenuAberto(false)}
+        >
+          <div
+            className="h-100"
+            style={{
+              width: '260px',
+              backgroundColor: '#234970',
+              color: 'white',
+              padding: '24px',
+              transition: 'transform 0.3s ease-in-out',
+            }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <h5 className="mb-4">Menu</h5>
+
+            {/* Restantes links */}
+            {navItems.map((item, idx) => (
+              <div
+                key={idx}
+                className="d-flex align-items-center py-3 mb-1"
+                style={{ fontSize: '18px', cursor: 'pointer' }}
+                onClick={() => {
+                  navigate(item.path);
+                  setMenuAberto(false);
+                }}
+              >
+                <span className="me-3">{item.icon}</span>
+                <span>{item.text}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* Notificação semanal no fundo do ecrã */}
       {notificacaoVisivel && notificacaoSemanal && (
         <div
           className="position-fixed bottom-0 end-0 m-4 text-white px-4 py-3 rounded shadow"
-          style={{ zIndex: 2, minWidth: '280px', maxWidth: '400px', backgroundColor: '#234970', transition: 'opacity 0.5s ease-in-out' }}
+          style={{ zIndex: 1060, minWidth: '280px', maxWidth: '400px', backgroundColor: '#234970' }}
         >
           <strong>{notificacaoSemanal}</strong>
         </div>
