@@ -166,33 +166,10 @@ const LinhaTemporal = () => {
                             </div>
                           </div>
 
-                          <div className="activities-summary">
-                            <div className="summary-grid">
-                              <div className="summary-item completed">
-                                <div className="summary-icon">
-                                  <i className="fas fa-check-circle"></i>
-                                </div>
-                                <div className="summary-info">
-                                  <span className="summary-number">{modulo.atividadesConcluidas}</span>
-                                  <span className="summary-label">Concluídas</span>
-                                </div>
-                              </div>
-                             
-                              <div className="summary-item total">
-                                <div className="summary-icon">
-                                  <i className="fas fa-list"></i>
-                                </div>
-                                <div className="summary-info">
-                                  <span className="summary-number">{modulo.totalAtividades}</span>
-                                  <span className="summary-label">Total</span>
-                              </div>
-                            </div>
-                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
-                </div>
                 );
               })}
             </div>
