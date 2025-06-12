@@ -127,18 +127,20 @@ const LinhaTemporal = () => {
                         <div className="card-header">
                           <div className="header-top">
                             <h4 className="module-title">{modulo.titulo}</h4>
-                            <span className={`status-badge ${modulo.status === 'concluído' ? 'completed' : (bloqueado ? 'locked' : 'available')}`}>
-                              {modulo.status === 'concluído' ? 'Concluído' : (bloqueado ? 'Bloqueado' : 'Disponível')}
-                            </span>
                           </div>
                           <p className="module-subtitle">{modulo.subtitulo}</p>
 
-                          {modulo.status === 'concluído' && modulo.dataFim && (
-                            <div className="completion-date">
-                              <i className="fas fa-calendar-check me-2"></i>
-                              <span>Concluído em {formatarData(modulo.dataFim)}</span>
-                            </div>
-                          )}
+                            {modulo.status === 'concluído' ? (
+                              <div className="status-badge completed">
+                                <i className="fas fa-check-circle me-2"></i>
+                                Concluído em {formatarData(modulo.dataFim)}
+                              </div>
+                            ) : (
+                              <div className={`status-badge ${bloqueado ? 'locked' : 'available'}`}>
+                                <i className={`fas ${bloqueado ? 'fa-lock' : 'fa-hourglass-start'} me-2`}></i>
+                                {bloqueado ? 'Bloqueado' : 'Ainda não concluído'}
+                              </div>
+                            )}
                         </div>
 
                         <div className="card-body">
