@@ -64,7 +64,7 @@ export default function SignupModal({ onClose, onSwitchToLogin }) {
       setUserId(user.uid);
       setShowPopup(true);
     } catch (error) {
-      setError("Erro ao registrar. Verifica os dados.");
+      setError(error.message);
     } finally {
       setLoading(false);
     }

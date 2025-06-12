@@ -33,6 +33,19 @@ export async function registerAluno(codigoParticipante, password) {
     if (!querySnapshot.empty) {
       throw new Error('Este código de participante já está em uso.');
     }
+
+    // Verificar se o código está presente na lista autorizada em "codigos"
+    const docRef = doc(db, "codigos", "wLKyBPDvr1keyJ8q1sCE"); 
+    const docSnap = await getDoc(docRef);
+
+    if (!docSnap.exists()) {
+      throw new Error("Lista de códigos não encontrada.");
+    }
+
+    const codigosArray = docSnap.data().codigo; // Array de códigos autorizados
+    if (!codigosArray.includes(codigoParticipante)) {
+      throw new Error("Este código de participante não é válido.");
+    }
     
     // Criar um user com email baseado no código do participante (para Firebase Auth)
     const email = `${codigoParticipante}@touchminds.virtual`;
