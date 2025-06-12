@@ -20,8 +20,16 @@ const Homepage = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   // Estado da modal de aviso móvel
-  const [modalShow, setModalShow] = useState(true);
+  const [modalShow, setModalShow] = useState(false);
   const mensagemPopUp = "⚠️ Atenção: O site pode não ter a melhor experiência em dispositivos móveis.";
+
+  useEffect(() => {
+    const isMobile = window.innerWidth < 768;
+    if (isMobile) {
+      setModalShow(true);
+    }
+  }, []);
+
 
   // Use useEffect para mostrar login se userData não existir
   useEffect(() => {
