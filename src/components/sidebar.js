@@ -15,7 +15,7 @@ const Sidebar = () => {
   ];
 
   return (
-    <div className="col-auto bg-white shadow-sm py-4 px-3" style={{ width: '220px' }}>
+    <div className="col-auto bg-white shadow-sm py-4 px-3 d-none d-md-block" style={{ width: '220px' }}>
       <div className="nav flex-column">
         {navItems.map((item, index) => (
           <NavItem
