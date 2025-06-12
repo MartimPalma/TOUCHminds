@@ -81,15 +81,15 @@ const BandaDesenhada = () => {
                         <strong>Sê muito bem-vindo ou bem-vinda à Banda Desenhada da Ansiedade: Aliada ou Empecilho?</strong>!
                         Nesta <strong>banda desenhada</strong>, vais conhecer dois tipos de ansiedade:
                       </p>
-                      <p className=""><strong>Ansiedade comum</strong>, que nos ajuda a enfrentar desafios</p>
-                      <p className=""><strong>Ansiedade SOS</strong>, que pode atrapalhar o nosso bem-estar</p>
+                      <p className="lead"><strong>Ansiedade comum</strong>, que nos ajuda a enfrentar desafios</p>
+                      <p className="lead"><strong>Ansiedade SOS</strong>, que pode atrapalhar o nosso bem-estar</p>
 
                       <p className="lead mb-3">
                         O teu <strong>desafio</strong> é compreender a diferença entre estas duas formas de ansiedade. Para isso, lê com atenção os
                         quadros da banda desenhada. No final, <strong>escreve duas palavras</strong> que, para ti, represente:
                       </p>
-                      <p className="">O que é a <strong>ansiedade comum?</strong></p>
-                      <p className="">O que é a <strong>ansiedade SOS?</strong></p>
+                      <p className="lead">O que é a <strong>ansiedade comum?</strong></p>
+                      <p className="lead">O que é a <strong>ansiedade SOS?</strong></p>
 
                       <p className="lead mb-3">
                         Escreve essas duas palavras no espaço indicado. <strong>Não há respostas certas ou erradas</strong> — o importante é o que <strong>tu</strong> compreendeste!
@@ -139,7 +139,7 @@ const BandaDesenhada = () => {
                   </p>
 
                   <div className="mb-3">
-                    <label htmlFor="ansiedadeComum" className="form-label fw-bold">
+                    <label htmlFor="ansiedadeComum" className="form-label fw-bold lead">
                       A minha palavra para definir a ansiedade comum é:
                     </label>
                     <input
@@ -159,7 +159,7 @@ const BandaDesenhada = () => {
                   </div>
 
                   <div className="mb-3">
-                    <label htmlFor="ansiedadeSOS" className="form-label fw-bold">
+                    <label htmlFor="ansiedadeSOS" className="form-label fw-bold lead">
                       A minha palavra para definir a ansiedade SOS é:
                     </label>
                     <input
