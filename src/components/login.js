@@ -7,7 +7,7 @@ import logo from "../imgs/logositeazul.png";
 import { useNavigate } from "react-router-dom";
 import "../App.css";
 
-export default function LoginModal({ onClose, onSwitchToSignup }) {
+export default function LoginModal({ onClose, onLoginSuccess, onSwitchToSignup }) {
   const [codigoParticipante, setCodigoParticipante] = useState("");
   const [password, setPassword] = useState("");
   const [mostrarSenha, setMostrarSenha] = useState(false);
@@ -27,7 +27,11 @@ export default function LoginModal({ onClose, onSwitchToSignup }) {
       const dados = await dadosAlunos(user.uid);
       updateUserData({ uid: user.uid, ...dados });
       navigate("/homepage");
-      onClose();
+      
+      // Call onLoginSuccess instead of onClose for successful login
+      if (onLoginSuccess) {
+        onLoginSuccess();
+      }
     } catch (error) {
       setError("Código de participante ou senha incorretos. Por favor, tente novamente.");
     } finally {

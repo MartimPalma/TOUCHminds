@@ -1,4 +1,5 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
+
 import { UserContext } from '../App'; 
 import Navbar from './navbar';
 import Sidebar from './sidebar';
@@ -6,14 +7,85 @@ import { useNavigate } from 'react-router-dom';
 import ModuloCard from './moduloCardHome'; 
 import modulos from '../data/modulos'; 
 import Loading from './loading'; 
+import Login from "./login";
+import Signup from "./signup";
+
+
 const Homepage = () => {
   const { userData } = useContext(UserContext);
   const navigate = useNavigate();
 
+  const [showLogin, setShowLogin] = useState(false);
+  const [showSignup, setShowSignup] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+
+  // Use useEffect to handle the side effect when userData is null
+  useEffect(() => {
+    if (!userData) {
+      setIsLoading(true);
+      
+      // Show loading for 2 seconds, then show login
+      const timer = setTimeout(() => {
+        setIsLoading(false);
+        setShowLogin(true);
+      }, 2000);
+
+      // Cleanup timer if component unmounts or userData changes
+      return () => clearTimeout(timer);
+    }
+  }, [userData]);
+
+  const handleOpenLogin = () => {
+    setShowLogin(true);
+    setShowSignup(false);
+  };
+
+  const handleOpenSignup = () => {
+    setShowSignup(true);
+    setShowLogin(false);
+  };
+
+  const handleClosePopups = () => {
+    setShowLogin(false);
+    setShowSignup(false);
+  };
+
+  const handleCloseWithNavigation = () => {
+    handleClosePopups();
+    navigate('../');
+  };
+
   console.log("HomePage:" , userData);
 
-  if (!userData) {
+  // Show loading when user is not authenticated and still loading
+  if (!userData && isLoading) {
     return <Loading message="A carregar a tua página inicial..." />;
+  }
+
+  // Show login/signup modals when user is not authenticated and loading is done
+  if (!userData) {
+    return (
+      <div className="min-vh-100 d-flex align-items-center justify-content-center" 
+         style={{ 
+         backgroundColor: 'white'
+         }}>
+        {showLogin && (
+          <Login
+            show={showLogin}
+            onClose={handleCloseWithNavigation}
+            onLoginSuccess={handleClosePopups}
+            onSwitchToSignup={handleOpenSignup}
+          />
+        )}
+        {showSignup && (
+          <Signup
+            show={showSignup}
+            onClose={handleCloseWithNavigation}
+            onSwitchToLogin={handleOpenLogin}
+          />
+        )}
+      </div>
+    );
   }
 
   const handleNavigate = (moduloId) => {
@@ -87,10 +159,7 @@ const Homepage = () => {
                   Parabéns! Concluíste todos os módulos. <span className="small fw-semibold fs-6" style={{ color: "#234970" }}>Aproveita tudo o que este percurso te trouxe!</span>
                 </div>
               )}
-
-
             </div>
-
 
             <div className="row row-cols-1 row-cols-md-3 g-4">
               {modulos.map((modulo) => {
