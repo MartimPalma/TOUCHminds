@@ -41,6 +41,7 @@ import AtividadeResumoRede from './components/atividades/modulo5/atividadeResumo
 import EscolhaCerta from './components/atividades/modulo5/escolhaCerta';
 
 import CodigoDoPsicologo from './components/atividades/modulo6/codigoPsicologo';
+import ViagemBemEstar from './components/atividades/modulo6/viagemBemEstar';  
 import NaoEstasSozinho from './components/atividades/modulo6/naoSozinho';
 import AtividadeResumo6 from './components/atividades/modulo6/atividadeResumo';
 
@@ -155,7 +156,7 @@ const App = () => {
 
           {/* Atividade módulo 6 */}
           <Route path='/modulos/:id/atividade/codigo-psicologo' element={<CodigoDoPsicologo />} />
-          <Route path="/modulos/:id/atividade/viagem-bemestar" element={''} />
+          <Route path="/modulos/:id/atividade/viagem-bemestar" element={<ViagemBemEstar/>} />
           <Route path="/modulos/:id/atividade/nao-estas-sozinho" element={<NaoEstasSozinho />} /> 
           <Route path="/modulos/:id/atividade/atividade-resumo6" element={<AtividadeResumo6 />} /> 
 
