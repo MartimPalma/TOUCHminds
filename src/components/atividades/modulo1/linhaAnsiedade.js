@@ -106,8 +106,8 @@ const LinhaAnsiedade = () => {
                   <h4 className="fw-bold mb-3" style={{ color: "#234970" }}>Linha da Ansiedade</h4>
                   
                   <div className="p-4 mb-4 rounded" style={{ backgroundColor: "#fbf9f9" }}> {/* Alterei o tom da caixa de texto, caso seja para ficar*/}
-                    <h5 className="fw-bold">Situação:</h5>
-                    <p className="mb-0 fs-5">A Maria não gosta de fazer apresentações orais, mas amanhã terá de apresentar um trabalho de grupo na aula de português.</p>
+                    <h5 className="" style={{fontWeight:'500'}}>Situação:</h5>
+                    <p className="lead mb-0 fs-5">A Maria não gosta de fazer apresentações orais, mas amanhã terá de apresentar um trabalho de grupo na aula de português.</p>
                   </div>
 
                   <div className="d-flex justify-content-between mt-4">
