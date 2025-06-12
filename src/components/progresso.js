@@ -100,7 +100,7 @@ const LinhaTemporal = () => {
               Acompanha o teu progresso nos diferentes módulos do programa.
             </p>
 
-            <div className="timeline-container mt-5" ref={timelineRef}>
+            <div className="timeline-container " ref={timelineRef}>
               <div className="timeline-line"></div>
 
               {progressoDoUser.map((modulo, index) => {
@@ -181,7 +181,7 @@ const LinhaTemporal = () => {
                 position: relative;
                 max-width: 1200px;
                 margin: 0 auto;
-                padding: 2rem 0;
+                padding: 1rem 0;
               }
 
               .timeline-line {

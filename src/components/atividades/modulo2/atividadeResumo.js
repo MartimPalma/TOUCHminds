@@ -246,7 +246,7 @@ const AtividadeResumoModulo2 = () => {
                                     </button>
                                     <AtividadeProgressao
                                         moduloId={moduloId}
-                                        atividadeIndex={4}
+                                        atividadeIndex={2}
                                         updateUserData={updateUserData}
                                     />
                                 </div>

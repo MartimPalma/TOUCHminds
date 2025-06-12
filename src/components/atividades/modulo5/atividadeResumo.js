@@ -312,7 +312,7 @@ const AtividadeResumoRede = () => {
                   </button>
                   <AtividadeProgressao
                     moduloId={moduloId}
-                    atividadeIndex={3} 
+                    atividadeIndex={2} 
                     updateUserData={updateUserData}
                   />
                 </div>
@@ -323,14 +323,32 @@ const AtividadeResumoRede = () => {
         </div>
       </div>
 
-      {/* Modal for feedback */}
+      {/* Modal */}
       <Modal show={modalAberto} onHide={() => setModalAberto(false)} centered>
-        <Modal.Header closeButton>
-          <Modal.Title>Feedback</Modal.Title>
+        <Modal.Header
+                            closeButton
+                            style={{
+                              backgroundColor: "#99CBC8",
+                              borderBottom: "none",
+                              color: "#fff",
+                            }}
+        >
+         <Modal.Title style={{ fontWeight: "600" }}>Feedback</Modal.Title>
         </Modal.Header>
-        <Modal.Body>{mensagemPopUp}</Modal.Body>
-        <Modal.Footer>
-          <Button style={{ backgroundColor: "#234970", border: "none" }} onClick={() => setModalAberto(false)}>
+        <Modal.Body className="text-center">{mensagemPopUp}</Modal.Body>
+        <Modal.Footer
+                            style={{
+                              borderTop: "none",
+                              backgroundColor: "#F5FDFC",
+                              justifyContent: "center",
+                            }}
+        >
+          <Button style={{ backgroundColor: "#234970",
+                                borderColor: "#234970",
+                                borderRadius: "20px",
+                                padding: "0.5rem 1.5rem",
+                                fontWeight: "500",
+                                 }} onClick={() => setModalAberto(false)}>
             Continuar
           </Button>
         </Modal.Footer>
