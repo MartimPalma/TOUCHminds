@@ -1,5 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { UserContext } from '../../../App';
+
 const DesafioSemanal = ({ id }) => {
   const { userData, updateUserData } = useContext(UserContext);
   const [form, setForm] = useState({
@@ -62,38 +63,42 @@ const DesafioSemanal = ({ id }) => {
   };
 
   // Obtém os registos guardados
-  const registos =
-    userData.modulos?.[`modulo${id}`]?.desafioSemanal || [];
+  const registos = userData.modulos?.[`modulo${id}`]?.desafioSemanal || [];
 
   return (
     <div className="bg-white">
-
-     <h4 className="mb-4" style={{ color: "#99CBC8" }}>
-                <span
-                  style={{
-                    borderBottom: "3px solid #99CBC8",
-                    display: "inline-block",
-                    paddingBottom: "2px",
-                  }}
-                >
-                  Desafio Semanal
-                </span>
+      <h4 className="mb-4" style={{ color: "#99CBC8" }}>
+        <span
+          style={{
+            borderBottom: "3px solid #99CBC8",
+            display: "inline-block",
+            paddingBottom: "2px",
+          }}
+        >
+          Desafio Semanal
+        </span>
       </h4>
-      
-      <p><b>Queria lançar-te um desafio para esta semana! </b>Ao longo dos próximos dias, sempre que sentires <b>ansiedade</b> em alguma situação, convido-te a <b>refletir</b> sobre a tua experiência.
-        <br />Se quiseres, podes depois vir aqui e registar o que pensaste sobre a situação.
-        <br />A ideia é que <b>reflitas como te sentes</b>, o que <b>pensas</b> e como te <b>comportas</b> nessa situação.
-        <br />Podes usar esta <b>tabela</b> para registares.</p>
-        <ul style={{ marginTop: "0px" }}>
-          <li><b>Situação:</b> Regista a situação que te deixou ansioso/a.</li>
-          <li><b>Como me senti?:</b> Descreve as sensações físicas que sentiste (por exemplo, suor, coração acelerado).</li>
-          <li><b>Pensamentos que surgiram?:</b> Anota os pensamentos que te passaram pela cabeça naquele momento.</li>
-          <li><b>Como agi na situação?:</b> Descreve o que fizeste para lidar com a ansiedade.</li>
-          <li><b>Funcionou?:</b> Avalia se o que fizeste te aproximou ou te afastou dos teus objetivos, daquilo que queres ser ou das outras pessoas.</li>
-        </ul>
+
+      <p>
+        <b>Queria lançar-te um desafio para esta semana! </b>Ao longo dos próximos dias, sempre que sentires <b>ansiedade</b> em alguma situação, convido-te a <b>refletir</b> sobre a tua experiência.
+        <br />
+        Se quiseres, podes depois vir aqui e registar o que pensaste sobre a situação.
+        <br />
+        A ideia é que <b>reflitas como te sentes</b>, o que <b>pensas</b> e como te <b>comportas</b> nessa situação.
+        <br />
+        Podes usar esta <b>tabela</b> para registares.
+      </p>
+      <ul style={{ marginTop: "0px" }}>
+        <li><b>Situação:</b> Regista a situação que te deixou ansioso/a.</li>
+        <li><b>Como me senti?:</b> Descreve as sensações físicas que sentiste (por exemplo, suor, coração acelerado).</li>
+        <li><b>Pensamentos que surgiram?:</b> Anota os pensamentos que te passaram pela cabeça naquele momento.</li>
+        <li><b>Como agi na situação?:</b> Descreve o que fizeste para lidar com a ansiedade.</li>
+        <li><b>Funcionou?:</b> Avalia se o que fizeste te aproximou ou te afastou dos teus objetivos, daquilo que queres ser ou das outras pessoas.</li>
+      </ul>
 
       <div className="table-responsive mb-4">
-        <table className="table table-bordered text-center align-middle">
+        <table className="table table-bordered text-center align-middle" aria-label="Formulário para registar reflexão semanal sobre ansiedade">
+          <caption className="visually-hidden">Formulário para registar reflexão semanal sobre ansiedade</caption>
           <thead>
             <tr>
               {[
@@ -108,6 +113,7 @@ const DesafioSemanal = ({ id }) => {
                   key={title}
                   className="text-center align-middle"
                   style={{ backgroundColor: "#E7C8C2", color: "#234970" }}
+                  scope="col"
                 >
                   {title}
                 </th>
@@ -117,33 +123,49 @@ const DesafioSemanal = ({ id }) => {
           <tbody>
             <tr>
               {[
-                { name: "dia" },
-                { name: "situacao" },
-                { name: "comoMeSenti" },
-                { name: "pensamentos" },
-                { name: "comoLidei" },
-                { name: "funcionou" },
-              ].map(({ name, placeholder }) => (
+                { name: "dia", label: "Dia" },
+                { name: "situacao", label: "Situação" },
+                { name: "comoMeSenti", label: "Como me senti?" },
+                { name: "pensamentos", label: "Que pensamentos surgiram?" },
+                { name: "comoLidei", label: "Como lidei com a situação?" },
+                { name: "funcionou", label: "O que funcionou?" },
+              ].map(({ name, label }) => (
                 <td key={name}>
+                  <label htmlFor={`input-${name}`} className="visually-hidden">{label}</label>
                   <textarea
+                    id={`input-${name}`}
                     name={name}
                     value={form[name]}
                     onChange={handleChange}
                     className="form-control"
-                    placeholder={placeholder}
                     rows={3}
                     style={{ resize: 'vertical' }}
+                    aria-required="true"
+                    aria-describedby={feedback && form[name].trim() === '' ? `error-${name}` : undefined}
+                    aria-invalid={feedback && form[name].trim() === '' ? 'true' : 'false'}
+                    placeholder={`Escreve ${label.toLowerCase()}`}
                   />
+                  {feedback && form[name].trim() === '' && (
+                    <div
+                      id={`error-${name}`}
+                      className="invalid-feedback d-block"
+                      role="alert"
+                    >
+                      Por favor, preenche este campo.
+                    </div>
+                  )}
                 </td>
               ))}
             </tr>
           </tbody>
         </table>
-        
-        <p>Ao <b>refletires</b> sobre a tua <b>experiência de ansiedade</b>, estarás a dar um passo importante para a <b>compreenderes</b> e <b>lidares</b> com ela de forma mais <b>eficaz</b>.</p>
-          <p>Espero que esta semana te ajude a <b>aprender mais sobre ti</b> e sobre a tua <b>experiência da ansiedade!</b></p>
-          <p><b>Vamos em frente! #SemBichoPapão</b></p>
-          <p>Até para a semana!</p>
+
+        <p>
+          Ao <b>refletires</b> sobre a tua <b>experiência de ansiedade</b>, estarás a dar um passo importante para a <b>compreenderes</b> e <b>lidares</b> com ela de forma mais <b>eficaz</b>.
+        </p>
+        <p>Espero que esta semana te ajude a <b>aprender mais sobre ti</b> e sobre a tua <b>experiência da ansiedade!</b></p>
+        <p><b>Vamos em frente! #SemBichoPapão</b></p>
+        <p>Até para a semana!</p>
       </div>
 
       <div className="mt-3 text-start">
@@ -158,6 +180,8 @@ const DesafioSemanal = ({ id }) => {
             fontSize: "1.05rem",
           }}
           disabled={loading}
+          aria-busy={loading}
+          aria-live="polite"
         >
           {loading ? (
             <div className="d-flex align-items-center justify-content-center">
@@ -175,6 +199,8 @@ const DesafioSemanal = ({ id }) => {
       {feedback && (
         <div
           className={`alert ${feedback.includes("sucesso") ? "alert-success" : "alert-danger"} mt-3`}
+          role="alert"
+          aria-live="assertive"
         >
           {feedback}
         </div>
@@ -184,16 +210,20 @@ const DesafioSemanal = ({ id }) => {
         <>
           <h5 className="mt-5">Registos anteriores:</h5>
           <div className="table-responsive">
-            <table className="table table-bordered text-center align-middle">
+            <table
+              className="table table-bordered text-center align-middle"
+              aria-label="Registos anteriores do desafio semanal"
+            >
+              <caption className="visually-hidden">Tabela de registos anteriores do desafio semanal</caption>
               <thead>
                 <tr>
-                  <th>Data</th>
-                  <th>Dia</th>
-                  <th>Situação</th>
-                  <th>Como me senti?</th>
-                  <th>Pensamentos</th>
-                  <th>Como lidei?</th>
-                  <th>Funcionou?</th>
+                  <th scope="col">Data</th>
+                  <th scope="col">Dia</th>
+                  <th scope="col">Situação</th>
+                  <th scope="col">Como me senti?</th>
+                  <th scope="col">Pensamentos</th>
+                  <th scope="col">Como lidei?</th>
+                  <th scope="col">Funcionou?</th>
                 </tr>
               </thead>
               <tbody>
@@ -218,4 +248,3 @@ const DesafioSemanal = ({ id }) => {
 };
 
 export default DesafioSemanal;
-
