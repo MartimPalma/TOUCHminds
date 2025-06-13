@@ -136,14 +136,14 @@ const LandingPage = () => {
             </Accordion.Item>
             <Accordion.Item eventKey="1">
               <Accordion.Header className="font-poppins">A quem se dirige?</Accordion.Header>
-              <Accordion.Body>
+              <Accordion.Body className="font-lato">
                 O TOUCHminds destina-se a adolescentes dos 15 aos 17 anos que sentem que a ansiedade tem impacto na sua vida. Atualmente, o programa está disponível para
                 participantes das escolas selecionadas no norte do país, sendo necessário efetuar um registo na plataforma para aceder ao programa.
               </Accordion.Body>
             </Accordion.Item>
             <Accordion.Item eventKey="2">
               <Accordion.Header className="font-poppins">Como funciona?</Accordion.Header>
-              <Accordion.Body>
+              <Accordion.Body className="font-lato">
                <ul style={{ marginTop: "0px" }}>
                   <li>É 100% online e gratuito.</li>
                   <li>Composto por seis módulos interativos com vídeos, áudios, imagens e atividades interativas.</li>
