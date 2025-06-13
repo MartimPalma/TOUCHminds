@@ -235,7 +235,7 @@ const AtividadeResumoRede = () => {
                             ? '1px solid #99CBC8'
                             : isHovered
                               ? '1px solid #5AAAA5'
-                              : '1x solid #99CBC8',
+                              : '1px solid #99CBC8',
                           borderRadius: '10px',
                           cursor: isDisabled ? 'default' : 'pointer',
                           fontWeight: isSelected ? '200' : 'normal',
@@ -305,7 +305,8 @@ const AtividadeResumoRede = () => {
         </div>
       </div>
 
-      {/* Modal for feedback */}<Modal show={modalAberto} onHide={() => setModalAberto(false)} centered>
+      {/* Modal for feedback */}
+      <Modal show={modalAberto} onHide={() => setModalAberto(false)} centered>
         <Modal.Header
           closeButton
           style={{

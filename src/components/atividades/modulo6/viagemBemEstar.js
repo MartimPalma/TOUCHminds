@@ -396,7 +396,7 @@ const handleOpcaoToggle = (index) => {
                       <strong>Podes personalizar</strong> se achares que faz mais sentido de acordo com a tua experiência.
                     </p>
                     
-                    <div className="alert alert-info mb-3">
+                    <div className="alert alert-info mb-3" style={{ backgroundColor: "#FBF9F9" , border: "1px solid #99cbc8" }}>
                       <i className="bi bi-info-circle me-2"></i>
                       <strong>Dica:</strong> Clica nas opções com ícone de lápis para as personalizar com as tuas próprias palavras!
                     </div>
@@ -600,8 +600,8 @@ const handleOpcaoToggle = (index) => {
                         type="text"
                         className={`form-control ${inputError ? 'is-invalid' : ''}`}
                         style={{
-                          border: '2px solid #99CBC8',
-                          borderRadius: '25px',
+                          border: '1px solid #99CBC8',
+                          borderRadius: '12px',
                           padding: '12px 20px',
                           fontSize: '16px'
                         }}
@@ -680,8 +680,8 @@ const handleOpcaoToggle = (index) => {
                         type="text"
                         className={`form-control ${ferramentaError ? 'is-invalid' : ''}`}
                         style={{
-                          border: '2px solid #99CBC8',
-                          borderRadius: '25px',
+                          border: '1px solid #99CBC8',
+                          borderRadius: '12px',
                           padding: '12px 20px',
                           fontSize: '16px'
                         }}
@@ -765,8 +765,8 @@ const handleOpcaoToggle = (index) => {
                                         style={{
                                           backgroundColor: isSelected ? '#99CBC8' : '#fff',
                                           color: isSelected ? 'white' : '#234970',
-                                          border: `2px solid #99CBC8`,
-                                          borderRadius: '10px',
+                                          border: `1px solid #99CBC8`,
+                                          borderRadius: '12px',
                                           transition: 'all 0.3s ease',
                                           cursor: 'pointer'
                                         }}
@@ -828,7 +828,7 @@ const handleOpcaoToggle = (index) => {
                       <strong>Podes personalizar</strong> se achares que faz mais sentido de acordo com a tua experiência.
                     </p>
                     
-                    <div className="alert alert-info mb-3">
+                    <div className="alert alert-info mb-3"  style={{ backgroundColor: "#FBF9F9" , border: "1px solid #99cbc8" }}>
                       <i className="bi bi-info-circle me-2"></i>
                       <strong>Dica:</strong> Clica nas opções com ícone de lápis para as personalizar com as tuas próprias palavras!
                     </div>
@@ -980,8 +980,8 @@ const handleOpcaoToggle = (index) => {
                       type="text"
                       className={`form-control ${chaveError ? 'is-invalid' : ''}`}
                       style={{
-                        border: '2px solid #99CBC8',
-                        borderRadius: '25px',
+                        border: '1px solid #99CBC8',
+                        borderRadius: '12px',
                         padding: '12px 20px',
                         fontSize: '16px'
                       }}

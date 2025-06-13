@@ -4,7 +4,7 @@ import Navbar from "../../navbar";
 import Sidebar from "../../sidebar";
 import { UserContext } from "../../../App";
 import AtividadeProgressao from "../atividadeProgressao";
-import { Modal, Button } from 'react-bootstrap'; 
+import { Modal, Button } from 'react-bootstrap';
 
 const AtividadeResumoMudanca = () => {
   const [pagina, setPagina] = useState(0);
@@ -24,7 +24,7 @@ const AtividadeResumoMudanca = () => {
     setTituloModal(nivel.titulo);
     setModalShow(true);
   };
-  
+
   const { id: moduloId } = useParams();
   const { updateUserData } = useContext(UserContext);
 
@@ -330,19 +330,27 @@ const AtividadeResumoMudanca = () => {
                   Como está <strong>a tua confiança na capacidade</strong> de surfares a onda da mudança? Como te <strong>sentes em relação à tua confiança</strong> para lidar com ela? Escolhe uma das seguintes opções:
                 </p>
 
-              <div className="row mb-4">
-                {Object.entries(niveisConfianca).map(([key, nivel]) => {
-                  const isSelected = confianca === key;
+                <div className="row mb-4">
+                  {Object.entries(niveisConfianca).map(([key, nivel]) => {
+                    const isSelected = confianca === key;
 
-                  return (
+                    return (
                       <div key={key} className="col-12 mb-3">
-                        <div className={`card ${isSelected ? 'border-info shadow-sm' : ''}`}>
+                        <div
+                          className={`card`}
+                          style={{
+                            border: `1px solid #99CBC8`,
+                            boxShadow: isSelected ? '0 0 8px rgba(153,203,200,0.7)' : 'none',
+                          }}
+                        >
                           <div className="card-body d-flex align-items-center justify-content-between flex-wrap">
                             <div className="d-flex align-items-center flex-grow-1 me-3">
                               <button
-                                className="btn btn-outline-info me-3"
+                                className="btn btn-outline-info me-3 info-btn"
                                 onClick={() => handleConfiancaClick(key)}
                                 aria-label={`Informação sobre ${nivel.titulo}`}
+                                type="button"
+                                style={{ borderColor: '#99CBC8', color: '#99CBC8' }}
                               >
                                 <i className="bi bi-info-circle"></i>
                               </button>
@@ -351,17 +359,18 @@ const AtividadeResumoMudanca = () => {
 
                             <div className="form-check mb-0">
                               <input
-                                className="form-check-input"
+                                className="form-check-input custom-radio"
                                 type="radio"
                                 name="confianca"
                                 id={`confianca-${key}`}
                                 checked={isSelected}
                                 onChange={() => handleConfiancaSelect(key)}
+                                style={{ cursor: 'pointer' }}
                               />
                               <label
                                 className="form-check-label"
                                 htmlFor={`confianca-${key}`}
-                                style={{ color: 'black' }}
+                                style={{ color: 'black', cursor: 'pointer' }}
                               >
                                 Selecionar
                               </label>
@@ -376,17 +385,17 @@ const AtividadeResumoMudanca = () => {
                 {/* Modal */}
                 <Modal show={modalShow} onHide={() => setModalShow(false)} centered>
                   <Modal.Header
-                            closeButton
-                            style={{
-                              backgroundColor: "#99CBC8",
-                              borderBottom: "none",
-                              color: "#fff",
-                            }}
-                          >
-                            <Modal.Title style={{ fontWeight: "600" }}>
-                              {tituloModal}
-                            </Modal.Title>
-                          </Modal.Header>
+                    closeButton
+                    style={{
+                      backgroundColor: "#99CBC8",
+                      borderBottom: "none",
+                      color: "#fff",
+                    }}
+                  >
+                    <Modal.Title style={{ fontWeight: "600" }}>
+                      {tituloModal}
+                    </Modal.Title>
+                  </Modal.Header>
                   <Modal.Body className="text-center">
                     <img
                       src={imagemModal}
@@ -396,32 +405,32 @@ const AtividadeResumoMudanca = () => {
                     />
                   </Modal.Body>
                   <Modal.Footer
-                            style={{
-                              borderTop: "none",
-                              backgroundColor: "#F5FDFC",
-                              justifyContent: "center",
-                            }}
-                          >
-                            <Button
-                              onClick={() => {
-                                setModalShow(false);
-                              }}
-                              style={{
-                                backgroundColor: "#234970",
-                                borderColor: "#234970",
-                                borderRadius: "20px",
-                                padding: "0.5rem 1.5rem",
-                                fontWeight: "500",
-                              }}
-                            >
-                              Fechar
-                            </Button>
-                          </Modal.Footer>
+                    style={{
+                      borderTop: "none",
+                      backgroundColor: "#F5FDFC",
+                      justifyContent: "center",
+                    }}
+                  >
+                    <Button className="custom-btn-complete"
+                      onClick={() => {
+                        setModalShow(false);
+                      }}
+                      style={{
+                        backgroundColor: "#234970",
+                        borderColor: "#234970",
+                        borderRadius: "8px",
+                        padding: "0.5rem 1.5rem",
+                        fontWeight: "500",
+                      }}
+                    >
+                      Fechar
+                    </Button>
+                  </Modal.Footer>
                 </Modal>
 
                 {confiancaDetalhes && (
                   <div className="alert alert-info" style={{ backgroundColor: '#fbf9f9', border: '1px solid #dee2e6' }}>
-                    <p className="mb-0"style={{ color:'black' }}>{confiancaDetalhes}</p>
+                    <p className="mb-0" style={{ color: 'black' }}>{confiancaDetalhes}</p>
                   </div>
                 )}
 

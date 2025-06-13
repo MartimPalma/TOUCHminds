@@ -158,18 +158,18 @@ const CodigoDoPsicologo = () => {
                 {/* Tabela de Substituição */}
                 <div className="row mb-4">
                   <div className="col-md-6 mx-auto">
-                    <table className="table table-bordered table-sm">
+                    <table className="table table-bordered table-sm" style={{ backgroundColor: "#FBF9F9" }}>
                       <thead>
                         <tr>
-                          <th><strong>Letra</strong></th>
-                          <th><strong>Número</strong></th>
+                          <th style={{ backgroundColor: "#FBF9F9" }}><strong>Letra</strong></th>
+                          <th style={{ backgroundColor: "#FBF9F9" }}><strong>Número</strong></th>
                         </tr>
                       </thead>
                       <tbody>
                         {tabelaSubstituicao.map(([letra, numero], index) => (
                           <tr key={index}>
-                            <td>{letra}</td>
-                            <td>{numero}</td>
+                            <td style={{ backgroundColor: "#FBF9F9" }}>{letra}</td>
+                            <td style={{ backgroundColor: "#FBF9F9" }}>{numero}</td>
                           </tr>
                         ))}
                       </tbody>
@@ -178,7 +178,7 @@ const CodigoDoPsicologo = () => {
                 </div>
 
                 {/* Texto explicativo */}
-                <div className="mb-4 p-3 bg-light rounded">
+                <div className="mb-4 p-3 rounded" style={{ backgroundColor: "#FBF9F9" }}>
                   <p dangerouslySetInnerHTML={{ __html: textosPorPagina[pagina - 1].texto.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') }}></p>
                 </div>
 

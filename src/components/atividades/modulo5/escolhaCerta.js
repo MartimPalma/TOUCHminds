@@ -77,6 +77,9 @@ const EscolhaCerta = () => {
         setOpcaoSelecionada(null);
     };
 
+    const [hoverIndex, setHoverIndex] = useState(null);
+    const isDisabled = false;
+
     const progresso = Math.round((pagina / (cenarios.length + 1)) * 100);
 
     return (
@@ -149,19 +152,38 @@ const EscolhaCerta = () => {
                                     Escolhe <b>a interação</b> que melhor mostra <b>a tua reação</b> a este story:
                                 </p>
 
-                                <div className="d-flex flex-column gap-3">
+                                <div className="d-flex flex-column gap-3 mb-4">
                                     {cenarios[pagina - 1].opcoes.map((opcao, index) => {
                                         const isSelected = opcaoSelecionada === index;
+                                        const isDisabled = opcaoSelecionada !== null && !isSelected;
+                                        const isHovered = hoverIndex === index;
+
                                         return (
                                             <div
                                                 key={index}
-                                                onClick={() => setOpcaoSelecionada(index)}
-                                                className={`btn ${isSelected ? 'btn-primary' : 'btn-outline-secondary'} text-start p-3`}
+                                                onClick={() => !isDisabled && setOpcaoSelecionada(index, cenarios[pagina - 1].feedback)}
+                                                onMouseEnter={() => !isDisabled && setHoverIndex(index)}
+                                                onMouseLeave={() => !isDisabled && setHoverIndex(null)}
+                                                className="p-3 text-start"
                                                 style={{
-                                                    backgroundColor: isSelected ? '#99CBC8' : '#fff',
-                                                    color: isSelected ? 'white' : '#234970',
-                                                    border: `2px solid #99CBC8`,
+                                                    backgroundColor: isSelected
+                                                        ? '#99CBC8'
+                                                        : isHovered
+                                                            ? '#5AAAA5'
+                                                            : '#ffffff',
+                                                    color: isSelected
+                                                        ? 'white'
+                                                        : isHovered
+                                                            ? 'white'
+                                                            : '#000000', // texto preto por defeito
+                                                    border: isSelected
+                                                        ? '1px solid #99CBC8'
+                                                        : isHovered
+                                                            ? '1px solid #5AAAA5'
+                                                            : '1px solid #99CBC8',
                                                     borderRadius: '10px',
+                                                    cursor: isDisabled ? 'default' : 'pointer',
+                                                    fontWeight: isSelected ? '200' : 'normal',
                                                     transition: 'all 0.3s ease',
                                                 }}
                                             >

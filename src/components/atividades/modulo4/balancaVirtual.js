@@ -235,24 +235,38 @@ const BalancaVirtual = () => {
 
             {pagina === 1 && (
               <>
-                <p className="lead"><strong>Começa por escolher um comportamento</strong> dos exemplos apresentados em seguida que queiras <strong>mudar</strong>. Escolhe o comportamento que se aproxima mais da tua <strong>experiência</strong>, ou seja, aquele que <strong>faça mais sentido para ti</strong>.
-</p>
+                <p className="lead"><strong>Começa por escolher um comportamento</strong> dos exemplos apresentados em seguida que queiras <strong>mudar</strong>.
+                  Escolhe o comportamento que se aproxima mais da tua <strong>experiência</strong>, ou seja, aquele que <strong>faça mais sentido para ti</strong>.
+                </p>
                 {Object.entries(comportamentos).map(([key, obj]) => (
                   <div key={key} className="mb-3">
-                    <button className="btn btn-outline-primary w-100 text-start" onClick={() => iniciarFrases(key)}>
+                    <button
+                      className="btn w-100 text-start"
+                      onClick={() => iniciarFrases(key)}
+                      style={{
+                        border: '1px solid #99CBC8',
+                        color: '#000000',
+                        backgroundColor: 'transparent',
+                        borderRadius: '12px',
+                      }}
+                      onMouseEnter={e => { e.currentTarget.style.backgroundColor = '#5AAAA5'; e.currentTarget.style.color = 'white'; }}
+                      onMouseLeave={e => { e.currentTarget.style.backgroundColor = 'transparent'; e.currentTarget.style.color = 'black'; }}
+                    >
                       <strong>{obj.nome}</strong>
                       <div className="text-muted small">{obj.descricao}</div>
                     </button>
                   </div>
                 ))}
-                <button className="custom-btn-pink mt-3" onClick={() => setPagina(0)}><i className="bi bi-arrow-left me-2"></i>Anterior</button>
+                <button className="custom-btn-pink mt-3" onClick={() => setPagina(0)}>
+                  <i className="bi bi-arrow-left me-2"></i>Anterior
+                </button>
               </>
             )}
 
             {pagina === 2 && (
               <DragDropContext onDragEnd={handleDragEnd}>
                 <>
-                  <p className="lead">Agora que escolheste o <strong>comportamento</strong> que queres mudar, reflete sobre os <strong>prós</strong> e os <strong>contras</strong> dessa mudança. 
+                  <p className="lead">Agora que escolheste o <strong>comportamento</strong> que queres mudar, reflete sobre os <strong>prós</strong> e os <strong>contras</strong> dessa mudança.
                     A <strong>balança</strong> está dividida em quatro <strong>quadrantes</strong>, e o teu objetivo é arrastares as <strong>frases</strong> que achas que se aplicam a cada um</p>
                   <p className="text-muted small mb-3">
                     Para prosseguir, deves colocar pelo menos uma frase em cada um dos quatro quadrantes.
@@ -299,13 +313,12 @@ const BalancaVirtual = () => {
                             <div
                               ref={provided.innerRef}
                               {...provided.droppableProps}
-                              className={`min-vh-25 border rounded p-2 bg-light ${showValidationError && respostas[q.id].length === 0 ? "border-warning" : ""
-                                }`}
+                              className={`min-vh-25 border rounded p-2 ${showValidationError && respostas[q.id].length === 0 ? "border-warning" : "" }`} style={{ backgroundColor: '#fbf9f9'}}
                             >
                               {respostas[q.id].map((frase, index) => (
                                 <Draggable key={frase} draggableId={frase} index={index}>
                                   {(provided) => (
-                                    <div ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps} className="badge bg-primary text-white p-2 mb-2">
+                                    <div ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps} className="badge  text-white p-2 mb-2" style={{backgroundColor:'#99cbc8'}}>
                                       {frase}
                                     </div>
                                   )}

@@ -140,8 +140,10 @@ const AtividadeResumo6 = () => {
                 <DragDropContext onDragEnd={onDragEnd}>
                   <div className="row g-3">
                     {/* Área de frases disponíveis */}
-                    <div className="col-md-12 mb-4">
-                      <div className="border rounded p-3 bg-light">
+                    <div className="col-md-12 mb-4" >
+                      <div className="border rounded p-3" style={{
+                        backgroundColor: "#FBF9F9",
+                      }} >
                         <h5 className="mb-3">Frases para organizar</h5>
                         <Droppable droppableId="frasesDisponiveis" direction="horizontal">
                           {(provided) => (
@@ -175,7 +177,7 @@ const AtividadeResumo6 = () => {
                     {/* Colunas de destino */}
                     {Object.entries(frasesEmColunas).map(([colunaNome, frases]) => (
                       <div className="col-md-4" key={colunaNome}>
-                        <div className="border rounded p-3 h-100">
+                        <div className="border rounded p-3 h-100" style={{ backgroundColor: "#FBF9F9" }}>
                           <h5 className="text-center mb-3">{colunaNome}</h5>
                           <Droppable droppableId={colunaNome}>
                             {(provided) => (
@@ -226,7 +228,7 @@ const AtividadeResumo6 = () => {
                     </button>
 
                     <button
-                      className="custom-btn-turquoise" 
+                      className="custom-btn-turquoise"
                       disabled={!todasCorretas}
                       onClick={() => setPagina(2)}
                     >
@@ -252,8 +254,8 @@ const AtividadeResumo6 = () => {
                     <tbody>
                       {respostasCorretas.map((resposta, index) => (
                         <tr key={index}>
-                          <td>{resposta.frase}</td>
-                          <td>{resposta.coluna}</td>
+                          <td style={{backgroundColor: resposta.frase.trim() !== "" ? "#FBF9F9" : "white",}}>{resposta.frase}</td>
+                          <td style={{backgroundColor: resposta.coluna.trim() !== "" ? "#FBF9F9" : "white",}}>{resposta.coluna}</td>
                         </tr>
                       ))}
                     </tbody>

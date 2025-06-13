@@ -504,6 +504,13 @@ select:focus {
   border-color: #99CBC8 !important;
 }
 
+.info-btn:hover  {
+  background-color: #99CBC8 !important;
+  color: white !important;
+  border-color: #99CBC8 !important;
+  box-shadow: 0 0 8px rgba(153,203,200,0.7);
+}
+
 .message {
   padding: 10px;
   margin-top: 10px;
