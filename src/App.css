@@ -382,7 +382,7 @@ select:focus {
   position: relative;
   border-radius: 12px;
   overflow: hidden;
-  cursor: pointer;
+  cursor: default;
   transition: transform 0.3s ease;
 }
 
