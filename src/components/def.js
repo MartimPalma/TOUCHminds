@@ -89,7 +89,11 @@ const Definicoes = () => {
             </p>
 
             {message.text && (
-              <div className={`message ${message.type}`}>
+              <div
+                className={`message ${message.type}`}
+                role="status"
+                aria-live="polite"
+              >
                 {message.text}
               </div>
             )}
@@ -102,6 +106,7 @@ const Definicoes = () => {
                   type="text"
                   className="form-control"
                   placeholder="Insira o nome na plataforma"
+                  aria-label="Nome na plataforma"
                   value={nome}
                   onChange={(e) => setNome(e.target.value)}
                   required
@@ -109,8 +114,8 @@ const Definicoes = () => {
                 />
               </div>
 
-              <div className="mt-4 p-4 rounded" style={{ backgroundColor: '#fbf9f9' }}>
-                <h5 className="fw-semibold mb-2" style={{ color: '#3B9C9C' }}>🧑 Escolhe o teu avatar</h5>
+              <fieldset className="mt-4 p-4 rounded" style={{ backgroundColor: '#fbf9f9' }}>
+                <legend className="fw-semibold mb-2" style={{ color: '#3B9C9C' }}>🧑 Escolhe o teu avatar</legend>
                 <p>Seleciona uma imagem que te represente:</p>
                 <div className="d-flex flex-wrap gap-3 mt-3">
                   {avatarOptions.map((avatar) => (
@@ -119,6 +124,9 @@ const Definicoes = () => {
                         src={avatar.src}
                         alt={`Avatar ${avatar.id}`}
                         className="rounded-circle"
+                        role="button"
+                        tabIndex="0"
+                        aria-label={`Selecionar ${avatar.id}`}
                         style={{
                           width: "75px",
                           height: "75px",
@@ -133,17 +141,24 @@ const Definicoes = () => {
                             : "none"
                         }}
                         onClick={() => setSelectedAvatar(avatar.id)}
+                        onKeyDown={(e) => {
+                          if (e.key === 'Enter' || e.key === ' ') {
+                            e.preventDefault();
+                            setSelectedAvatar(avatar.id);
+                          }
+                        }}
                       />
                     </div>
                   ))}
                 </div>
-              </div>
+              </fieldset>
 
               <div className="mt-4 text-center">
                 <button
                   type="submit"
                   className="custom-btn-turquoise px-4 py-2"
                   disabled={loading}
+                  aria-busy={loading}
                 >
                   {loading ? (
                     <div className="d-flex align-items-center justify-content-center">

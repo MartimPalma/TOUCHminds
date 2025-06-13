@@ -34,12 +34,8 @@ const LinhaTemporal = () => {
     return <Loading message="A carregar o progresso..." />;
   }
 
-  console.log('User modulo 1:', userData.modulos['modulo1']); 
-
-
   const progressoDoUser = modulosData.map((moduloBase) => {
-    
-  const userModulo = userData.modulos[`modulo${moduloBase.id}`]; 
+    const userModulo = userData.modulos[`modulo${moduloBase.id}`];
 
     if (!userModulo) {
       return {
@@ -49,7 +45,6 @@ const LinhaTemporal = () => {
         atividadesConcluidas: 0,
         percentualConcluido: 0,
         atividades: moduloBase.atividades.map(a => ({ ...a, concluido: false })),
-        desafioSemana1: { status: 'bloqueado' },
         dataFim: null,
       };
     }
@@ -62,8 +57,6 @@ const LinhaTemporal = () => {
 
     const totalAtividades = atividades.length;
     const atividadesConcluidas = atividades.filter(a => a.concluido).length;
-
-    // Se todas as atividades concluídas, modulo concluído
     const atividadesCompletas = totalAtividades > 0 && atividadesConcluidas === totalAtividades;
     const statusModulo = atividadesCompletas ? 'concluído' : 'em progresso';
 
@@ -100,23 +93,27 @@ const LinhaTemporal = () => {
               Acompanha o teu progresso nos diferentes módulos do programa.
             </p>
 
-            <div className="timeline-container " ref={timelineRef}>
-              <div className="timeline-line"></div>
+            <div className="timeline-container" ref={timelineRef}>
+              <div className="timeline-line" aria-hidden="true"></div>
 
               {progressoDoUser.map((modulo, index) => {
                 const moduloAnteriorConcluido = index === 0 || progressoDoUser[index - 1].status === 'concluído';
                 const bloqueado = !moduloAnteriorConcluido && modulo.status !== 'concluído';
 
                 return (
-                  <div key={modulo.id} className={`timeline-item ${index % 2 === 0 ? 'left' : 'right'}`}>
+                  <div
+                    key={modulo.id}
+                    className={`timeline-item ${index % 2 === 0 ? 'left' : 'right'}`}
+                    aria-label={`Módulo ${index + 1}, ${modulo.status}`}
+                  >
                     <div className="timeline-marker">
                       {modulo.status === 'concluído' ? (
-                        <div className="marker-icon completed">
-                          <i className="fas fa-medal"></i>
+                        <div className="marker-icon completed" aria-hidden="true">
+                          <i className="fas fa-medal" aria-hidden="true"></i>
                         </div>
                       ) : (
-                        <div className={`marker-icon ${bloqueado ? 'locked' : 'available'}`}>
-                          <i className={`fas ${bloqueado ? 'fa-lock' : 'fa-play'}`}></i>
+                        <div className={`marker-icon ${bloqueado ? 'locked' : 'available'}`} aria-hidden="true">
+                          <i className={`fas ${bloqueado ? 'fa-lock' : 'fa-play'}`} aria-hidden="true"></i>
                         </div>
                       )}
                       <div className="marker-number">{index + 1}</div>
@@ -126,52 +123,62 @@ const LinhaTemporal = () => {
                       <div className="content-card">
                         <div className="card-header">
                           <div className="header-top">
-                            <h4 className="module-title">{modulo.titulo}</h4>
+                            <h3 className="module-title">{modulo.titulo}</h3>
                           </div>
                           <p className="module-subtitle">{modulo.subtitulo}</p>
 
-                            {modulo.status === 'concluído' ? (
-                              <div className="status-badge completed">
-                                <i className="fas fa-check-circle me-2"></i>
-                                Concluído em {formatarData(modulo.dataFim)}
-                              </div>
-                            ) : (
-                              <div className={`status-badge ${bloqueado ? 'locked' : 'available'}`}>
-                                <i className={`fas ${bloqueado ? 'fa-lock' : 'fa-hourglass-start'} me-2`}></i>
-                                {bloqueado ? 'Bloqueado' : 'Ainda não concluído'}
-                              </div>
-                            )}
+                          {modulo.status === 'concluído' ? (
+                            <div
+                              className="status-badge completed"
+                              aria-label={`Estado do módulo: Concluído em ${formatarData(modulo.dataFim)}`}
+                            >
+                              <i className="fas fa-check-circle me-2" aria-hidden="true"></i>
+                              Concluído em {formatarData(modulo.dataFim)}
+                            </div>
+                          ) : (
+                            <div
+                              className={`status-badge ${bloqueado ? 'locked' : 'available'}`}
+                              aria-label={`Estado do módulo: ${bloqueado ? 'Bloqueado' : 'Ainda não concluído'}`}
+                            >
+                              <i className={`fas ${bloqueado ? 'fa-lock' : 'fa-hourglass-start'} me-2`} aria-hidden="true"></i>
+                              {bloqueado ? 'Bloqueado' : 'Ainda não concluído'}
+                            </div>
+                          )}
                         </div>
 
                         <div className="card-body">
                           <div className="progress-section">
                             <div className="progress-header">
-                              <h6 className="section-title">
-                                <i className="fas fa-tasks me-2"></i>
+                              <h4 className="section-title">
+                                <i className="fas fa-tasks me-2" aria-hidden="true"></i>
                                 Progresso das Atividades
-                              </h6>
+                              </h4>
                               <span className="progress-text">
                                 {modulo.atividadesConcluidas}/{modulo.totalAtividades}
                               </span>
                             </div>
 
-                            <div className="progress-bar-container">
-                              <div className="progress-bar">
-                                <div
-                                  className="progress-fill"
-                                  style={{ width: `${modulo.percentualConcluido}%` }}
-                                ></div>
-                              </div>
-                              <span className="progress-percentage">
-                                {Math.round(modulo.percentualConcluido)}%
-                              </span>
+                            <div
+                              className="progress-bar"
+                              role="progressbar"
+                              aria-valuenow={Math.round(modulo.percentualConcluido)}
+                              aria-valuemin="0"
+                              aria-valuemax="100"
+                            >
+                              <div
+                                className="progress-fill"
+                                style={{ width: `${modulo.percentualConcluido}%` }}
+                              ></div>
                             </div>
+                            <span className="progress-percentage">
+                              {Math.round(modulo.percentualConcluido)}%
+                            </span>
                           </div>
+                        </div>
 
                         </div>
                       </div>
                     </div>
-                  </div>
                 );
               })}
             </div>

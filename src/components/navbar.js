@@ -120,7 +120,7 @@ const Navbar = () => {
         <div className="position-relative">
           <img
             src={avatarSelecionado}
-            alt="Avatar"
+            alt="Avatar do utilizador"
             className="rounded-circle"
             style={{ width: "44px", height: "44px", cursor: "pointer" }}
             onClick={toggleTooltip}

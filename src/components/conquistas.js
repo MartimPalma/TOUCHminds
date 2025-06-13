@@ -11,12 +11,10 @@ import modulo4 from "../imgs/module1.jpg";
 import modulo5 from "../imgs/module1.jpg";
 import modulo6 from "../imgs/module1.jpg";
 
-
-
 const Conquistas = () => {
   const [modulosConcluidos, setModulosConcluidos] = useState(0);
   const [loading, setLoading] = useState(true);
-  const { userData } = useContext(UserContext); 
+  const { userData } = useContext(UserContext);
 
   useEffect(() => {
     if (userData) {
@@ -25,7 +23,7 @@ const Conquistas = () => {
     }
   }, [userData]);
 
-   if (loading) {
+  if (loading) {
     return <Loading message="A carregar as tuas conquistas..." />;
   }
 
@@ -41,9 +39,10 @@ const Conquistas = () => {
         <div className="col-4 p-0" key={index}>
           <img
             src={imagePath}
-            alt={`Módulo ${index}`}
+            alt={`Imagem do Módulo ${index} - ${isCompleted ? 'concluído' : 'bloqueado'}`}
             className="w-100 h-100 object-fit-contain"
-            style={{ filter: isCompleted ? 'none' : 'grayscale(100%)' }}
+            style={{ filter: isCompleted ? 'none' : 'grayscale(100%)', transition: 'filter 0.3s ease' }}
+            loading="lazy"
           />
         </div>
       );
@@ -57,7 +56,7 @@ const Conquistas = () => {
       <Navbar />
       <div className="row h-100 m-0">
         <Sidebar />
-        <div className="col px-4 py-4" style={{ backgroundColor: "#FBF9F9" }}>
+        <main className="col px-4 py-4" style={{ backgroundColor: "#FBF9F9" }}>
           <div className="container p-4 bg-white rounded shadow-sm h-100">
             <h2 className="mb-2 fw-semibold" style={{ color: "#99CBC8" }}>
               As Minhas Conquistas
@@ -66,38 +65,26 @@ const Conquistas = () => {
               Completa todos os módulos para revelar o puzzle completo!
             </p>
 
-            {loading ? (
-              <div className="d-flex justify-content-center align-items-center py-5">
-                <div className="spinner-border" role="status" style={{ color: "#66BFBF" }}>
-                  <span className="visually-hidden">A carregar...</span>
-                </div>
+            <section aria-label="Progresso dos módulos concluídos" className="mb-4">
+              <div className="d-flex justify-content-between mb-1">
+                <span className="small fw-semibold" style={{ color: "#234970" }}>Progresso</span>
+                <span className="small fw-semibold" style={{ color: "#234970" }}>{percentagem}%</span>
               </div>
-            ) : (
-              <>
-                <div className="mb-4">
-                  <div className="d-flex justify-content-between mb-1">
-                    <span className="small fw-semibold" style={{ color: "#234970" }}>Progresso</span>
-                    <span className="small fw-semibold" style={{ color: "#234970" }}>{percentagem}%</span>
-                  </div>
-                  <div className="progress" style={{ height: "10px" }}>
-                    <div
-                      className="progress-bar"
-                      role="progressbar"
-                      style={{ width: `${percentagem}%`, backgroundColor: "#99CBC8" }}
-                      aria-valuenow={percentagem}
-                      aria-valuemin="0"
-                      aria-valuemax="100"
-                    />
-                  </div>
-                </div>
+              <div className="progress" style={{ height: "10px" }} role="progressbar" 
+                   aria-valuemin={0} aria-valuemax={100} aria-valuenow={percentagem} aria-label='Progresso dos módulos concluídos' 
+                   aria-valuetext={`${percentagem} por cento concluído`} tabIndex={0}>
+                <div
+                  className="progress-bar"
+                  style={{ width: `${percentagem}%`, backgroundColor: "#99CBC8" }}
+                />
+              </div>
+            </section>
 
-                <div className="row justify-content-center">
-                  {renderModuleImages()}
-                </div>
-              </>
-            )}
+            <section aria-label="Imagens dos módulos" className="row justify-content-center" tabIndex={-1}>
+              {renderModuleImages()}
+            </section>
           </div>
-        </div>
+        </main>
       </div>
     </div>
   );
