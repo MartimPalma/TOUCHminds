@@ -414,7 +414,7 @@ const AtividadeResumo = () => {
                                 {option.summaryImage && (
                                   <img
                                     src={option.summaryImage}
-                                    alt=""
+                                    alt="Resultado da escolha"
                                     style={{
                                       width: "100px",
                                       height: "100px",

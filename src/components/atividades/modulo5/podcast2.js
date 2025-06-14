@@ -65,12 +65,14 @@ const AnsiedadeSOSPOD = () => {
               <>
                 <h4 className="fw-bold mb-4" style={{ color: "#234970" }}>Quando o Corpo Fala Mais Alto</h4>
                 <div className="text-center mb-4">
+                  {/* N
                   <img
                     src="/imgs/podcast_cover.png"
                     alt="Capa do episódio"
                     className="img-fluid rounded mb-3"
                     style={{ maxWidth: "300px" }}
                   />
+                  */}
                   <p>
                   </p>
                   {/* Simulação do player (podes substituir por um real depois) */}

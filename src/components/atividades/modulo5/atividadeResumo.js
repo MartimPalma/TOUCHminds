@@ -169,8 +169,7 @@ const AtividadeResumoRede = () => {
                       Como já vimos, quando <strong>precisamos de ajuda</strong>, temos várias opções disponíveis. Podes contar com a <strong>ajuda de amigos, familiares ou professores</strong>, procurar <strong>ajuda de profissionais</strong> ou até recorrer a <strong>ferramentas de autoajuda</strong>.<br></br><br></br>
                       Vamos explorar alguns <strong>exemplos</strong> para perceber <strong>quando é mais adequado escolher cada tipo de ajuda</strong>!<br></br><br></br>
                       Nesta atividade, serás apresentado a <strong>diversas situações do dia a dia</strong>. O teu objetivo é <strong>ler cada situação e escolher</strong>, entre as opções dadas, a <strong>melhor forma de procurar ajuda</strong> nessa situação.<br></br><br></br>
-                      Ao fazeres a tua escolha, vais receber um <strong>feedback imediato</strong> que te ajudará a compreender qual a <strong>melhor opção para cada caso</strong>.<br></br><br></br>
-                      <strong>Vamos a isto?</strong>
+                      Ao fazeres a tua escolha, vais receber um <strong>feedback imediato</strong> que te ajudará a compreender qual a <strong>melhor opção para cada caso</strong>.<br></br>
                     </p>
                     <div className="text-center">
                       <button

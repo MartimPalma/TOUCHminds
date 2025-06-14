@@ -88,7 +88,7 @@ const LinhaAnsiedade = () => {
                           pode ser sentida como <strong>ansiedade comum</strong>, que nos ajuda a <strong>preparar</strong> para desafios, ou como
                            <strong> ansiedade SOS</strong>, que pode prejudicar o nosso <strong>bem-estar</strong><br></br><br></br> O objetivo é que explores as duas 
                            linhas da ansiedade, observando o que acontece <strong>antes, durante e depois</strong> de uma situação 
-                           <strong>desafiadora</strong>. Vamos começar?
+                           <strong>desafiadora</strong>.
                       </p>
                       <div className="text-center">
                       <button className="custom-btn-turquoise mt-3 px-4 py-2" onClick={avancarPagina}>

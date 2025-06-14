@@ -365,8 +365,6 @@ const handleOpcaoToggle = (index) => {
 
                   <p className="mb-3 lead">O objetivo desta atividade é <strong>aprender sobre as fases do processo terapêutico</strong>, utilizando <strong>objetos simbólicos</strong> que representam cada etapa.</p>
 
-                  <p className="mb-3 lead"><strong>Vamos começar?</strong></p>
-
                   <div className="text-center">
                     <button className="custom-btn-turquoise mt-2 px-4 py-2" onClick={avancarPagina}>
                       <i className="bi bi-play-fill me-2"></i>Vamos a isto?</button>

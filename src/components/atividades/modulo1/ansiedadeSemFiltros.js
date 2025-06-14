@@ -83,7 +83,7 @@ const AnsiedadeSemFiltros = () => {
                       é tão importante falarmos sobre isto.<br /><br />
                       Imagina que estás a fazer <strong>scroll no Instagram</strong> e deste de caras com um post sobre este tema. Lê cada imagem com <strong>atenção</strong> e, no final, reage com um <strong>hashtag</strong> que mostre o que sentiste ao ver aquela informação.<br />
                       Podes escrever <strong>qualquer hashtag</strong> — algo que sintas, penses ou te venha à cabeça naquele momento.<br /><br />
-                      O <strong>objetivo</strong> é parares um instante e <strong>refletires</strong> sobre o que estás a ver e como isso te <strong>faz sentir</strong>. Vamos a isso?
+                      O <strong>objetivo</strong> é parares um instante e <strong>refletires</strong> sobre o que estás a ver e como isso te <strong>faz sentir</strong>.
                     </p>
                     <div className="text-center">
                       <button
@@ -145,7 +145,7 @@ const AnsiedadeSemFiltros = () => {
                       className="input-group-text"
                       id="hashtag-addon"
                       style={{
-                        border: '2px solid #99CBC8',
+                        border: '1px solid #99CBC8',
                         borderRight: 'none',
                         backgroundColor: 'white',
                         borderTopLeftRadius: '0.375rem',
@@ -158,7 +158,7 @@ const AnsiedadeSemFiltros = () => {
                       type="text"
                       className={`bdform-control form-control ${inputError ? 'is-invalid' : ''}`}
                       style={{
-                        border: '2px solid #99CBC8',
+                        border: '1px solid #99CBC8',
                         borderLeft: 'none'
                       }}
                       placeholder="hashtag"
