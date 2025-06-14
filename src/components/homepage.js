@@ -19,7 +19,6 @@ const Homepage = () => {
   const [showSignup, setShowSignup] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
-  // Estado da modal de aviso móvel
   const [modalShow, setModalShow] = useState(false);
   const mensagemPopUp = "⚠️ Atenção: O site pode não ter a melhor experiência em dispositivos móveis.";
 
@@ -30,17 +29,13 @@ const Homepage = () => {
     }
   }, []);
 
-
-  // Use useEffect para mostrar login se userData não existir
   useEffect(() => {
     if (!userData) {
       setIsLoading(true);
-      
       const timer = setTimeout(() => {
         setIsLoading(false);
         setShowLogin(true);
       }, 2000);
-
       return () => clearTimeout(timer);
     }
   }, [userData]);
@@ -65,7 +60,13 @@ const Homepage = () => {
     navigate('../');
   };
 
-  console.log("HomePage:" , userData);
+  const handleNavigate = (moduloId) => {
+    navigate(`/modulos/${moduloId}`);
+  };
+
+  const totalModulos = 6;
+  const concluidos = userData?.modulosConcluidos || 0;
+  const percentagem = Math.round((concluidos / totalModulos) * 100);
 
   if (!userData && isLoading) {
     return <Loading message="A carregar a tua página inicial..." />;
@@ -73,8 +74,7 @@ const Homepage = () => {
 
   if (!userData) {
     return (
-      <div className="min-vh-100 d-flex align-items-center justify-content-center" 
-         style={{ backgroundColor: 'white' }}>
+      <div className="min-vh-100 d-flex align-items-center justify-content-center" style={{ backgroundColor: 'white' }}>
         {showLogin && (
           <Login
             show={showLogin}
@@ -94,26 +94,20 @@ const Homepage = () => {
     );
   }
 
-  const handleNavigate = (moduloId) => {
-    navigate(`/modulos/${moduloId}`);
-  };
-
-  const totalModulos = 6;
-  const concluidos = userData.modulosConcluidos || 0;
-  const percentagem = Math.round((concluidos / totalModulos) * 100);
-
   return (
     <div className="container-fluid vh-100 p-0" style={{ position: 'relative' }}>
-      {/* Modal de aviso móvel */}
       <Modal
         show={modalShow}
         onHide={() => setModalShow(false)}
         centered
+        role="dialog"
+        aria-modal="true"
+        aria-label="Aviso sobre experiência móvel"
       >
         <Modal.Header
           closeButton
           style={{
-            backgroundColor: "#D9534F",  
+            backgroundColor: "#D9534F",
             borderBottom: "none",
             color: "#fff",
           }}
@@ -128,16 +122,15 @@ const Homepage = () => {
         <Modal.Footer
           style={{
             borderTop: "none",
-            backgroundColor: "#f8d7da", 
+            backgroundColor: "#f8d7da",
             textAlign: "center",
             alignItems: "center",
             justifyContent: "center"
           }}
         >
           <Button
-            onClick={() => {
-              setModalShow(false);
-            }}
+            onClick={() => setModalShow(false)}
+            aria-label="Fechar aviso sobre dispositivos móveis"
             style={{
               backgroundColor: "#D9534F",
               borderColor: "#D43F3A",
@@ -160,7 +153,7 @@ const Homepage = () => {
               Bem vindo, <span>{userData.nome}!</span>
             </h2>
 
-            <div className="mb-4">
+            <div className="mb-4" aria-label="Progresso dos módulos">
               <div className="d-flex justify-content-between mb-1">
                 <span className="small fw-semibold" style={{ color: "#234970" }}>Progresso dos Módulos</span>
                 <span className="small fw-semibold" style={{ color: "#234970" }}>{percentagem}%</span>
@@ -170,50 +163,25 @@ const Homepage = () => {
                   className="progress-bar"
                   role="progressbar"
                   style={{ width: `${percentagem}%`, backgroundColor: "#99CBC8" }}
+                  aria-label={`Progresso: ${percentagem}% dos módulos concluídos`}
                   aria-valuenow={percentagem}
                   aria-valuemin="0"
                   aria-valuemax="100"
                 />
               </div>
 
-              {percentagem === 0 && (
-                <div className="mt-2 small text-muted">
-                  Ainda não concluíste nenhum módulo. <span className="small fw-semibold fs-6" style={{ color: "#234970" }}>Dá o primeiro passo!</span>
-                </div>
-              )}
-              {percentagem > 0 && percentagem <= 20 && (
-                <div className="mt-2 small text-muted">
-                  Iniciaste o caminho! <span className="small fw-semibold fs-6" style={{ color: "#234970" }}>Estás a dar os primeiros passos.</span>
-                </div>
-              )}
-              {percentagem > 20 && percentagem <= 40 && (
-                <div className="mt-2 small text-muted">
-                  Estás a caminhar! <span className="small fw-semibold fs-6" style={{ color: "#234970" }}>Lembra-te que cada passo importa!</span>
-                </div>
-              )}
-              {percentagem > 40 && percentagem <= 60 && (
-                <div className="mt-2 small text-muted">
-                  Mantém o ritmo! <span className="small fw-semibold fs-6" style={{ color: "#234970" }}>Continua com essa motivação!</span>
-                </div>
-              )}
-              {percentagem > 60 && percentagem <= 80 && (
-                <div className="mt-2 small text-muted">
-                  Quase lá! <span className="small fw-semibold fs-6" style={{ color: "#234970" }}>Faltam só mais alguns passos!</span>
-                </div>
-              )}
-              {percentagem > 80 && percentagem < 100 && (
-                <div className="mt-2 small text-muted">
-                  Último módulo à vista!! <span className="small fw-semibold fs-6" style={{ color: "#234970" }}>Não desistas agora. O teu esforço vai valer a pena!</span>
-                </div>
-              )}
-              {percentagem === 100 && (
-                <div className="mt-2 small text-muted">
-                  Parabéns! Concluíste todos os módulos. <span className="small fw-semibold fs-6" style={{ color: "#234970" }}>Aproveita tudo o que este percurso te trouxe!</span>
-                </div>
-              )}
+              <div className="mt-2 small text-muted">
+                {percentagem === 0 && <>Ainda não concluíste nenhum módulo. <span className="small fw-semibold fs-6" style={{ color: "#234970" }}>Dá o primeiro passo!</span></>}
+                {percentagem > 0 && percentagem <= 20 && <>Iniciaste o caminho! <span className="small fw-semibold fs-6" style={{ color: "#234970" }}>Estás a dar os primeiros passos.</span></>}
+                {percentagem > 20 && percentagem <= 40 && <>Estás a caminhar! <span className="small fw-semibold fs-6" style={{ color: "#234970" }}>Lembra-te que cada passo importa!</span></>}
+                {percentagem > 40 && percentagem <= 60 && <>Mantém o ritmo! <span className="small fw-semibold fs-6" style={{ color: "#234970" }}>Continua com essa motivação!</span></>}
+                {percentagem > 60 && percentagem <= 80 && <>Quase lá! <span className="small fw-semibold fs-6" style={{ color: "#234970" }}>Faltam só mais alguns passos!</span></>}
+                {percentagem > 80 && percentagem < 100 && <>Último módulo à vista!! <span className="small fw-semibold fs-6" style={{ color: "#234970" }}>Não desistas agora. O teu esforço vai valer a pena!</span></>}
+                {percentagem === 100 && <>Parabéns! Concluíste todos os módulos. <span className="small fw-semibold fs-6" style={{ color: "#234970" }}>Aproveita tudo o que este percurso te trouxe!</span></>}
+              </div>
             </div>
 
-            <div className="row row-cols-1 row-cols-md-3 g-4">
+            <div className="row row-cols-1 row-cols-md-3 g-4" aria-label="Lista de módulos">
               {modulos.map((modulo) => {
                 const chaveModulo = `modulo${modulo.id}`;
                 const status = userData.modulos?.[chaveModulo]?.status || 'bloqueado';

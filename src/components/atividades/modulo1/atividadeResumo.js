@@ -297,7 +297,6 @@ const AtividadeResumo = () => {
               </div>
             )}
 
-            {/* QUIZ PAGES (2-4) */}
             {pagina >= 2 && pagina <= 4 && (
               <>
                 <h4 className="fw-bold mb-3" style={{ color: "#234970" }}>{quizPages[pagina - 2].title}</h4>
@@ -361,7 +360,6 @@ const AtividadeResumo = () => {
               </>
             )}
 
-            {/* QUIZ PAGE 5 - ADDITIONAL CONTENT */}
             {pagina === 5 && (
               <>
                 <h4 className="fw-bold mb-4" style={{ color: "#234970" }}>Tabela Resumo</h4>
@@ -483,7 +481,6 @@ const AtividadeResumo = () => {
         </div>
       </div>
 
-      {/* Modal for option feedback */}
       <Modal
         show={showModal}
         onClose={closeModal}
