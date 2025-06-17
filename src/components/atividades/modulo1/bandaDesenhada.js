@@ -82,22 +82,16 @@ const BandaDesenhada = () => {
                 <div className="row ">
                   <div className="col-md-12">
                     <p className="lead mb-3">
-                      <strong>Sê muito bem-vindo ou bem-vinda à Banda Desenhada da Ansiedade: Aliada ou Empecilho?</strong>!
-                      Nesta <strong>banda desenhada</strong>, vais conhecer dois tipos de ansiedade:
+                      
+                      Nesta atividade vais conhecer dois tipos de ansiedade:
                     </p>
                     <p className="lead"><strong>Ansiedade comum</strong>, que nos ajuda a enfrentar desafios</p>
                     <p className="lead"><strong>Ansiedade SOS</strong>, que pode atrapalhar o nosso bem-estar</p>
 
                     <p className="lead mb-3">
-                      O teu <strong>desafio</strong> é compreender a diferença entre estas duas formas de ansiedade. Para isso, lê com atenção os
-                      quadros da banda desenhada. No final, <strong>escreve duas palavras</strong> que, para ti, represente:
+                      Lê os quadros da banda desenhada. No final, terás de escrever duas palavras que representem para ti estes dois tipos de ansiedade.
                     </p>
-                    <p className="lead">O que é a <strong>ansiedade comum?</strong></p>
-                    <p className="lead">O que é a <strong>ansiedade SOS?</strong></p>
-
-                    <p className="lead mb-3">
-                      Escreve essas duas palavras no espaço indicado. <strong>Não há respostas certas ou erradas</strong> — o importante é o que <strong>tu</strong> compreendeste!
-                    </p>
+       
                     <div className="text-center">
                       <button
                         className="custom-btn-turquoise mt-3 px-4 py-2"
@@ -156,10 +150,9 @@ const BandaDesenhada = () => {
                 )}
 
                 <p className="lead">
-                  <strong>Escreve aqui duas palavras que para ti</strong> representem a o que é a ansiedade comum e o que é a ansiedade SOS.
+                  Escreve aqui duas palavras que para ti representem a o que é a ansiedade comum e o que é a ansiedade SOS.
                   <br />
-                  Escreve essas duas palavras no espaço indicado. <br />
-                  <strong>Não há respostas certas ou erradas</strong> — o importante é o que <strong>tu</strong> compreendeste! Vamos a isto?
+                  Não há respostas certas ou erradas — o importante é o que tu compreendeste!
                 </p>
 
                 <div className="mb-3">
