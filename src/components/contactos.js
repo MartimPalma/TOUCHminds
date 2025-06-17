@@ -26,13 +26,13 @@ const Contactos = () => {
             </p>
 
             <section className="mt-4 p-4 rounded" style={{ backgroundColor: '#fbf9f9' }} aria-labelledby="contacto-direto">
-              <h5 id="contacto-direto" className="fw-semibold mb-2" style={{ color: '#3B9C9C' }}>
-                📧 Contacto direto
+              <h5 id="contacto-direto" className="fw-semibold mb-2" style={{ color: '#234970' }}>
+                Contacto da psicóloga responsável
               </h5>
               <address>
                 <p className="mb-1">
-                  Podes entrar em contacto com a <strong>Psicóloga Catarina Monteiro</strong>:
-                </p>
+                  <strong>Psicóloga Catarina Monteiro</strong>:{' '}
+                
                 <a
                   href="mailto:catarinaamonteiro@ua.pt"
                   style={{ color: '#2A7F7F', textDecoration: 'none', fontWeight: '500' }}
@@ -40,12 +40,13 @@ const Contactos = () => {
                 >
                   catarinaamonteiro@ua.pt
                 </a>
+                </p>
               </address>
             </section>
 
             <section className="mt-4 p-4 rounded" style={{ backgroundColor: '#fbf9f9' }} aria-labelledby="outras-opcoes">
-              <h5 id="outras-opcoes" className="fw-semibold mb-2" style={{ color: '#3B9C9C' }}>
-                📞 Outras opções de apoio
+              <h5 id="outras-opcoes" className="fw-semibold mb-2" style={{ color: '#234970' }}>
+                Outras opções de apoio
               </h5>
               <ul
                 style={{ listStyleType: 'none', paddingLeft: 0, lineHeight: '1.8' }}
@@ -71,10 +72,9 @@ const Contactos = () => {
                     800 208 020
                   </a>
                 </li>
+                <li><strong>Falar com o/a psicólogo/a da tua escola</strong></li>
               </ul>
-              <p className="mt-2 text-muted">
-                Também podes falar diretamente com o/a psicólogo/a da tua escola.
-              </p>
+              
             </section>
           </div>
         </main>

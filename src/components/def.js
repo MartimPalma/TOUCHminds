@@ -100,7 +100,7 @@ const Definicoes = () => {
 
             <form onSubmit={handleSave}>
               <div className="mt-4 p-4 rounded" style={{ backgroundColor: '#fbf9f9' }}>
-                <h5 className="fw-semibold mb-2" style={{ color: '#3B9C9C' }}>✏️ Nome na Plataforma</h5>
+                <h5 className="fw-semibold mb-2" style={{ color: '#234970' }}>Nome na Plataforma</h5>
                 <p>Como queres ser chamado/a na plataforma:</p>
                 <input
                   type="text"
@@ -115,7 +115,7 @@ const Definicoes = () => {
               </div>
 
               <fieldset className="mt-4 p-4 rounded" style={{ backgroundColor: '#fbf9f9' }}>
-                <legend className="fw-semibold mb-2" style={{ color: '#3B9C9C' }}>🧑 Escolhe o teu avatar</legend>
+                <legend className="fw-semibold mb-2" style={{ color: '#234970' }}>Escolhe o teu avatar</legend>
                 <p>Seleciona uma imagem que te represente:</p>
                 <div className="d-flex flex-wrap gap-3 mt-3">
                   {avatarOptions.map((avatar) => (
