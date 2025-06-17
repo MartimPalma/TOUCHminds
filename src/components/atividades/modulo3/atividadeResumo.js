@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useRef, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Navbar from "../../navbar";
 import Sidebar from "../../sidebar";
@@ -22,11 +22,13 @@ const AtividadeResumoCarta = () => {
     parte10: ""
   });
   const [erroCampos, setErroCampos] = useState(false);
+  const inputRefs = useRef({});
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setCarta((prev) => ({ ...prev, [name]: value }));
-    setErroCampos(false);
+  const handleChange = (name, value) => {
+    setCarta(prev => ({ ...prev, [name]: value }));
+    if (erroCampos) {
+      setErroCampos(false);
+    }
   };
 
   const gerarConteudoCarta = () => {
@@ -84,39 +86,241 @@ const AtividadeResumoCarta = () => {
 
             {pagina === 1 && (
               <div>
-                <h5 className="fw-bold mb-3">Carta</h5>
+                <h5 className="fw-bold mb-4">Escreve a tua Carta</h5>
+                <p className="mb-4 text-muted">Completa as frases abaixo para criar a tua carta personalizada:</p>
 
-                <div
-                  className="alert border mt-4 white-space-pre-wrap"
-                  style={{
-                    whiteSpace: 'pre-wrap',
-                    backgroundColor: '#fbf9f9',
-                    color: '#000', // opcional: garante legibilidade sobre fundo claro
-                    borderColor: '#ddd', // opcional: borda mais suave
-                  }}>
-                  <h5 className="fw-bold">Pré-visualização da Carta</h5>
-                  <p>{gerarConteudoCarta()}</p>
+                <div className="card p-4 mb-4" style={{ backgroundColor: '#f8f9fa' }}>
+                  <h6 className="fw-bold mb-3">Querido/a eu,</h6>
+                  
+                  <div className="carta-content" style={{ fontSize: '16px', lineHeight: '2' }}>
+                    
+                    <div className="mb-3">
+                      Sei que estás a passar por um momento difícil, e quero que saibas que{" "}
+                      <input
+                        type="text"
+                        value={carta.parte1}
+                        onChange={(e) => handleChange('parte1', e.target.value)}
+                        placeholder="escreve aqui..."
+                        style={{
+                          border: erroCampos && !carta.parte1.trim() ? '2px solid #dc3545' : '1px solid #ccc',
+                          borderRadius: '4px',
+                          padding: '2px 6px',
+                          fontSize: '16px',
+                          minWidth: '200px',
+                          outline: 'none'
+                        }}
+                      />
+                      .
+                      {erroCampos && !carta.parte1.trim() && (
+                        <div style={{ color: '#dc3545', fontSize: '12px', marginTop: '2px' }}>Campo obrigatório</div>
+                      )}
+                    </div>
+
+                    <div className="mb-3">
+                      Eu sei que às vezes é difícil lidar com{" "}
+                      <input
+                        type="text"
+                        value={carta.parte2}
+                        onChange={(e) => handleChange('parte2', e.target.value)}
+                        placeholder="escreve aqui..."
+                        style={{
+                          border: erroCampos && !carta.parte2.trim() ? '2px solid #dc3545' : '1px solid #ccc',
+                          borderRadius: '4px',
+                          padding: '2px 6px',
+                          fontSize: '16px',
+                          minWidth: '200px',
+                          outline: 'none'
+                        }}
+                      />
+                      .
+                      {erroCampos && !carta.parte2.trim() && (
+                        <div style={{ color: '#dc3545', fontSize: '12px', marginTop: '2px' }}>Campo obrigatório</div>
+                      )}
+                    </div>
+
+                    <div className="mb-3">
+                      Mesmo que estejas a sentir{" "}
+                      <input
+                        type="text"
+                        value={carta.parte3}
+                        onChange={(e) => handleChange('parte3', e.target.value)}
+                        placeholder="escreve aqui..."
+                        style={{
+                          border: erroCampos && !carta.parte3.trim() ? '2px solid #dc3545' : '1px solid #ccc',
+                          borderRadius: '4px',
+                          padding: '2px 6px',
+                          fontSize: '16px',
+                          minWidth: '200px',
+                          outline: 'none'
+                        }}
+                      />
+                      ,
+                      {erroCampos && !carta.parte3.trim() && (
+                        <div style={{ color: '#dc3545', fontSize: '12px', marginTop: '2px' }}>Campo obrigatório</div>
+                      )}
+                    </div>
+
+                    <div className="mb-3">
+                      Quando cometes erros, é importante lembrares-te que{" "}
+                      <input
+                        type="text"
+                        value={carta.parte4}
+                        onChange={(e) => handleChange('parte4', e.target.value)}
+                        placeholder="escreve aqui..."
+                        style={{
+                          border: erroCampos && !carta.parte4.trim() ? '2px solid #dc3545' : '1px solid #ccc',
+                          borderRadius: '4px',
+                          padding: '2px 6px',
+                          fontSize: '16px',
+                          minWidth: '200px',
+                          outline: 'none'
+                        }}
+                      />
+                      .
+                      {erroCampos && !carta.parte4.trim() && (
+                        <div style={{ color: '#dc3545', fontSize: '12px', marginTop: '2px' }}>Campo obrigatório</div>
+                      )}
+                    </div>
+
+                    <div className="mb-3">
+                      Eu estou aqui para te apoiar, porque{" "}
+                      <input
+                        type="text"
+                        value={carta.parte5}
+                        onChange={(e) => handleChange('parte5', e.target.value)}
+                        placeholder="escreve aqui..."
+                        style={{
+                          border: erroCampos && !carta.parte5.trim() ? '2px solid #dc3545' : '1px solid #ccc',
+                          borderRadius: '4px',
+                          padding: '2px 6px',
+                          fontSize: '16px',
+                          minWidth: '200px',
+                          outline: 'none'
+                        }}
+                      />
+                      .
+                      {erroCampos && !carta.parte5.trim() && (
+                        <div style={{ color: '#dc3545', fontSize: '12px', marginTop: '2px' }}>Campo obrigatório</div>
+                      )}
+                    </div>
+
+                    <div className="mb-3">
+                      É normal sentires-te frustrado/a às vezes, mas{" "}
+                      <input
+                        type="text"
+                        value={carta.parte6}
+                        onChange={(e) => handleChange('parte6', e.target.value)}
+                        placeholder="escreve aqui..."
+                        style={{
+                          border: erroCampos && !carta.parte6.trim() ? '2px solid #dc3545' : '1px solid #ccc',
+                          borderRadius: '4px',
+                          padding: '2px 6px',
+                          fontSize: '16px',
+                          minWidth: '200px',
+                          outline: 'none'
+                        }}
+                      />
+                      .
+                      {erroCampos && !carta.parte6.trim() && (
+                        <div style={{ color: '#dc3545', fontSize: '12px', marginTop: '2px' }}>Campo obrigatório</div>
+                      )}
+                    </div>
+
+                    <div className="mb-3">
+                      Eu sei que já enfrentaste situações complicadas antes, e{" "}
+                      <input
+                        type="text"
+                        value={carta.parte7}
+                        onChange={(e) => handleChange('parte7', e.target.value)}
+                        placeholder="escreve aqui..."
+                        style={{
+                          border: erroCampos && !carta.parte7.trim() ? '2px solid #dc3545' : '1px solid #ccc',
+                          borderRadius: '4px',
+                          padding: '2px 6px',
+                          fontSize: '16px',
+                          minWidth: '200px',
+                          outline: 'none'
+                        }}
+                      />
+                      .
+                      {erroCampos && !carta.parte7.trim() && (
+                        <div style={{ color: '#dc3545', fontSize: '12px', marginTop: '2px' }}>Campo obrigatório</div>
+                      )}
+                    </div>
+
+                    <div className="mb-3">
+                      Lembra-te de que, mesmo quando erramos, podemos aprender, porque{" "}
+                      <input
+                        type="text"
+                        value={carta.parte8}
+                        onChange={(e) => handleChange('parte8', e.target.value)}
+                        placeholder="escreve aqui..."
+                        style={{
+                          border: erroCampos && !carta.parte8.trim() ? '2px solid #dc3545' : '1px solid #ccc',
+                          borderRadius: '4px',
+                          padding: '2px 6px',
+                          fontSize: '16px',
+                          minWidth: '200px',
+                          outline: 'none'
+                        }}
+                      />
+                      .
+                      {erroCampos && !carta.parte8.trim() && (
+                        <div style={{ color: '#dc3545', fontSize: '12px', marginTop: '2px' }}>Campo obrigatório</div>
+                      )}
+                    </div>
+
+                    <div className="mb-3">
+                      Estou muito orgulhoso/a de ti por{" "}
+                      <input
+                        type="text"
+                        value={carta.parte9}
+                        onChange={(e) => handleChange('parte9', e.target.value)}
+                        placeholder="escreve aqui..."
+                        style={{
+                          border: erroCampos && !carta.parte9.trim() ? '2px solid #dc3545' : '1px solid #ccc',
+                          borderRadius: '4px',
+                          padding: '2px 6px',
+                          fontSize: '16px',
+                          minWidth: '200px',
+                          outline: 'none'
+                        }}
+                      />
+                      .
+                      {erroCampos && !carta.parte9.trim() && (
+                        <div style={{ color: '#dc3545', fontSize: '12px', marginTop: '2px' }}>Campo obrigatório</div>
+                      )}
+                    </div>
+
+                    <div className="mb-3">
+                      Para o futuro, desejo-te que{" "}
+                      <input
+                        type="text"
+                        value={carta.parte10}
+                        onChange={(e) => handleChange('parte10', e.target.value)}
+                        placeholder="escreve aqui..."
+                        style={{
+                          border: erroCampos && !carta.parte10.trim() ? '2px solid #dc3545' : '1px solid #ccc',
+                          borderRadius: '4px',
+                          padding: '2px 6px',
+                          fontSize: '16px',
+                          minWidth: '200px',
+                          outline: 'none'
+                        }}
+                      />
+                      .
+                      {erroCampos && !carta.parte10.trim() && (
+                        <div style={{ color: '#dc3545', fontSize: '12px', marginTop: '2px' }}>Campo obrigatório</div>
+                      )}
+                    </div>
+
+                  </div>
                 </div>
 
-                {Object.keys(carta).map((key, i) => (
-                  <div className="mb-3" key={key}>
-                    <label className="form-label">{`Parte ${i + 1}`} *</label>
-                    <input
-                      type="text"
-                      name={key}
-                      value={carta[key]}
-                      onChange={handleChange}
-                      className={`form-control ${erroCampos && carta[key].trim() === "" ? "is-invalid" : ""}`}
-                      required
-                    />
-                    {erroCampos && carta[key].trim() === "" && (
-                      <div className="invalid-feedback">Este campo é obrigatório.</div>
-                    )}
-                  </div>
-                ))}
-
                 <div className="mb-4">
-                  <button className="custom-btn-complete me-3" onClick={gerarCarta}>Download</button>
+                  <button className="custom-btn-complete me-3" onClick={gerarCarta}>
+                    <i className="bi bi-download me-2"></i>Download da Carta
+                  </button>
                 </div>
 
                 <div className="d-flex justify-content-between mt-4">
@@ -131,10 +335,25 @@ const AtividadeResumoCarta = () => {
             {pagina === 2 && (
               <div>
                 <h4 className="fw-bold mb-4 text-start" style={{ color: "#234970" }}>Conclusão da Atividade</h4>
+                
+                <div className="alert border mb-4" style={{ backgroundColor: '#f8f9fa', borderColor: '#ddd' }}>
+                  <h6 className="fw-bold mb-3">A tua Carta Final:</h6>
+                  <div style={{ whiteSpace: 'pre-wrap', fontSize: '15px', lineHeight: '1.6' }}>
+                    {gerarConteudoCarta()}
+                  </div>
+                </div>
+
                 <p className="mb-3 lead"><strong>Ao escreveres esta carta para ti próprio/a</strong>, estás a cultivar uma prática de <strong>autocompaixão</strong> que te permitirá lidar com os <strong>momentos difíceis</strong> de forma <strong>gentil</strong>.</p>
                 <p className="mb-3 lead">Lembra-te de que <strong>todos enfrentam desafios</strong> e que os <strong>erros fazem parte da condição humana</strong>.</p>
                 <p className="mb-3 lead">Ao tratares-te com <strong>bondade</strong> e <strong>compreensão</strong>, estás a reforçar a tua <strong>capacidade de cuidar de ti mesmo</strong> nas situações mais complicadas.</p>
                 <p className="mb-4 lead">Sempre que precisares de um <strong>lembrete</strong>, recorre a esta carta e lembra-te de que és <strong>digno/a de compaixão</strong> e que <strong>mereces tratar-te com bondade e de forma gentil</strong>.</p>
+                
+                <div className="mb-4">
+                  <button className="custom-btn-complete" onClick={gerarCarta}>
+                    <i className="bi bi-download me-2"></i>Download da Carta Final
+                  </button>
+                </div>
+
                 <div className="d-flex justify-content-between">
                   <button className="custom-btn-pink" onClick={() => setPagina(1)}>
                     <i className="bi bi-arrow-left me-2"></i>Anterior
