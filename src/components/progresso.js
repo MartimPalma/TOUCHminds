@@ -331,7 +331,7 @@ const LinhaTemporal = () => {
               .module-title {
                 font-size: 1.5rem;
                 font-weight: 700;
-                color: #234970;
+                color: #99CBC8;
                 margin: 0;
                 line-height: 1.3;
                 flex: 1;
@@ -340,7 +340,7 @@ const LinhaTemporal = () => {
 
               .module-subtitle {
                 font-size: 1.1rem;
-                color: #90C8CA;
+                color: #234970;
                 margin-bottom: 1.3rem;
                 line-height: 1.5;
               }
