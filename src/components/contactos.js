@@ -31,7 +31,7 @@ const Contactos = () => {
               </h5>
               <address>
                 <p className="mb-1">
-                  <strong>Psicóloga Catarina Monteiro</strong>:{' '}
+                  <strong>Psicóloga Catarina Monteiro:</strong>{' '}
                 
                 <a
                   href="mailto:catarinaamonteiro@ua.pt"

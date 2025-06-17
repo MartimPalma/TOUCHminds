@@ -78,14 +78,15 @@ const DesafioSemanal = ({ id }) => {
           Desafio Semanal
         </span>
       </h4>
-
-      <p>
-        <b>Queria lançar-te um desafio para esta semana! </b>Ao longo dos próximos dias, sempre que sentires <b>ansiedade</b> em alguma situação, convido-te a <b>refletir</b> sobre a tua experiência.
-        <br />
+          <div className='mb-4 lead'>
+      <p >
+        <b className='fw-bold'>Queria lançar-te um desafio para esta semana! </b> <br /> 
+        <br />Ao longo dos próximos dias, sempre que sentires <b>ansiedade</b> em alguma situação, convido-te a <b>refletir</b> sobre a tua experiência.
+        <br /><br /> 
         Se quiseres, podes depois vir aqui e registar o que pensaste sobre a situação.
-        <br />
+        <br /><br /> 
         A ideia é que <b>reflitas como te sentes</b>, o que <b>pensas</b> e como te <b>comportas</b> nessa situação.
-        <br />
+        <br /><br /> 
         Podes usar esta <b>tabela</b> para registares.
       </p>
       <ul style={{ marginTop: "0px" }}>
@@ -95,6 +96,7 @@ const DesafioSemanal = ({ id }) => {
         <li><b>Como agi na situação?:</b> Descreve o que fizeste para lidar com a ansiedade.</li>
         <li><b>Funcionou?:</b> Avalia se o que fizeste te aproximou ou te afastou dos teus objetivos, daquilo que queres ser ou das outras pessoas.</li>
       </ul>
+      </div>
 
       <div className="table-responsive mb-4">
         <table className="table table-bordered text-center align-middle" aria-label="Formulário para registar reflexão semanal sobre ansiedade">
@@ -159,13 +161,14 @@ const DesafioSemanal = ({ id }) => {
             </tr>
           </tbody>
         </table>
-
+              <div className="lead mb-4">
         <p>
           Ao <b>refletires</b> sobre a tua <b>experiência de ansiedade</b>, estarás a dar um passo importante para a <b>compreenderes</b> e <b>lidares</b> com ela de forma mais <b>eficaz</b>.
         </p>
         <p>Espero que esta semana te ajude a <b>aprender mais sobre ti</b> e sobre a tua <b>experiência da ansiedade!</b></p>
-        <p><b>Vamos em frente! #SemBichoPapão</b></p>
+        <p><b><b>Vamos em frente! #SemBichoPapão</b></b></p>
         <p>Até para a semana!</p>
+      </div>
       </div>
 
       <div className="mt-3 text-start">

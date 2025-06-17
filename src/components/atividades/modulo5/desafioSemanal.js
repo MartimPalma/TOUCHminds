@@ -14,6 +14,7 @@ const DesafioSemanal5 = () => {
                       </span>
             </h4>
 
+                        <div className="mb-4 lead">
       <p className="mb-3 fw-bold">
         Queria lançar-te um desafio para esta semana!
       </p>
@@ -33,6 +34,7 @@ const DesafioSemanal5 = () => {
 
       <p className="fw-bold">Vamos em frente! #ReviravoltaEmRede </p>
       <p>Até para a Semana!</p>
+    </div>
     </div>
   );
 };

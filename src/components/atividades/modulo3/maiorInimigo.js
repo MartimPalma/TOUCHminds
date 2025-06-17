@@ -7,11 +7,26 @@ import AtividadeProgressao from "../atividadeProgressao";
 
 const MaiorInimigo = () => {
   const [pagina, setPagina] = useState(0);
+  const [audioEnded, setAudioEnded] = useState(false);
+  const [showAudioWarning, setShowAudioWarning] = useState(false);
   const { id: moduloId } = useParams();
   const { updateUserData } = useContext(UserContext);
 
   const avancarPagina = () => setPagina((prev) => prev + 1);
   const retrocederPagina = () => setPagina((prev) => prev - 1);
+
+  const handleAudioEnd = () => {
+    setAudioEnded(true);
+    setShowAudioWarning(false);
+  };
+
+  const handleAvancarComVerificacao = () => {
+    if (!audioEnded) {
+      setShowAudioWarning(true);
+      return;
+    }
+    avancarPagina();
+  };
 
   const progresso = Math.round((pagina / 2) * 100);
 
@@ -66,11 +81,20 @@ const MaiorInimigo = () => {
                   <source src="/audios/o-nosso-maior-inimigo.mp3" type="audio/mpeg" />
                   O teu navegador não suporta a reprodução de áudio.
                 </audio>
+
+                {showAudioWarning && (
+                  <div className="alert mt-4 text-white"
+                    style={{ backgroundColor: "#99CBC8", border: "none" }}>
+                    <i className="bi bi-info-circle me-2"></i>
+                    É necessário ouvir o áudio até ao fim para continuar.
+                  </div>
+                )}
+
                 <div className="d-flex justify-content-between mt-4">
                   <button className="custom-btn-pink" onClick={retrocederPagina}>
                     <i className="bi bi-arrow-left me-2"></i>Anterior
                   </button>
-                  <button className="custom-btn-turquoise" onClick={avancarPagina}>
+                  <button className="custom-btn-turquoise" onClick={handleAvancarComVerificacao}>
                     Conclusão <i className="bi bi-arrow-right ms-2"></i>
                   </button>
                 </div>

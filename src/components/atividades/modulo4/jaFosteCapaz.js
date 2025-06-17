@@ -13,8 +13,16 @@ const JaFosteCapaz = () => {
   const audioRefs = useRef([]);
 
   const avancarPagina = () => {
+    if (pagina >= 1 && pagina <= 4 && !audioCompleted[pagina - 1]) {
+      setShowAudioWarning(true); // mostra o aviso
+      return;
+    }
+    setShowAudioWarning(false); // limpa aviso se válido
     setPagina((prev) => prev + 1);
   };
+
+  // Estado para controlar se o aviso de áudio deve ser mostrado
+  const [showAudioWarning, setShowAudioWarning] = useState(false);
 
   const retrocederPagina = () => {
     setPagina((prev) => prev - 1);
@@ -33,6 +41,8 @@ const JaFosteCapaz = () => {
 
   // Reset do estado do áudio quando a página muda
   useEffect(() => {
+    setShowAudioWarning(false); // limpa o aviso sempre que muda de página
+
     if (pagina >= 1 && pagina <= 4) {
       const currentAudioIndex = pagina - 1;
       if (!audioCompleted[currentAudioIndex]) {
@@ -121,7 +131,7 @@ const JaFosteCapaz = () => {
                   </audio>
                 </div>
 
-                {!audioCompleted[pagina - 1] && (
+                {showAudioWarning && (
                   <div className="alert mb-4 text-white"
                     style={{ backgroundColor: '#99CBC8', border: 'none' }}>
                     <i className="bi bi-info-circle me-2"></i>
@@ -133,10 +143,10 @@ const JaFosteCapaz = () => {
                   <button className="custom-btn-pink" onClick={retrocederPagina}>
                     <i className="bi bi-arrow-left me-2"></i>Anterior
                   </button>
+
                   <button
                     className="custom-btn-turquoise"
                     onClick={avancarPagina}
-                    disabled={!canAdvance(pagina)}
                   >
                     {pagina === 4 ? 'Conclusão' : 'Próximo'}
                     <i className="bi bi-arrow-right ms-2"></i>

@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Navbar from "../../navbar";
 import Sidebar from "../../sidebar";
@@ -9,14 +9,43 @@ const PodcastTouchminds = () => {
   const [pagina, setPagina] = useState(0);
   const { id: moduloId } = useParams();
   const { updateUserData } = useContext(UserContext);
+  const [audioCompleted, setAudioCompleted] = useState([false]); 
 
   const avancarPagina = () => {
+    if (pagina >= 1 && pagina <= 4 && !audioCompleted[pagina - 1]) {
+      setShowAudioWarning(true); // mostra o aviso
+      return;
+    }
+    setShowAudioWarning(false); // limpa aviso se válido
     setPagina((prev) => prev + 1);
   };
-
+  const [showAudioWarning, setShowAudioWarning] = useState(false);
   const retrocederPagina = () => {
     setPagina((prev) => prev - 1);
   };
+
+const handleAudioEnded = (audioIndex) => {
+    setAudioCompleted(prev => {
+      const newState = [...prev];
+      newState[audioIndex] = true;
+      return newState;
+    });
+  };
+
+  useEffect(() => {
+    setShowAudioWarning(false); // limpa o aviso sempre que muda de página
+
+    if (pagina >= 1 && pagina <= 4) {
+      const currentAudioIndex = pagina - 1;
+      if (!audioCompleted[currentAudioIndex]) {
+        setAudioCompleted(prev => {
+          const newState = [...prev];
+          newState[currentAudioIndex] = false;
+          return newState;
+        });
+      }
+    }
+  }, [pagina]);
 
   const progresso = Math.round((pagina / 2) * 100); // 0 - Instrução, 1 - Audio, 2 - Conclusão
 
@@ -52,16 +81,16 @@ const PodcastTouchminds = () => {
                   <strong>Sê muito bem-vindo ou bem-vinda ao Podcast TOUCHminds!</strong>
                 </p>
                 <p className="lead mb-3">
-                 Nesta atividade, vamos ouvir um episódio do podcast <strong>TOUCHminds</strong> (podcast criado para a intervenção <strong>TOUCHminds</strong>).
+                  Nesta atividade, vamos ouvir um episódio do podcast <strong>TOUCHminds</strong> (podcast criado para a intervenção <strong>TOUCHminds</strong>).
                 </p>
                 <p className="lead mb-4">
                   O episódio chama-se <strong>“O Peso do Silêncio”</strong> e traz <strong>cinco histórias reais</strong> de jovens e adultos que viveram de perto com a <strong>ansiedade</strong>.
                 </p>
-                 <p className="lead mb-4">
-                  Vais perceber como, muitas vezes, o que impede alguém de procurar ajuda não é a <strong>ansiedade em si… mas sim o medo do julgamento, 
-                  da rejeição, daquilo que os outros vão pensar</strong> — ou seja, o <strong>estigma</strong>.
+                <p className="lead mb-4">
+                  Vais perceber como, muitas vezes, o que impede alguém de procurar ajuda não é a <strong>ansiedade em si… mas sim o medo do julgamento,
+                    da rejeição, daquilo que os outros vão pensar</strong> — ou seja, o <strong>estigma</strong>.
                 </p>
-                 <p className="lead mb-4">
+                <p className="lead mb-4">
                   Ao ouvires estas histórias, vais poder <strong>refletir sobre a tua própria experiência ou a de quem está à tua volta</strong>.
                 </p>
                 <button className="custom-btn-turquoise mt-2 px-4 py-2" onClick={avancarPagina}>
@@ -85,6 +114,13 @@ const PodcastTouchminds = () => {
                   O teu navegador não suporta a reprodução de áudio.
                 </audio>
 
+                {showAudioWarning && (
+                  <div className="alert mb-4 text-white"
+                    style={{ backgroundColor: '#99CBC8', border: 'none' }}>
+                    <i className="bi bi-info-circle me-2"></i>
+                    É necessário ouvir o áudio até ao fim para continuar.
+                  </div>
+                )}
                 <div className="d-flex justify-content-between mt-4">
                   <button className="custom-btn-pink" onClick={retrocederPagina}>
                     <i className="bi bi-arrow-left me-2"></i>Anterior

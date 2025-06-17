@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useRef, useEffect} from "react";
 import { useParams } from "react-router-dom";
 import Navbar from "../../navbar";
 import Sidebar from "../../sidebar";
@@ -16,18 +16,27 @@ const UnindoExperiencias = () => {
   const modulo = modulos.find((m) => m.id === moduloId);
   const atividade = modulo?.atividades.find(a => a.url === "unindo-experiencias");
 
+
+  const [videoCompleted, setVideoCompleted] = useState(false);
+  const [showVideoWarning, setShowVideoWarning] = useState(false);
+  const videoRef = useRef(null);
   const avancarPagina = () => {
-
-
-    // Otherwise proceed
-    setInputError(false);
-    setPagina((prev) => prev + 1);
+    if (pagina === 1 && !videoCompleted) {
+      setShowVideoWarning(true); // Mostra aviso azul
+      return;
+    }
+    setShowVideoWarning(false);
+    setPagina(prev => prev + 1);
   };
 
   const retrocederPagina = () => {
-    setInputError(false);
-    setPagina((prev) => prev - 1);
+    setPagina(prev => prev - 1);
   };
+
+  useEffect(() => {
+    setShowVideoWarning(false);
+    setVideoCompleted(false);
+  }, [pagina]);
 
 
   const progresso = Math.round((pagina / 2) * 100);
@@ -99,6 +108,15 @@ const UnindoExperiencias = () => {
                     O teu navegador não suporta o elemento de vídeo.
                   </video>
                 </div>
+
+                {showVideoWarning && (
+                  <div className="alert mt-3 text-white"
+                    style={{ backgroundColor: '#99CBC8', border: 'none',  textAlign: 'center' }}>
+                    <i className="bi bi-info-circle me-2"></i>
+                    É necessário ver o vídeo até ao fim para continuar.
+                  </div>
+                )}
+
 
                 <div className="d-flex justify-content-between mb-4">
                   <button className="custom-btn-pink" onClick={retrocederPagina}>

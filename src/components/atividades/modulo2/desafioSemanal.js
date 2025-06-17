@@ -3,16 +3,17 @@ import { UserContext } from '../../../App';
 
 const AtividadeSemanal2 = () => {
   const { userData, updateUserData } = useContext(UserContext);
-  
+
   const [form, setForm] = useState(() => {
+    const ultimoRegisto = userData.modulos?.modulo2?.desafioSemanal?.slice(-1)[0];
     const module2Form = {};
     for (let i = 1; i <= 7; i++) {
-      module2Form[`situacao_${i}`] = '';
-      module2Form[`reflexao_${i}`] = '';
+      module2Form[`situacao_${i}`] = ultimoRegisto?.[`situacao_${i}`] || '';
+      module2Form[`reflexao_${i}`] = ultimoRegisto?.[`reflexao_${i}`] || '';
     }
     return module2Form;
   });
-  
+
   const [loading, setLoading] = useState(false);
   const [feedback, setFeedback] = useState('');
 
@@ -40,23 +41,14 @@ const AtividadeSemanal2 = () => {
         ...userData.modulos,
         modulo2: {
           ...userData.modulos.modulo2,
-          desafioSemanal: [
-            ...(userData.modulos.modulo2?.desafioSemanal || []),
-            novoRegisto,
-          ],
+          desafioSemanal: [novoRegisto], // <-- apenas 1 registo
         },
       };
 
       await updateUserData({ ...userData, modulos: modulosAtualizados });
       setFeedback('Registo adicionado com sucesso!');
-      
-      // Reset form
-      const resetForm = {};
-      for (let i = 1; i <= 7; i++) {
-        resetForm[`situacao_${i}`] = '';
-        resetForm[`reflexao_${i}`] = '';
-      }
-      setForm(resetForm);
+
+
     } catch (error) {
       setFeedback('Erro ao guardar. Tenta novamente.');
     } finally {
@@ -69,24 +61,24 @@ const AtividadeSemanal2 = () => {
   return (
     <div className="bg-white">
 
-     <h4 className="mb-4" style={{ color: "#99CBC8" }}>
-                <span
-                  style={{
-                    borderBottom: "3px solid #99CBC8",
-                    display: "inline-block",
-                    paddingBottom: "2px",
-                  }}
-                >
-                  Desafio Semanal
-                </span>
+      <h4 className="mb-4" style={{ color: "#99CBC8" }}>
+        <span
+          style={{
+            borderBottom: "3px solid #99CBC8",
+            display: "inline-block",
+            paddingBottom: "2px",
+          }}
+        >
+          Desafio Semanal
+        </span>
       </h4>
-      
-      <div className="mb-4">
-        <b>Queria lançar-te um desafio para esta semana!</b><br />
-        Ao longo dos próximos dias, fica <b>atento/a</b> a <b>conversas, comentários ou atitudes</b> em que percebes um <b>mito</b> ou <b>estigma</b> relacionado à ansiedade.<br />
-        Pode ser algo que ouças em <b>conversas</b>, vejas nas <b>redes sociais</b> ou observes em situações do teu <b>dia-a-dia</b>.<br />
-        Depois de a <b>notares</b>, convido-te a <b>refletir</b> sobre como poderias <b>intervir</b> ou <b>apoiar</b> a pessoa envolvida e podes <b>registar</b> aqui ou simplesmente refletires sobre isso.<br />
-        Podes usar esta <b>tabela</b> para registares:
+
+      <div className="mb-4 lead">
+        <b className='fw-bold'>Queria lançar-te um desafio para esta semana!</b><br /> <br /> 
+        Ao longo dos próximos dias, fica <b>atento/a</b> a <b>conversas, comentários ou atitudes</b> em que percebes um <b>mito</b> ou <b>estigma</b> relacionado à ansiedade.<br /><br /> 
+        Pode ser algo que ouças em <b>conversas</b>, vejas nas <b>redes sociais</b> ou observes em situações do teu <b>dia-a-dia</b>.<br /><br /> 
+        Depois de a <b>notares</b>, convido-te a <b>refletir</b> sobre como poderias <b>intervir</b> ou <b>apoiar</b> a pessoa envolvida e podes <b>registar</b> aqui ou simplesmente refletires sobre isso.<br /><br /> 
+        Podes usar esta <b>tabela</b> para registares:<br /> <br /> 
         <ul style={{ marginTop: "0px" }}>
           <li><b>Situação Observada:</b> Descrição breve da situação, como uma conversa ou um comentário feito por alguém.</li>
           <li><b>Reflexão/Resposta Empática:</b> Reflete como poderias responder ou agir de forma empática.</li>
@@ -149,13 +141,13 @@ const AtividadeSemanal2 = () => {
             ))}
           </tbody>
         </table>
-        
-        
-        
-        <div className="mt-3">
-          Ao <b>tirares estes minutos para refletir</b> sobre o que aprendeste com essas <b>observações</b>, estarás a mudar a tua <b>perceção</b> sobre a ansiedade e o <b>estigma</b> associado a ela.<br />
-          <b>Espero que esta semana te ajude a aprender mais sobre ti!</b><br />
-          <b>Vamos em frente! #DesmistificarAnsiedade</b>
+
+
+
+        <div className="mt-3 lead">
+          Ao <b>tirares estes minutos para refletir</b> sobre o que aprendeste com essas <b>observações</b>, estarás a mudar a tua <b>perceção</b> sobre a ansiedade e o <b>estigma</b> associado a ela.<br /><br /> 
+          <b>Espero que esta semana te ajude a aprender mais sobre ti!</b><br /><br /> 
+          <b><b>Vamos em frente! #DesmistificarAnsiedade</b></b>
         </div>
       </div>
 
@@ -193,47 +185,6 @@ const AtividadeSemanal2 = () => {
         </div>
       )}
 
-      {registos.length > 0 && (
-        <>
-          <h5 className="mt-5">Registos anteriores:</h5>
-          <div className="table-responsive">
-            <table className="table table-bordered text-center align-middle">
-              <thead>
-                <tr>
-                  <th>Data</th>
-                  <th>Situações Observadas</th>
-                  <th>Reflexões/Respostas</th>
-                </tr>
-              </thead>
-              <tbody>
-                {registos.map((item, idx) => (
-                  <tr key={idx}>
-                    <td>{item.dataCriacao}</td>
-                    <td style={{ textAlign: 'left' }}>
-                      {[1, 2, 3, 4, 5, 6, 7].map(num => (
-                        item[`situacao_${num}`] ? (
-                          <div key={num} className="mb-2">
-                            <strong>Situação {num}:</strong> {item[`situacao_${num}`]}
-                          </div>
-                        ) : null
-                      ))}
-                    </td>
-                    <td style={{ textAlign: 'left' }}>
-                      {[1, 2, 3, 4, 5, 6, 7].map(num => (
-                        item[`reflexao_${num}`] ? (
-                          <div key={num} className="mb-2">
-                            <strong>Reflexão {num}:</strong> {item[`reflexao_${num}`]}
-                          </div>
-                        ) : null
-                      ))}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </>
-      )}
     </div>
   );
 };
