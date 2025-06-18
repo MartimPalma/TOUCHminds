@@ -17,12 +17,22 @@ const AtividadeResumoMudanca = () => {
   const [modalShow, setModalShow] = useState(false);
   const [imagemModal, setImagemModal] = useState(null);
   const [tituloModal, setTituloModal] = useState('');
+  
+  // New state for phase modals
+  const [phaseModalShow, setPhaseModalShow] = useState(false);
+  const [selectedPhaseData, setSelectedPhaseData] = useState(null);
 
   const handleConfiancaClick = (key) => {
     const nivel = niveisConfianca[key];
     setImagemModal(nivel.imagem);
     setTituloModal(nivel.titulo);
     setModalShow(true);
+  };
+
+  // New function to handle phase button clicks (show modal with info)
+  const handlePhaseInfoClick = (faseKey) => {
+    setSelectedPhaseData(fases[faseKey]);
+    setPhaseModalShow(true);
   };
 
   const { id: moduloId } = useParams();
@@ -195,42 +205,168 @@ const AtividadeResumoMudanca = () => {
                   Em que fase da onda te encontras?
                 </h4>
                 <p className="mb-4">
-                  A <strong>mudança é como surfar uma onda</strong>, e cada fase é um <strong>momento específico</strong> no processo de mudança. Lembra-te que o ciclo de mudança tem <strong>cinco fases</strong> e tu já deste um grande passo, porque já identificaste o que queres mudar. Em que fase da <strong>onda da mudança te encontras</strong>? Carrega nos <strong>círculos</strong> para saber mais <strong>sobre cada fase</strong> e no final <strong>seleciona a fase que achas que te encontras</strong>.
+                  A <strong>mudança é como surfar uma onda</strong>, e cada fase é um <strong>momento específico</strong> no processo de mudança. Lembra-te que o ciclo de mudança tem <strong>cinco fases</strong> e tu já deste um grande passo, porque já identificaste o que queres mudar. Em que fase da <strong>onda da mudança te encontras</strong>? Carrega nas <strong>áreas da imagem</strong> para saber mais <strong>sobre cada fase</strong> e no final <strong>seleciona a fase que achas que te encontras</strong>.
                 </p>
 
-                <div className="row mb-4">
-                  {Object.entries(fases).map(([key, fase]) => {
-                    const isSelected = faseEscolhida === key;
-
-                    return (
-                      <div key={key} className="col-12 col-md-6 col-lg-4 mb-3">
-                        <div
-                          className={`card h-100 ${isSelected ? 'border-primary shadow-lg' : 'border-0'}`}
-                          style={{
-                            overflow: 'hidden',
-                            cursor: 'pointer',
-                            transition: '0.3s',
-                            borderWidth: isSelected ? '3px' : '1px',
-                            maxHeight: '550px',
-                          }}
-                          onClick={() => handleFaseSelect(key)}
-                        >
-                          <img
-                            src={fase.imagem}
-                            alt={fase.titulo}
-                            className="w-100 h-100"
-                            style={{ objectFit: 'cover' }}
-                          />
-                        </div>
-                      </div>
-                    );
-                  })}
+                <div className="text-center mb-4">
+                  <div style={{ position: 'relative', display: 'inline-block' }}>
+                    <img 
+                      src="/imgs/modulo4/resumo/fases.png" 
+                      alt="Fases da Onda da Mudança" 
+                      style={{ 
+                        maxWidth: "600px", 
+                        width: "100%", 
+                        height: "auto",
+                        display: 'block'
+                      }}
+                    />
+                    
+                    {/* Modified invisible clickable buttons - now open modals */}
+                    <button
+                      onClick={() => handlePhaseInfoClick('calmaria')}
+                      style={{
+                        position: 'absolute',
+                        top: '27%',
+                        left: '4%',
+                        width: '28%',
+                        height: '33%',
+                        background: 'transparent',
+                        border: 'none',
+                        cursor: 'pointer',
+                        zIndex: 10
+                      }}
+                      aria-label="Ver informações sobre Calmaria"
+                    />
+                    
+                    <button
+                      onClick={() => handlePhaseInfoClick('preparacao')}
+                      style={{
+                        position: 'absolute',
+                        top: '4%',
+                        left: '35%',
+                        width: '30%',
+                        height: '34%',
+                        background: 'transparent',
+                        border: 'none',
+                        cursor: 'pointer',
+                        zIndex: 10
+                      }}
+                      aria-label="Ver informações sobre Preparação"
+                    />
+                    
+                    <button
+                      onClick={() => handlePhaseInfoClick('remada')}
+                      style={{
+                        position: 'absolute',
+                        top: '25%',
+                        left: '66%',
+                        width: '32%',
+                        height: '35%',
+                        background: 'transparent',
+                        border: 'none',
+                        cursor: 'pointer',
+                        zIndex: 10
+                      }}
+                      aria-label="Ver informações sobre Remada"
+                    />
+                    
+                    <button
+                      onClick={() => handlePhaseInfoClick('surfar')}
+                      style={{
+                        position: 'absolute',
+                        top: '61%',
+                        left: '55%',
+                        width: '33%',
+                        height: '35%',
+                        background: 'transparent',
+                        border: 'none',
+                        cursor: 'pointer',
+                        zIndex: 10
+                      }}
+                      aria-label="Ver informações sobre Surfar a Onda"
+                    />
+                    
+                    <button
+                      onClick={() => handlePhaseInfoClick('desafios')}
+                      style={{
+                        position: 'absolute',
+                        top: '62%',
+                        left: '15%',
+                        width: '33%',
+                        height: '35%',
+                        background: 'transparent',
+                        border: 'none',
+                        cursor: 'pointer',
+                        zIndex: 10
+                      }}
+                      aria-label="Ver informações sobre Desafios no Surf"
+                    />
+                  </div>
                 </div>
 
+                
 
+                {/* Phase Modal */}
+                <Modal show={phaseModalShow} onHide={() => setPhaseModalShow(false)} centered size="lg">
+                  <Modal.Header
+                    closeButton
+                    style={{
+                      backgroundColor: "#99CBC8",
+                      borderBottom: "none",
+                      color: "#fff",
+                    }}
+                  >
+                    <Modal.Title style={{ fontWeight: "600" }}>
+                      {selectedPhaseData?.titulo}
+                    </Modal.Title>
+                  </Modal.Header>
+                  <Modal.Body className="text-center">
+                    <img
+                      src={selectedPhaseData?.imagem}
+                      alt={selectedPhaseData?.titulo}
+                      className="img-fluid mb-3"
+                      style={{ maxHeight: '400px', objectFit: 'contain' }}
+                    />
+                  </Modal.Body>
+                  <Modal.Footer
+                    style={{
+                      borderTop: "none",
+                      backgroundColor: "#F5FDFC",
+                      justifyContent: "center",
+                    }}
+                  >
+                    <button
+                      type="button"
+                      onClick={() => {
+                        // Find the phase key that matches the selected phase data
+                        const phaseKey = Object.entries(fases).find(([key, data]) => 
+                          data.titulo === selectedPhaseData?.titulo
+                        )?.[0];
+                        
+                        if (phaseKey) {
+                          handleFaseSelect(phaseKey); // Select the phase
+                        }
+                        setPhaseModalShow(false); // Close the modal
+                      }}
+                      style={{
+                        backgroundColor: "#234970",
+                        borderColor: "#234970",
+                        color: "white",
+                        borderRadius: "20px",
+                        padding: "0.5rem 1.5rem",
+                        fontWeight: "500",
+                      }}
+                    >
+                      Próximo
+                    </button>
+                  </Modal.Footer>
+                </Modal>
 
                 {faseDetalhes && (
-                  <div className="alert alert-info">
+                  <div className="alert alert-info" style={{ backgroundColor: '#e8f4f3', borderColor: '#99CBC8' }}>
+                    <h6 className="fw-bold mb-2" style={{ color: "#234970" }}>
+                      {Object.entries(fases).find(([key]) => faseDetalhes === fases[key].descricao)?.[1]?.titulo}
+                    </h6>
                     <p className="mb-0">{faseDetalhes}</p>
                   </div>
                 )}
@@ -258,6 +394,7 @@ const AtividadeResumoMudanca = () => {
               </div>
             )}
 
+            {/* Rest of your pages remain the same... */}
             {/* PÁGINA 3 - PRÓS E CONTRAS */}
             {pagina === 3 && (
               <div className="py-4">
@@ -382,7 +519,7 @@ const AtividadeResumoMudanca = () => {
                   })}
                 </div>
 
-                {/* Modal */}
+                {/* Confidence Modal */}
                 <Modal show={modalShow} onHide={() => setModalShow(false)} centered>
                   <Modal.Header
                     closeButton

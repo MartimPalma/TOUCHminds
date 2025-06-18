@@ -41,6 +41,13 @@ const FerramentasMudanca = () => {
     setCanCloseModal(false);
   };
 
+  const handleAreaClick = (ferramentaId) => {
+    const ferramenta = ferramentas.find(f => f.id === ferramentaId);
+    if (ferramenta) {
+      setModalAberto(ferramenta);
+    }
+  };
+
   return (
     <div className="container-fluid vh-100 p-0 font-poppins">
       <Navbar />
@@ -60,7 +67,7 @@ const FerramentasMudanca = () => {
               <div className="text-start py-4">
                 <h2 className="fw-bold mb-4" style={{ color: "#234970" }}>Ferramentas de Mudança</h2>
                 <p className="mb-3 lead">
-                  <strong>Sê muito bem-vindo ou bem-vinda à atividade “Ferramentas de Mudança”!</strong>
+                  <strong>Sê muito bem-vindo ou bem-vinda à atividade "Ferramentas de Mudança"!</strong>
                 </p>
                 <p className="mb-3 lead">
                   Nesta atividade, vamos explorar o <strong>ciclo da mudança</strong>, que nos ajuda a compreender melhor o que acontece quando lidamos com a <strong>ansiedade</strong> e outros <strong>desafios do dia-a-dia</strong> e sentimos que <strong>não sabemos por onde começar</strong>.
@@ -82,42 +89,135 @@ const FerramentasMudanca = () => {
               </div>
             )}
 
-            {/* PÁGINA 1: FERRAMENTAS */}
-            {pagina === 1 && (
-              <div className="text-center">
-                <h4 className="fw-bold mb-4" style={{ color: "#234970" }}>Explora as Ferramentas</h4>
-                <p>Clica em cada ferramenta para saberes mais. Só podes fechar o áudio após ouvi-lo até ao fim.</p>
-                <div className="d-flex flex-wrap justify-content-center gap-3 mt-3">
-                  <div className="row row-cols-2 row-cols-md-3 g-4 justify-content-center">
-                    {ferramentas.map((f) => (
-                        <div key={f.id} className="col text-center">
-                        <button
-                            onClick={() => setModalAberto(f)}
-                            className="border-0 bg-transparent"
-                            style={{ cursor: "pointer" }}
-                        >
-                            <img
-                            src={`/imgs/modulo4/ferramentas/${f.id}.png`}
-                            alt={f.titulo}
-                            style={{ maxWidth: "130px", height: "auto", borderRadius: "12px" }}
-                            />
-                            <p className="mt-2 fw-semibold">{f.titulo}</p>
-                        </button>
-                        </div>
-                    ))}
-                    </div>
 
-                </div>
-                <div className="d-flex justify-content-between mt-4">
-                  <button className="custom-btn-pink" onClick={() => setPagina(0)}>
-                   <i className="bi bi-arrow-left me-2"></i>Anterior
-                  </button>
-                  <button className="custom-btn-turquoise" onClick={() => setPagina(2)}>
-                    Conclusão<i className="bi bi-arrow-right ms-2"></i>
-                  </button>
+{/* PÁGINA 1: FERRAMENTAS COM INVISIBLE BUTTONS */}
+          {pagina === 1 && (
+            <div className="text-center">
+              <h4 className="fw-bold mb-4" style={{ color: "#234970" }}>Explora as Ferramentas</h4>
+              <p>Clica em cada ferramenta para saberes mais. Só podes fechar o áudio após ouvi-lo até ao fim.</p>
+              
+              <div className="d-flex justify-content-center mt-4">
+                <div style={{ position: 'relative', display: 'inline-block' }}>
+                  <img 
+                    src="/imgs/modulo4/ferramentas/ferramentas.png" 
+                    alt="Ferramentas de Mudança" 
+                    style={{ 
+                      maxWidth: "600px", 
+                      width: "100%", 
+                      height: "auto",
+                      display: 'block'
+                    }}
+                  />
+                  
+                  {/* Invisible clickable buttons overlaid on image */}
+                  <button
+                    onClick={() => handleAreaClick('lupa')}
+                    style={{
+                      position: 'absolute',
+                      top: '18%',      // Adjust based on your image
+                      left: '11%',     // Adjust based on your image
+                      width: '29%',   // Adjust based on your image
+                      height: '28%',  // Adjust based on your image
+                      background: 'transparent',
+                      border: 'none',
+                      cursor: 'pointer',
+                      zIndex: 10
+                    }}
+                    aria-label="Lupa"
+                  />
+                  
+                  <button
+                    onClick={() => handleAreaClick('bussola')}
+                    style={{
+                      position: 'absolute',
+                      top: '18%',
+                      right: '35%',
+                      width: '27%',
+                      height: '28%',
+                      background: 'transparent',
+                      border: 'none',
+                      cursor: 'pointer',
+                      zIndex: 10
+                    }}
+                    aria-label="Bússola"
+                  />
+                  
+                  <button
+                    onClick={() => handleAreaClick('mapa')}
+                    style={{
+                      position: 'absolute',
+                      top: '47%',
+                      right: '29%',
+                      width: '25%',
+                      height: '24%',
+                      background: 'transparent',
+                      border: 'none',
+                      cursor: 'pointer',
+                      zIndex: 10
+                    }}
+                    aria-label="Mapa"
+                  />
+                  
+                  <button
+                    onClick={() => handleAreaClick('ancora')}
+                    style={{
+                      position: 'absolute',
+                      top: '59%',
+                      right: '50%',
+                      width: '23%',
+                      height: '25%',
+                      background: 'transparent',
+                      border: 'none',
+                      cursor: 'pointer',
+                      zIndex: 10
+                    }}
+                    aria-label="Âncora"
+                  />
+                  
+                  <button
+                    onClick={() => handleAreaClick('martelo')}
+                    style={{
+                      position: 'absolute',
+                      top: '47%',
+                      left: '8%',
+                      width: '24%',
+                      height: '24%',
+                      background: 'transparent',
+                      border: 'none',
+                      cursor: 'pointer',
+                      zIndex: 10
+                    }}
+                    aria-label="Martelo"
+                  />
+                  
+                  <button
+                    onClick={() => handleAreaClick('perigo')}
+                    style={{
+                      position: 'absolute',
+                      bottom: '32%',
+                      right: '2%',
+                      width: '27%',
+                      height: '25%',
+                      background: 'transparent',
+                      border: 'none',
+                      cursor: 'pointer',
+                      zIndex: 10
+                    }}
+                    aria-label="Sinal de Perigo"
+                  />
                 </div>
               </div>
-            )}
+
+              <div className="d-flex justify-content-between mt-4">
+                <button className="custom-btn-pink" onClick={() => setPagina(0)}>
+                <i className="bi bi-arrow-left me-2"></i>Anterior
+                </button>
+                <button className="custom-btn-turquoise" onClick={() => setPagina(2)}>
+                  Conclusão<i className="bi bi-arrow-right ms-2"></i>
+                </button>
+              </div>
+            </div>
+          )}
 
             {/* PÁGINA 2: CONCLUSÃO */}
             {pagina === 2 && (
