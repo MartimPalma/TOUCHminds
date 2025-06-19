@@ -26,9 +26,8 @@ export default function LoginModal({ onClose, onLoginSuccess, onSwitchToSignup }
       const user = await loginAluno(codigoParticipante, password);
       const dados = await dadosAlunos(user.uid);
       updateUserData({ uid: user.uid, ...dados });
-      navigate("/homepage");
+      navigate("/plataforma");
       
-      // Call onLoginSuccess instead of onClose for successful login
       if (onLoginSuccess) {
         onLoginSuccess();
       }
