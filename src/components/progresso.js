@@ -88,7 +88,7 @@ const LinhaTemporal = () => {
         <Sidebar />
         <div className="col px-4 py-4" style={{ backgroundColor: '#FBF9F9' }}>
           <div className="container p-4 bg-white rounded shadow-sm">
-            <h2 className="mb-3 fw-semibold" style={{ color: '#99CBC8' }}>Linha Temporal</h2>
+            <h2 className="mb-3 fw-semibold" style={{ color: '#99CBC8' }}>O Meu Progresso</h2>
             <p className="text-muted" style={{ fontSize: '1rem' }}>
               Acompanha o teu progresso nos diferentes módulos do programa.
             </p>
@@ -125,7 +125,7 @@ const LinhaTemporal = () => {
                           <div className="header-top">
                             <h3 className="module-title">{modulo.titulo}</h3>
                           </div>
-                          <p className="module-subtitle">{modulo.subtitulo}</p>
+                          <p className="module-subtitle fw-bold">{modulo.subtitulo}</p>
 
                           {modulo.status === 'concluído' ? (
                             <div
@@ -150,7 +150,6 @@ const LinhaTemporal = () => {
                           <div className="progress-section">
                             <div className="progress-header">
                               <h4 className="section-title">
-                                <i className="fas fa-tasks me-2" aria-hidden="true"></i>
                                 Progresso das Atividades
                               </h4>
                               <span className="progress-text">
