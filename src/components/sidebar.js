@@ -7,7 +7,7 @@ const Sidebar = () => {
 
   // Define os caminhos
   const navItems = [
-    { icon: <House />, text: 'Página Inicial', path: '/homepage' },
+    { icon: <House />, text: 'Página Inicial', path: '/plataforma' },
     { icon: <Envelope />, text: 'Progresso', path: '/progresso' },
     { icon: <Trophy />, text: 'Conquistas', path: '/conquistas' },
     { icon: <People />, text: 'Contactos', path: '/contactos' },

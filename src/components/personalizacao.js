@@ -46,7 +46,7 @@ const PersonalizationPopup = ({
       const latestData = await dadosAlunos(userId);
       updateUserData({ ...latestData, uid: userId }); 
 
-      navigate("/homepage");
+      navigate("/plataforma");
     } catch (error) {
       setError("Erro ao salvar informações. Por favor, tenta novamente.");
       setLoading(false);

@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Bell, BoxArrowRight, List, House, Envelope, Trophy, People, Gear } from 'react-bootstrap-icons';
+import { BoxArrowRight, List, House, Envelope, Trophy, People, Gear } from 'react-bootstrap-icons';
 import { UserContext } from '../App';
 import { logoutAluno } from "../database/database";
 import logo from "../imgs/logoazul.png";
@@ -91,7 +91,7 @@ const Navbar = () => {
   let avatarSelecionado = avatarOptions.find(a => a.id === userData?.avatarId)?.src;
 
   const navItems = [
-    { icon: <House size={24} />, text: 'Página Inicial', path: '/homepage' },
+    { icon: <House size={24} />, text: 'Página Inicial', path: '/plataforma' },
     { icon: <Envelope size={24} />, text: 'Progresso', path: '/progresso' },
     { icon: <Trophy size={24} />, text: 'Conquistas', path: '/conquistas' },
     { icon: <People size={24} />, text: 'Contactos', path: '/contactos' },
@@ -109,7 +109,7 @@ const Navbar = () => {
           </button>
           <a
             className="navbar-brand text-info d-flex align-items-center"
-            onClick={() => navigate('/homepage')}
+            onClick={() => navigate('/plataforma')}
             style={{ cursor: 'pointer' }}
           >
             <img src={logo} alt="TOUCHminds Logo" style={{ width: "120px" }} />
