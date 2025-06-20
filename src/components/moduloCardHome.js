@@ -22,7 +22,7 @@ const ModuloCard = ({ imagem, titulo, subtitulo, status, atividades, onNavigate 
           alt={titulo}
           style={{
             width: "100%",
-            height: "200px",
+            height: "100%",
             objectFit: "cover",
             borderRadius: "12px",
           }}
