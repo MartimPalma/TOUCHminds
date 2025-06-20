@@ -261,8 +261,7 @@ const AtividadeResumo = () => {
                       Imagina que <strong>és tu</strong> que estás na situação que te vou apresentar, e <strong>seleciona</strong> a opção que melhor representa a forma
                       como te irias <strong>comportar</strong> nessa situação.<br></br><br></br>
                       Cada escolha representará um <strong>comportamento</strong> e influenciará como a personagem lida com a ansiedade e se relaciona com os outros.<br></br><br></br>
-                      Este exercício é uma oportunidade para <strong>refletires</strong> sobre como os teus <strong>comportamentos e escolhas</strong> podem moldar as tuas
-                      <strong>experiências</strong> em momentos de ansiedade e em interações sociais.
+                      Este exercício é uma oportunidade para <strong>refletires</strong> sobre como os teus <strong>comportamentos e escolhas</strong> podem moldar as tuas <strong>experiências</strong> em momentos de ansiedade e em interações sociais.
                     </p>
                     <div className="text-center">
                       <button className="custom-btn-turquoise mt-3 px-4 py-2" onClick={avancarPagina}>
@@ -454,12 +453,9 @@ const AtividadeResumo = () => {
                   <div className="col-md-12">
                     <p className="lead">
                       <strong>Espero que esta atividade tenha sido útil</strong> e que te tenha permitido <strong>refletir</strong> sobre a tua própria forma delidar com a <strong>ansiedade</strong>. <br></br> <br></br>
-                      Assim como a Sara, todos nós tomamos <strong>decisões</strong> todos os dias que <strong>moldam</strong> as nossas experiências e as nossas interações com os outros.
-                      Mesmo quando estamos ansiosos, as <strong>escolhas</strong> que fazemos têm impacto na forma como vivemos e superamos esses momentos.<br></br> <br></br>
-                      Embora <strong>evitar situações</strong> possa trazer <strong>alívio temporário</strong>, isso pode tornar mais difícil lidar com elas no futuro.
-                      <strong>Enfrentar o desconforto</strong> pode não só ajudar-te a criar <strong>relações novas</strong>, mas também a <strong>reduzir a ansiedade</strong> ao longo do tempo. <br></br> <br></br>
-                      Lembra-te: a <strong>ansiedade é algo comum</strong> e todos nós a sentimos. Ao <strong>enfrentar os desafios</strong> e <strong>praticar novas formas de agir</strong>,
-                      poderás <strong>fortalecer as tuas relações</strong> e <strong>melhorar a forma como te vês e te sentes contigo mesmo(a)</strong>.
+                      Assim como a Sara, todos nós tomamos <strong>decisões</strong> todos os dias que <strong>moldam</strong> as nossas experiências e as nossas interações com os outros. Mesmo quando estamos ansiosos, as <strong>escolhas</strong> que fazemos têm impacto na forma como vivemos e superamos esses momentos.<br></br> <br></br>
+                      Embora <strong>evitar situações</strong> possa trazer <strong>alívio temporário</strong>, isso pode tornar mais difícil lidar com elas no futuro. <strong>Enfrentar o desconforto</strong> pode não só ajudar-te a criar <strong>relações novas</strong>, mas também a <strong>reduzir a ansiedade</strong> ao longo do tempo. <br></br> <br></br>
+                      Lembra-te: a <strong>ansiedade é algo comum</strong> e todos nós a sentimos. Ao <strong>enfrentar os desafios</strong> e <strong>praticar novas formas de agir</strong>, poderás <strong>fortalecer as tuas relações</strong> e <strong>melhorar a forma como te vês e te sentes contigo mesmo(a)</strong>.
                     </p>
 
 

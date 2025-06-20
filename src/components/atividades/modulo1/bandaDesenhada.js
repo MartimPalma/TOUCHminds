@@ -235,14 +235,10 @@ const BandaDesenhada = () => {
                   Conclusão da Atividade
                 </h4>
                 <p className="lead">
-                  Espero que tenha sido um <strong>primeiro passo importante</strong> para compreenderes melhor como
-                  a <strong>ansiedade</strong> pode afetar a tua vida. <br /><br />
-                  Lembra-te de que a <strong>ansiedade comum</strong>
-                  pode ser uma <strong>aliada</strong>, ajudando-nos a enfrentar desafios e a <strong>preparar</strong>
-                  para momentos difíceis.
+                  Espero que tenha sido um <strong>primeiro passo importante</strong> para compreenderes melhor como a <strong>ansiedade</strong> pode afetar a tua vida. <br /><br />
+                  Lembra-te de que a <strong>ansiedade comum</strong> pode ser uma <strong>aliada</strong>, ajudando-nos a enfrentar desafios e a <strong>preparar</strong> para momentos difíceis.
                   <br /><br />
-                  No entanto, quando a <strong>ansiedade SOS</strong> se torna intrusiva, ela
-                  pode interferir no nosso <strong>bem-estar</strong> e até prejudicar as nossas <strong>relações</strong> e <strong>atividades diárias</strong>.
+                  No entanto, quando a <strong>ansiedade SOS</strong> se torna intrusiva, ela pode interferir no nosso <strong>bem-estar</strong> e até prejudicar as nossas <strong>relações</strong> e <strong>atividades diárias</strong>.
                   <br /><br />
                   É importante saber <strong>distinguir</strong> quando a ansiedade está a ser <strong>útil</strong> e quando está a tornar-se um <strong>problema</strong>.
                 </p>
