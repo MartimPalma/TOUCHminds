@@ -82,16 +82,23 @@ const BandaDesenhada = () => {
                 <div className="row ">
                   <div className="col-md-12">
                     <p className="lead mb-3">
-                      
-                      Nesta atividade vais conhecer dois tipos de ansiedade:
+                      <strong>Sê muito bem-vindo ou bem-vinda à Banda Desenhada da Ansiedade: Aliada ou Empecilho?!</strong><br></br><br></br>
+                      <strong>Nesta banda desenhada</strong>, vais conhecer dois tipos de ansiedade:<br></br><br></br>
+                  <strong><strong>Ansiedade comum</strong></strong>, que nos ajuda a enfrentar desafios<br></br>
+                   <strong><strong>Ansiedade SOS</strong></strong>, que pode atrapalhar o nosso bem-estar<br></br><br></br>
+
+                    <p className="lead mb-3">O teu <strong>desafio</strong> é compreender a diferença entre estas duas formas de ansiedade. <br>
+                    </br>Para isso, lê com atenção os quadros da banda desenhada que se seguem. </p>
+                    <p className="lead mb-3">No final, <strong>escreve duas palavras</strong> que, para ti, represente:</p>
+                     o que é a <strong><strong>ansiedade comum;</strong></strong><br></br>
+                     o que é a <strong><strong>ansiedade SOS.</strong></strong><br></br><br></br>
+                    Escreve essas duas palavras no espaço indicado.
                     </p>
-                    <p className="lead"><strong>Ansiedade comum</strong>, que nos ajuda a enfrentar desafios</p>
-                    <p className="lead"><strong>Ansiedade SOS</strong>, que pode atrapalhar o nosso bem-estar</p>
 
                     <p className="lead mb-3">
-                      Lê os quadros da banda desenhada. No final, terás de escrever duas palavras que representem para ti estes dois tipos de ansiedade.
+                      <strong>Não há respostas certas ou erradas</strong> — o importante é o que <strong>tu</strong> compreendeste!
                     </p>
-       
+
                     <div className="text-center">
                       <button
                         className="custom-btn-turquoise mt-3 px-4 py-2"
@@ -150,9 +157,9 @@ const BandaDesenhada = () => {
                 )}
 
                 <p className="lead">
-                  Escreve aqui duas palavras que para ti representem a o que é a ansiedade comum e o que é a ansiedade SOS.
+                  <strong>Escreve aqui duas palavras que para ti</strong> representem o que é a ansiedade comum e a ansiedade SOS. Escreve essas duas palavras no espaço indicado. 
                   <br />
-                  Não há respostas certas ou erradas — o importante é o que tu compreendeste!
+                  <strong>Não há respostas certas ou erradas</strong> — o importante é o que <strong>tu</strong> compreendeste!
                 </p>
 
                 <div className="mb-3">
@@ -259,7 +266,7 @@ const BandaDesenhada = () => {
           </div>
         </div>
       </div>
-    </div>
+    </div >
   );
 };
 
