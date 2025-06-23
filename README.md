@@ -17,4 +17,3 @@ comandos do git:
 
 #  versão live
  https://touch-minds.vercel.app
-  
