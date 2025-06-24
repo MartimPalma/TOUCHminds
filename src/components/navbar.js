@@ -153,7 +153,7 @@ const Navbar = () => {
             className="h-100"
             style={{
               width: '260px',
-              backgroundColor: '#234970',
+              backgroundColor: '#99cbc8',
               color: 'white',
               padding: '24px',
               transition: 'transform 0.3s ease-in-out',
