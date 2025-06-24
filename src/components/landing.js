@@ -34,7 +34,7 @@ const LandingPage = () => {
   };
 
   return (
-    <div style={{ position: "relative", overflow: "hidden" }}>
+    <div style={{ position: "relative", overflow: "hidden", backgroundColor: "#fbf9f9" }}>
       {(showLogin || showSignup) && (
         <div
           className="position-fixed top-0 start-0 w-100 h-100"
@@ -80,7 +80,7 @@ const LandingPage = () => {
 
       <img src={logo} alt="Logotipo TOUCHminds" className="mt-4 mx-auto d-block" style={{ width: "10%" }} />
 
-      <section className="container py-5">
+      <section className="container py-5"  aria-label="Introdução ao programa TOUCHminds">
         <div className="row align-items-center">
           <div className="col-12 col-md-6 text-center text-md-start">
             <h1 className="fw-bold font-poppins py-3" style={{ color: "#99CBC8", fontSize: "clamp(1.8rem, 4vw, 2.5rem)" }}>
@@ -161,7 +161,7 @@ const LandingPage = () => {
         </div>
       </section>
 
-      <section className="container py-5">
+      <section className="container py-5" style={{ backgroundColor: "#fbf9f9" }}>
         <h2 className="text-start font-poppins fw-bold mb-4" style={{ color: "#234970" }}>
           Espreita os Módulos!
         </h2>

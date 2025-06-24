@@ -72,7 +72,7 @@ const AtividadeResumoModulo2 = () => {
             explicacao: (
                 <><b>O estigma nas redes sociais</b> pode amplificar o <b>isolamento</b>. Comentários <b>negativos</b> podem fazer com que uma pessoa se sinta ainda
                     mais <b>sozinha</b> nas suas <b>dificuldades</b>. Todos nos devemos sentir <b>seguros</b> para <b>partilhar</b> as nossas <b>experiências</b> sem medo de sermos
-                    <b>julgados</b> ou <b>ridicularizados</b>.
+                    <b> julgados</b> ou <b>ridicularizados</b>.
                 </>
             )
 
