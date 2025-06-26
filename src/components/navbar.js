@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { BoxArrowRight, List, House, Envelope, Trophy, People, Gear } from 'react-bootstrap-icons';
+import { BoxArrowRight, List, House, Envelope, Trophy, People, Gear,  } from 'react-bootstrap-icons';
 import { UserContext } from '../App';
 import { logoutAluno } from "../database/database";
 import logo from "../imgs/logoazul.png";
@@ -44,6 +44,11 @@ const Navbar = () => {
     } catch (error) {
       console.error("Erro ao fazer logout:", error.message);
     }
+  };
+
+  const handleDefinicoes = () => {
+    navigate('/definicoes');
+    setShowTooltip(false);
   };
 
   const toggleTooltip = () => setShowTooltip(prev => !prev);
@@ -120,18 +125,26 @@ const Navbar = () => {
         <div className="position-relative">
           <img
             src={avatarSelecionado}
-            alt="Avatar do utilizador"
+            alt="Avatar"
             className="rounded-circle"
             style={{ width: "44px", height: "44px", cursor: "pointer" }}
             onClick={toggleTooltip}
           />
           {showTooltip && (
             <div
-              className="position-absolute bg-white border rounded-3 shadow-lg mt-2 p-1"
+              className="position-absolute bg-white border rounded-3 shadow-lg mt-2 p-1 mb-5"
               style={{ right: 0, zIndex: 1000, width: '160px' }}
             >
               <button
-                className="btn btn-sm btn-danger w-100 px-4 py-2 rounded-3 d-flex align-items-center justify-content-center"
+                className="btn btn-sm w-100  px-4 py-2 rounded-3 d-flex align-items-center justify-content-center"
+                style={{ backgroundColor: '#234970', color: 'white' }}
+                onClick={handleDefinicoes}
+              >
+                <Gear size={20} className="me-2" />
+                DEFINIÇÕES
+              </button>
+              <button
+                className="btn btn-sm btn-danger w-100 px-4 py-2 rounded-3 d-flex align-items-center justify-content-center mt-1"
                 onClick={handleLogout}
               >
                 <BoxArrowRight size={20} className="me-2" />

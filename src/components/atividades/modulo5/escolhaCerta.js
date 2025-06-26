@@ -11,6 +11,7 @@ const EscolhaCerta = () => {
     const { updateUserData } = useContext(UserContext);
     const [pagina, setPagina] = useState(0);
     const [opcaoSelecionada, setOpcaoSelecionada] = useState(null);
+    const [hoverIndex, setHoverIndex] = useState(null);
     const modulo = modulos.find((m) => m.id === moduloId);
 
     const atividade = modulo?.atividades.find(a => a.url === "escolha-certa");
@@ -77,9 +78,6 @@ const EscolhaCerta = () => {
         setOpcaoSelecionada(null);
     };
 
-    const [hoverIndex, setHoverIndex] = useState(null);
-    const isDisabled = false;
-
     const progresso = Math.round((pagina / (cenarios.length + 1)) * 100);
 
     return (
@@ -111,7 +109,7 @@ const EscolhaCerta = () => {
                                 </h2>
                                 <p className="lead text-start">
                                     {/* Coloca aqui o teu texto de introdução */}
-                                    <b>Sê muito bem-vindo ou bem-vinda ao à “Escolha Certa”</b>.<br></br><br></br>
+                                    <b>Sê muito bem-vindo ou bem-vinda ao à "Escolha Certa"</b>.<br></br><br></br>
 
                                     Nesta <b>atividade</b>, vais ver uma sequência de <b>stories</b> com <b>informações</b> sobre os diferentes tipos de <b>ajuda</b> que podes procurar quando
                                     temos <b>dificuldades</b> ou <b>problemas</b> que não estamos a conseguir lidar <b>sozinho/a</b>. <br></br><br></br>
@@ -155,15 +153,14 @@ const EscolhaCerta = () => {
                                 <div className="d-flex flex-column gap-3 mb-4">
                                     {cenarios[pagina - 1].opcoes.map((opcao, index) => {
                                         const isSelected = opcaoSelecionada === index;
-                                        const isDisabled = opcaoSelecionada !== null && !isSelected;
                                         const isHovered = hoverIndex === index;
 
                                         return (
                                             <div
                                                 key={index}
-                                                onClick={() => !isDisabled && setOpcaoSelecionada(index, cenarios[pagina - 1].feedback)}
-                                                onMouseEnter={() => !isDisabled && setHoverIndex(index)}
-                                                onMouseLeave={() => !isDisabled && setHoverIndex(null)}
+                                                onClick={() => setOpcaoSelecionada(index)}
+                                                onMouseEnter={() => setHoverIndex(index)}
+                                                onMouseLeave={() => setHoverIndex(null)}
                                                 className="p-3 text-start"
                                                 style={{
                                                     backgroundColor: isSelected
@@ -175,14 +172,14 @@ const EscolhaCerta = () => {
                                                         ? 'white'
                                                         : isHovered
                                                             ? 'white'
-                                                            : '#000000', // texto preto por defeito
+                                                            : '#000000',
                                                     border: isSelected
                                                         ? '1px solid #99CBC8'
                                                         : isHovered
                                                             ? '1px solid #5AAAA5'
                                                             : '1px solid #99CBC8',
                                                     borderRadius: '10px',
-                                                    cursor: isDisabled ? 'default' : 'pointer',
+                                                    cursor: 'pointer',
                                                     fontWeight: isSelected ? '200' : 'normal',
                                                     transition: 'all 0.3s ease',
                                                 }}

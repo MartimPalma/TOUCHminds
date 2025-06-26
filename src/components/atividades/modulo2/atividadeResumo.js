@@ -188,14 +188,13 @@ const AtividadeResumoModulo2 = () => {
                                     <div className="d-flex flex-column gap-3">
                                         {cenarios[pagina - 1].opcoes.map((opcao, index) => {
                                             const isSelected = opcaoSelecionada === index;
-                                            const isDisabled = opcaoSelecionada !== null && !isSelected;
                                             const isHovered = hoverIndex === index;
                                             return (
                                                 <div
                                                     key={index}
-                                                    onClick={() => !isDisabled && escolherOpcao(index, cenarios[pagina - 1].feedback)}
-                                                    onMouseEnter={() => !isDisabled && setHoverIndex(index)}
-                                                    onMouseLeave={() => !isDisabled && setHoverIndex(null)}
+                                                    onClick={() => escolherOpcao(index)}
+                                                    onMouseEnter={() => setHoverIndex(index)}
+                                                    onMouseLeave={() => setHoverIndex(null)}
                                                     className="p-3 text-start"
                                                     style={{
                                                         backgroundColor: isSelected
@@ -207,14 +206,14 @@ const AtividadeResumoModulo2 = () => {
                                                             ? 'white'
                                                             : isHovered
                                                                 ? 'white'
-                                                                : '#000000', // texto preto por defeito
+                                                                : '#000000',
                                                         border: isSelected
                                                             ? '1px solid #99CBC8'
                                                             : isHovered
                                                                 ? '1px solid #5AAAA5'
                                                                 : '1px solid #99CBC8',
                                                         borderRadius: '10px',
-                                                        cursor: isDisabled ? 'default' : 'pointer',
+                                                        cursor: 'pointer',
                                                         fontWeight: isSelected ? '200' : 'normal',
                                                         transition: 'all 0.3s ease',
                                                     }}
@@ -223,16 +222,10 @@ const AtividadeResumoModulo2 = () => {
                                                 </div>
                                             );
                                         })}
-
-
                                     </div>
                                 )}
-
-
-
                             </>
                         )}
-
 
                         {pagina === cenarios.length + 1 && (
                             <>
@@ -243,7 +236,7 @@ const AtividadeResumoModulo2 = () => {
                                         ansiedade — e também como um gesto de <strong>empatia</strong> pode transformar uma situação difícil num
                                         momento de <strong>acolhimento</strong> e <strong>compreensão</strong>.</p>
 
-                                    <p><strong>A ansiedadenão é uma falha, nem uma fraqueza</strong> . É uma resposta <strong>humana</strong>, <strong>natural</strong>, e todos merecem ser
+                                    <p><strong>A ansiedade não é uma falha, nem uma fraqueza</strong>. É uma resposta <strong>humana</strong>, <strong>natural</strong>, e todos merecem ser
                                         tratados com <strong>respeito</strong>, <strong>apoio</strong> e <strong>empatia</strong>.</p>
 
                                     <p>Ao escolheres <strong>intervir de forma positiva</strong> em cada cenário, mostraste que tens o poder de contribuir para um ambiente mais
@@ -262,7 +255,6 @@ const AtividadeResumoModulo2 = () => {
                                         updateUserData={updateUserData}
                                     />
                                 </div>
-
                             </>
                         )}
 
@@ -326,9 +318,6 @@ const AtividadeResumoModulo2 = () => {
                     </Button>
                 </Modal.Footer>
             </Modal>
-
-
-
         </div>
     );
 };
