@@ -171,13 +171,13 @@ const Homepage = () => {
               </div>
 
               <div className="mt-2 small text-muted">
-                {percentagem === 0 && <>Ainda não concluíste nenhum módulo. <span className="small fw-semibold fs-6" style={{ color: "#234970" }}>Dá o primeiro passo!</span></>}
-                {percentagem > 0 && percentagem <= 20 && <>Iniciaste o caminho! <span className="small fw-semibold fs-6" style={{ color: "#234970" }}>Estás a dar os primeiros passos.</span></>}
-                {percentagem > 20 && percentagem <= 40 && <>Estás a caminhar! <span className="small fw-semibold fs-6" style={{ color: "#234970" }}>Lembra-te que cada passo importa!</span></>}
-                {percentagem > 40 && percentagem <= 60 && <>Mantém o ritmo! <span className="small fw-semibold fs-6" style={{ color: "#234970" }}>Continua com essa motivação!</span></>}
-                {percentagem > 60 && percentagem <= 80 && <>Quase lá! <span className="small fw-semibold fs-6" style={{ color: "#234970" }}>Faltam só mais alguns passos!</span></>}
-                {percentagem > 80 && percentagem < 100 && <>Último módulo à vista!! <span className="small fw-semibold fs-6" style={{ color: "#234970" }}>Não desistas agora. O teu esforço vai valer a pena!</span></>}
-                {percentagem === 100 && <>Parabéns! Concluíste todos os módulos. <span className="small fw-semibold fs-6" style={{ color: "#234970" }}>Aproveita tudo o que este percurso te trouxe!</span></>}
+                {percentagem === 0 && <>Ainda não concluíste nenhum módulo. <span className="small fw-semibold" style={{ color: "#234970" }}>Dá o primeiro passo!</span></>}
+                {percentagem > 0 && percentagem <= 20 && <>Iniciaste o caminho! <span className="small fw-semibold " style={{ color: "#234970" }}>Estás a dar os primeiros passos.</span></>}
+                {percentagem > 20 && percentagem <= 40 && <>Estás a caminhar! <span className="small fw-semibold" style={{ color: "#234970" }}>Lembra-te que cada passo importa!</span></>}
+                {percentagem > 40 && percentagem <= 60 && <>Mantém o ritmo! <span className="small fw-semibold" style={{ color: "#234970" }}>Continua com essa motivação!</span></>}
+                {percentagem > 60 && percentagem <= 80 && <>Quase lá! <span className="small fw-semibold " style={{ color: "#234970" }}>Faltam só mais alguns passos!</span></>}
+                {percentagem > 80 && percentagem < 100 && <>Último módulo à vista!! <span className="small fw-semibold " style={{ color: "#234970" }}>Não desistas agora. O teu esforço vai valer a pena!</span></>}
+                {percentagem === 100 && <>Parabéns! Concluíste todos os módulos. <span className="small fw-semibold " style={{ color: "#234970" }}>Aproveita tudo o que este percurso te trouxe!</span></>}
               </div>
             </div>
 

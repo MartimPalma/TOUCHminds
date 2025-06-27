@@ -173,7 +173,7 @@ const AtividadeVozCritica = () => {
                 />
               </div>
             )}
-            <div className="mb-4">{textos[pagina]}</div>
+            <div className="mb-4 font-lato">{textos[pagina]}</div>
             <div className="d-flex justify-content-between">
               {pagina > 0 && (
                 <button className="custom-btn-pink" onClick={retrocederPagina}>

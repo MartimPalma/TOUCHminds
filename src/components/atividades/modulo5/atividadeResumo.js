@@ -315,7 +315,7 @@ const AtividadeResumoRede = () => {
           }}
         >
           <Modal.Title style={{ fontWeight: "600" }}>
-            Reflexão
+            Resultado da tua escolha
           </Modal.Title>
         </Modal.Header>
         <Modal.Body className="text-start">
@@ -326,6 +326,7 @@ const AtividadeResumoRede = () => {
             borderTop: "none",
             backgroundColor: "#F5FDFC",
             textAlign: "center",
+            justifyContent: "center",
           }}
         >
           <Button className="custom-btn-complete"
@@ -340,7 +341,7 @@ const AtividadeResumoRede = () => {
               fontWeight: "500",
             }}
           >
-            Fechar
+            Próximo
           </Button>
         </Modal.Footer>
       </Modal>

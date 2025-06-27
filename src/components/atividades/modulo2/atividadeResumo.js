@@ -289,7 +289,7 @@ const AtividadeResumoModulo2 = () => {
                     }}
                 >
                     <Modal.Title style={{ fontWeight: "600" }}>
-                        Reflexão
+                        Resultado da tua escolha
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body className="text-start">
@@ -300,6 +300,7 @@ const AtividadeResumoModulo2 = () => {
                         borderTop: "none",
                         backgroundColor: "#F5FDFC",
                         textAlign: "center",
+                        justifyContent: "center",
                     }}
                 >
                     <Button className="custom-btn-complete"
@@ -314,7 +315,7 @@ const AtividadeResumoModulo2 = () => {
                             fontWeight: "500",
                         }}
                     >
-                        Fechar
+                        Próximo
                     </Button>
                 </Modal.Footer>
             </Modal>

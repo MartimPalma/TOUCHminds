@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext , useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Navbar from "../../navbar";
 import Sidebar from "../../sidebar";
@@ -14,10 +14,39 @@ const AnsiedadeSOSPOD = () => {
   const modulo = modulos.find((m) => m.id === moduloId);
   const atividade = modulo?.atividades.find(a => a.url === "podcast2");
 
-  const avancarPagina = () => setPagina((prev) => prev + 1);
-  const retrocederPagina = () => setPagina((prev) => prev - 1);
+  const [audioCompleted, setAudioCompleted] = useState([false]); 
+  const [showAudioWarning, setShowAudioWarning] = useState(false);
 
-  const progresso = Math.round((pagina / 2) * 100);
+
+  const avancarPagina = () => {
+    if (pagina >= 1 && pagina <= 4 && !audioCompleted[pagina - 1]) {
+      setShowAudioWarning(true); // mostra o aviso
+      return;
+    }
+    setShowAudioWarning(false); // limpa aviso se válido
+    setPagina((prev) => prev + 1);
+  };
+  const retrocederPagina = () => {
+    setPagina((prev) => prev - 1);
+  };
+
+
+  useEffect(() => {
+    setShowAudioWarning(false); // limpa o aviso sempre que muda de página
+
+    if (pagina >= 1 && pagina <= 4) {
+      const currentAudioIndex = pagina - 1;
+      if (!audioCompleted[currentAudioIndex]) {
+        setAudioCompleted(prev => {
+          const newState = [...prev];
+          newState[currentAudioIndex] = false;
+          return newState;
+        });
+      }
+    }
+  }, [pagina]);
+
+  const progresso = Math.round((pagina / 2) * 100); // 0 - Instrução, 1 - Audio, 2 - Conclusão
 
   return (
     <div className="container-fluid vh-100 p-0 font-poppins">
@@ -76,10 +105,18 @@ const AnsiedadeSOSPOD = () => {
                   <p>
                   </p>
                   {/* Simulação do player (podes substituir por um real depois) */}
-                   <audio controls style={{ width: "100%", maxWidth: "600px" }}>
+                <audio controls style={{ width: "100%", maxWidth: "600px" }}>
                   <source src="/audios/abracar-me-a-mim-mesmo.mp3" type="audio/mpeg" />
                   O teu navegador não suporta a reprodução de áudio.
                 </audio>
+                {showAudioWarning && (
+                  <div className="alert mb-4 text-white"
+                    style={{ backgroundColor: '#99CBC8', border: 'none' }}>
+                    <i className="bi bi-info-circle me-2"></i>
+                    É necessário ouvir o áudio até ao fim para continuar.
+                  </div>
+                )}
+                
                 </div>
 
 

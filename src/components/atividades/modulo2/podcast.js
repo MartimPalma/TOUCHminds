@@ -10,6 +10,8 @@ const PodcastTouchminds = () => {
   const { id: moduloId } = useParams();
   const { updateUserData } = useContext(UserContext);
   const [audioCompleted, setAudioCompleted] = useState([false]); 
+  const [showAudioWarning, setShowAudioWarning] = useState(false);
+
 
   const avancarPagina = () => {
     if (pagina >= 1 && pagina <= 4 && !audioCompleted[pagina - 1]) {
@@ -19,18 +21,10 @@ const PodcastTouchminds = () => {
     setShowAudioWarning(false); // limpa aviso se válido
     setPagina((prev) => prev + 1);
   };
-  const [showAudioWarning, setShowAudioWarning] = useState(false);
   const retrocederPagina = () => {
     setPagina((prev) => prev - 1);
   };
 
-const handleAudioEnded = (audioIndex) => {
-    setAudioCompleted(prev => {
-      const newState = [...prev];
-      newState[audioIndex] = true;
-      return newState;
-    });
-  };
 
   useEffect(() => {
     setShowAudioWarning(false); // limpa o aviso sempre que muda de página
