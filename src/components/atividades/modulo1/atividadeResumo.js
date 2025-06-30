@@ -326,7 +326,7 @@ const AtividadeResumo = () => {
                           style={{
                             backgroundColor: isSelected ? '#99CBC8' : hoverIndex === index ? '#5AAAA5' : '#ffffff',
                             color: isSelected ? 'white' : hoverIndex === index ? 'white' : '#99CBC8',
-                            border: `2px solid ${isSelected ? '#99CBC8' : '#99CBC8'}`,
+                            border: `1px solid ${isSelected ? '#99CBC8' : '#99CBC8'}`,
                             borderRadius: '10px',
                             fontWeight: isSelected ? '300' : 'normal',
                             transition: 'all 0.3s ease',

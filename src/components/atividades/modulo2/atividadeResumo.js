@@ -310,7 +310,7 @@ const AtividadeResumoModulo2 = () => {
                         style={{
                             backgroundColor: "#234970",
                             borderColor: "#234970",
-                            borderRadius: "8px",
+                            borderRadius: "20px",
                             padding: "0.5rem 1.5rem",
                             fontWeight: "500",
                         }}
