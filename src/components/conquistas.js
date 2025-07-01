@@ -36,7 +36,7 @@ const Conquistas = () => {
       const imagePath = images[`modulo${index}`];
 
       return (
-        <div className="col-4 p-0" key={index}>
+        <div className="col-4 p-0 d-flex align-items-stretch" key={index}>
           <img
             src={imagePath}
             alt={`Imagem do Módulo ${index} - ${isCompleted ? 'concluído' : 'bloqueado'}`}
@@ -80,7 +80,7 @@ const Conquistas = () => {
               </div>
             </section>
             
-            <section aria-label="Imagens dos módulos" className="row justify-content-center" tabIndex={-1}>
+            <section aria-label="Imagens dos módulos" className="row justify-content-center" tabIndex={-1} style={{ gap: '0' }}>
               {renderModuleImages()}
             </section>
           </div>
