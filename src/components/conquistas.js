@@ -4,12 +4,12 @@ import Navbar from './navbar';
 import Sidebar from './sidebar';
 import Loading from './loading';
 
-import modulo1 from "../imgs/module1.jpg";
-import modulo2 from "../imgs/module1.jpg";
-import modulo3 from "../imgs/module1.jpg";
-import modulo4 from "../imgs/module1.jpg";
-import modulo5 from "../imgs/module1.jpg";
-import modulo6 from "../imgs/module1.jpg";
+import modulo1 from "../imgs/peca1.png";
+import modulo2 from "../imgs/peca2.png";
+import modulo3 from "../imgs/peca3.png";
+import modulo4 from "../imgs/peca4.png";
+import modulo5 from "../imgs/peca5.png";
+import modulo6 from "../imgs/peca6.png";
 
 const Conquistas = () => {
   const [modulosConcluidos, setModulosConcluidos] = useState(0);
@@ -79,7 +79,7 @@ const Conquistas = () => {
                 />
               </div>
             </section>
-
+            
             <section aria-label="Imagens dos módulos" className="row justify-content-center" tabIndex={-1}>
               {renderModuleImages()}
             </section>
